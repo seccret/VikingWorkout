@@ -1,17 +1,13 @@
 package com.example.patirk.vikingworkout;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.example.patirk.vikingworkout.MainActivity;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +24,7 @@ public class AdapterImage extends BaseAdapter {
 
         for (Workout w : Profil.workouts) {
             String name = w.getName();
-            mItems.add(new Item(w.getName()));
+            mItems.add(new Item(name));
         }
     }
 
@@ -48,7 +44,6 @@ public class AdapterImage extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = view;
-        ImageView picture;
         TextView name;
 
         if (v == null) {
@@ -56,10 +51,15 @@ public class AdapterImage extends BaseAdapter {
             v.setTag(R.id.tvItemWorkout, v.findViewById(R.id.tvItemWorkout));
         }
         name = (TextView) v.findViewById(R.id.tvItemWorkout);
-
         final Item item = getItem(i);
-
         name.setText(item.name);
+
+        name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.a, item.name, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return v;
     }
