@@ -18,6 +18,7 @@ import java.util.List;
 public class Profil extends android.support.v4.app.Fragment {
 
     public static List<Workout> workouts = null;
+    public static List<Workout> globalWorkouts = null;
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -43,37 +44,80 @@ public class Profil extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.profile_fragment, container, false);
+        final View rootView = inflater.inflate(R.layout.profile_fragment, container, false);
         rootView.findViewById(R.id.tvItemWorkout);
 
-        Button nameButton = (Button) rootView.findViewById(R.id.searchbutton_on);
-        Button catButton = (Button) rootView.findViewById(R.id.searchbutton_off);
+        final Button myworkoutButton = (Button) rootView.findViewById(R.id.bToggleLeft);
+        final Button globalButton = (Button) rootView.findViewById(R.id.bToggleMiddle);
+        final Button statisticButton = (Button) rootView.findViewById(R.id.bToggleRight);
 
-        nameButton.setOnClickListener(new View.OnClickListener(){
+        myworkoutButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                myworkoutButton.setBackgroundResource(R.drawable.button_selected);
+                myworkoutButton.setTextColor(getResources().getColor(R.color.halfTrans));
+                globalButton.setBackgroundResource(R.drawable.button_unselected);
+                globalButton.setTextColor(getResources().getColor(R.color.white));
+                statisticButton.setBackgroundResource(R.drawable.button_unselected);
+                statisticButton.setTextColor(getResources().getColor(R.color.white));
+                GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
+                AdapterImage AI = new AdapterImage(rootView.getContext(), workouts);
+                gv.setAdapter(AI);
+
 
             }
         });
 
-        catButton.setOnClickListener(new View.OnClickListener(){
+        globalButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                globalButton.setBackgroundResource(R.drawable.button_selected);
+                globalButton.setTextColor(getResources().getColor(R.color.halfTrans));
+                myworkoutButton.setBackgroundResource(R.drawable.button_unselected);
+                myworkoutButton.setTextColor(getResources().getColor(R.color.white));
+                statisticButton.setBackgroundResource(R.drawable.button_unselected);
+                statisticButton.setTextColor(getResources().getColor(R.color.white));
+                GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
+                AdapterImage AI = new AdapterImage(rootView.getContext(), globalWorkouts);
+                gv.setAdapter(AI);
+
+
+
+            }
+        });
+
+        statisticButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                statisticButton.setBackgroundResource(R.drawable.button_selected);
+                statisticButton.setTextColor(getResources().getColor(R.color.halfTrans));
+                myworkoutButton.setBackgroundResource(R.drawable.button_unselected);
+                myworkoutButton.setTextColor(getResources().getColor(R.color.white));
+                globalButton.setBackgroundResource(R.drawable.button_unselected);
+                globalButton.setTextColor(getResources().getColor(R.color.white));
 
             }
         });
 
 
         workouts = new ArrayList<Workout>();
-        workouts.add(new Workout(0, "Mage"));
-        workouts.add(new Workout(1, "Ben"));
-        workouts.add(new Workout(2, "Rygg"));
-        workouts.add(new Workout(3, "Armar"));
-        workouts.add(new Workout(4, "Cross-training"));
-        workouts.add(new Workout(5, "Ultimate situps"));
+        workouts.add(new Workout(0, "Mage", 1));
+        workouts.add(new Workout(1, "Ben", 2));
+        workouts.add(new Workout(2, "Rygg", 3));
+        workouts.add(new Workout(3, "Armar", 1));
+        workouts.add(new Workout(4, "Cross-training", 2));
+        workouts.add(new Workout(5, "Ultimate situps", 3));
+
+        globalWorkouts = new ArrayList<Workout>();
+        globalWorkouts.add(new Workout(0, "Global 1", 3));
+        globalWorkouts.add(new Workout(1, "Top 10", 2));
+        globalWorkouts.add(new Workout(2, "Global 2", 1));
+        globalWorkouts.add(new Workout(3, "Global 3", 3));
+        globalWorkouts.add(new Workout(4, "Global 4", 2));
+        globalWorkouts.add(new Workout(5, "Global 5", 1));
 
        GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
-       AdapterImage AI = new AdapterImage(rootView.getContext());
+       AdapterImage AI = new AdapterImage(rootView.getContext(), workouts);
        gv.setAdapter(AI);
 
         return rootView;

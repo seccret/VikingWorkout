@@ -6,10 +6,12 @@ package com.example.patirk.vikingworkout;
 public class Workout {
     private long id;
     private String name;
+    private int picture;
 
-    public Workout(long id, String name) {
+    public Workout(long id, String name, int picture) {
         this.id = id;
         this.name = name;
+        this.picture = picture;
     }
 
     public long getId() {
@@ -20,5 +22,8 @@ public class Workout {
         return name;
     }
 
+    public int getPicture() {
+        return picture;
+    }
 
 }

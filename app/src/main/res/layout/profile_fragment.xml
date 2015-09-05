@@ -25,21 +25,29 @@
         android:layout_width="fill_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:layout_marginTop="?android:attr/actionBarSize"
-        android:weightSum="1">
+        android:weightSum="3">
         <Button
-            android:id="@+id/searchbutton_on"
+            android:id="@+id/bToggleLeft"
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="1"
             android:text="My Workout"
             android:textColor="@color/halfTrans"
             android:background="@drawable/button_selected"/>
         <Button
-            android:id="@+id/searchbutton_off"
+            android:id="@+id/bToggleMiddle"
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="1"
             android:text="Global List"
+            android:textColor="@color/white"
+            android:background="@drawable/button_unselected"/>
+        <Button
+            android:id="@+id/bToggleRight"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Statistics"
             android:textColor="@color/white"
             android:background="@drawable/button_unselected"/>
     </LinearLayout>
