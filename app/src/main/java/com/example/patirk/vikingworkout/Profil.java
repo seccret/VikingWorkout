@@ -1,11 +1,11 @@
 package com.example.patirk.vikingworkout;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridView;
 
 import java.util.ArrayList;
@@ -45,6 +45,24 @@ public class Profil extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.profile_fragment, container, false);
         rootView.findViewById(R.id.tvItemWorkout);
+
+        Button nameButton = (Button) rootView.findViewById(R.id.searchbutton_on);
+        Button catButton = (Button) rootView.findViewById(R.id.searchbutton_off);
+
+        nameButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        catButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
         workouts = new ArrayList<Workout>();
         workouts.add(new Workout(0, "Mage"));

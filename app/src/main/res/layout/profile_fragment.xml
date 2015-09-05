@@ -19,6 +19,30 @@
         android:layout_gravity="center"
         />
 
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/search_container"
+        android:layout_width="fill_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:weightSum="1">
+        <Button
+            android:id="@+id/searchbutton_on"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="My Workout"
+            android:textColor="@color/halfTrans"
+            android:background="@drawable/button_selected"/>
+        <Button
+            android:id="@+id/searchbutton_off"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="Global List"
+            android:textColor="@color/white"
+            android:background="@drawable/button_unselected"/>
+    </LinearLayout>
 
     <GridView
         android:id="@+id/gvWorkouts"
@@ -27,7 +51,7 @@
         android:verticalSpacing="0dp"
         android:horizontalSpacing="0dp"
         android:stretchMode="columnWidth"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="15dp"
         android:numColumns="3"
         />
 
