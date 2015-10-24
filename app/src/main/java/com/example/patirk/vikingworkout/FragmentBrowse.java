@@ -25,7 +25,7 @@ public class FragmentBrowse extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.browse_fragment, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_browse, container, false);
 
         return rootView;
     }

@@ -58,17 +58,17 @@ public class AdapterImage extends BaseAdapter {
         name.setText(item.name);
 
         if(item.picture==1){
-            image.setBackgroundResource(R.mipmap.image1);
+            image.setBackgroundResource(R.drawable.image1);
         }else if(item.picture==2){
-            image.setBackgroundResource(R.mipmap.image2);
+            image.setBackgroundResource(R.drawable.image2);
         }else if(item.picture==3){
-            image.setBackgroundResource(R.mipmap.image3);
+            image.setBackgroundResource(R.drawable.image3);
         }
 
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.a, item.name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.mainActivity, item.name, Toast.LENGTH_SHORT).show();
             }
         });
 
