@@ -1,12 +1,16 @@
 package com.example.patirk.vikingworkout;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +30,13 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     /**
-     * Returns a new instance of this fragment for the given section
+     * Returns mainActivity new instance of this fragment for the given section
      * number.
      */
     public static FragmentProfile newInstance() {
         FragmentProfile fragment = new FragmentProfile();
         Bundle args = new Bundle();
-     //   args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        //   args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
 
         return fragment;
@@ -44,8 +48,17 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.profile_fragment, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         rootView.findViewById(R.id.tvItemWorkout);
+        Drawable pPic = MainActivity.profile.getPicture();
+        String pName = MainActivity.profile.getName();
+        ImageView profilePic = (ImageView) rootView.findViewById(R.id.ivProfileImage);
+        TextView profileName = (TextView) rootView.findViewById(R.id.tvProfileName);
+        if(pPic != null) {
+            profilePic.setImageDrawable(null);
+            profilePic.setBackground(pPic);
+        }
+        profileName.setText(pName);
 
         final Button myworkoutButton = (Button) rootView.findViewById(R.id.bToggleLeft);
         final Button globalButton = (Button) rootView.findViewById(R.id.bToggleMiddle);
@@ -63,8 +76,6 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
                 AdapterImage AI = new AdapterImage(rootView.getContext(), workouts);
                 gv.setAdapter(AI);
-
-
             }
         });
 
@@ -116,8 +127,8 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         globalWorkouts.add(new Workout(4, "Global 4", 2));
         globalWorkouts.add(new Workout(5, "Global 5", 1));
 
-       GridView gvProfile = (GridView) rootView.findViewById(R.id.gvWorkouts);
-       AdapterImage AI = new AdapterImage(rootView.getContext(), workouts);
+        GridView gvProfile = (GridView) rootView.findViewById(R.id.gvWorkouts);
+        AdapterImage AI = new AdapterImage(rootView.getContext(), workouts);
         gvProfile.setAdapter(AI);
 
         return rootView;
