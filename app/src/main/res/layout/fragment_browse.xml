@@ -5,8 +5,11 @@
     android:weightSum="7">
 
     <TextView
+        android:id="@+id/tvBrowseRec"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:text="Recommended"
         android:layout_weight="0.5"/>
     <GridView
         android:id="@+id/gvBrowseRecommended"
@@ -20,8 +23,11 @@
         android:numColumns="3"
         />
     <TextView
+        android:id="@+id/tvBrowseCat"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:text="Category"
         android:layout_weight="0.5"/>
 
     <GridView

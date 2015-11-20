@@ -4,13 +4,16 @@ import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +53,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         rootView.findViewById(R.id.tvItemWorkout);
+        GridView gvProfile;
         Drawable pPic = MainActivity.profile.getPicture();
         String pName = MainActivity.profile.getName();
         ImageView profilePic = (ImageView) rootView.findViewById(R.id.ivProfileImage);
@@ -127,9 +131,11 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         globalWorkouts.add(new Workout(4, "Global 4", 2));
         globalWorkouts.add(new Workout(5, "Global 5", 1));
 
-        GridView gvProfile = (GridView) rootView.findViewById(R.id.gvWorkouts);
+        gvProfile = (GridView) rootView.findViewById(R.id.gvWorkouts);
         AdapterImage AI = new AdapterImage(rootView.getContext(), workouts);
         gvProfile.setAdapter(AI);
+        registerForContextMenu(gvProfile);
+        registerForContextMenu(rootView); 
 
         return rootView;
     }
@@ -139,5 +145,13 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         super.onAttach(activity);
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        Toast.makeText(MainActivity.mainActivity, "U did a long click!", Toast.LENGTH_SHORT).show();
+        MenuInflater inflater = MainActivity.mainActivity.getMenuInflater();
+        inflater.inflate(R.menu.context_menu, menu);
     }
 }

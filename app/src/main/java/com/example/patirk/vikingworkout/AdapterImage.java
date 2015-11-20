@@ -1,9 +1,11 @@
 package com.example.patirk.vikingworkout;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ContextMenu;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -18,6 +20,7 @@ public class AdapterImage extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
+    private static Workout workout=null;
 
     // Constructor
     public AdapterImage(Context c, List<Workout> workoutList) {
@@ -27,6 +30,7 @@ public class AdapterImage extends BaseAdapter {
             String name = w.getName();
             int picture = w.getPicture();
             mItems.add(new Item(name, picture));
+            this.workout = w;
         }
     }
 
@@ -58,20 +62,27 @@ public class AdapterImage extends BaseAdapter {
         name.setText(item.name);
 
         if(item.picture==1){
-            image.setBackgroundResource(R.drawable.image1);
+            image.setBackgroundResource(R.mipmap.image1);
         }else if(item.picture==2){
-            image.setBackgroundResource(R.drawable.image2);
+           image.setBackgroundResource(R.mipmap.image2);
         }else if(item.picture==3){
-            image.setBackgroundResource(R.drawable.image3);
+            image.setBackgroundResource(R.mipmap.image3);
         }
 
-        name.setOnClickListener(new View.OnClickListener() {
+       /* name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.mainActivity, item.name, Toast.LENGTH_SHORT).show();
+                //Step 1: Create new Workout with items parameters
+                Workout wo = new Workout(0,item.name,item.picture);
+                //Step 2: Set currentWorkout to clicked workout
+                MainActivity.currentWorkout = wo;
+                //Step 3: Go to workout fragment
+                MainActivity.fragmentManager.beginTransaction()
+                        .replace(R.id.container, FragmentWorkout.newInstance())
+                        .commit();
             }
         });
-
+    */
         return v;
     }
 

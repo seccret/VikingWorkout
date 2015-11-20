@@ -32,6 +32,9 @@ public class MainActivity extends ActionBarActivity
     public static Activity mainActivity = null;
     public static FileInputStream fis=null;
     public static FileOutputStream fos=null;
+    public static Workout currentWorkout = null;
+    public static Exercise currentExercise = null;
+    public static FragmentManager fragmentManager = null;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -72,7 +75,7 @@ public class MainActivity extends ActionBarActivity
     }
 
     public void onSectionAttached(int number) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
@@ -95,6 +98,12 @@ public class MainActivity extends ActionBarActivity
                 mTitle = "Settings";
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, FragmentSettings.newInstance())
+                        .commit();
+                break;
+            case 5:
+                mTitle = "Training Plan";
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, FragmentTrainingPlan.newInstance())
                         .commit();
                 break;
         }
