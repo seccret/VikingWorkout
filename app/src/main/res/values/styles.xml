@@ -4,5 +4,9 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
     </style>
+    <style name="myApplicationCustomTheme" parent="Theme.AppCompat">
+        <item name="android:panelFullBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 
 </resources>

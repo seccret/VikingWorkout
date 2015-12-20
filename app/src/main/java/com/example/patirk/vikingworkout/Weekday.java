@@ -4,19 +4,19 @@ package com.example.patirk.vikingworkout;
  * Created by olivia on 2015-09-07.
  */
 public class Weekday {
-    private long id;
+    private int id;
     private String name;
     private int picture;
     private Workout workout;
 
-    public Weekday(long id, String name, int picture) {
+    public Weekday(int id, String name, int picture) {
         this.id = id;
         this.name = name;
         this.picture = picture;
         workout = new Workout(0, "", 0);
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
