@@ -16,7 +16,7 @@ public class AdapterImage3 extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
-    private static Workout workout=null;
+    private static Workout workout = null;
 
     // Constructor
     public AdapterImage3(Context c, List<Weekday> weekdayList) {
@@ -59,12 +59,12 @@ public class AdapterImage3 extends BaseAdapter {
         weekday.setText(item.name);
         workoutName.setText(item.name2);
 
-        if(item.picture==1){
-            image.setBackgroundResource(R.mipmap.image1);
-        }else if(item.picture==2){
+        if (item.picture == 1) {
+            image.setBackgroundResource(R.drawable.image3);
+        } else if (item.picture == 2) {
             image.setBackgroundResource(R.mipmap.image2);
-        }else if(item.picture==3){
-            image.setBackgroundResource(R.mipmap.image3);
+        } else if (item.picture == 3) {
+            image.setBackgroundResource(R.mipmap.image2);
         }
 
         return v;
@@ -74,7 +74,7 @@ public class AdapterImage3 extends BaseAdapter {
         public final String name, name2;
         public final int picture;
 
-        Item(String name, int picture,String name2) {
+        Item(String name, int picture, String name2) {
             this.name = name;
             this.name2 = name2;
             this.picture = picture;

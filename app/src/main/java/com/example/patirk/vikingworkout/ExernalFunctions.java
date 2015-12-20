@@ -36,7 +36,7 @@ public class ExernalFunctions {
         paint.setColor(color);
         // canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
         canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
-                bitmap.getWidth() / ((float)2), paint);
+                bitmap.getWidth() / ((float) 2), paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bitmap, rect, rect, paint);
         //Bitmap _bmp = Bitmap.createScaledBitmap(output, 60, 60, false);
@@ -44,15 +44,15 @@ public class ExernalFunctions {
         return output;
     }
 
-    public static Bitmap drawableToBitmap (Drawable drawable) {
+    public static Bitmap drawableToBitmap(Drawable drawable) {
         Bitmap bitmap = null;
         if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            if(bitmapDrawable.getBitmap() != null) {
+            if (bitmapDrawable.getBitmap() != null) {
                 return bitmapDrawable.getBitmap();
             }
         }
-        if(drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
             bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
         } else {
             bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
@@ -63,8 +63,8 @@ public class ExernalFunctions {
         return bitmap;
     }
 
-    public static void saveImage(Context context, Bitmap b, String name, String extension){
-        name=name+"."+extension;
+    public static void saveImage(Context context, Bitmap b, String name, String extension) {
+        name = name + "." + extension;
         FileOutputStream out;
         try {
             out = context.openFileOutput(name, Context.MODE_PRIVATE);
@@ -75,15 +75,14 @@ public class ExernalFunctions {
         }
     }
 
-    public static Bitmap getImageBitmap(Context context, String name, String extension){
-        name=name+"."+extension;
-        try{
+    public static Bitmap getImageBitmap(Context context, String name, String extension) {
+        name = name + "." + extension;
+        try {
             FileInputStream fis = context.openFileInput(name);
             Bitmap b = BitmapFactory.decodeStream(fis);
             fis.close();
             return b;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
         }
         return null;
     }

@@ -35,15 +35,15 @@ public class Profile {
     }
 
     public Drawable getPicture() {
-        Drawable drawable=new BitmapDrawable(picture);
+        Drawable drawable = new BitmapDrawable(picture);
         return drawable;
     }
 
-    public void setName(String newName){
-        this.name=newName;
+    public void setName(String newName) {
+        this.name = newName;
     }
 
-    public void setProfilePicture(Bitmap newPic){
+    public void setProfilePicture(Bitmap newPic) {
         this.picture = newPic;
         //ExernalFunctions.saveToInternalStorage(newPic);
     }

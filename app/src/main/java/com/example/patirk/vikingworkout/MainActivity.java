@@ -30,8 +30,8 @@ public class MainActivity extends ActionBarActivity
 
     public static Profile profile = null;
     public static Activity mainActivity = null;
-    public static FileInputStream fis=null;
-    public static FileOutputStream fos=null;
+    public static FileInputStream fis = null;
+    public static FileOutputStream fos = null;
     public static Workout currentWorkout = null;
     public static Exercise currentExercise = null;
     public static FragmentManager fragmentManager = null;
@@ -50,7 +50,7 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        profile = new Profile(0,"Test Name");
+        profile = new Profile(0, "Test Name");
 
         loadProfile();
         mainActivity = this;
@@ -186,7 +186,7 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
-    public boolean loadProfile(){
+    public boolean loadProfile() {
         try {
             fis = openFileInput("viking_profile_name");
             InputStreamReader isr = new InputStreamReader(fis);
@@ -196,10 +196,10 @@ public class MainActivity extends ActionBarActivity
             // Transform the chars to a String
             String readString = new String(inputBuffer);
             profile.setName(readString);
-            Bitmap bitbit= ExernalFunctions.getImageBitmap(this, "profile", "JPEG" );
+            Bitmap bitbit = ExernalFunctions.getImageBitmap(this, "profile", "JPEG");
             Bitmap loadedImage = ExernalFunctions.getCroppedBitmap(bitbit);
             profile.setProfilePicture(loadedImage);
-            Toast.makeText(this, "Loading profile: '"+readString+"'..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Loading profile: '" + readString + "'..", Toast.LENGTH_SHORT).show();
             return true;
         } catch (FileNotFoundException e) {
             Toast.makeText(this, "File not found", Toast.LENGTH_SHORT).show();
@@ -212,13 +212,13 @@ public class MainActivity extends ActionBarActivity
         return false;
     }
 
-    public static void saveProfile(Context c){
-        try{
+    public static void saveProfile(Context c) {
+        try {
             Drawable draw = profile.getPicture();
             Bitmap bit = ExernalFunctions.drawableToBitmap(draw);
-            ExernalFunctions.saveImage(MainActivity.mainActivity, bit, "profile","JPEG");
+            ExernalFunctions.saveImage(MainActivity.mainActivity, bit, "profile", "JPEG");
             String profileName = profile.getName();
-            fos = c.openFileOutput("viking_profile_name",c.MODE_PRIVATE);
+            fos = c.openFileOutput("viking_profile_name", c.MODE_PRIVATE);
             fos.write(profileName.getBytes());
             fos.close();
             Toast.makeText(MainActivity.mainActivity, "Profile saved", Toast.LENGTH_SHORT).show();

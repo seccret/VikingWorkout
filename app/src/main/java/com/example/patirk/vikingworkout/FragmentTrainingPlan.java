@@ -116,7 +116,6 @@ public class FragmentTrainingPlan extends android.support.v4.app.Fragment {
         lv.setAdapter(AI);
 
 
-
         return rootView;
     }
 

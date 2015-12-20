@@ -13,7 +13,7 @@ public class Weekday {
         this.id = id;
         this.name = name;
         this.picture = picture;
-        workout = new Workout(0, "",0);
+        workout = new Workout(0, "", 0);
     }
 
     public long getId() {

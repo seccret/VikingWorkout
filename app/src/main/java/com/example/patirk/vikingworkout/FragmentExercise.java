@@ -32,16 +32,9 @@ public class FragmentExercise extends android.support.v4.app.Fragment {
         ImageView gif = (ImageView) rootView.findViewById(R.id.ivExerciseImage);
         TextView des = (TextView) rootView.findViewById(R.id.tvExerciseDes);
         Exercise exercise = MainActivity.currentExercise;
+        gif.setBackground(exercise.getPicture());
 
-        if(exercise.getPicture()==1){
-            gif.setBackgroundResource(R.mipmap.image1);
-        }else if(exercise.getPicture()==2){
-            gif.setBackgroundResource(R.mipmap.image2);
-        }else if(exercise.getPicture()==3){
-            gif.setBackgroundResource(R.mipmap.image3);
-        }
-
-        des.setText("How to do a "+exercise.getName()+" exercise!");
+        des.setText("How to do a " + exercise.getName() + " exercise!");
 
         return rootView;
     }

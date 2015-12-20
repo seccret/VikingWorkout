@@ -1,5 +1,8 @@
 package com.example.patirk.vikingworkout;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +20,13 @@ public class Workout {
         this.id = id;
         this.name = name;
         this.picture = picture;
+        Drawable img1 = (Drawable) MainActivity.mainActivity.getDrawable(R.mipmap.image1);
+        Drawable img2 = (Drawable) MainActivity.mainActivity.getDrawable(R.mipmap.image2);
+        Drawable img3 = (Drawable) MainActivity.mainActivity.getDrawable(R.mipmap.image3);
 
-        Exercise exercise1 = new Exercise(0,"Sit Ups",1);
-        Exercise exercise2 = new Exercise(1,"Push Up",2);
-        Exercise exercise3 = new Exercise(2,"Pull up",3);
+        Exercise exercise1 = new Exercise(0, "Sit Ups", img1);
+        Exercise exercise2 = new Exercise(1, "Push Up", img2);
+        Exercise exercise3 = new Exercise(2, "Pull up", img3);
         exercises = new ArrayList<>();
         exercises.add(exercise1);
         exercises.add(exercise2);
@@ -40,13 +46,15 @@ public class Workout {
         return picture;
     }
 
-    public List<Exercise> getExercises(){ return exercises;}
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
 
-    public void addExercise (Exercise e){
+    public void addExercise(Exercise e) {
         exercises.add(e);
     }
 
-    public void setExercises (List<Exercise> listE){
+    public void setExercises(List<Exercise> listE) {
         exercises = listE;
     }
 

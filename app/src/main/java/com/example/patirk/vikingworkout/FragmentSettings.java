@@ -22,6 +22,7 @@ public class FragmentSettings extends android.support.v4.app.Fragment implements
     Button bEditPic, bEditText;
     TextView save;
     EditText t;
+
     public static FragmentSettings newInstance() {
         FragmentSettings fragment = new FragmentSettings();
         Bundle args = new Bundle();
@@ -54,18 +55,19 @@ public class FragmentSettings extends android.support.v4.app.Fragment implements
     public void onClick(View v) {
         if (v == bEditText) {
             String newName = t.getText().toString();
-            if(!newName.equals("Name")){
+            if (!newName.equals("Name")) {
                 MainActivity.profile.setName(newName);
-            }else{
+            } else {
                 Toast.makeText(getActivity(), "You need to press 'Done' on your keyboard to change name", Toast.LENGTH_SHORT).show();
             }
-        }else if(v == bEditPic){
+        } else if (v == bEditPic) {
             Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent, 0);
-        }else if(v == save){
+        } else if (v == save) {
             MainActivity.saveProfile(MainActivity.mainActivity);
         }
     }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);

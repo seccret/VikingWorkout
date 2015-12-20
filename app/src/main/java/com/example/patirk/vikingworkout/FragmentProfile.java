@@ -58,7 +58,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         String pName = MainActivity.profile.getName();
         ImageView profilePic = (ImageView) rootView.findViewById(R.id.ivProfileImage);
         TextView profileName = (TextView) rootView.findViewById(R.id.tvProfileName);
-        if(pPic != null) {
+        if (pPic != null) {
             profilePic.setImageDrawable(null);
             profilePic.setBackground(pPic);
         }
@@ -68,7 +68,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         final Button globalButton = (Button) rootView.findViewById(R.id.bToggleMiddle);
         final Button statisticButton = (Button) rootView.findViewById(R.id.bToggleRight);
 
-        myworkoutButton.setOnClickListener(new View.OnClickListener(){
+        myworkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 myworkoutButton.setBackgroundResource(R.drawable.button_selected);
@@ -83,7 +83,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
             }
         });
 
-        globalButton.setOnClickListener(new View.OnClickListener(){
+        globalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 globalButton.setBackgroundResource(R.drawable.button_selected);
@@ -97,11 +97,10 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 gv.setAdapter(AI);
 
 
-
             }
         });
 
-        statisticButton.setOnClickListener(new View.OnClickListener(){
+        statisticButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 statisticButton.setBackgroundResource(R.drawable.button_selected);
@@ -135,7 +134,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         AdapterImage AI = new AdapterImage(rootView.getContext(), workouts);
         gvProfile.setAdapter(AI);
         registerForContextMenu(gvProfile);
-        registerForContextMenu(rootView); 
+        registerForContextMenu(rootView);
 
         return rootView;
     }
@@ -146,6 +145,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
