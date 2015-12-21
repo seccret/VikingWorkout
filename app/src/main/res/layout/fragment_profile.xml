@@ -74,7 +74,7 @@
         android:horizontalSpacing="0dp"
         android:stretchMode="columnWidth"
         android:layout_marginTop="15dp"
-        android:numColumns="3"
+        android:numColumns="2"
         />
 
 </LinearLayout>
