@@ -69,7 +69,6 @@ public class AdapterImage extends BaseAdapter {
             image.setBackgroundResource(R.mipmap.image3);
         }
 
-
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
