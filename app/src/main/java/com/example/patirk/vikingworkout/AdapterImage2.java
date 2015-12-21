@@ -1,6 +1,7 @@
 package com.example.patirk.vikingworkout;
 
 import android.content.Context;
+import android.graphics.Movie;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,9 +25,11 @@ public class AdapterImage2 extends BaseAdapter {
         mInflater = LayoutInflater.from(c);
 
         for (Exercise w : workoutList) {
+            int id = w.getId();
             String name = w.getName();
             Drawable picture = w.getPicture();
-            mItems.add(new Item(name, picture));
+            Movie gif = w.getGif();
+            mItems.add(new Item(id, name, picture, gif));
         }
     }
 
@@ -64,7 +67,7 @@ public class AdapterImage2 extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //Step 1: Create new Exercise with items parameters
-                Exercise wo = new Exercise(0, item.name, item.picture);
+                Exercise wo = new Exercise(item.id, item.name, item.picture, item.gif);
                 //Step 2: Set currentWorkout to clicked exercise
                 MainActivity.currentExercise = wo;
                 //Step 3: Go to exercise fragment
@@ -72,18 +75,23 @@ public class AdapterImage2 extends BaseAdapter {
                         .replace(R.id.container, FragmentExercise.newInstance())
                         .commit();
             }
+
         });
 
         return v;
     }
 
     private static class Item {
-        public final String name;
-        public final Drawable picture;
+        private int id;
+        private String name;
+        private Drawable picture;
+        private Movie gif;
 
-        Item(String name, Drawable picture) {
+        Item(int id, String name, Drawable picture, Movie gif) {
+            this.id = id;
             this.name = name;
             this.picture = picture;
+            this.gif = gif;
         }
     }
 }

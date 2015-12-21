@@ -86,7 +86,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         globalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                globalButton.setBackgroundResource(R.drawable.button_selected);
+         /*       globalButton.setBackgroundResource(R.drawable.button_selected);
                 globalButton.setTextColor(getResources().getColor(R.color.halfTrans));
                 myworkoutButton.setBackgroundResource(R.drawable.button_unselected);
                 myworkoutButton.setTextColor(getResources().getColor(R.color.white));
@@ -95,7 +95,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
                 AdapterImage AI = new AdapterImage(rootView.getContext(), globalWorkouts);
                 gv.setAdapter(AI);
-
+    */
 
             }
         });
@@ -122,14 +122,14 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         workouts.add(new Workout(4, "Cross-training", 2));
         workouts.add(new Workout(5, "Ultimate situps", 3));
 
-        globalWorkouts = new ArrayList<Workout>();
+   /*     globalWorkouts = new ArrayList<Workout>();
         globalWorkouts.add(new Workout(0, "Global 1", 3));
         globalWorkouts.add(new Workout(1, "Top 10", 2));
         globalWorkouts.add(new Workout(2, "Global 2", 1));
         globalWorkouts.add(new Workout(3, "Global 3", 3));
         globalWorkouts.add(new Workout(4, "Global 4", 2));
         globalWorkouts.add(new Workout(5, "Global 5", 1));
-
+*/
         gvProfile = (GridView) rootView.findViewById(R.id.gvWorkouts);
         AdapterImage AI = new AdapterImage(rootView.getContext(), workouts);
         gvProfile.setAdapter(AI);

@@ -29,12 +29,15 @@ public class FragmentExercise extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_exercise, container, false);
-        ImageView gif = (ImageView) rootView.findViewById(R.id.ivExerciseImage);
-        TextView des = (TextView) rootView.findViewById(R.id.tvExerciseDes);
+        GifView gif = (GifView) rootView.findViewById(R.id.gif_view);
+        TextView name = (TextView) rootView.findViewById(R.id.tvExerciseName);
         Exercise exercise = MainActivity.currentExercise;
-        gif.setBackground(exercise.getPicture());
+        gif.setGifMovie(exercise.getGif());
+        String stringInfo= "";
+        stringInfo += "Duration: " + gif.getMovieDuration() + "\n";
+        stringInfo += "W x H = " + gif.getMovieWidth() + " x " + gif.getMovieHeight() + "\n";
+        name.setText(exercise.getName());
 
-        des.setText("How to do a " + exercise.getName() + " exercise!");
 
         return rootView;
     }

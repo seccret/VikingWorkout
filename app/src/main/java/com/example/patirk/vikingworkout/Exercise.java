@@ -1,24 +1,30 @@
 package com.example.patirk.vikingworkout;
 
 import android.graphics.Bitmap;
+import android.graphics.Movie;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.webkit.WebView;
+
+import java.io.InputStream;
 
 /**
  * Created by olivia on 2015-09-07.
  */
 public class Exercise {
-    private long id;
+    private int id;
     private String name;
     private Drawable picture;
+    private Movie gifMovie;
 
-    public Exercise(long id, String name, Drawable picture) {
+    public Exercise(int id, String name, Drawable picture, Movie gif) {
         this.id = id;
         this.name = name;
         this.picture = picture;
+        this.gifMovie = gif;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -31,4 +37,7 @@ public class Exercise {
         return picture;
     }
 
+    public Movie getGif(){
+        return gifMovie;
+    }
 }

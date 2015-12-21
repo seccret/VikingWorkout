@@ -17,7 +17,6 @@ import java.util.List;
  */
 public class FragmentBrowse extends android.support.v4.app.Fragment {
 
-    public static List<Workout> recWorkouts = null;
     public static List<Workout> catWorkouts = null;
 
     public static FragmentBrowse newInstance() {
@@ -36,20 +35,9 @@ public class FragmentBrowse extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_browse, container, false);
-        TextView rec = (TextView) rootView.findViewById(R.id.tvBrowseRec);
-        GridView recommended = (GridView) rootView.findViewById(R.id.gvBrowseRecommended);
         TextView cat = (TextView) rootView.findViewById(R.id.tvBrowseCat);
         GridView category = (GridView) rootView.findViewById(R.id.gvBrowseCategory);
         Workout workout = MainActivity.currentWorkout;
-
-
-        recWorkouts = new ArrayList<Workout>();
-        recWorkouts.add(new Workout(0, "Mage", 1));
-        recWorkouts.add(new Workout(1, "Ben", 2));
-        recWorkouts.add(new Workout(2, "Rygg", 3));
-        recWorkouts.add(new Workout(3, "Armar", 1));
-        recWorkouts.add(new Workout(4, "Cross-training", 2));
-        recWorkouts.add(new Workout(5, "Ultimate situps", 3));
 
         catWorkouts = new ArrayList<Workout>();
         catWorkouts.add(new Workout(0, "Mage", 1));
@@ -58,9 +46,6 @@ public class FragmentBrowse extends android.support.v4.app.Fragment {
         catWorkouts.add(new Workout(3, "Armar", 1));
         catWorkouts.add(new Workout(4, "Cross-training", 2));
         catWorkouts.add(new Workout(5, "Ultimate situps", 3));
-
-        AdapterImage AI = new AdapterImage(rootView.getContext(), recWorkouts);
-        recommended.setAdapter(AI);
 
         AdapterImage AI2 = new AdapterImage(rootView.getContext(), catWorkouts);
         category.setAdapter(AI2);

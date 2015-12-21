@@ -53,7 +53,7 @@ public class AdapterImage extends BaseAdapter {
         TextView name;
         ImageButton image;
         if (v == null) {
-            v = mInflater.inflate(R.layout.item_workout, viewGroup, false);
+            v = mInflater.inflate(R.layout.item_workout_big, viewGroup, false);
             v.setTag(R.id.tvItemWorkout, v.findViewById(R.id.tvItemWorkout));
         }
         name = (TextView) v.findViewById(R.id.tvItemWorkout);
