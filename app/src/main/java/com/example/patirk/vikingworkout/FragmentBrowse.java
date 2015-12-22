@@ -40,12 +40,15 @@ public class FragmentBrowse extends android.support.v4.app.Fragment {
         Workout workout = MainActivity.currentWorkout;
 
         catWorkouts = new ArrayList<Workout>();
-        catWorkouts.add(new Workout(0, "Mage", 1));
-        catWorkouts.add(new Workout(1, "Ben", 2));
-        catWorkouts.add(new Workout(2, "Rygg", 3));
-        catWorkouts.add(new Workout(3, "Armar", 1));
+        catWorkouts.add(new Workout(0, "Mage", 2));
+        catWorkouts.add(new Workout(1, "Ben", 3));
+        catWorkouts.add(new Workout(2, "Rygg", 2));
+        catWorkouts.add(new Workout(3, "Armar", 3));
         catWorkouts.add(new Workout(4, "Cross-training", 2));
         catWorkouts.add(new Workout(5, "Ultimate situps", 3));
+        catWorkouts.add(new Workout(6, "Mage", 2));
+        catWorkouts.add(new Workout(7, "Ben", 3));
+        catWorkouts.add(new Workout(8, "Rygg", 2));
 
         AdapterImage AI2 = new AdapterImage(rootView.getContext(), catWorkouts);
         category.setAdapter(AI2);

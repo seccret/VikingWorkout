@@ -62,11 +62,11 @@ public class AdapterImage extends BaseAdapter {
         name.setText(item.name);
 
         if (item.picture == 1) {
-            image.setBackgroundResource(R.mipmap.image1);
+            image.setBackgroundResource(R.drawable.workout1);
         } else if (item.picture == 2) {
-            image.setBackgroundResource(R.mipmap.image2);
+            image.setBackgroundResource(R.drawable.workout2);
         } else if (item.picture == 3) {
-            image.setBackgroundResource(R.mipmap.image3);
+            image.setBackgroundResource(R.drawable.workout3);
         }
 
         name.setOnClickListener(new View.OnClickListener() {

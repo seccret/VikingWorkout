@@ -79,7 +79,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 statisticButton.setTextColor(getResources().getColor(R.color.white));
                 GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
                 AdapterImage AI = new AdapterImage(rootView.getContext(), workouts);
-                gv.setAdapter(AI);
+               gv.setAdapter(AI);
             }
         });
 

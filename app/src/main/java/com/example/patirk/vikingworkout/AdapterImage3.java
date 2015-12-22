@@ -60,11 +60,11 @@ public class AdapterImage3 extends BaseAdapter {
         workoutName.setText(item.name2);
 
         if (item.picture == 1) {
-            image.setBackgroundResource(R.mipmap.image3);
+            image.setBackgroundResource(R.drawable.workout1);
         } else if (item.picture == 2) {
-            image.setBackgroundResource(R.mipmap.image2);
+            image.setBackgroundResource(R.drawable.workout2);
         } else if (item.picture == 3) {
-            image.setBackgroundResource(R.mipmap.image2);
+            image.setBackgroundResource(R.drawable.workout3);
         }
 
         return v;
