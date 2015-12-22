@@ -30,15 +30,22 @@
             android:gravity="center"
             android:visibility="gone"
             />
-
-    <ImageView
-        android:id="@+id/ivWorkoutPlay"
-        android:background="@drawable/play"
-        android:layout_width="40dp"
+    <LinearLayout
+        android:id="@+id/llWorkoutPlay"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="0.5"/>
+        android:layout_weight="0.5"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <ImageView
+            android:id="@+id/ivWorkoutPlay"
+            android:background="@drawable/play"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            />
 
+    </LinearLayout>
     <TextView
         android:id="@+id/tvWorkoutTips"
         android:layout_width="fill_parent"

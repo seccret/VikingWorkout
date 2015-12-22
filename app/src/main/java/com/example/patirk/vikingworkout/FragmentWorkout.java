@@ -50,6 +50,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
         final ImageView image = (ImageView) rootView.findViewById(R.id.ivWorkoutImage);
         final TextView tips = (TextView) rootView.findViewById(R.id.tvWorkoutTips);
         final ImageView play = (ImageView) rootView.findViewById(R.id.ivWorkoutPlay);
+        final LinearLayout llplay = (LinearLayout) rootView.findViewById(R.id.llWorkoutPlay);
         final ListView lvExercises = (ListView) rootView.findViewById(R.id.lvWorkoutList);
         final Workout workout = MainActivity.currentWorkout;
         final List<Integer> exercises = workout.getExercises();
@@ -70,7 +71,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
             //    time.setVisibility(View.VISIBLE);
                 tvTime.setVisibility(View.VISIBLE);
                 gif.setVisibility(View.VISIBLE);
-                play.setVisibility(View.GONE);
+                llplay.setVisibility(View.GONE);
                 image.setVisibility(View.GONE);
                 MainActivity.activeWorkoutCounter=0;
                 final Workout w = MainActivity.currentWorkout;
@@ -96,7 +97,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                             MainActivity.activeWorkoutCounter=0;
                             tvTime.setVisibility(View.GONE);
                             gif.setVisibility(View.GONE);
-                            play.setVisibility(View.VISIBLE);
+                            llplay.setVisibility(View.VISIBLE);
                             image.setVisibility(View.VISIBLE);
                         }
                     }
