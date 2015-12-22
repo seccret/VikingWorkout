@@ -48,11 +48,11 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
         final List<Exercise> exercises = workout.getExercises();
 
         if (workout.getPicture() == 1) {
-            gif.setBackgroundResource(R.mipmap.image1);
+            gif.setBackgroundResource(R.drawable.workout1);
         } else if (workout.getPicture() == 2) {
-            gif.setBackgroundResource(R.mipmap.image2);
+            gif.setBackgroundResource(R.drawable.workout2);
         } else if (workout.getPicture() == 3) {
-            gif.setBackgroundResource(R.mipmap.image3);
+            gif.setBackgroundResource(R.drawable.workout3);
         }
 
    /*     gif.setOnClickListener(new View.OnClickListener() {

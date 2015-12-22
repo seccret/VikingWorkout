@@ -7,9 +7,13 @@
     <TextView
         android:id="@+id/tvBrowseCat"
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:text="Category"
+        android:layout_height="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Categories"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:background="@color/material_blue_grey_800"
         android:layout_weight="1"/>
 
     <GridView
@@ -17,10 +21,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
-        android:verticalSpacing="0dp"
-        android:horizontalSpacing="0dp"
-        android:layout_marginTop="10dp"
+        android:verticalSpacing="-25dp"
+        android:horizontalSpacing="150dp"
+        android:layout_marginTop="0dp"
         android:numColumns="2"
+        android:gravity="left"
+        android:stretchMode="none"
         />
 
 </LinearLayout>
