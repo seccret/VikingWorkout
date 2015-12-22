@@ -46,7 +46,7 @@ public class MainActivity extends ActionBarActivity
     public static Workout currentWorkout = null;
     public static Exercise currentExercise = null;
     public static FragmentManager fragmentManager = null;
-    public static int sizeX, sizeY;
+    public static int lastLongClick, sizeY;
     public static List<Workout> workouts = null;
     public static List<Exercise> exerciseList = null;
 
@@ -65,11 +65,10 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainActivity = this;
-        profile = new Profile(0, "Test Name", null);
 
-        loadProfile();
         loadExercises();
         loadWorkouts();
+        loadProfile();
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -241,6 +240,7 @@ public class MainActivity extends ActionBarActivity
     }
 
     public boolean loadProfile() {
+        MainActivity.profile = new Profile(0, "Test Name", null);
         try {
             fis = openFileInput("viking_profile_name");
             InputStreamReader isr = new InputStreamReader(fis);

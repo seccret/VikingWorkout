@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -21,9 +22,9 @@ public class Profile {
     private long id;
     private String name;
     private Bitmap picture;
-    private List<Workout> myWorkout;
+    private List<Integer> myWorkout;
 
-    public Profile(long id, String name, List<Workout> myWorkout) {
+    public Profile(long id, String name, List<Integer> myWorkout) {
         this.id = id;
         this.name = name;
         this.picture = null;
@@ -51,8 +52,17 @@ public class Profile {
         return myWorkout;
     }
 
-    public void addWorkout(Workout w){
-        myWorkout.add(w);
+    public void addWorkout(int wID){
+        myWorkout.add(wID);
+    }
+
+    public void removeWorkout(int wID){
+        boolean remove = myWorkout.remove((Object)wID);
+    }
+
+    public boolean contains(int wID){
+        boolean exist = myWorkout.contains(wID);
+        return exist;
     }
 
     public void setName(String newName) {

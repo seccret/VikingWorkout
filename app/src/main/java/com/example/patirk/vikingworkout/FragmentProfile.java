@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -66,6 +68,13 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         final Button globalButton = (Button) rootView.findViewById(R.id.bToggleMiddle);
         final Button statisticButton = (Button) rootView.findViewById(R.id.bToggleRight);
 
+        //Craete list of users workout
+        final List<Workout> myWorkout = new ArrayList<Workout>();
+        for(int i=0; i< MainActivity.profile.getMyWorkouts().size(); i++){
+            myWorkout.add(MainActivity.workouts.get((int)MainActivity.profile.getMyWorkouts().get(i)));
+        }
+
+
         myworkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +85,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setTextColor(getResources().getColor(R.color.white));
                 GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
-                AdapterImage AI = new AdapterImage(rootView.getContext(), MainActivity.workouts);
+                AdapterImage AI = new AdapterImage(rootView.getContext(), myWorkout);
                 gv.setAdapter(AI);
             }
         });
@@ -112,7 +121,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         });
 
         gvProfile = (GridView) rootView.findViewById(R.id.gvWorkouts);
-        AdapterImage AI = new AdapterImage(rootView.getContext(), MainActivity.workouts);
+        AdapterImage AI = new AdapterImage(rootView.getContext(), myWorkout);
         gvProfile.setAdapter(AI);
         registerForContextMenu(gvProfile);
         registerForContextMenu(rootView);
@@ -131,8 +140,16 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        Toast.makeText(MainActivity.mainActivity, "U did a long click!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MainActivity.mainActivity, "U did a long click!", Toast.LENGTH_SHORT).show();
         MenuInflater inflater = MainActivity.mainActivity.getMenuInflater();
         inflater.inflate(R.menu.context_menu, menu);
+    }
+    public boolean onContextItemSelected(final MenuItem item){
+        if(item.getTitle().equals("Remove")){
+            MainActivity.profile.removeWorkout(MainActivity.lastLongClick);
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.detach(this).attach(this).commit();
+        }
+        return true;
     }
 }

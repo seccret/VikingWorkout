@@ -8,6 +8,7 @@ import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.internal.widget.FitWindowsLinearLayout;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -82,7 +83,6 @@ public class AdapterImage extends BaseAdapter {
             image.setBackgroundResource(R.drawable.workout3);
         }
 
-
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +97,21 @@ public class AdapterImage extends BaseAdapter {
             }
         });
 
+        name.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick (View v){
+                if (MainActivity.profile.contains(item.id)) {
+                    MainActivity.lastLongClick = item.id;
+                } else {
+                    MainActivity.profile.addWorkout(item.id);
+                    Toast.makeText(MainActivity.mainActivity, item.name + " workout added to profile", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        );
         return v;
     }
 
