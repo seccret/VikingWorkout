@@ -8,30 +8,28 @@
         android:id="@+id/ivWorkoutImage"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1.45"
         />
-    <LinearLayout
-        android:id="@+id/llWorkoutTime"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        android:orientation="vertical"
-        android:layout_weight="0.5"
-        >
 
+        <com.example.patirk.vikingworkout.GifView
+            android:id="@+id/gif_view"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.45"
+            android:layout_gravity="left"
+            android:visibility="gone"
+            />
         <TextView
             android:id="@+id/tvWorkoutTime"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="10dp"
-            android:text="25:32"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
             android:textColor="@color/white"
             android:textSize="40dp"
             android:background="@color/material_blue_grey_800"
             android:gravity="center"
+            android:visibility="gone"
             />
-
-    </LinearLayout>
 
     <ImageView
         android:id="@+id/ivWorkoutPlay"
@@ -39,7 +37,7 @@
         android:layout_width="40dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_weight="0.3"/>
+        android:layout_weight="0.5"/>
 
     <TextView
         android:id="@+id/tvWorkoutTips"
@@ -53,7 +51,10 @@
         android:id="@+id/lvWorkoutList"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="2.6">
+        android:layout_weight="1.95"
+        android:layout_gravity="bottom"
+
+        >
     </ListView>
 
 </LinearLayout>

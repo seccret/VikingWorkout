@@ -46,7 +46,7 @@ public class MainActivity extends ActionBarActivity
     public static Workout currentWorkout = null;
     public static Exercise currentExercise = null;
     public static FragmentManager fragmentManager = null;
-    public static int lastLongClick, sizeY;
+    public static int lastLongClick, activeWorkoutCounter=0;
     public static List<Workout> workouts = null;
     public static List<Exercise> exerciseList = null;
 
