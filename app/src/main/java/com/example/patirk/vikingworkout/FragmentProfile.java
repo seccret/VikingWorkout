@@ -91,7 +91,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setTextColor(getResources().getColor(R.color.white));
                 GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
-                AdapterImage AI = new AdapterImage(rootView.getContext(), MainActivity.globalWorkouts);
+                AdapterImage AI = new AdapterImage(rootView.getContext(), MainActivity.workouts);
                 gv.setAdapter(AI);
 
 

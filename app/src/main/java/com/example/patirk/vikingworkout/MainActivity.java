@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Movie;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -28,6 +30,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +47,8 @@ public class MainActivity extends ActionBarActivity
     public static Exercise currentExercise = null;
     public static FragmentManager fragmentManager = null;
     public static int sizeX, sizeY;
-    public static List<Workout> catWorkouts = null, workouts = null, globalWorkouts = null;
+    public static List<Workout> workouts = null;
+    public static List<Exercise> exerciseList = null;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -64,8 +68,8 @@ public class MainActivity extends ActionBarActivity
         profile = new Profile(0, "Test Name", null);
 
         loadProfile();
+        loadExercises();
         loadWorkouts();
-
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -94,28 +98,24 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentProfile.newInstance())
-                        .commit();
+                fragmentManager.beginTransaction().replace(R.id.container, FragmentProfile.newInstance())
+                    .commit();
 
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentBrowse.newInstance())
+                fragmentManager.beginTransaction().replace(R.id.container, FragmentBrowse.newInstance())
                         .commit();
 
                 break;
             case 4:
                 mTitle = "Settings";
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentSettings.newInstance())
+                fragmentManager.beginTransaction().replace(R.id.container, FragmentSettings.newInstance())
                         .commit();
                 break;
             case 5:
                 mTitle = "Training Plan";
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentTrainingPlan.newInstance())
+                fragmentManager.beginTransaction().replace(R.id.container, FragmentTrainingPlan.newInstance())
                         .commit();
                 break;
         }
@@ -159,31 +159,44 @@ public class MainActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
     public boolean loadWorkouts(){
-        MainActivity.catWorkouts = new ArrayList<>();
-        MainActivity.catWorkouts.add(new Workout(0, "Mage", 1));
-        MainActivity.catWorkouts.add(new Workout(1, "Ben", 2));
-        MainActivity.catWorkouts.add(new Workout(2, "Rygg", 3));
-        MainActivity.catWorkouts.add(new Workout(3, "Armar", 1));
-        MainActivity.catWorkouts.add(new Workout(4, "Cross-training", 2));
-        MainActivity.catWorkouts.add(new Workout(5, "Ultimate situps", 3));
-
-       MainActivity.workouts = new ArrayList<Workout>();
-       MainActivity.workouts.add(new Workout(0, "Mage", 1));
-       MainActivity.workouts.add(new Workout(1, "Ben", 2));
-       MainActivity.workouts.add(new Workout(2, "Rygg", 3));
-       MainActivity.workouts.add(new Workout(3, "Armar", 1));
-       MainActivity.workouts.add(new Workout(4, "Cross-training", 2));
-       MainActivity.workouts.add(new Workout(5, "Ultimate situps", 3));
-
-        MainActivity.globalWorkouts = new ArrayList<Workout>();
-        MainActivity.globalWorkouts.add(new Workout(0, "Global 1", 3));
-        MainActivity.globalWorkouts.add(new Workout(1, "Top 10", 2));
-        MainActivity.globalWorkouts.add(new Workout(2, "Global 2", 1));
-        MainActivity.globalWorkouts.add(new Workout(3, "Global 3", 3));
-        MainActivity.globalWorkouts.add(new Workout(4, "Global 4", 2));
-        MainActivity.globalWorkouts.add(new Workout(5, "Global 5", 1));
+        MainActivity.workouts = new ArrayList<Workout>();
+        MainActivity.workouts.add(new Workout(0, "Mage", 1));
+        MainActivity.workouts.add(new Workout(1, "Ben", 2));
+        MainActivity.workouts.add(new Workout(2, "Rygg", 3));
+        MainActivity.workouts.add(new Workout(3, "Armar", 1));
+        MainActivity.workouts.add(new Workout(4, "Cross-training", 2));
+        MainActivity.workouts.add(new Workout(5, "Ultimate situps", 3));
 
         return true;
+    }
+    public void loadExercises(){
+        InputStream gifInputStream;
+        MainActivity.exerciseList = new ArrayList<Exercise>();
+        Exercise exercise = null;
+        for(int i = 0; i<4; i++) {
+            if (i == 0) {
+                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.commandos);
+                Movie gif = Movie.decodeStream(gifInputStream);
+                Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
+                exercise = new Exercise(0, "Commandos", img, gif);
+            } else if (i == 1) {
+                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.pushups);
+                Movie gif = Movie.decodeStream(gifInputStream);
+                Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
+                exercise = new Exercise(1, "Push Up", img, gif);
+            } else if (i == 2) {
+                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.situps);
+                Movie gif = Movie.decodeStream(gifInputStream);
+                Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
+                exercise = new Exercise(2, "Sit Up", img, gif);
+            } else if (i == 3) {
+                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.running);
+                Movie gif = Movie.decodeStream(gifInputStream);
+                Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
+                exercise = new Exercise(3, "Runner", img, gif);
+            }
+            exerciseList.add(exercise);
+        }
     }
 
     /**

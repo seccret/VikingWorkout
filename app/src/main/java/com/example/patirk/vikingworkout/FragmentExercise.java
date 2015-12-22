@@ -33,9 +33,6 @@ public class FragmentExercise extends android.support.v4.app.Fragment {
         TextView name = (TextView) rootView.findViewById(R.id.tvExerciseName);
         Exercise exercise = MainActivity.currentExercise;
         gif.setGifMovie(exercise.getGif());
-        String stringInfo= "";
-        stringInfo += "Duration: " + gif.getMovieDuration() + "\n";
-        stringInfo += "W x H = " + gif.getMovieWidth() + " x " + gif.getMovieHeight() + "\n";
         name.setText(exercise.getName());
 
 

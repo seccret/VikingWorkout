@@ -38,10 +38,11 @@ public class AdapterImage extends BaseAdapter {
         mInflater = LayoutInflater.from(c);
 
         for (Workout w : workoutList) {
+            int id = w.getId();
             String name = w.getName();
             int picture = w.getPicture();
-            mItems.add(new Item(name, picture));
-            this.workout = w;
+            mItems.add(new Item(id, name, picture));
+            //this.workout = w;
         }
     }
 
@@ -82,12 +83,11 @@ public class AdapterImage extends BaseAdapter {
         }
 
 
-
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Step 1: Create new Workout with items parameters
-                Workout wo = new Workout(0, item.name, item.picture);
+                Workout wo = MainActivity.workouts.get(0);
                 //Step 2: Set currentWorkout to clicked workout
                 MainActivity.currentWorkout = wo;
                 //Step 3: Go to workout fragment
@@ -101,10 +101,12 @@ public class AdapterImage extends BaseAdapter {
     }
 
     private static class Item {
+        public final int id;
         public final String name;
         public final int picture;
 
-        Item(String name, int picture) {
+        Item(int id, String name, int picture) {
+            this.id = id;
             this.name = name;
             this.picture = picture;
         }

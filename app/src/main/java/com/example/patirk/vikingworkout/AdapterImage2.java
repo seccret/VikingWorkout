@@ -21,10 +21,11 @@ public class AdapterImage2 extends BaseAdapter {
     private static Workout workout = null;
 
     // Constructor
-    public AdapterImage2(Context c, List<Exercise> workoutList) {
+    public AdapterImage2(Context c, List<Integer> exerciseList) {
         mInflater = LayoutInflater.from(c);
 
-        for (Exercise w : workoutList) {
+        for (int exerciseID : exerciseList) {
+            Exercise w = MainActivity.exerciseList.get(exerciseID);
             int id = w.getId();
             String name = w.getName();
             Drawable picture = w.getPicture();
@@ -62,14 +63,13 @@ public class AdapterImage2 extends BaseAdapter {
 
         image.setBackground(item.picture);
 
-
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Step 1: Create new Exercise with items parameters
-                Exercise wo = new Exercise(item.id, item.name, item.picture, item.gif);
-                //Step 2: Set currentWorkout to clicked exercise
-                MainActivity.currentExercise = wo;
+                Exercise ex = MainActivity.exerciseList.get(item.id);
+                //Step 2: Set currentExercise to clicked exercise
+                MainActivity.currentExercise = ex;
                 //Step 3: Go to exercise fragment
                 MainActivity.fragmentManager.beginTransaction()
                         .replace(R.id.container, FragmentExercise.newInstance())

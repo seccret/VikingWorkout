@@ -16,41 +16,17 @@ public class Workout {
     private String name;
     private int picture;
 
-    private List<Exercise> exercises;
+    private List<Integer> exercises;
 
     public Workout(int id, String name, int picture) {
         this.id = id;
         this.name = name;
         this.picture = picture;
-
-        exercises = new ArrayList<>();
-        InputStream gifInputStream;
-        for(int i = 0; i<4; i++){
-            Exercise exercise =null;
-            if(i==0){
-                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.commandos);
-                Movie gif = Movie.decodeStream(gifInputStream);
-                Drawable img = (Drawable) Drawable.createFromStream(gifInputStream,"img");
-                exercise = new Exercise(0, "Commandos", img, gif);
-            }else if(i==1){
-                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.pushups);
-                Movie gif = Movie.decodeStream(gifInputStream);
-                Drawable img = (Drawable) Drawable.createFromStream(gifInputStream,"img");
-                exercise = new Exercise(1, "Push Up", img, gif);
-            }else if(i==2){
-                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.situps);
-                Movie gif = Movie.decodeStream(gifInputStream);
-                Drawable img = (Drawable) Drawable.createFromStream(gifInputStream,"img");
-                exercise = new Exercise(2, "Sit Up", img, gif);
-            }else if(i==3){
-                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.running);
-                Movie gif = Movie.decodeStream(gifInputStream);
-                Drawable img = (Drawable) Drawable.createFromStream(gifInputStream,"img");
-                exercise = new Exercise(2, "Runner", img, gif);
-            }
-            exercises.add(exercise);
-        }
-
+        this.exercises = new ArrayList<>();
+        exercises.add(0);
+        exercises.add(1);
+        exercises.add(2);
+        exercises.add(3);
 
     }
 
@@ -66,16 +42,17 @@ public class Workout {
         return picture;
     }
 
-    public List<Exercise> getExercises() {
+    public List<Integer> getExercises() {
         return exercises;
     }
 
-    public void addExercise(Exercise e) {
-        exercises.add(e);
+    public void addExercise(int i) {
+        this.exercises.add(i);
     }
 
-    public void setExercises(List<Exercise> listE) {
-        exercises = listE;
+    public void setExercises(List<Integer> listE) {
+        this.exercises = new ArrayList<>();
+        this.exercises = listE;
     }
 
 }

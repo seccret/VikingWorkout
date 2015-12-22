@@ -1,5 +1,6 @@
 package com.example.patirk.vikingworkout;
 
+import android.graphics.Movie;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -34,9 +36,6 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
     public FragmentWorkout() {
     }
 
-    private Handler handler;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
         TextView tips = (TextView) rootView.findViewById(R.id.tvWorkoutTips);
         ListView lvExercises = (ListView) rootView.findViewById(R.id.lvWorkoutList);
         Workout workout = MainActivity.currentWorkout;
-        final List<Exercise> exercises = workout.getExercises();
+        final List<Integer> exercises = workout.getExercises();
 
         if (workout.getPicture() == 1) {
             gif.setBackgroundResource(R.drawable.workout1);
@@ -55,47 +54,9 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
             gif.setBackgroundResource(R.drawable.workout3);
         }
 
-   /*     gif.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (int i = 0; i < exercises.size(); i++) {
-                    try {
-                        Thread.sleep(2000);
-                        gif.setBackground(exercises.get(i).getPicture());
-                    } catch (InterruptedException e) {
-
-                    }
-
-                }
-
-            }
-        });
-*/
-
-
-        gif.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gif.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (int i = 0; i < exercises.size(); i++) {
-                            try {
-                                gif.setBackground(exercises.get(i).getPicture());
-                            } finally {
-
-                            }
-
-                        }
-                    }
-                }, 1000);
-            }
-        });
-
-
         tips.setText("This is an " + workout.getName() + " workout!");
 
-        AdapterImage2 ai = new AdapterImage2(MainActivity.mainActivity, workout.getExercises());
+        AdapterImage2 ai = new AdapterImage2(MainActivity.mainActivity, exercises);
         lvExercises.setAdapter(ai);
 
         return rootView;
