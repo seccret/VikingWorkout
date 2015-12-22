@@ -24,8 +24,6 @@ import java.util.List;
 
 public class FragmentProfile extends android.support.v4.app.Fragment {
 
-    public static List<Workout> workouts = null;
-    public static List<Workout> globalWorkouts = null;
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -78,7 +76,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setTextColor(getResources().getColor(R.color.white));
                 GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
-                AdapterImage AI = new AdapterImage(rootView.getContext(), workouts);
+                AdapterImage AI = new AdapterImage(rootView.getContext(), MainActivity.workouts);
                 gv.setAdapter(AI);
             }
         });
@@ -93,7 +91,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setTextColor(getResources().getColor(R.color.white));
                 GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
-                AdapterImage AI = new AdapterImage(rootView.getContext(), globalWorkouts);
+                AdapterImage AI = new AdapterImage(rootView.getContext(), MainActivity.globalWorkouts);
                 gv.setAdapter(AI);
 
 
@@ -113,25 +111,8 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
             }
         });
 
-
-        workouts = new ArrayList<Workout>();
-        workouts.add(new Workout(0, "Mage", 1));
-        workouts.add(new Workout(1, "Ben", 2));
-        workouts.add(new Workout(2, "Rygg", 3));
-        workouts.add(new Workout(3, "Armar", 1));
-        workouts.add(new Workout(4, "Cross-training", 2));
-        workouts.add(new Workout(5, "Ultimate situps", 3));
-
-        globalWorkouts = new ArrayList<Workout>();
-        globalWorkouts.add(new Workout(0, "Global 1", 3));
-        globalWorkouts.add(new Workout(1, "Top 10", 2));
-        globalWorkouts.add(new Workout(2, "Global 2", 1));
-        globalWorkouts.add(new Workout(3, "Global 3", 3));
-        globalWorkouts.add(new Workout(4, "Global 4", 2));
-        globalWorkouts.add(new Workout(5, "Global 5", 1));
-
         gvProfile = (GridView) rootView.findViewById(R.id.gvWorkouts);
-        AdapterImage AI = new AdapterImage(rootView.getContext(), workouts);
+        AdapterImage AI = new AdapterImage(rootView.getContext(), MainActivity.workouts);
         gvProfile.setAdapter(AI);
         registerForContextMenu(gvProfile);
         registerForContextMenu(rootView);

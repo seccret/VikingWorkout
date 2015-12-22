@@ -17,8 +17,6 @@ import java.util.List;
  */
 public class FragmentBrowse extends android.support.v4.app.Fragment {
 
-    public static List<Workout> catWorkouts = null;
-
     public static FragmentBrowse newInstance() {
         FragmentBrowse fragment = new FragmentBrowse();
         Bundle args = new Bundle();
@@ -39,15 +37,9 @@ public class FragmentBrowse extends android.support.v4.app.Fragment {
         GridView category = (GridView) rootView.findViewById(R.id.gvBrowseCategory);
         Workout workout = MainActivity.currentWorkout;
 
-        catWorkouts = new ArrayList<Workout>();
-        catWorkouts.add(new Workout(0, "Mage", 1));
-        catWorkouts.add(new Workout(1, "Ben", 2));
-        catWorkouts.add(new Workout(2, "Rygg", 3));
-        catWorkouts.add(new Workout(3, "Armar", 1));
-        catWorkouts.add(new Workout(4, "Cross-training", 2));
-        catWorkouts.add(new Workout(5, "Ultimate situps", 3));
 
-        AdapterImage AI2 = new AdapterImage(rootView.getContext(), catWorkouts);
+
+        AdapterImage AI2 = new AdapterImage(rootView.getContext(), MainActivity.catWorkouts);
         category.setAdapter(AI2);
 
 

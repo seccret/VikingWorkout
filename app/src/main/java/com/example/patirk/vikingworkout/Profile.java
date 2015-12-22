@@ -11,6 +11,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Patirk on 23/10/2015.
@@ -19,11 +21,17 @@ public class Profile {
     private long id;
     private String name;
     private Bitmap picture;
+    private List<Workout> myWorkout;
 
-    public Profile(long id, String name) {
+    public Profile(long id, String name, List<Workout> myWorkout) {
         this.id = id;
         this.name = name;
         this.picture = null;
+        if(myWorkout==null){
+            this.myWorkout = new ArrayList<>();
+        }else{
+            this.myWorkout = myWorkout;
+        }
     }
 
     public long getId() {
@@ -37,6 +45,14 @@ public class Profile {
     public Drawable getPicture() {
         Drawable drawable = new BitmapDrawable(picture);
         return drawable;
+    }
+
+    public List getMyWorkouts(){
+        return myWorkout;
+    }
+
+    public void addWorkout(Workout w){
+        myWorkout.add(w);
     }
 
     public void setName(String newName) {

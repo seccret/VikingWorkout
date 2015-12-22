@@ -1,12 +1,23 @@
 package com.example.patirk.vikingworkout;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.internal.widget.FitWindowsLinearLayout;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ContextMenu;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -51,16 +62,17 @@ public class AdapterImage extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = view;
         TextView name;
-        ImageButton image;
+        ImageView image;
         if (v == null) {
             v = mInflater.inflate(R.layout.item_workout_big, viewGroup, false);
             v.setTag(R.id.tvItemWorkout, v.findViewById(R.id.tvItemWorkout));
         }
         name = (TextView) v.findViewById(R.id.tvItemWorkout);
-        image = (ImageButton) v.findViewById(R.id.ibItemWorkout);
+        image = (ImageView) v.findViewById(R.id.ibItemWorkout);
         final Item item = getItem(i);
         name.setText(item.name);
 
+        //Fix size of Mipmap
         if (item.picture == 1) {
             image.setBackgroundResource(R.mipmap.image1);
         } else if (item.picture == 2) {
@@ -68,6 +80,8 @@ public class AdapterImage extends BaseAdapter {
         } else if (item.picture == 3) {
             image.setBackgroundResource(R.mipmap.image3);
         }
+
+
 
         name.setOnClickListener(new View.OnClickListener() {
             @Override
