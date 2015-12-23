@@ -1,89 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="5">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:animateLayoutChanges="true"
+    tools:context=".FragmentProfile">
 
-    <RelativeLayout
-        android:id="@+id/ivProfileBanner"
-        android:background="@drawable/banner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <ImageView
-            android:id="@+id/ivProfileImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-        </RelativeLayout>
-
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        >
-        <TextView
-            android:id="@+id/tvProfileName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="Okänd"
-            android:textSize="20sp"
-            android:layout_gravity="center"
-            android:gravity="right"
-            />
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1.5"
-            android:src="@drawable/follow"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:visibility="visible"
-        android:id="@+id/search_container"
-        android:layout_width="fill_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:layout_marginTop="10dp"
-        android:weightSum="3">
-        <Button
-            android:id="@+id/bToggleLeft"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="My Workout"
-            android:textColor="@color/halfTrans"
-            android:background="@drawable/button_selected"/>
-        <Button
-            android:id="@+id/bToggleMiddle"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Global List"
-            android:textColor="@color/white"
-            android:background="@drawable/button_unselected"/>
-        <Button
-            android:id="@+id/bToggleRight"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Statistics"
-            android:textColor="@color/white"
-            android:background="@drawable/button_unselected"/>
-    </LinearLayout>
-
-    <GridView
-        android:id="@+id/gvWorkouts"
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        xmlns:sothree="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sliding_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:verticalSpacing="0dp"
-        android:horizontalSpacing="0dp"
-        android:stretchMode="columnWidth"
-        android:layout_marginTop="15dp"
-        android:numColumns="2"
-        />
+        android:gravity="bottom"
+        sothree:umanoPanelHeight="400dp"
+        sothree:umanoShadowHeight="4dp"
+        sothree:umanoFadeColor="@android:color/transparent"
+        >
+        <LinearLayout
+            android:id="@+id/ivProfileBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="40dp"
+            >
+            <TextView
+                android:id="@+id/tvProfileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Okänd"
+                android:layout_gravity="center"
+                android:gravity="right"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textIsSelectable="false" />
+            <ImageView
+                android:id="@+id/ivProfileImage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center" />
 
-</LinearLayout>
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_weight="1.5"
+                android:src="@drawable/follow"
+                android:layout_gravity="right"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="3"
+            android:layout_marginTop="75dp"
+            android:minHeight="1200dp"
+            >
+            <LinearLayout
+                android:visibility="visible"
+                android:id="@+id/search_container"
+                android:layout_width="fill_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:weightSum="3">
+                <Button
+                    android:id="@+id/bToggleLeft"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="My Workout"
+                    android:textColor="@color/halfTrans"
+                    android:background="@drawable/button_selected"/>
+                <Button
+                    android:id="@+id/bToggleMiddle"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Global List"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_unselected"/>
+                <Button
+                    android:id="@+id/bToggleRight"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Statistics"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_unselected"/>
+            </LinearLayout>
+
+            <GridView
+                android:id="@+id/gvWorkouts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:verticalSpacing="0dp"
+                android:horizontalSpacing="0dp"
+                android:stretchMode="columnWidth"
+                android:numColumns="2"
+                />
+        </LinearLayout>
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+</RelativeLayout>
