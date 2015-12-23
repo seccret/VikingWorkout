@@ -22,7 +22,7 @@
         <TextView
             android:id="@+id/tvWorkoutTime"
             style="@style/WorkoutTimer"
-            android:layout_weight="0.5"
+            android:layout_weight="0.6"
             android:gravity="center"
             android:visibility="gone"
             />
