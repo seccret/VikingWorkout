@@ -2,7 +2,6 @@ package com.example.patirk.vikingworkout;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.ContextMenu;
@@ -15,13 +14,9 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 
 /**
  * Created by Patirk on 03/09/2015.
@@ -88,7 +83,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setTextColor(getResources().getColor(R.color.white));
                 GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
-                AdapterImage AI = new AdapterImage(rootView.getContext(), myWorkout);
+                AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), myWorkout);
                 gv.setAdapter(AI);
             }
         });
@@ -103,7 +98,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setTextColor(getResources().getColor(R.color.white));
                 GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
-                AdapterImage AI = new AdapterImage(rootView.getContext(), MainActivity.workouts);
+                AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), MainActivity.workouts);
                 gv.setAdapter(AI);
 
 
@@ -124,7 +119,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         });
 
         gvProfile = (GridView) rootView.findViewById(R.id.gvWorkouts);
-        AdapterImage AI = new AdapterImage(rootView.getContext(), myWorkout);
+        AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), myWorkout);
         gvProfile.setAdapter(AI);
         registerForContextMenu(gvProfile);
         registerForContextMenu(rootView);
