@@ -4,51 +4,89 @@
     android:layout_height="match_parent"
     android:weightSum="4">
 
-    <ImageView
-        android:id="@+id/ivWorkoutImage"
+    <RelativeLayout
+        android:id="@+id/rlWorkout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.45"
-        />
-
-        <com.example.patirk.vikingworkout.GifView
-            android:id="@+id/gif_view"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1.45"
-            android:layout_gravity="left"
-            android:visibility="gone"
+        android:layout_weight="1.35">
+        <ImageView
+            android:id="@+id/ivWorkoutImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             />
-        <TextView
-            android:id="@+id/tvWorkoutTime"
-            style="@style/WorkoutTimer"
-            android:layout_weight="0.6"
-            android:gravity="center"
-            android:visibility="gone"
-            />
-    <LinearLayout
-        android:id="@+id/llWorkoutPlay"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
+        <View android:id="@+id/separator"
+            android:background="#ffa500"
+            android:layout_width = "fill_parent"
+            android:layout_height="3dip"
+            android:layout_centerVertical ="true"
+            android:layout_alignParentBottom="true"/>
         <ImageView
             android:id="@+id/ivWorkoutPlay"
-            android:background="@drawable/play"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:background="@drawable/playorange"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+
+    <com.example.patirk.vikingworkout.GifView
+        android:id="@+id/gif_view"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1.35"
+        android:layout_gravity="left"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/tvWorkoutTime"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:textColor="#ffa500"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        android:fontFamily="times new roman"
+        android:gravity="center"
+        android:visibility="gone"
             />
 
-    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rlWorkoutName"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4">
+        <TextView
+            android:id="@+id/tvWorkoutName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Workout Name"
+            android:textSize="30dp"
+            android:fontFamily="times new roman"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"/>
+        <TextView
+            android:id="@+id/tvWorkoutBy"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="By: Jane Doe"
+            android:textSize="15dp"
+            android:fontFamily="times new roman"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
     <TextView
-        android:id="@+id/tvWorkoutTips"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/tvWorkoutExercise"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:background="@drawable/headlinebox"
+        android:text="Exercises"
+        android:fontFamily="times new roman"
         android:gravity="center"
-        android:text="Tips: Use your arm muscles"
-        android:layout_weight="0.1"/>
+        android:textSize="15dp"/>
 
     <ListView
         android:id="@+id/lvWorkoutList"
