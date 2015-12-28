@@ -66,7 +66,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         final Button globalButton = (Button) rootView.findViewById(R.id.bToggleMiddle);
         final Button statisticButton = (Button) rootView.findViewById(R.id.bToggleRight);
 
-        //Craete list of users workout
+        //Create list of users workout
         final List<Workout> myWorkout = new ArrayList<Workout>();
         for(int i=0; i< MainActivity.profile.getMyWorkouts().size(); i++){
             myWorkout.add(MainActivity.workouts.get((int)MainActivity.profile.getMyWorkouts().get(i)));
@@ -77,11 +77,8 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 myworkoutButton.setBackgroundResource(R.drawable.button_selected);
-                myworkoutButton.setTextColor(getResources().getColor(R.color.halfTrans));
                 globalButton.setBackgroundResource(R.drawable.button_unselected);
-                globalButton.setTextColor(getResources().getColor(R.color.white));
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
-                statisticButton.setTextColor(getResources().getColor(R.color.white));
                 GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
                 AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), myWorkout);
                 gv.setAdapter(AI);
@@ -92,11 +89,8 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 globalButton.setBackgroundResource(R.drawable.button_selected);
-                globalButton.setTextColor(getResources().getColor(R.color.halfTrans));
                 myworkoutButton.setBackgroundResource(R.drawable.button_unselected);
-                myworkoutButton.setTextColor(getResources().getColor(R.color.white));
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
-                statisticButton.setTextColor(getResources().getColor(R.color.white));
                 GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
                 AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), MainActivity.workouts);
                 gv.setAdapter(AI);
@@ -109,11 +103,9 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 statisticButton.setBackgroundResource(R.drawable.button_selected);
-                statisticButton.setTextColor(getResources().getColor(R.color.halfTrans));
                 myworkoutButton.setBackgroundResource(R.drawable.button_unselected);
-                myworkoutButton.setTextColor(getResources().getColor(R.color.white));
                 globalButton.setBackgroundResource(R.drawable.button_unselected);
-                globalButton.setTextColor(getResources().getColor(R.color.white));
+           //     globalButton.setTextColor(getResources().getColor(R.color.white));
 
             }
         });
