@@ -45,12 +45,12 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_workout, container, false);
         final ImageView workoutImage = (ImageView) rootView.findViewById(R.id.ivWorkoutImage);
-       // final LinearLayout time = (LinearLayout) rootView.findViewById(R.id.llWorkoutTime);
         final TextView tvTime = (TextView) rootView.findViewById(R.id.tvWorkoutTime);
         final GifView gif = (GifView) rootView.findViewById(R.id.gif_view);
         final ImageView image = (ImageView) rootView.findViewById(R.id.ivWorkoutImage);
         final RelativeLayout rlName = (RelativeLayout) rootView.findViewById(R.id.rlWorkoutName);
         final TextView woname = (TextView) rootView.findViewById(R.id.tvWorkoutName);
+        final RelativeLayout rlplayimage = (RelativeLayout) rootView.findViewById(R.id.rlWorkoutPlay);
         final TextView woby = (TextView) rootView.findViewById(R.id.tvWorkoutBy);
         final ImageView play = (ImageView) rootView.findViewById(R.id.ivWorkoutPlay);
         final TextView next = (TextView) rootView.findViewById(R.id.tvWorkoutExercise);
@@ -72,15 +72,14 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //    time.setVisibility(View.VISIBLE);
-                tvTime.setVisibility(View.VISIBLE);
-                gif.setVisibility(View.VISIBLE);
+                rlplayimage.setVisibility(View.VISIBLE);
                 rlplay.setVisibility(View.GONE);
                 rlName.setVisibility(View.GONE);
                 MainActivity.activeWorkoutCounter = 0;
                 final Workout w = MainActivity.currentWorkout;
                 Exercise e = MainActivity.exerciseList.get(w.getExercises().get(MainActivity.activeWorkoutCounter));
                 gif.setGifMovie(e.getGif());
+                next.setText("Next up:");
                 lvExercises.setSelection(MainActivity.activeWorkoutCounter);
                 new CountDownTimer(5000, 1000) {
 
@@ -102,11 +101,11 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                             this.start();
                         } else {
                             MainActivity.activeWorkoutCounter = 0;
-                            tvTime.setVisibility(View.GONE);
-                            gif.setVisibility(View.GONE);
+                            rlplayimage.setVisibility(View.GONE);
                             rlplay.setVisibility(View.VISIBLE);
                             rlName.setVisibility(View.VISIBLE);
                             image.setVisibility(View.VISIBLE);
+                            next.setText("Exercises");
                         }
                     }
                 }.start();
