@@ -14,65 +14,30 @@
         android:gravity="bottom"
         sothree:umanoPanelHeight="400dp"
         sothree:umanoShadowHeight="4dp"
+        sothree:umanoClipPanel="false"
         sothree:umanoFadeColor="@android:color/transparent"
         >
-        <LinearLayout
-            android:id="@+id/ivProfileBanner"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="30dp"
-            >
+            android:layout_height="295dp">
+            <ImageView
+            android:id="@+id/ivProfileImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
             <TextView
                 android:id="@+id/tvProfileName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Okänd"
-                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:paddingTop="45dp"
                 style="@style/TextAppearance.AppCompat.Title"
                 android:textSize="22sp"
+                android:textColor="#ffffff"
                 android:textIsSelectable="false" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                >
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    >
-                    <ImageView
-                        android:id="@+id/ivProfileImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_weight="2"
-                    android:orientation="vertical"
-                    >
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/follow_button4"
-                        android:layout_gravity="center"
-                        />
-                    <TextView
-                        android:layout_width="220dp"
-                        android:layout_height="100dp"
-                        android:fontFamily="sans-serif-light"
-                        android:text="Professional PT works at SATS. Trains all days of the week including sundays. Training sessions at 8 pm every day."/>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -94,7 +59,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="My Workout"
-                    android:textColor="@color/halfTrans"
+                    android:textColor="#fba500"
                     android:background="@drawable/button_selected"/>
                 <Button
                     android:id="@+id/bToggleMiddle"
@@ -102,26 +67,25 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Global List"
-                    android:textColor="@color/halfTrans"
-                    android:background="@drawable/button_unselected"/>
+                    android:textColor="#fba500"
+                    android:background="@color/transparent"/>
                 <Button
                     android:id="@+id/bToggleRight"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Statistics"
-                    android:textColor="@color/halfTrans"
-                    android:background="@drawable/button_unselected"/>
+                    android:textColor="#fba500"
+                    android:background="@color/transparent"/>
             </LinearLayout>
 
-            <GridView
-                android:id="@+id/gvWorkouts"
+            <ListView
+                android:id="@+id/lvWorkouts"
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:verticalSpacing="2dp"
-                android:horizontalSpacing="2dp"
                 android:stretchMode="columnWidth"
-                android:numColumns="3"
                 />
         </LinearLayout>
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>

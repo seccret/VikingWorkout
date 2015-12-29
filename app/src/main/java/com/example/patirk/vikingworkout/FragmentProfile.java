@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -51,10 +52,10 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         rootView.findViewById(R.id.tvItemWorkout);
-        GridView gvProfile;
+        ListView lvProfile;
         Drawable pPic = MainActivity.profile.getPicture();
         String pName = MainActivity.profile.getName();
-        ImageView profilePic = (ImageView) rootView.findViewById(R.id.ivProfileImage);
+        final ImageView profilePic = (ImageView) rootView.findViewById(R.id.ivProfileImage);
         TextView profileName = (TextView) rootView.findViewById(R.id.tvProfileName);
         if (pPic != null) {
             profilePic.setImageDrawable(null);
@@ -79,9 +80,9 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 myworkoutButton.setBackgroundResource(R.drawable.button_selected);
                 globalButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
-                GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
+                ListView lv = (ListView) rootView.findViewById(R.id.lvWorkouts);
                 AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), myWorkout);
-                gv.setAdapter(AI);
+                lv.setAdapter(AI);
             }
         });
 
@@ -91,9 +92,9 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 globalButton.setBackgroundResource(R.drawable.button_selected);
                 myworkoutButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
-                GridView gv = (GridView) rootView.findViewById(R.id.gvWorkouts);
+                ListView lv = (ListView) rootView.findViewById(R.id.lvWorkouts);
                 AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), MainActivity.workouts);
-                gv.setAdapter(AI);
+                lv.setAdapter(AI);
 
 
             }
@@ -110,10 +111,10 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
             }
         });
 
-        gvProfile = (GridView) rootView.findViewById(R.id.gvWorkouts);
+        lvProfile = (ListView) rootView.findViewById(R.id.lvWorkouts);
         AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), myWorkout);
-        gvProfile.setAdapter(AI);
-        registerForContextMenu(gvProfile);
+        lvProfile.setAdapter(AI);
+        registerForContextMenu(lvProfile);
         registerForContextMenu(rootView);
 
         return rootView;

@@ -55,18 +55,8 @@ public class AdapterImageProfile extends BaseAdapter {
             v.setTag(R.id.tvItemWorkout, v.findViewById(R.id.tvItemWorkout));
         }
         name = (TextView) v.findViewById(R.id.tvItemWorkout);
-        image = (ImageView) v.findViewById(R.id.ibItemWorkout);
         final Item item = getItem(i);
         name.setText(item.name);
-
-        //Fix size of Mipmap
-        if (item.picture == 1) {
-            image.setBackgroundResource(R.drawable.workout1);
-        } else if (item.picture == 2) {
-            image.setBackgroundResource(R.drawable.workout2);
-        } else if (item.picture == 3) {
-            image.setBackgroundResource(R.drawable.workout3);
-        }
 
         name.setOnClickListener(new View.OnClickListener() {
             @Override
