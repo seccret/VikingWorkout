@@ -1,6 +1,7 @@
 package com.example.patirk.vikingworkout;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -15,6 +16,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +77,9 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
             myWorkout.add(MainActivity.workouts.get((int)MainActivity.profile.getMyWorkouts().get(i)));
         }
 
+        final SlidingUpPanelLayout supl = (SlidingUpPanelLayout) rootView.findViewById(R.id.sliding_layout);
+        final SlidingUpPanelLayout.PanelState wut = supl.getPanelState();
+        final String wut2 = wut.toString();
 
         myworkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +87,9 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 myworkoutButton.setBackgroundResource(R.drawable.button_selected);
                 globalButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
+                myworkoutButton.setTextColor(Color.parseColor("#fba500"));
+                globalButton.setTextColor(Color.parseColor("#6d6d6d"));
+                statisticButton.setTextColor(Color.parseColor("#6d6d6d"));
                 ListView lv = (ListView) rootView.findViewById(R.id.lvWorkouts);
                 AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), myWorkout);
                 lv.setAdapter(AI);
@@ -92,6 +102,9 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 globalButton.setBackgroundResource(R.drawable.button_selected);
                 myworkoutButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
+                globalButton.setTextColor(Color.parseColor("#fba500"));
+                statisticButton.setTextColor(Color.parseColor("#6d6d6d"));
+                myworkoutButton.setTextColor(Color.parseColor("#6d6d6d"));
                 ListView lv = (ListView) rootView.findViewById(R.id.lvWorkouts);
                 AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), MainActivity.workouts);
                 lv.setAdapter(AI);
@@ -106,7 +119,16 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 statisticButton.setBackgroundResource(R.drawable.button_selected);
                 myworkoutButton.setBackgroundResource(R.drawable.button_unselected);
                 globalButton.setBackgroundResource(R.drawable.button_unselected);
-           //     globalButton.setTextColor(getResources().getColor(R.color.white));
+                statisticButton.setTextColor(Color.parseColor("#fba500"));
+                globalButton.setTextColor(Color.parseColor("#6d6d6d"));
+                myworkoutButton.setTextColor(Color.parseColor("#6d6d6d"));
+                if(supl.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED){
+                    Toast.makeText(MainActivity.mainActivity, "Expanded", Toast.LENGTH_SHORT).show();
+                    profilePic.setVisibility(View.INVISIBLE);
+
+                }else{
+                    Toast.makeText(MainActivity.mainActivity, "Collapsed", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

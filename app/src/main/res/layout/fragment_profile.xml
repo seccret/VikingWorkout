@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:animateLayoutChanges="true"
-    tools:context=".FragmentProfile">
+    tools:context=".FragmentProfile"
+    android:background="@drawable/bluebanner">
 
     <com.sothree.slidinguppanel.SlidingUpPanelLayout
         xmlns:sothree="http://schemas.android.com/apk/res-auto"
@@ -21,10 +22,12 @@
             android:layout_width="match_parent"
             android:layout_height="295dp">
             <ImageView
-            android:id="@+id/ivProfileImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+                android:id="@+id/ivProfileImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                />
             <TextView
                 android:id="@+id/tvProfileName"
                 android:layout_width="wrap_content"
@@ -36,7 +39,7 @@
                 style="@style/TextAppearance.AppCompat.Title"
                 android:textSize="22sp"
                 android:textColor="#ffffff"
-                android:textIsSelectable="false" />
+                android:clickable="true"/>
         </RelativeLayout>
         <LinearLayout
             android:layout_width="fill_parent"
@@ -45,6 +48,7 @@
             android:weightSum="3"
             android:layout_marginTop="75dp"
             android:minHeight="1200dp"
+            android:background="@color/transparent"
             >
             <LinearLayout
                 android:visibility="visible"
@@ -52,7 +56,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 android:orientation="horizontal"
-                android:weightSum="3">
+                android:weightSum="3"
+                android:background="@color/transparent">
                 <Button
                     android:id="@+id/bToggleLeft"
                     android:layout_width="0dip"
@@ -67,7 +72,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Global List"
-                    android:textColor="#fba500"
+                    android:textColor="#6d6d6d"
                     android:background="@color/transparent"/>
                 <Button
                     android:id="@+id/bToggleRight"
@@ -75,13 +80,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Statistics"
-                    android:textColor="#fba500"
+                    android:textColor="#6d6d6d"
                     android:background="@color/transparent"/>
             </LinearLayout>
 
             <ListView
                 android:id="@+id/lvWorkouts"
-                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:verticalSpacing="2dp"
