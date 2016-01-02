@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:animateLayoutChanges="true"
-    tools:context=".FragmentProfile"
-    android:background="@drawable/bluebanner">
+    tools:context=".FragmentProfile">
 
     <com.sothree.slidinguppanel.SlidingUpPanelLayout
         xmlns:sothree="http://schemas.android.com/apk/res-auto"
@@ -15,18 +14,31 @@
         android:gravity="bottom"
         sothree:umanoPanelHeight="400dp"
         sothree:umanoShadowHeight="4dp"
-        sothree:umanoClipPanel="false"
         sothree:umanoFadeColor="@android:color/transparent"
         >
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="295dp">
+            <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </android.support.v4.view.ViewPager>
+            />
+            <ImageView
+                android:id="@+id/ivProfileBanner"
+                android:background="@drawable/banner4"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:visibility="gone"
+                />
             <ImageView
                 android:id="@+id/ivProfileImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+                android:visibility="gone"
                 />
             <TextView
                 android:id="@+id/tvProfileName"
@@ -57,7 +69,7 @@
                 android:layout_height="?android:attr/actionBarSize"
                 android:orientation="horizontal"
                 android:weightSum="3"
-                android:background="@color/transparent">
+                android:background="#e3e3e3">
                 <Button
                     android:id="@+id/bToggleLeft"
                     android:layout_width="0dip"
@@ -73,7 +85,7 @@
                     android:layout_weight="1"
                     android:text="Global List"
                     android:textColor="#6d6d6d"
-                    android:background="@color/transparent"/>
+                    android:background="@drawable/button_unselected"/>
                 <Button
                     android:id="@+id/bToggleRight"
                     android:layout_width="0dip"
@@ -81,7 +93,7 @@
                     android:layout_weight="1"
                     android:text="Statistics"
                     android:textColor="#6d6d6d"
-                    android:background="@color/transparent"/>
+                    android:background="@drawable/button_unselected"/>
             </LinearLayout>
 
             <ListView
