@@ -66,8 +66,11 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         String pName = MainActivity.profile.getName();
         final ImageView profilePic = (ImageView) rootView.findViewById(R.id.ivProfileImage);
         TextView profileName = (TextView) rootView.findViewById(R.id.tvProfileName);
+        ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.pager);
 
-         if (pPic != null) {
+        viewPager.setAdapter(new CustomPagerAdapter(getContext()));
+
+        if (pPic != null) {
             profilePic.setImageDrawable(null);
             profilePic.setBackground(pPic);
         }
@@ -128,11 +131,11 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 statisticButton.setTextColor(Color.parseColor("#fba500"));
                 globalButton.setTextColor(Color.parseColor("#6d6d6d"));
                 myworkoutButton.setTextColor(Color.parseColor("#6d6d6d"));
-                if(supl.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED){
+                if (supl.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
                     Toast.makeText(MainActivity.mainActivity, "Expanded", Toast.LENGTH_SHORT).show();
                     profilePic.setVisibility(View.INVISIBLE);
 
-                }else{
+                } else {
                     Toast.makeText(MainActivity.mainActivity, "Collapsed", Toast.LENGTH_SHORT).show();
                 }
 
