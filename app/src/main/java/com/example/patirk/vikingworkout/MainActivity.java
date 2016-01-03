@@ -32,6 +32,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -239,51 +241,20 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
-    public boolean loadProfile() {
-        MainActivity.profile = new Profile(0, "Test Name", null);
-        try {
-            fis = openFileInput("viking_profile_name");
-            InputStreamReader isr = new InputStreamReader(fis);
-            char[] inputBuffer = new char[50];
-            // Fill the Buffer with data from the file
-            isr.read(inputBuffer);
-            // Transform the chars to a String
-            String readString = new String(inputBuffer);
-            profile.setName(readString);
-            Bitmap bitbit = ExernalFunctions.getImageBitmap(this, "profile", "JPEG");
-            Bitmap loadedImage = ExernalFunctions.getCroppedBitmap(bitbit);
-            profile.setProfilePicture(loadedImage);
-            Toast.makeText(this, "Loading profile: '" + readString + "'..", Toast.LENGTH_SHORT).show();
-            return true;
-        } catch (FileNotFoundException e) {
-            Toast.makeText(this, "File not found", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            Toast.makeText(this, "IOException", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-        return false;
+    public void loadProfile(){
+        Deserializer deserializer = new Deserializer();
+        MainActivity.profile = deserializer.deserialzeProfile();
+
+        //Load Profile-pic
+        Bitmap bitbit = ExernalFunctions.getImageBitmap(this, "profile", "JPEG");
+        Bitmap loadedImage = ExernalFunctions.getCroppedBitmap(bitbit);
+        profile.setProfilePicture(loadedImage);
+        Toast.makeText(this, "Loading profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
     }
 
     public static void saveProfile(Context c) {
-        try {
-            Drawable draw = profile.getPicture();
-            Bitmap bit = ExernalFunctions.drawableToBitmap(draw);
-            ExernalFunctions.saveImage(MainActivity.mainActivity, bit, "profile", "JPEG");
-            String profileName = profile.getName();
-            fos = c.openFileOutput("viking_profile_name", c.MODE_PRIVATE);
-            fos.write(profileName.getBytes());
-            fos.close();
-            Toast.makeText(MainActivity.mainActivity, "Profile saved", Toast.LENGTH_SHORT).show();
-        } catch (FileNotFoundException e) {
-            Toast.makeText(MainActivity.mainActivity, "File not found", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            Toast.makeText(MainActivity.mainActivity, "IOException", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
+        Serializer serializer = new Serializer();
+        serializer.serializeProfile();
     }
 
 }
