@@ -19,26 +19,18 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="295dp">
-            <android.support.v4.view.ViewPager
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </android.support.v4.view.ViewPager>
             <ImageView
                 android:id="@+id/ivProfileBanner"
                 android:background="@drawable/banner4"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:visibility="gone"
+                android:layout_height="120dp"
                 />
             <ImageView
                 android:id="@+id/ivProfileImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:visibility="gone"
+                android:paddingLeft="5dp"
                 />
             <TextView
                 android:id="@+id/tvProfileName"
@@ -52,7 +44,52 @@
                 android:textSize="22sp"
                 android:textColor="#ffffff"
                 android:clickable="true"/>
-        </RelativeLayout>
+            <TextView
+                android:id="@+id/tvProfileWorkouts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/ivProfileImage"
+                android:layout_centerVertical="true"
+                android:paddingLeft="5dp"
+                android:text="     14\n workouts"
+                android:textSize="15sp"
+                android:textColor="#9f9f9f"
+                android:clickable="true"
+                />
+            <TextView
+                android:id="@+id/tvProfileFollowers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tvProfileWorkouts"
+                android:layout_centerVertical="true"
+                android:paddingLeft="5dp"
+                android:text="     52k\n followers"
+                android:textSize="15sp"
+                android:textColor="#9f9f9f"
+                android:clickable="true"
+                />
+            <TextView
+                android:id="@+id/tvProfileFollowing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tvProfileFollowers"
+                android:layout_centerVertical="true"
+                android:paddingLeft="5dp"
+                android:text="     23\n following"
+                android:textSize="15sp"
+                android:textColor="#9f9f9f"
+                android:clickable="true"
+                />
+            <TextView
+                android:id="@+id/tvProfileInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvProfileWorkouts"
+                android:layout_toRightOf="@id/ivProfileImage"
+                android:paddingTop="10dp"
+                android:textSize="15sp"
+                android:text="Information is important and good to know so here I write text that I think you should know."/>
+</RelativeLayout>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

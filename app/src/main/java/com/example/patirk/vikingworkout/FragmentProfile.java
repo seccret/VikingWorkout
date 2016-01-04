@@ -66,9 +66,6 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         String pName = MainActivity.profile.getName();
         final ImageView profilePic = (ImageView) rootView.findViewById(R.id.ivProfileImage);
         TextView profileName = (TextView) rootView.findViewById(R.id.tvProfileName);
-        ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.pager);
-
-        viewPager.setAdapter(new CustomPagerAdapter(getContext()));
 
         if (pPic != null) {
             profilePic.setImageDrawable(null);
