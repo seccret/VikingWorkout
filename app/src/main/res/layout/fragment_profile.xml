@@ -39,10 +39,11 @@
                 android:text="Okänd"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
-                android:paddingTop="45dp"
+                android:paddingTop="40dp"
                 style="@style/TextAppearance.AppCompat.Title"
                 android:textSize="22sp"
                 android:textColor="#ffffff"
+                android:fontFamily="sans-serif-bold"
                 android:clickable="true"/>
             <TextView
                 android:id="@+id/tvProfileWorkouts"
@@ -53,6 +54,7 @@
                 android:paddingLeft="5dp"
                 android:text="     14\n workouts"
                 android:textSize="15sp"
+                android:fontFamily="sans-serif-light"
                 android:textColor="#9f9f9f"
                 android:clickable="true"
                 />
@@ -65,6 +67,7 @@
                 android:paddingLeft="5dp"
                 android:text="     52k\n followers"
                 android:textSize="15sp"
+                android:fontFamily="sans-serif-light"
                 android:textColor="#9f9f9f"
                 android:clickable="true"
                 />
@@ -77,6 +80,7 @@
                 android:paddingLeft="5dp"
                 android:text="     23\n following"
                 android:textSize="15sp"
+                android:fontFamily="sans-serif-light"
                 android:textColor="#9f9f9f"
                 android:clickable="true"
                 />
@@ -88,6 +92,7 @@
                 android:layout_toRightOf="@id/ivProfileImage"
                 android:paddingTop="10dp"
                 android:textSize="15sp"
+                android:fontFamily="sans-serif-light"
                 android:text="Information is important and good to know so here I write text that I think you should know."/>
 </RelativeLayout>
         <LinearLayout
