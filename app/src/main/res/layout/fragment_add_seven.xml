@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="4"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlSevenBanner"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5">
+        <ImageView
+            android:id="@+id/ivSevenBanner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/material_blue_grey_800"/>
+        <TextView
+            android:id="@+id/tvSevenHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="New Workout"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif-bold"
+            />
+    </RelativeLayout>
+    <EditText
+        android:id="@+id/etAddSName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/tvSevenExercise"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:background="@drawable/headlinebox"
+        android:text="Add Exercises"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:textSize="15dp"/>
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.6"></GridView>
+    <ImageView
+        android:id="@+id/ivSevenDone"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/done_button"
+        android:layout_gravity="right"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"/>
+
+</LinearLayout>
