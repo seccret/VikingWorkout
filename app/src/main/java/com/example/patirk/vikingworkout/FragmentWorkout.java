@@ -4,6 +4,7 @@ import android.graphics.Movie;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,8 +59,13 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
         final TextView next = (TextView) rootView.findViewById(R.id.tvWorkoutExercise);
         final RelativeLayout rlplay = (RelativeLayout) rootView.findViewById(R.id.rlWorkout);
         final ListView lvExercises = (ListView) rootView.findViewById(R.id.lvWorkoutList);
+        final RelativeLayout rvExercises = (RelativeLayout) rootView.findViewById(R.id.rvWorkoutList);
         final Workout workout = MainActivity.currentWorkout;
         final List<Integer> exercises = workout.getExercises();
+        final Exercise exercise = MainActivity.currentExercise;
+        final ProgressBar progressbar = (ProgressBar) rootView.findViewById(R.id.progressbar);
+        final int[] i = {0};
+        progressbar.setProgress(i[0]);
 
         if (workout.getPicture() == 1) {
             workoutImage.setBackgroundResource(R.drawable.workout1);
@@ -75,6 +83,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                 rlplayimage.setVisibility(View.VISIBLE);
                 rlplay.setVisibility(View.GONE);
                 rlName.setVisibility(View.GONE);
+                rvExercises.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.6f));
                 MainActivity.activeWorkoutCounter = 0;
                 final Workout w = MainActivity.currentWorkout;
                 Exercise e = MainActivity.exerciseList.get(w.getExercises().get(MainActivity.activeWorkoutCounter));
@@ -84,11 +93,11 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                 new CountDownTimer(5000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
-                        tvTime.setText(""+String.format("%02d:%02d",
-                                TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
+                        tvTime.setText("" + String.format("%02d:%02d",
+                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
                                 TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
                                         TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
-
+                        progressbar.setProgress((int) (millisUntilFinished / 1000));
                     }
 
                     public void onFinish() {
@@ -106,6 +115,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                             rlName.setVisibility(View.VISIBLE);
                             image.setVisibility(View.VISIBLE);
                             next.setText("Exercises");
+                            rvExercises.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.95f));
                         }
                     }
                 }.start();

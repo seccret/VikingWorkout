@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvBrowseCat"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="New Workout"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:background="@color/material_blue_grey_800"/>
+
+    <ImageView
+        android:id="@+id/ivAddWImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/abc"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        />
+
+    <EditText
+        android:id="@+id/etAddWName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Add Workout Name"
+        android:ems="10"
+        android:gravity="right"
+        android:layout_toRightOf="@id/ivAddWImage"
+        android:layout_marginTop="60dp"
+        />
+
+    <EditText
+        android:id="@+id/etAddWTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Add tags"
+        android:ems="10"
+        android:gravity="right"
+        android:layout_below="@id/etAddWName"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        />
+
+    <Spinner
+        android:id="@+id/spAddWTemplate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etAddWTag"></Spinner>
+
+    <View android:id="@+id/separator"
+        android:background="#ffa500"
+        android:layout_width = "fill_parent"
+        android:layout_height="3dip"
+        android:layout_centerVertical ="true"
+        android:layout_below="@id/spAddWTemplate"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/separator">
+        <ListView
+            android:id="@+id/lvAddWList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+        <TextView
+            android:id="@+id/tvAddWSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save Workout"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

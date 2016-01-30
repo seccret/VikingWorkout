@@ -3,32 +3,40 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="4"
     >
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#0000FF"
-        android:paddingBottom="3dp">
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:orientation="vertical">
         <com.example.patirk.vikingworkout.GifView
             android:id="@+id/gif_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             />
-    </LinearLayout>
+        <View android:id="@+id/exerciseSeparator"
+            android:background="#ffa500"
+            android:layout_width = "fill_parent"
+            android:layout_height="3dip"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/tvExerciseName"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:gravity="center"
         android:text="Description"
-        android:paddingLeft="40dp"
-        style="@style/TextAppearance.AppCompat.Headline" />
+        android:textSize="30dp"
+        android:fontFamily="sans-serif-light" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.2"
         android:orientation="horizontal"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"

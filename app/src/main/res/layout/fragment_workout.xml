@@ -34,7 +34,7 @@
         android:id="@+id/rlWorkoutPlay"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.1"
+        android:layout_weight="2.8"
         android:visibility="gone">
         <com.example.patirk.vikingworkout.GifView
             android:id="@+id/gif_view"
@@ -42,18 +42,28 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             />
+        <ProgressBar
+            android:id="@+id/progressbar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:progressDrawable="@drawable/customprogressbar"
+            android:max="5"
+            android:progress="0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/gif_view"
+            android:paddingBottom="48dp"
+            />
         <TextView
             android:id="@+id/tvWorkoutTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/gif_view"
             android:textColor="#ffa500"
-            android:textSize="80dp"
+            android:textSize="100dp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-light"
             android:gravity="center"
             />
-
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rlWorkoutName"
@@ -92,14 +102,46 @@
         android:gravity="center"
         android:textSize="15dp"/>
 
-    <ListView
-        android:id="@+id/lvWorkoutList"
+    <RelativeLayout
+        android:id="@+id/rvWorkoutList"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1.95"
-        android:layout_gravity="bottom"
-
-        >
-    </ListView>
-
+        android:layout_weight="1.95">
+        <ListView
+            android:id="@+id/lvWorkoutList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            >
+        </ListView>
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/llWorkoutPlay"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/tvWorkoutPause"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Pause"
+            android:background="#ffa500"
+            android:textSize="25dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/tvWorkoutStop"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Stop"
+            android:background="#ffa500"
+            android:textSize="25dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"/>
+    </LinearLayout>
 </LinearLayout>
