@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -18,10 +19,10 @@ import java.util.List;
 /**
  * Created by Patirk on 23/10/2015.
  */
-public class Profile {
+public class Profile implements Serializable{
     private long id;
     private String name;
-    private Bitmap picture;
+    private transient Bitmap picture;
     private List<Integer> myWorkout;
 
     public Profile(long id, String name, List<Integer> myWorkout) {
@@ -47,17 +48,22 @@ public class Profile {
         Drawable drawable = new BitmapDrawable(picture);
         return drawable;
     }
-
     public List getMyWorkouts(){
         return myWorkout;
     }
 
     public void addWorkout(int wID){
         myWorkout.add(wID);
+        MainActivity.saveProfile(MainActivity.mainActivity);
+    }
+
+    public void setWorkout(List<Integer> wIDList){
+        myWorkout = wIDList;
     }
 
     public void removeWorkout(int wID){
-        boolean remove = myWorkout.remove((Object)wID);
+        myWorkout.remove((Object)wID);
+        MainActivity.saveProfile(MainActivity.mainActivity);
     }
 
     public boolean contains(int wID){
