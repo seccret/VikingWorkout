@@ -10,10 +10,10 @@ import android.widget.ImageView;
 /**
  * Created by olivia on 2016-01-30.
  */
-public class FragmentAddSeven extends android.support.v4.app.Fragment {
+public class FragmentAddSevenW extends android.support.v4.app.Fragment {
 
-    public static FragmentAddSeven newInstance() {
-        FragmentAddSeven fragment = new FragmentAddSeven();
+    public static FragmentAddSevenW newInstance() {
+        FragmentAddSevenW fragment = new FragmentAddSevenW();
         Bundle args = new Bundle();
         //   args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -21,7 +21,7 @@ public class FragmentAddSeven extends android.support.v4.app.Fragment {
         return fragment;
     }
 
-    public FragmentAddSeven() {
+    public FragmentAddSevenW() {
     }
 
     @Override

@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.PagerAdapter;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -17,11 +16,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -92,7 +86,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 MainActivity.fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentAddSeven.newInstance())
+                        .replace(R.id.container, FragmentAddSevenW.newInstance())
                         .commit();
             }
         });
