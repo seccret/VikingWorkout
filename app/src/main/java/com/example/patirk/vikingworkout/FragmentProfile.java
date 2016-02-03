@@ -66,6 +66,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         String pName = MainActivity.profile.getName();
         final ImageView profilePic = (ImageView) rootView.findViewById(R.id.ivProfileImage);
         TextView profileName = (TextView) rootView.findViewById(R.id.tvProfileName);
+        final ImageView plus = (ImageView) rootView.findViewById(R.id.ivProfilePlus);
 
         if (pPic != null) {
             profilePic.setImageDrawable(null);
@@ -87,6 +88,14 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         final SlidingUpPanelLayout.PanelState wut = supl.getPanelState();
         final String wut2 = wut.toString();
 
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.fragmentManager.beginTransaction()
+                        .replace(R.id.container, FragmentAddSeven.newInstance())
+                        .commit();
+            }
+        });
         myworkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

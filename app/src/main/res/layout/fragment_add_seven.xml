@@ -9,7 +9,7 @@
         android:id="@+id/rlSevenBanner"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5">
+        android:layout_weight="0.6">
         <ImageView
             android:id="@+id/ivSevenBanner"
             android:layout_width="match_parent"
@@ -23,16 +23,21 @@
             android:layout_centerVertical="true"
             android:text="New Workout"
             android:textColor="#ffffff"
-            android:textSize="20dp"
+            android:textSize="22sp"
             android:fontFamily="sans-serif-bold"
+            android:paddingTop="40dp"
             />
     </RelativeLayout>
     <EditText
         android:id="@+id/etAddSName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.3"
-        android:layout_gravity="center"/>
+        android:layout_weight="0.1"
+        android:layout_gravity="center"
+        android:hint="Workout Name"
+        android:singleLine="true"
+        android:maxLength="15"
+        android:capitalize="words"/>
     <TextView
         android:id="@+id/tvSevenExercise"
         android:layout_width="match_parent"
@@ -46,11 +51,11 @@
     <GridView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.6"></GridView>
+        android:layout_weight="3"></GridView>
     <ImageView
         android:id="@+id/ivSevenDone"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:background="@drawable/done_button"
         android:layout_gravity="right"
         android:layout_marginRight="5dp"

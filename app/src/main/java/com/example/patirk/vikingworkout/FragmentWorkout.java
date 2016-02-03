@@ -54,12 +54,15 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
         final RelativeLayout rlName = (RelativeLayout) rootView.findViewById(R.id.rlWorkoutName);
         final TextView woname = (TextView) rootView.findViewById(R.id.tvWorkoutName);
         final RelativeLayout rlplayimage = (RelativeLayout) rootView.findViewById(R.id.rlWorkoutPlay);
+        final LinearLayout llplay = (LinearLayout) rootView.findViewById(R.id.llWorkoutPlay);
         final TextView woby = (TextView) rootView.findViewById(R.id.tvWorkoutBy);
         final ImageView play = (ImageView) rootView.findViewById(R.id.ivWorkoutPlay);
         final TextView next = (TextView) rootView.findViewById(R.id.tvWorkoutExercise);
         final RelativeLayout rlplay = (RelativeLayout) rootView.findViewById(R.id.rlWorkout);
         final ListView lvExercises = (ListView) rootView.findViewById(R.id.lvWorkoutList);
         final RelativeLayout rvExercises = (RelativeLayout) rootView.findViewById(R.id.rvWorkoutList);
+        final TextView pause = (TextView) rootView.findViewById(R.id.tvWorkoutPause);
+        final TextView stop = (TextView) rootView.findViewById(R.id.tvWorkoutStop);
         final Workout workout = MainActivity.currentWorkout;
         final List<Integer> exercises = workout.getExercises();
         final Exercise exercise = MainActivity.currentExercise;
@@ -81,6 +84,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 rlplayimage.setVisibility(View.VISIBLE);
+                llplay.setVisibility(View.VISIBLE);
                 rlplay.setVisibility(View.GONE);
                 rlName.setVisibility(View.GONE);
                 rvExercises.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.6f));
@@ -111,6 +115,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                         } else {
                             MainActivity.activeWorkoutCounter = 0;
                             rlplayimage.setVisibility(View.GONE);
+                            llplay.setVisibility(View.GONE);
                             rlplay.setVisibility(View.VISIBLE);
                             rlName.setVisibility(View.VISIBLE);
                             image.setVisibility(View.VISIBLE);

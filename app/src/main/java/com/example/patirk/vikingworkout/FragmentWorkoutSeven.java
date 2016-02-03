@@ -49,7 +49,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_workout, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_workout_seven, container, false);
         final TextView tvTime = (TextView) rootView.findViewById(R.id.tvSevenTime);
         final GridView lvExercises = (GridView) rootView.findViewById(R.id.gvSevenList);
         final ImageView play = (ImageView) rootView.findViewById(R.id.ivSevenPlay);
