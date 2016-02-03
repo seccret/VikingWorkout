@@ -158,13 +158,18 @@ public class MainActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
     public boolean loadWorkouts(){
+        List<Integer> e = new ArrayList<>();
+        e.add(0);
+        e.add(1);
+        e.add(2);
+        e.add(3);
         MainActivity.workouts = new ArrayList<Workout>();
-        MainActivity.workouts.add(new Workout(0, "Mage", 1));
-        MainActivity.workouts.add(new Workout(1, "Ben", 2));
-        MainActivity.workouts.add(new Workout(2, "Rygg", 3));
-        MainActivity.workouts.add(new Workout(3, "Armar", 1));
-        MainActivity.workouts.add(new Workout(4, "Cross-training", 2));
-        MainActivity.workouts.add(new Workout(5, "Ultimate situps", 3));
+        MainActivity.workouts.add(new Workout(0, "Mage", 1, e));
+        MainActivity.workouts.add(new Workout(1, "Ben", 2, e));
+        MainActivity.workouts.add(new Workout(2, "Rygg", 3, e));
+        MainActivity.workouts.add(new Workout(3, "Armar", 1, e));
+        MainActivity.workouts.add(new Workout(4, "Cross-training", 2, e));
+        MainActivity.workouts.add(new Workout(5, "Ultimate situps", 3, e));
 
         return true;
     }

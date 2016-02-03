@@ -13,7 +13,7 @@ public class Weekday {
         this.id = id;
         this.name = name;
         this.picture = picture;
-        workout = new Workout(0, "", 0);
+        //workout = new Workout(0, "", 0);
     }
 
     public int getId() {
@@ -35,7 +35,6 @@ public class Weekday {
     public void setWorkout(Workout newWorkout) {
         newWorkout.getId();
         newWorkout.getName();
-        workout = new Workout(newWorkout.getId(), newWorkout.getName(), newWorkout.getPicture());
-        workout.setExercises(newWorkout.getExercises());
+        workout = new Workout(newWorkout.getId(), newWorkout.getName(), newWorkout.getPicture(), newWorkout.getExercises());
     }
 }

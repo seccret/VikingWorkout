@@ -18,16 +18,11 @@ public class Workout {
 
     private List<Integer> exercises;
 
-    public Workout(int id, String name, int picture) {
+    public Workout(int id, String name, int picture, List<Integer> exercises) {
         this.id = id;
         this.name = name;
         this.picture = picture;
-        this.exercises = new ArrayList<>();
-        exercises.add(0);
-        exercises.add(1);
-        exercises.add(2);
-        exercises.add(3);
-
+        this.exercises = exercises;
     }
 
     public int getId() {
