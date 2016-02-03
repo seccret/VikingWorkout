@@ -36,11 +36,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:hint="Name"
             android:ems="10"
             android:layout_gravity="right"
             android:gravity="right"
              />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        >
+        <Button
+            android:id="@+id/bSettingsDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save Desc"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            />
+
+        <EditText
+            android:id="@+id/etSettingsDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Description"
+            android:capitalize="sentences"
+            android:ems="10"
+            android:layout_gravity="right"
+            android:gravity="right"
+            />
     </LinearLayout>
 
     <LinearLayout

@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,8 +60,10 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         ListView lvProfile;
         Drawable pPic = MainActivity.profile.getPicture();
         String pName = MainActivity.profile.getName();
+        String pDesc = MainActivity.profile.getDesc();
         final ImageView profilePic = (ImageView) rootView.findViewById(R.id.ivProfileImage);
         TextView profileName = (TextView) rootView.findViewById(R.id.tvProfileName);
+        TextView profileDesc = (TextView) rootView.findViewById(R.id.tvProfileInfo);
         final ImageView plus = (ImageView) rootView.findViewById(R.id.ivProfilePlus);
 
         if (pPic != null) {
@@ -67,6 +71,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
             profilePic.setBackground(pPic);
         }
         profileName.setText(pName);
+        profileDesc.setText(pDesc);
 
         final Button myworkoutButton = (Button) rootView.findViewById(R.id.bToggleLeft);
         final Button globalButton = (Button) rootView.findViewById(R.id.bToggleMiddle);

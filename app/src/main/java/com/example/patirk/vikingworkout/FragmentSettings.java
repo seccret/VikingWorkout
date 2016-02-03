@@ -19,9 +19,10 @@ import android.support.v4.app.FragmentManager;
  */
 public class FragmentSettings extends android.support.v4.app.Fragment implements View.OnClickListener {
     ImageView iv;
-    Button bEditPic, bEditText;
+    Button bEditPic, bEditText,bEditDesc;
     TextView save;
     EditText t;
+    EditText d;
 
     public static FragmentSettings newInstance() {
         FragmentSettings fragment = new FragmentSettings();
@@ -42,11 +43,14 @@ public class FragmentSettings extends android.support.v4.app.Fragment implements
 
         bEditPic = (Button) rootView.findViewById(R.id.bSettingsCamera);
         bEditText = (Button) rootView.findViewById(R.id.bSettingsName);
+        bEditDesc = (Button) rootView.findViewById(R.id.bSettingsDesc);
         t = (EditText) rootView.findViewById(R.id.etSettingsName);
+        d = (EditText) rootView.findViewById(R.id.etSettingsDesc);
         iv = (ImageView) rootView.findViewById(R.id.ivSettingsPic);
         save = (TextView) rootView.findViewById(R.id.tvSettingsSave);
         save.setOnClickListener(this);
         bEditText.setOnClickListener(this);
+        bEditDesc.setOnClickListener(this);
         bEditPic.setOnClickListener(this);
 
         return rootView;
@@ -65,6 +69,13 @@ public class FragmentSettings extends android.support.v4.app.Fragment implements
             startActivityForResult(intent, 0);
         } else if (v == save) {
             MainActivity.saveProfile(MainActivity.mainActivity);
+        } else if (v== bEditDesc){
+            String newDesc = d.getText().toString();
+            if (!newDesc.equals("Description")) {
+                MainActivity.profile.setDesc(newDesc);
+            } else {
+                Toast.makeText(getActivity(),"Press Change desc to change description", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

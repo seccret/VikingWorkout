@@ -22,12 +22,14 @@ import java.util.List;
 public class Profile implements Serializable{
     private long id;
     private String name;
+    private String desc;
     private transient Bitmap picture;
     private List<Integer> myWorkout;
 
-    public Profile(long id, String name, List<Integer> myWorkout) {
+    public Profile(long id, String name,String desc, List<Integer> myWorkout) {
         this.id = id;
         this.name = name;
+        this.desc = desc;
         this.picture = null;
         if(myWorkout==null){
             this.myWorkout = new ArrayList<>();
@@ -42,6 +44,10 @@ public class Profile implements Serializable{
 
     public String getName() {
         return name;
+    }
+
+    public String getDesc () {
+        return desc;
     }
 
     public Drawable getPicture() {
@@ -73,6 +79,10 @@ public class Profile implements Serializable{
 
     public void setName(String newName) {
         this.name = newName;
+    }
+
+    public void setDesc (String newDesc) {
+        this.desc = newDesc;
     }
 
     public void setProfilePicture(Bitmap newPic) {

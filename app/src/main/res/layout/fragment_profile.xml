@@ -92,8 +92,7 @@
                 android:layout_toRightOf="@id/ivProfileImage"
                 android:paddingTop="10dp"
                 android:textSize="15sp"
-                android:fontFamily="sans-serif-light"
-                android:text="Information is important and good to know so here I write text that I think you should know."/>
+                android:fontFamily="sans-serif-light"/>
 </RelativeLayout>
         <LinearLayout
             android:layout_width="fill_parent"
