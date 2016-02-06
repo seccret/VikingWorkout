@@ -6,35 +6,51 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Adapter4AddSevenWorkout extends BaseAdapter {
+public class Adapter4ExerciseList extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
     private static Workout workout = null;
 
     // Constructor
-    public Adapter4AddSevenWorkout(Context c, List<Exercise> exerciseList) {
+    public Adapter4ExerciseList(Context c, List<Exercise> exerciseList) {
         mInflater = LayoutInflater.from(c);
-
+        InputStream gifInputStream;
         for (Exercise w : exerciseList) {
-            if (w.getId()==-1) {
-                int id = -1;
-                String name ="Add Exercise";
-                Drawable image = null;
+            if (w.getId()==0) {
+                int id = 0;
+                String name ="Commandoes";
+                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.commandos);
+                Drawable image = (Drawable) Drawable.createFromStream(gifInputStream, "image");
                 mItems.add(new Item(id, name, image));
-            } else {
-                int id = w.getId();
-                String name = w.getName();
-                Drawable picture = w.getPicture();
-                mItems.add(new Item(id, name, picture));
+            } else if (w.getId() == 1) {
+                int id = 1;
+                String name ="Push up";
+                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.pushups);
+                Drawable image = (Drawable) Drawable.createFromStream(gifInputStream, "image");
+                mItems.add(new Item(id, name, image));
+            } else if (w.getId()== 2) {
+                int id = 2;
+                String name ="Sit up";
+                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.situps);
+                Drawable image = (Drawable) Drawable.createFromStream(gifInputStream, "image");
+                mItems.add(new Item(id, name, image));
+            } else if (w.getId()== 3) {
+                int id = 3;
+                String name ="Runner";
+                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.running);
+                Drawable image = (Drawable) Drawable.createFromStream(gifInputStream, "image");
+                mItems.add(new Item(id, name, image));
                 //this.workout = w;
             }
         }
@@ -58,11 +74,11 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
         TextView name;
         ImageView image;
 
-            v = mInflater.inflate(R.layout.item_workout_big, viewGroup, false);
-            v.setTag(R.id.tvItemWorkout, v.findViewById(R.id.tvItemWorkout));
+        v = mInflater.inflate(R.layout.item_exercise, viewGroup, false);
+        v.setTag(R.id.tvItemExercise, v.findViewById(R.id.tvItemExercise));
 
-        name = (TextView) v.findViewById(R.id.tvItemWorkout);
-        image = (ImageView) v.findViewById(R.id.ibItemWorkout);
+        name = (TextView) v.findViewById(R.id.tvItemExercise);
+        image = (ImageButton) v.findViewById(R.id.ibItemExercise);
         final Item item = getItem(i);
         name.setText(item.name);
 
@@ -77,26 +93,11 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 MainActivity.fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentExerciseList.newInstance())
+                        .replace(R.id.container, FragmentAddSevenW.newInstance())
                         .commit();
             }
         });
 
-        name.setOnLongClickListener(new View.OnLongClickListener(){
-            @Override
-            public boolean onLongClick (View v){
-                if (MainActivity.profile.contains(item.id)) {
-                    MainActivity.lastLongClick = item.id;
-                } else {
-                    MainActivity.profile.addWorkout(item.id);
-                    Toast.makeText(MainActivity.mainActivity, item.name + " workout added to profile", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                return false;
-            }
-        }
-
-        );
         return v;
     }
 
