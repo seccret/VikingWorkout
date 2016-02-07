@@ -77,7 +77,7 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 MainActivity.fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentExerciseList.newInstance())
+                        .add(R.id.container, FragmentExerciseList.newInstance(),"exList")
                         .commit();
             }
         });

@@ -45,6 +45,7 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
         e.add(e2);
         e.add(e3);
         e.add(e4);
+
         Adapter4AddSevenWorkout ad = new Adapter4AddSevenWorkout(MainActivity.mainActivity, e);
     exercises.setAdapter(ad);
         return rootView;

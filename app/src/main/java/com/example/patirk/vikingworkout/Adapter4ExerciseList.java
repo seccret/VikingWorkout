@@ -21,38 +21,18 @@ public class Adapter4ExerciseList extends BaseAdapter {
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
     private static Workout workout = null;
+    public static List<Exercise> exerciseList = null;
 
     // Constructor
     public Adapter4ExerciseList(Context c, List<Exercise> exerciseList) {
         mInflater = LayoutInflater.from(c);
-        InputStream gifInputStream;
+        Adapter4ExerciseList.exerciseList = new ArrayList<Exercise>();
         for (Exercise w : exerciseList) {
-            if (w.getId()==0) {
-                int id = 0;
-                String name ="Commandoes";
-                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.commandos);
-                Drawable image = (Drawable) Drawable.createFromStream(gifInputStream, "image");
+                int id = w.getId();
+                String name = w.getName();
+                Drawable image = w.getPicture();
                 mItems.add(new Item(id, name, image));
-            } else if (w.getId() == 1) {
-                int id = 1;
-                String name ="Push up";
-                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.pushups);
-                Drawable image = (Drawable) Drawable.createFromStream(gifInputStream, "image");
-                mItems.add(new Item(id, name, image));
-            } else if (w.getId()== 2) {
-                int id = 2;
-                String name ="Sit up";
-                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.situps);
-                Drawable image = (Drawable) Drawable.createFromStream(gifInputStream, "image");
-                mItems.add(new Item(id, name, image));
-            } else if (w.getId()== 3) {
-                int id = 3;
-                String name ="Runner";
-                gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.running);
-                Drawable image = (Drawable) Drawable.createFromStream(gifInputStream, "image");
-                mItems.add(new Item(id, name, image));
-                //this.workout = w;
-            }
+
         }
     }
     public int getCount() {
@@ -82,18 +62,13 @@ public class Adapter4ExerciseList extends BaseAdapter {
         final Item item = getItem(i);
         name.setText(item.name);
 
-        //Fix size of Mipmap
-        if (item.id != -1) {
-            image.setBackground(item.picture);
-        } else{
-            image.setBackgroundResource(R.drawable.abc);
-        }
+        image.setBackground(item.picture);
 
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MainActivity.fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentAddSevenW.newInstance())
+                        .remove(FragmentExerciseList.fragment)
                         .commit();
             }
         });
