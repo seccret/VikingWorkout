@@ -57,6 +57,7 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
         View v = view;
         TextView name;
         ImageView image;
+        final int clicked = i;
 
             v = mInflater.inflate(R.layout.item_workout_big, viewGroup, false);
             v.setTag(R.id.tvItemWorkout, v.findViewById(R.id.tvItemWorkout));
@@ -76,27 +77,12 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FragmentAddSevenW.index = clicked;
                 MainActivity.fragmentManager.beginTransaction()
                         .add(R.id.container, FragmentExerciseList.newInstance(),"exList")
                         .commit();
             }
         });
-
-        name.setOnLongClickListener(new View.OnLongClickListener(){
-            @Override
-            public boolean onLongClick (View v){
-                if (MainActivity.profile.contains(item.id)) {
-                    MainActivity.lastLongClick = item.id;
-                } else {
-                    MainActivity.profile.addWorkout(item.id);
-                    Toast.makeText(MainActivity.mainActivity, item.name + " workout added to profile", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                return false;
-            }
-        }
-
-        );
         return v;
     }
 

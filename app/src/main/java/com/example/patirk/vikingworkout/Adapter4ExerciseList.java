@@ -67,8 +67,17 @@ public class Adapter4ExerciseList extends BaseAdapter {
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int index = FragmentAddSevenW.index;
+                List<Exercise> eList = FragmentAddSevenW.e;
+                eList.set(index, MainActivity.exerciseList.get(item.id));
                 MainActivity.fragmentManager.beginTransaction()
                         .remove(FragmentExerciseList.fragment)
+                        .commit();
+                MainActivity.fragmentManager.beginTransaction()
+                        .remove(FragmentAddSevenW.fragment)
+                        .commit();
+                MainActivity.fragmentManager.beginTransaction()
+                        .add(R.id.container, FragmentAddSevenW.newInstance(eList.get(0), eList.get(1), eList.get(2), eList.get(3)))
                         .commit();
             }
         });
