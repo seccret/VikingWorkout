@@ -59,7 +59,7 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
         ImageView image;
         final int clicked = i;
 
-            v = mInflater.inflate(R.layout.item_workout_big, viewGroup, false);
+            v = mInflater.inflate(R.layout.item_exercise_gridview, viewGroup, false);
             v.setTag(R.id.tvItemWorkout, v.findViewById(R.id.tvItemWorkout));
 
         name = (TextView) v.findViewById(R.id.tvItemWorkout);
@@ -74,7 +74,7 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
             image.setBackgroundResource(R.drawable.abc);
         }
 
-        name.setOnClickListener(new View.OnClickListener() {
+        image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentAddSevenW.index = clicked;

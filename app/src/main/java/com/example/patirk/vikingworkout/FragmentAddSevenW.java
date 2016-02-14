@@ -43,6 +43,13 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
         final ImageView done = (ImageView) rootView.findViewById(R.id.ivSevenDone);
         final GridView exercises = (GridView) rootView.findViewById(R.id.gvAddSevenExercises);
 
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         Adapter4AddSevenWorkout ad = new Adapter4AddSevenWorkout(MainActivity.mainActivity, e);
     exercises.setAdapter(ad);
         return rootView;

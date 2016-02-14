@@ -24,7 +24,7 @@
             android:id="@+id/ivWorkoutBanner"
             android:background="@drawable/banner4"
             android:layout_width="match_parent"
-            android:layout_height="105dp"
+            android:layout_height="fill_parent"
             />
         <ImageView
             android:id="@+id/ivSevenPlay"
