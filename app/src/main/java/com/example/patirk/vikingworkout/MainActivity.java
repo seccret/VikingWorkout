@@ -70,6 +70,7 @@ public class MainActivity extends ActionBarActivity
         loadWorkouts();
         loadProfile();
 
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -249,15 +250,16 @@ public class MainActivity extends ActionBarActivity
         MainActivity.profile = deserializer.deserialzeProfile();
 
         //Load Profile-pic
-     //   Bitmap bitbit = ExernalFunctions.getImageBitmap(this, "profile", "JPEG");
-     //   Bitmap loadedImage = ExernalFunctions.getCroppedBitmap(bitbit);
-     //   profile.setProfilePicture(loadedImage);
-     //   Toast.makeText(this, "Loading profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
+        Bitmap bitbit = ExernalFunctions.getImageBitmap(this, "profile", "JPEG");
+        Bitmap loadedImage = ExernalFunctions.getCroppedBitmap(bitbit);
+        profile.setProfilePicture(loadedImage);
+        Toast.makeText(this, "Loading profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
     }
 
     public static void saveProfile(Context c) {
         Serializer serializer = new Serializer();
         serializer.serializeProfile();
+        ExernalFunctions.saveImage(mainActivity, profile.getPictureAsBitmap(), "profile","JPEG");
     }
 
 }

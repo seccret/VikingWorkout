@@ -21,7 +21,7 @@ public class Serializer {
             ObjectOutputStream oos = new ObjectOutputStream(fout);
             oos.writeObject(prof);
             oos.close();
-            //Toast.makeText(MainActivity.mainActivity, "Profile updated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.mainActivity, "Profile updated", Toast.LENGTH_SHORT).show();
         } catch (FileNotFoundException e) {
             Toast.makeText(MainActivity.mainActivity, "File not found", Toast.LENGTH_SHORT).show();
             e.printStackTrace();

@@ -1,5 +1,6 @@
 package com.example.patirk.vikingworkout;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -46,7 +47,15 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int newId = MainActivity.workouts.size();
+                String newName = woName.getText().toString();
+                int newPic = 1;
+                List<Integer> newExercises = new ArrayList<>();
+                for(int i=0; i< e.size(); i++) {
+                    newExercises.add(i, e.get(i).getId());
+                }
+                Workout newWorkout = new Workout(newId, newName, newPic, newExercises);
+                MainActivity.workouts.add(newWorkout);
             }
         });
 

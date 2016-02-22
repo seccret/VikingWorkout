@@ -62,7 +62,7 @@ public class AdapterImageProfile extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //Step 1: Create new Workout with items parameters
-                Workout wo = MainActivity.workouts.get(0);
+                Workout wo = MainActivity.workouts.get(item.id);
                 //Step 2: Set currentWorkout to clicked workout
                 MainActivity.currentWorkout = wo;
                 //Step 3: Go to workout fragment
