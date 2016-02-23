@@ -67,7 +67,7 @@ public class AdapterImageProfile extends BaseAdapter {
                 MainActivity.currentWorkout = wo;
                 //Step 3: Go to workout fragment
                 MainActivity.fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentWorkout.newInstance())
+                        .replace(R.id.container, FragmentWorkoutSeven.newInstance())
                         .commit();
             }
         });

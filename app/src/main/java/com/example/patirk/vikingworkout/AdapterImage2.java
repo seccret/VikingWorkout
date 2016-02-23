@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -53,11 +54,11 @@ public class AdapterImage2 extends BaseAdapter {
         TextView name;
         ImageButton image;
         if (v == null) {
-            v = mInflater.inflate(R.layout.item_exercise, viewGroup, false);
-            v.setTag(R.id.tvItemExercise, v.findViewById(R.id.tvItemExercise));
+            v = mInflater.inflate(R.layout.item_exercise_gridview, viewGroup, false);
+            v.setTag(R.id.tvItemGExercise, v.findViewById(R.id.tvItemGExercise));
         }
-        name = (TextView) v.findViewById(R.id.tvItemExercise);
-        image = (ImageButton) v.findViewById(R.id.ibItemExercise);
+        name = (TextView) v.findViewById(R.id.tvItemGExercise);
+        image = (ImageButton) v.findViewById(R.id.ibItemGExercise);
         final Item item = getItem(i);
         name.setText(item.name);
 

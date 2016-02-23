@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,10 +61,10 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
         final int clicked = i;
 
             v = mInflater.inflate(R.layout.item_exercise_gridview, viewGroup, false);
-            v.setTag(R.id.tvItemWorkout, v.findViewById(R.id.tvItemWorkout));
+            v.setTag(R.id.tvItemGExercise, v.findViewById(R.id.tvItemGExercise));
 
-        name = (TextView) v.findViewById(R.id.tvItemWorkout);
-        image = (ImageView) v.findViewById(R.id.ibItemWorkout);
+        name = (TextView) v.findViewById(R.id.tvItemGExercise);
+        image = (ImageButton) v.findViewById(R.id.ibItemGExercise);
         final Item item = getItem(i);
         name.setText(item.name);
 

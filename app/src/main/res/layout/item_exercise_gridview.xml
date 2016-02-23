@@ -3,20 +3,20 @@
     android:orientation="vertical" android:layout_width="150dp"
     android:layout_height="150dp">
 
-    <ImageView
-        android:id="@+id/ibItemWorkout"
+    <ImageButton
+        android:id="@+id/ibItemGExercise"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
     <TextView
-        android:id="@+id/tvItemWorkout"
+        android:id="@+id/tvItemGExercise"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#80ffffff"
         android:text="Medium Text"
         android:fontFamily="sans-serif-light"
         android:textSize="20sp"
-        android:layout_alignBottom="@id/ibItemWorkout"
+        android:layout_alignBottom="@id/ibItemGExercise"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:paddingBottom="5dp"

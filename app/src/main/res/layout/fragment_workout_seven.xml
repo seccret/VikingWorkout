@@ -8,7 +8,13 @@
         android:id="@+id/rlWorkoutSeven"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="0.5">
+        <ImageView
+            android:id="@+id/ivWorkoutBanner"
+            android:background="@drawable/banner4"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            />
         <TextView
             android:id="@+id/tvSevenName"
             android:layout_width="wrap_content"
@@ -18,29 +24,26 @@
             android:text="Workout Name"
             android:textSize="30dp"
             android:textColor="#ffffff"
-            android:fontFamily="sans-serif-bold"
+            android:fontFamily="sans-serif-light"
+            android:paddingTop="20dp"
             />
-        <ImageView
-            android:id="@+id/ivWorkoutBanner"
-            android:background="@drawable/banner4"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            />
-        <ImageView
-            android:id="@+id/ivSevenPlay"
-            android:background="@drawable/playorange"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            />
+
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/ivSevenPlay"
+        android:background="@drawable/playorange"
+        android:layout_weight="0.5"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        />
 
     <RelativeLayout
         android:id="@+id/rlSevenPlay"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.3"
+        android:layout_weight="0.7"
         android:visibility="gone">
         <TextView
             android:id="@+id/tvSevenTime"
@@ -70,9 +73,10 @@
         android:id="@+id/gvSevenList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.6"
-        android:layout_gravity="bottom"
-        android:numColumns="2">
+        android:layout_weight="2.2"
+        android:numColumns="2"
+        android:gravity="center"
+        android:verticalSpacing="20dp">
         </GridView>
 
     <LinearLayout
@@ -83,6 +87,7 @@
         android:orientation="horizontal"
         android:weightSum="2"
         android:visibility="gone"
+        android:background="#ffa500"
         >
         <TextView
             android:id="@+id/tvSevenPause"
@@ -90,7 +95,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Pause"
-            android:background="#ffa500"
             android:textSize="25dp"
             android:fontFamily="sans-serif-light"
             android:gravity="center"
@@ -99,9 +103,8 @@
             android:id="@+id/tvsevenStop"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="1"
             android:text="Stop"
-            android:background="#ffa500"
             android:textSize="25dp"
             android:fontFamily="sans-serif-light"
             android:gravity="center"/>

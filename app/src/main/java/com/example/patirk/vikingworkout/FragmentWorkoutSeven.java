@@ -60,7 +60,6 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
         final Workout workout = MainActivity.currentWorkout;
         final List<Integer> exercises = workout.getExercises();
 
-
         woname.setText(workout.getName());
 
         play.setOnClickListener(new View.OnClickListener() {
