@@ -117,6 +117,8 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 //When user request to pause the CountDownTimer
                 isPaused = true;
+                resume.setVisibility(View.VISIBLE);
+                pause.setVisibility(View.GONE);
             }
         });
 
@@ -126,6 +128,9 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 //Specify the current state is not paused and canceled.
                 isPaused = false;
                 isCanceled = false;
+
+                resume.setVisibility(View.GONE);
+                pause.setVisibility(View.VISIBLE);
 
                 //Initialize a new CountDownTimer instance
                 long millisInFuture = timeRemaining;
