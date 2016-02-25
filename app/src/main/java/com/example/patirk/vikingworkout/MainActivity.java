@@ -68,7 +68,11 @@ public class MainActivity extends ActionBarActivity
 
         loadExercises();
         loadWorkouts();
+      //  List<Integer> l = new ArrayList<>();
+       // profile = new Profile(0,"Olivia", "hej",l);
         loadProfile();
+        List<Integer> l = new ArrayList<>();
+        profile.setWorkout(l);
 
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -254,7 +258,7 @@ public class MainActivity extends ActionBarActivity
         Bitmap loadedImage = ExernalFunctions.getCroppedBitmap(bitbit);
         profile.setProfilePicture(loadedImage);
         Toast.makeText(this, "Loading profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
-    }
+      }
 
     public static void saveProfile(Context c) {
         Serializer serializer = new Serializer();
