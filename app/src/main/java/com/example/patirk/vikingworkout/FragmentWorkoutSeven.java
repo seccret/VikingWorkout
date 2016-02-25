@@ -1,5 +1,6 @@
 package com.example.patirk.vikingworkout;
 
+import android.content.DialogInterface;
 import android.graphics.Movie;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -46,6 +47,13 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
     public FragmentWorkoutSeven() {
     }
 
+    //Declare a variable to hold count down timer's paused status
+    private boolean isPaused = false;
+    //Declare a variable to hold count down timer's paused status
+    private boolean isCanceled = false;
+    //Declare a variable to hold CountDownTimer remaining time
+    private long timeRemaining = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,6 +65,9 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
         final RelativeLayout rlplay = (RelativeLayout) rootView.findViewById(R.id.rlSevenPlay);
         final LinearLayout pausestop = (LinearLayout) rootView.findViewById(R.id.llSevenPlay);
         final RelativeLayout banner = (RelativeLayout) rootView.findViewById(R.id.rlWorkoutSeven);
+        final TextView pause = (TextView) rootView.findViewById(R.id.tvSevenPause);
+        final TextView cancel = (TextView) rootView.findViewById(R.id.tvsevenCancel);
+        final TextView resume = (TextView) rootView.findViewById(R.id.tvsevenResume);
         final Workout workout = MainActivity.currentWorkout;
         final List<Integer> exercises = workout.getExercises();
 
@@ -69,23 +80,95 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 pausestop.setVisibility(View.VISIBLE);
                 play.setVisibility(View.GONE);
                 banner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.5f));
-                new CountDownTimer(420000, 1000) {
+                CountDownTimer timer;
+                long millisInFuture = 30000; //30 seconds
+                long countDownInterval = 1000; //1 second
+                new CountDownTimer(millisInFuture, countDownInterval) {
 
                     public void onTick(long millisUntilFinished) {
-                        tvTime.setText("" + String.format("%02d:%02d",
-                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
-                                TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
-                                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+                        if (isPaused || isCanceled) {
+                            //If the user request to cancel or paused the
+                            //CountDownTimer we will cancel the current instance
+                            cancel();
+                        } else {
+                            tvTime.setText("" + String.format("%02d:%02d",
+                                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
+                                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+
+                            //Put count down timer remaining time in a variable
+                            timeRemaining = millisUntilFinished;
+                        }
                     }
 
                     public void onFinish() {
                         tvTime.setText("done!");
-                            rlplay.setVisibility(View.GONE);
-                            pausestop.setVisibility(View.GONE);
-                            play.setVisibility(View.VISIBLE);
-                            banner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f));
+                        rlplay.setVisibility(View.GONE);
+                        pausestop.setVisibility(View.GONE);
+                        play.setVisibility(View.VISIBLE);
+                        banner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f));
                     }
                 }.start();
+            }
+        });
+
+        pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //When user request to pause the CountDownTimer
+                isPaused = true;
+            }
+        });
+
+        resume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Specify the current state is not paused and canceled.
+                isPaused = false;
+                isCanceled = false;
+
+                //Initialize a new CountDownTimer instance
+                long millisInFuture = timeRemaining;
+                long countDownInterval = 1000;
+                new CountDownTimer(millisInFuture, countDownInterval){
+                    public void onTick(long millisUntilFinished) {
+                        if (isPaused || isCanceled) {
+                            //If the user request to cancel or paused the
+                            //CountDownTimer we will cancel the current instance
+                            cancel();
+                        } else {
+                            tvTime.setText("" + String.format("%02d:%02d",
+                                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
+                                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+
+                            //Put count down timer remaining time in a variable
+                            timeRemaining = millisUntilFinished;
+                        }
+                    }
+
+                    public void onFinish() {
+                        tvTime.setText("done!");
+                        rlplay.setVisibility(View.GONE);
+                        pausestop.setVisibility(View.GONE);
+                        play.setVisibility(View.VISIBLE);
+                        banner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f));
+                    }
+                }.start();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //When user request to cancel the CountDownTimer
+                isCanceled = true;
+                Toast.makeText(getActivity(),"Workout canceled", Toast.LENGTH_SHORT).show();
+                rlplay.setVisibility(View.GONE);
+                pausestop.setVisibility(View.GONE);
+                play.setVisibility(View.VISIBLE);
+                banner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f));
+
             }
         });
 

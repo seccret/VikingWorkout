@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,7 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getActivity(), "Workout saved", Toast.LENGTH_SHORT).show();
                 int newId = MainActivity.workouts.size();
                 String newName = woName.getText().toString();
                 int newPic = 1;

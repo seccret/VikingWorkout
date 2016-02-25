@@ -85,7 +85,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.3"
         android:orientation="horizontal"
-        android:weightSum="2"
+        android:weightSum="3"
         android:visibility="gone"
         android:background="#ffa500"
         >
@@ -100,11 +100,20 @@
             android:gravity="center"
             />
         <TextView
-            android:id="@+id/tvsevenStop"
+            android:id="@+id/tvsevenCancel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Stop"
+            android:textSize="25dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/tvsevenResume"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Resume"
             android:textSize="25dp"
             android:fontFamily="sans-serif-light"
             android:gravity="center"/>
