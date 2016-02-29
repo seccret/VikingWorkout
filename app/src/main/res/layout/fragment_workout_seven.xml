@@ -5,18 +5,16 @@
     android:weightSum="4">
 
     <RelativeLayout
-        android:id="@+id/rlWorkoutSeven"
+        android:id="@+id/rlSevenTop"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5">
+        android:layout_weight="0.15">
         <ImageView
-            android:id="@+id/ivWorkoutBanner"
-            android:background="@drawable/banner4"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            />
+            android:layout_height="match_parent"
+            android:background="@drawable/banner4"/>
         <TextView
-            android:id="@+id/tvSevenName"
+            android:id="@+id/tvSevenNamePlay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -25,25 +23,47 @@
             android:textSize="30dp"
             android:textColor="#ffffff"
             android:fontFamily="sans-serif-light"
-            android:paddingTop="20dp"
+            android:visibility="gone"
             />
-
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/ivSevenPlay"
-        android:background="@drawable/playorange"
-        android:layout_weight="0.5"
-        android:layout_width="50dp"
+    <RelativeLayout
+        android:id="@+id/rlWorkoutSeven"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="1.2">
+
+        <ImageView
+            android:id="@+id/ivSevenBanner"
+            android:background="@drawable/seven_minute_banner"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            />
+        <View android:id="@+id/separator_seven"
+            android:background="#ffa500"
+            android:layout_width = "fill_parent"
+            android:layout_height="3dip"
+            android:layout_centerVertical ="true"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvSevenName"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
         android:layout_gravity="center"
+        android:text="Workout Name"
+        android:textSize="30dp"
+        android:textColor="#000000"
+        android:fontFamily="sans-serif-light"
         />
 
     <RelativeLayout
         android:id="@+id/rlSevenPlay"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.7"
+        android:layout_weight="0.9"
         android:visibility="gone">
         <TextView
             android:id="@+id/tvSevenTime"
@@ -51,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/gif_view"
             android:textColor="#ffa500"
-            android:textSize="100dp"
+            android:textSize="110dp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-light"
             android:gravity="center"
@@ -73,7 +93,7 @@
         android:id="@+id/gvSevenList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.2"
+        android:layout_weight="2.05"
         android:numColumns="2"
         android:gravity="center"
         android:verticalSpacing="20dp">

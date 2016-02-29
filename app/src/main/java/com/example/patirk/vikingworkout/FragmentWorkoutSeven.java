@@ -60,10 +60,12 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_workout_seven, container, false);
         final TextView tvTime = (TextView) rootView.findViewById(R.id.tvSevenTime);
         final GridView lvExercises = (GridView) rootView.findViewById(R.id.gvSevenList);
-        final ImageView play = (ImageView) rootView.findViewById(R.id.ivSevenPlay);
+        final ImageView play = (ImageView) rootView.findViewById(R.id.ivSevenBanner);
         final TextView woname = (TextView) rootView.findViewById(R.id.tvSevenName);
+        final RelativeLayout top = (RelativeLayout) rootView.findViewById(R.id.rlSevenTop);
         final RelativeLayout rlplay = (RelativeLayout) rootView.findViewById(R.id.rlSevenPlay);
         final LinearLayout pausestop = (LinearLayout) rootView.findViewById(R.id.llSevenPlay);
+        final TextView wonameplay = (TextView) rootView.findViewById(R.id.tvSevenNamePlay);
         final RelativeLayout banner = (RelativeLayout) rootView.findViewById(R.id.rlWorkoutSeven);
         final TextView pause = (TextView) rootView.findViewById(R.id.tvSevenPause);
         final TextView cancel = (TextView) rootView.findViewById(R.id.tvsevenCancel);
@@ -78,8 +80,11 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 rlplay.setVisibility(View.VISIBLE);
                 pausestop.setVisibility(View.VISIBLE);
-                play.setVisibility(View.GONE);
-                banner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.5f));
+                wonameplay.setVisibility(View.VISIBLE);
+                woname.setVisibility(View.GONE);
+                banner.setVisibility(View.GONE);
+                wonameplay.setText(workout.getName());
+                top.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.45f));
                 CountDownTimer timer;
                 long millisInFuture = 30000; //30 seconds
                 long countDownInterval = 1000; //1 second
@@ -105,8 +110,10 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                         tvTime.setText("done!");
                         rlplay.setVisibility(View.GONE);
                         pausestop.setVisibility(View.GONE);
-                        play.setVisibility(View.VISIBLE);
-                        banner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f));
+                        wonameplay.setVisibility(View.GONE);
+                        woname.setVisibility(View.VISIBLE);
+                        banner.setVisibility(View.VISIBLE);
+                        top.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.15f));
                     }
                 }.start();
             }
@@ -156,8 +163,10 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                         tvTime.setText("done!");
                         rlplay.setVisibility(View.GONE);
                         pausestop.setVisibility(View.GONE);
-                        play.setVisibility(View.VISIBLE);
-                        banner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f));
+                        banner.setVisibility(View.VISIBLE);
+                        wonameplay.setVisibility(View.GONE);
+                        woname.setVisibility(View.VISIBLE);
+                        top.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.15f));
                     }
                 }.start();
             }
@@ -171,8 +180,10 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 Toast.makeText(getActivity(),"Workout canceled", Toast.LENGTH_SHORT).show();
                 rlplay.setVisibility(View.GONE);
                 pausestop.setVisibility(View.GONE);
-                play.setVisibility(View.VISIBLE);
-                banner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f));
+                banner.setVisibility(View.VISIBLE);
+                wonameplay.setVisibility(View.GONE);
+                woname.setVisibility(View.VISIBLE);
+                top.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.15f));
 
             }
         });
