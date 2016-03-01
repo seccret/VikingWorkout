@@ -169,12 +169,12 @@ public class MainActivity extends ActionBarActivity
         e.add(2);
         e.add(3);
         MainActivity.workouts = new ArrayList<Workout>();
-        MainActivity.workouts.add(new Workout(0, "Mage", 1, e));
-        MainActivity.workouts.add(new Workout(1, "Ben", 2, e));
-        MainActivity.workouts.add(new Workout(2, "Rygg", 3, e));
-        MainActivity.workouts.add(new Workout(3, "Armar", 1, e));
-        MainActivity.workouts.add(new Workout(4, "Cross-training", 2, e));
-        MainActivity.workouts.add(new Workout(5, "Ultimate situps", 3, e));
+        MainActivity.workouts.add(new Workout(0, "Mage", 1,"Seven Workout", e));
+        MainActivity.workouts.add(new Workout(1, "Ben", 2,"List Workout", e));
+        MainActivity.workouts.add(new Workout(2, "Rygg", 3,"List Workout", e));
+        MainActivity.workouts.add(new Workout(3, "Armar", 1,"Seven Workout", e));
+        MainActivity.workouts.add(new Workout(4, "Cross-training", 2,"List Workout", e));
+        MainActivity.workouts.add(new Workout(5, "Ultimate situps", 3,"Seven Workout", e));
 
         return true;
     }
