@@ -44,6 +44,7 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
         final EditText woName = (EditText) rootView.findViewById(R.id.etAddSName);
         final ImageView done = (ImageView) rootView.findViewById(R.id.ivSevenDone);
         final GridView exercises = (GridView) rootView.findViewById(R.id.gvAddSevenExercises);
+        final EditText woTag = (EditText) rootView.findViewById(R.id.etAddSTag);
 
         done.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,11 +53,12 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
                 int newId = MainActivity.workouts.size();
                 String newName = woName.getText().toString();
                 int newPic = 1;
+                String newTag = woTag.getText().toString();
                 List<Integer> newExercises = new ArrayList<>();
                 for(int i=0; i< e.size(); i++) {
                     newExercises.add(i, e.get(i).getId());
                 }
-                Workout newWorkout = new Workout(newId, newName, newPic, newExercises);
+                Workout newWorkout = new Workout(newId, newName, newPic,newTag, newExercises);
                 MainActivity.workouts.add(newWorkout);
             }
         });
