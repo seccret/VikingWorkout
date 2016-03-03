@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="3">
+<LinearLayout
+    android:id="@+id/llEInfoTop"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.8"
+    android:orientation="vertical"
+    android:background="#50000000"></LinearLayout>
+    <LinearLayout
+        android:id="@+id/llEInfoMiddle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.4"
+        android:orientation="vertical"
+        android:weightSum="3"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/tvEInfoName"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:text="Exercise Name"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif-light" />
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"/>
+        <ImageView
+            android:id="@+id/ivEInfoAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/plus_button"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llEInfoBottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:orientation="vertical"
+        android:background="#50000000"></LinearLayout>
+</LinearLayout>

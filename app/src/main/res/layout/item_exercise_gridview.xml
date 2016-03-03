@@ -9,6 +9,16 @@
         android:layout_height="match_parent"
         />
     <TextView
+        android:id="@+id/tvItemGExerciseRep"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="#70000000"
+        android:text="Rep"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"/>
+    <TextView
         android:id="@+id/tvItemGExercise"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

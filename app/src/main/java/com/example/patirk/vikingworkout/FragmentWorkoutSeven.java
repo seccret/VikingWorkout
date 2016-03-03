@@ -1,34 +1,19 @@
 package com.example.patirk.vikingworkout;
 
-import android.content.DialogInterface;
-import android.graphics.Movie;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.spec.ECField;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 /**
  * Created by olivia on 2015-10-24.
@@ -62,10 +47,8 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
         final GridView lvExercises = (GridView) rootView.findViewById(R.id.gvSevenList);
         final ImageView play = (ImageView) rootView.findViewById(R.id.ivSevenBanner);
         final TextView woname = (TextView) rootView.findViewById(R.id.tvSevenName);
-        final RelativeLayout top = (RelativeLayout) rootView.findViewById(R.id.rlSevenTop);
         final RelativeLayout rlplay = (RelativeLayout) rootView.findViewById(R.id.rlSevenPlay);
         final LinearLayout pausestop = (LinearLayout) rootView.findViewById(R.id.llSevenPlay);
-        final TextView wonameplay = (TextView) rootView.findViewById(R.id.tvSevenNamePlay);
         final RelativeLayout banner = (RelativeLayout) rootView.findViewById(R.id.rlWorkoutSeven);
         final TextView pause = (TextView) rootView.findViewById(R.id.tvSevenPause);
         final TextView cancel = (TextView) rootView.findViewById(R.id.tvsevenCancel);
@@ -80,11 +63,8 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 rlplay.setVisibility(View.VISIBLE);
                 pausestop.setVisibility(View.VISIBLE);
-                wonameplay.setVisibility(View.VISIBLE);
-                woname.setVisibility(View.GONE);
                 banner.setVisibility(View.GONE);
-                wonameplay.setText(workout.getName());
-                top.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.45f));
+               // banner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.45f));
                 CountDownTimer timer;
                 long millisInFuture = 30000; //30 seconds
                 long countDownInterval = 1000; //1 second
@@ -110,10 +90,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                         tvTime.setText("done!");
                         rlplay.setVisibility(View.GONE);
                         pausestop.setVisibility(View.GONE);
-                        wonameplay.setVisibility(View.GONE);
-                        woname.setVisibility(View.VISIBLE);
                         banner.setVisibility(View.VISIBLE);
-                        top.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.15f));
                     }
                 }.start();
             }
@@ -164,9 +141,6 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                         rlplay.setVisibility(View.GONE);
                         pausestop.setVisibility(View.GONE);
                         banner.setVisibility(View.VISIBLE);
-                        wonameplay.setVisibility(View.GONE);
-                        woname.setVisibility(View.VISIBLE);
-                        top.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.15f));
                     }
                 }.start();
             }
@@ -181,14 +155,10 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 rlplay.setVisibility(View.GONE);
                 pausestop.setVisibility(View.GONE);
                 banner.setVisibility(View.VISIBLE);
-                wonameplay.setVisibility(View.GONE);
-                woname.setVisibility(View.VISIBLE);
-                top.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.15f));
-
             }
         });
 
-        AdapterImage2 ai = new AdapterImage2(MainActivity.mainActivity, exercises);
+        Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, exercises);
         lvExercises.setAdapter(ai);
 
         return rootView;

@@ -13,6 +13,7 @@
             android:id="@+id/ivWorkoutImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/list_workout_banner"
             />
         <View android:id="@+id/separator"
             android:background="#ffa500"
@@ -20,21 +21,13 @@
             android:layout_height="3dip"
             android:layout_centerVertical ="true"
             android:layout_alignParentBottom="true"/>
-        <ImageView
-            android:id="@+id/ivWorkoutPlay"
-            android:background="@drawable/playorange"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rlWorkoutPlay"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.8"
+        android:layout_weight="1.4"
         android:visibility="gone">
         <com.example.patirk.vikingworkout.GifView
             android:id="@+id/gif_view"
@@ -42,29 +35,24 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             />
-        <ProgressBar
-            android:id="@+id/progressbar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:progressDrawable="@drawable/customprogressbar"
-            android:max="5"
-            android:progress="0"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/gif_view"
-            android:paddingBottom="48dp"
-            />
-        <TextView
-            android:id="@+id/tvWorkoutTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/gif_view"
-            android:textColor="#ffa500"
-            android:textSize="100dp"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            />
+        <View android:id="@+id/separator_seven"
+            android:background="#fba500"
+            android:layout_width = "fill_parent"
+            android:layout_height="3dip"
+            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
+    <TextView
+        android:id="@+id/tvWorkoutTime"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.4"
+        android:textColor="#ffa500"
+        android:textSize="100dp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:visibility="gone"
+        />
     <RelativeLayout
         android:id="@+id/rlWorkoutName"
         android:layout_width="match_parent"
@@ -103,7 +91,7 @@
         android:textSize="15dp"/>
 
     <RelativeLayout
-        android:id="@+id/rvWorkoutList"
+        android:id="@+id/rlWorkoutList"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1.95">
@@ -129,18 +117,29 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Pause"
-            android:background="#ffa500"
+            android:background="#fba500"
             android:textSize="25dp"
             android:fontFamily="sans-serif-light"
             android:gravity="center"
             />
+        <TextView
+            android:id="@+id/tvWorkoutResume"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:text="Resume"
+            android:textSize="25dp"
+            android:background="#fba500"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"/>
         <TextView
             android:id="@+id/tvWorkoutStop"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Stop"
-            android:background="#ffa500"
+            android:background="#fba500"
             android:textSize="25dp"
             android:fontFamily="sans-serif-light"
             android:gravity="center"/>

@@ -54,11 +54,15 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
                 String newName = woName.getText().toString();
                 int newPic = 1;
                 String newTag = woTag.getText().toString();
+                List<Integer> newRepetitions = new ArrayList<>();
+                for(int i=0; i< e.size(); i++) {
+                    newRepetitions.add(i, e.get(i).getId());
+                }
                 List<Integer> newExercises = new ArrayList<>();
                 for(int i=0; i< e.size(); i++) {
                     newExercises.add(i, e.get(i).getId());
                 }
-                Workout newWorkout = new Workout(newId, newName, newPic,newTag, newExercises);
+                Workout newWorkout = new Workout(newId, newName, newPic,newTag, newExercises , newRepetitions);
                 MainActivity.workouts.add(newWorkout);
             }
         });

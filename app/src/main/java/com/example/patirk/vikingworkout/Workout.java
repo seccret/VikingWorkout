@@ -15,16 +15,18 @@ public class Workout {
     private int id;
     private String name;
     private int picture;
-    private String tag;
+    public String tag;
 
     private List<Integer> exercises;
+    public List<Integer> repetitions;
 
-    public Workout(int id, String name, int picture, String tag, List<Integer> exercises) {
+    public Workout(int id, String name, int picture, String tag, List<Integer> exercises, List<Integer> repetitions) {
         this.id = id;
         this.name = name;
         this.picture = picture;
         this.exercises = exercises;
         this.tag = tag;
+        this.repetitions = repetitions;
     }
 
     public int getId() {
@@ -41,6 +43,10 @@ public class Workout {
 
     public String getTag () {
         return tag;
+    }
+
+    public List<Integer> getRepetitions() {
+        return repetitions;
     }
 
     public List<Integer> getExercises() {

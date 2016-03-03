@@ -103,14 +103,19 @@ public class FragmentTrainingPlan extends android.support.v4.app.Fragment {
         weekdays.add(new Weekday(5, "Saturday", 3));
         weekdays.add(new Weekday(6, "Sunday", 1));
 
+        List<Integer> r = new ArrayList<>();
+        e.add(0);
+        e.add(1);
+        e.add(2);
+        e.add(3);
         workouts = new ArrayList<Workout>();
-        workouts.add(new Workout(0, "Power Workout", 1,"Seven Workout", e));
-        workouts.add(new Workout(1, "Core", 2,"Seven Workout", e));
-        workouts.add(new Workout(2, "Arms", 3,"Seven Workout", e));
-        workouts.add(new Workout(3, "Rest", 1,"Seven Workout", e));
-        workouts.add(new Workout(4, "Cross-training", 2,"Seven Workout", e));
-        workouts.add(new Workout(5, "Ultimate situps", 3,"Seven Workout", e));
-        workouts.add(new Workout(6, "Rest", 1,"Seven Workout", e));
+        workouts.add(new Workout(0, "Power Workout", 1,"Seven Workout", e, r));
+        workouts.add(new Workout(1, "Core", 2,"Seven Workout", e, r));
+        workouts.add(new Workout(2, "Arms", 3,"Seven Workout", e, r));
+        workouts.add(new Workout(3, "Rest", 1,"Seven Workout", e, r));
+        workouts.add(new Workout(4, "Cross-training", 2,"Seven Workout", e, r));
+        workouts.add(new Workout(5, "Ultimate situps", 3,"Seven Workout", e, r));
+        workouts.add(new Workout(6, "Rest", 1,"Seven Workout", e, r));
 
         ListView lv = (ListView) rootView.findViewById(R.id.lvThisWeek);
         registerForContextMenu(lv);

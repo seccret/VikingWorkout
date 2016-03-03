@@ -66,9 +66,16 @@ public class AdapterImageProfile extends BaseAdapter {
                 //Step 2: Set currentWorkout to clicked workout
                 MainActivity.currentWorkout = wo;
                 //Step 3: Go to workout fragment
-                MainActivity.fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentWorkoutSeven.newInstance())
-                        .commit();
+                String tag = wo.getTag();
+                if (tag.equals("Seven Workout")) {
+                    MainActivity.fragmentManager.beginTransaction()
+                            .replace(R.id.container, FragmentWorkoutSeven.newInstance())
+                            .commit();
+                } else if (tag.equals("List Workout")) {
+                    MainActivity.fragmentManager.beginTransaction()
+                            .replace(R.id.container, FragmentWorkout.newInstance())
+                            .commit();
+                }
             }
         });
 

@@ -8,21 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class AdapterImage2 extends BaseAdapter {
+public class Adapter4Workout extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
     private static Workout workout = null;
 
     // Constructor
-    public AdapterImage2(Context c, List<Integer> exerciseList) {
+    public Adapter4Workout(Context c, List<Integer> exerciseList) {
         mInflater = LayoutInflater.from(c);
 
         for (int exerciseID : exerciseList) {
@@ -54,11 +53,11 @@ public class AdapterImage2 extends BaseAdapter {
         TextView name;
         ImageButton image;
         if (v == null) {
-            v = mInflater.inflate(R.layout.item_exercise_gridview, viewGroup, false);
-            v.setTag(R.id.tvItemGExercise, v.findViewById(R.id.tvItemGExercise));
+            v = mInflater.inflate(R.layout.item_exercise, viewGroup, false);
+            v.setTag(R.id.tvItemExercise, v.findViewById(R.id.tvItemExercise));
         }
-        name = (TextView) v.findViewById(R.id.tvItemGExercise);
-        image = (ImageButton) v.findViewById(R.id.ibItemGExercise);
+        name = (TextView) v.findViewById(R.id.tvItemExercise);
+        image = (ImageButton) v.findViewById(R.id.ibItemExercise);
         final Item item = getItem(i);
         name.setText(item.name);
 
