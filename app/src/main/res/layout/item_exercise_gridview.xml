@@ -31,5 +31,34 @@
         android:gravity="center"
         android:paddingBottom="5dp"
         />
-
+    <LinearLayout
+        android:id="@+id/llChangeRep"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="3"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:id="@+id/ivIncreaseRep"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/abc_btn_radio_material"
+            />
+        <TextView
+            android:id="@+id/tvCurrentRep"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="16"
+            />
+        <ImageView
+            android:id="@+id/ivReduseRep"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/abc_btn_radio_material"
+            />
+    </LinearLayout>
 </RelativeLayout>

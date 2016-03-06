@@ -21,10 +21,12 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
     public static List<Exercise> e;
     public static FragmentAddSevenW fragment;
     public static int index = 0;
+    public static List<Integer> newRepetitions = new ArrayList<>();
 
     public static FragmentAddSevenW newInstance(Exercise e1, Exercise e2, Exercise e3, Exercise e4) {
         List<Exercise> eList = new ArrayList<>();
         eList.add(e1); eList.add(e2); eList.add(e3); eList.add(e4);
+        newRepetitions.add(0); newRepetitions.add(0); newRepetitions.add(0); newRepetitions.add(0);
         e = eList;
         fragment = new FragmentAddSevenW();
         Bundle args = new Bundle();
@@ -49,25 +51,25 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Workout saved", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getActivity(), "Workout saved", Toast.LENGTH_SHORT).show();
                 int newId = MainActivity.workouts.size();
                 String newName = woName.getText().toString();
                 int newPic = 1;
                 String newTag = woTag.getText().toString();
-                List<Integer> newRepetitions = new ArrayList<>();
-                for(int i=0; i< e.size(); i++) {
-                    newRepetitions.add(i, e.get(i).getId());
-                }
+
                 List<Integer> newExercises = new ArrayList<>();
                 for(int i=0; i< e.size(); i++) {
                     newExercises.add(i, e.get(i).getId());
                 }
-                Workout newWorkout = new Workout(newId, newName, newPic,newTag, newExercises , newRepetitions);
+                List<Integer> r = new ArrayList<Integer>();
+                r.add(newRepetitions.get(0));r.add(newRepetitions.get(1));r.add(newRepetitions.get(2));r.add(newRepetitions.get(3));
+                Workout newWorkout = new Workout(newId, newName, newPic,newTag, newExercises , r);
+                Toast.makeText(getActivity(), String.valueOf(newRepetitions), Toast.LENGTH_SHORT).show();
                 MainActivity.workouts.add(newWorkout);
             }
         });
 
-        Adapter4AddSevenWorkout ad = new Adapter4AddSevenWorkout(MainActivity.mainActivity, e);
+        Adapter4AddSevenWorkout ad = new Adapter4AddSevenWorkout(MainActivity.mainActivity, fragment, e);
     exercises.setAdapter(ad);
         return rootView;
     }

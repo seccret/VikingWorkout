@@ -26,7 +26,15 @@ public class Workout {
         this.picture = picture;
         this.exercises = exercises;
         this.tag = tag;
-        this.repetitions = repetitions;
+        if(repetitions.size()!=4){
+            repetitions = new ArrayList<>();
+            repetitions.add(0);
+            repetitions.add(0);
+            repetitions.add(0);
+            repetitions.add(0);
+        }else{
+            this.repetitions = repetitions;
+        }
     }
 
     public int getId() {
@@ -61,5 +69,7 @@ public class Workout {
         this.exercises = new ArrayList<>();
         this.exercises = listE;
     }
-
+    public void setRepetition(int index, int repetitions) {
+        this.repetitions.set(index, repetitions);
+    }
 }

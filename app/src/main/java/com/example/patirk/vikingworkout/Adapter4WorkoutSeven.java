@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,10 +21,12 @@ public class Adapter4WorkoutSeven extends BaseAdapter {
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
     private static Workout workout = null;
+    private static List<Integer> repetitions = new ArrayList<>();
 
     // Constructor
-    public Adapter4WorkoutSeven(Context c, List<Integer> exerciseList) {
+    public Adapter4WorkoutSeven(Context c, List<Integer> exerciseList, List<Integer> repetitions) {
         mInflater = LayoutInflater.from(c);
+        this.repetitions=repetitions;
 
         for (int exerciseID : exerciseList) {
             Exercise w = MainActivity.exerciseList.get(exerciseID);
@@ -53,15 +56,17 @@ public class Adapter4WorkoutSeven extends BaseAdapter {
         View v = view;
         TextView name;
         ImageButton image;
+        TextView rep;
         if (v == null) {
             v = mInflater.inflate(R.layout.item_exercise_gridview, viewGroup, false);
             v.setTag(R.id.tvItemGExercise, v.findViewById(R.id.tvItemGExercise));
         }
         name = (TextView) v.findViewById(R.id.tvItemGExercise);
         image = (ImageButton) v.findViewById(R.id.ibItemGExercise);
-        final TextView rep = (TextView) v.findViewById(R.id.tvItemGExerciseRep);
+        rep = (TextView) v.findViewById(R.id.tvItemGExerciseRep);
         final Item item = getItem(i);
         name.setText(item.name);
+        rep.setText(String.valueOf(repetitions.get(i)));
 
         image.setBackground(item.picture);
 

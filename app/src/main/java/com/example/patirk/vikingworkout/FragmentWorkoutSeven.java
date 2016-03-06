@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -55,6 +56,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
         final TextView resume = (TextView) rootView.findViewById(R.id.tvsevenResume);
         final Workout workout = MainActivity.currentWorkout;
         final List<Integer> exercises = workout.getExercises();
+        final List<Integer> repetitions = workout.getRepetitions();
 
         woname.setText(workout.getName());
 
@@ -157,8 +159,8 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 banner.setVisibility(View.VISIBLE);
             }
         });
-
-        Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, exercises);
+        List<Integer> r = new ArrayList<>(); r.add(repetitions.get(0));r.add(repetitions.get(1));r.add(repetitions.get(2));r.add(repetitions.get(3));
+        Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, exercises, r);
         lvExercises.setAdapter(ai);
 
         return rootView;
