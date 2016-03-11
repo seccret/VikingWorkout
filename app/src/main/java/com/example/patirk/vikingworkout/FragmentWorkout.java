@@ -6,14 +6,17 @@ import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -49,11 +52,9 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
         final TextView tvTime = (TextView) rootView.findViewById(R.id.tvWorkoutTime);
         final GifView gif = (GifView) rootView.findViewById(R.id.gif_view);
         final ImageView image = (ImageView) rootView.findViewById(R.id.ivWorkoutImage);
-        final RelativeLayout rlName = (RelativeLayout) rootView.findViewById(R.id.rlWorkoutName);
         final TextView woname = (TextView) rootView.findViewById(R.id.tvWorkoutName);
         final RelativeLayout rlplayimage = (RelativeLayout) rootView.findViewById(R.id.rlWorkoutPlay);
         final LinearLayout llplay = (LinearLayout) rootView.findViewById(R.id.llWorkoutPlay);
-        final TextView woby = (TextView) rootView.findViewById(R.id.tvWorkoutBy);
         final TextView next = (TextView) rootView.findViewById(R.id.tvWorkoutExercise);
         final RelativeLayout rlWorkout = (RelativeLayout) rootView.findViewById(R.id.rlWorkout);
         final ListView lvExercises = (ListView) rootView.findViewById(R.id.lvWorkoutList);
@@ -61,17 +62,25 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
         final TextView pause = (TextView) rootView.findViewById(R.id.tvWorkoutPause);
         final TextView cancel = (TextView) rootView.findViewById(R.id.tvWorkoutStop);
         final TextView resume = (TextView) rootView.findViewById(R.id.tvWorkoutResume);
+        final Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner);
         final Workout workout = MainActivity.currentWorkout;
         final List<Integer> exercises = workout.getExercises();
         final Exercise exercise = MainActivity.currentExercise;
 
         woname.setText(workout.getName());
 
-        workoutImage.setOnClickListener(new View.OnClickListener() {
+        List<String> template = new ArrayList<String>();
+        template.add("Seven");
+        template.add("List");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MainActivity.mainActivity, android.R.layout.simple_spinner_item, template);
+        spinner.setAdapter(dataAdapter);
+
+
+    workoutImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rlWorkout.setVisibility(View.GONE);
-                rlName.setVisibility(View.GONE);
+                woname.setVisibility(View.GONE);
                 tvTime.setVisibility(View.VISIBLE);
                 rlplayimage.setVisibility(View.VISIBLE);
                 llplay.setVisibility(View.VISIBLE);
@@ -101,7 +110,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                     public void onFinish() {
                         tvTime.setText("done!");
                         rlWorkout.setVisibility(View.VISIBLE);
-                        rlName.setVisibility(View.VISIBLE);
+                        woname.setVisibility(View.VISIBLE);
                         tvTime.setVisibility(View.GONE);
                         rlplayimage.setVisibility(View.GONE);
                         llplay.setVisibility(View.GONE);
@@ -155,7 +164,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                     public void onFinish() {
                         tvTime.setText("done!");
                         rlWorkout.setVisibility(View.VISIBLE);
-                        rlName.setVisibility(View.VISIBLE);
+                        woname.setVisibility(View.VISIBLE);
                         tvTime.setVisibility(View.GONE);
                         rlplayimage.setVisibility(View.GONE);
                         llplay.setVisibility(View.GONE);
@@ -173,7 +182,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                 isCanceled = true;
                 Toast.makeText(getActivity(),"Workout canceled", Toast.LENGTH_SHORT).show();
                 rlWorkout.setVisibility(View.VISIBLE);
-                rlName.setVisibility(View.VISIBLE);
+                woname.setVisibility(View.VISIBLE);
                 tvTime.setVisibility(View.GONE);
                 rlplayimage.setVisibility(View.GONE);
                 llplay.setVisibility(View.GONE);

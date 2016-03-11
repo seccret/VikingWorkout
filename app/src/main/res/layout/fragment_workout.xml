@@ -13,14 +13,70 @@
             android:id="@+id/ivWorkoutImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/list_workout_banner"
+            android:background="@drawable/wobanner2"
             />
-        <View android:id="@+id/separator"
-            android:background="#ffa500"
-            android:layout_width = "fill_parent"
-            android:layout_height="3dip"
-            android:layout_centerVertical ="true"
-            android:layout_alignParentBottom="true"/>
+        <TextView
+            android:id="@+id/tvWorkoutName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Workout Name"
+            android:textSize="50dp"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif-light"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:weightSum="5">
+            <TextView
+                android:id="@+id/tvWorkoutLenght"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="30 MIN"
+                android:fontFamily="sans-serif-bold"
+                android:textColor="@color/white"
+                android:gravity="bottom"
+                android:background="@drawable/time"
+                />
+            <ImageView
+                android:id="@+id/ivSeperator2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/seperator"/>
+            <TextView
+                android:id="@+id/tvWorkoutDifficulity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="EXTREME"
+                android:fontFamily="sans-serif-bold"
+                android:textColor="@color/white"
+                android:gravity="bottom"
+                android:background="@drawable/difficulityextreme"
+                />
+            <ImageView
+                android:id="@+id/ivSeperator"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/seperator"/>
+            <TextView
+                android:id="@+id/tvWorkouttemplate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="7 MINUTE"
+                android:fontFamily="sans-serif-bold"
+                android:textColor="@color/white"
+                android:gravity="center"
+                />
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -53,48 +109,33 @@
         android:gravity="center"
         android:visibility="gone"
         />
-    <RelativeLayout
-        android:id="@+id/rlWorkoutName"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.4">
-        <TextView
-            android:id="@+id/tvWorkoutName"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Workout Name"
-            android:textSize="30dp"
-            android:fontFamily="sans-serif-light"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"/>
-        <TextView
-            android:id="@+id/tvWorkoutBy"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="By: Jane Doe"
-            android:textSize="15dp"
-            android:fontFamily="sans-serif-light"
-            android:layout_alignParentBottom="true"/>
-    </RelativeLayout>
-
+        android:layout_weight="1"
+        android:visibility="gone"
+        />
     <TextView
         android:id="@+id/tvWorkoutExercise"
-        android:layout_width="match_parent"
+        android:layout_width="345dp"
         android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:background="@drawable/headlinebox"
-        android:text="Exercises"
-        android:fontFamily="sans-serif-light"
-        android:gravity="center"
-        android:textSize="15dp"/>
+        android:layout_weight="0.25"
+        android:layout_marginTop="30dp"
+        android:background="#7e7e7e"
+        android:text="Block 1"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-bold"
+        android:textSize="15dp"
+        android:layout_gravity="center"/>
 
     <RelativeLayout
         android:id="@+id/rlWorkoutList"
-        android:layout_width="wrap_content"
+        android:layout_width="345dp"
         android:layout_height="0dp"
-        android:layout_weight="1.95">
+        android:layout_weight="1.95"
+        android:layout_gravity="center">
         <ListView
             android:id="@+id/lvWorkoutList"
             android:layout_width="match_parent"

@@ -64,7 +64,7 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
                 List<Integer> r = new ArrayList<Integer>();
                 r.add(newRepetitions.get(0));r.add(newRepetitions.get(1));r.add(newRepetitions.get(2));r.add(newRepetitions.get(3));
                 Workout newWorkout = new Workout(newId, newName, newPic,newTag, newExercises , r);
-                Toast.makeText(getActivity(), String.valueOf(newRepetitions), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Workout saved", Toast.LENGTH_SHORT).show();
                 MainActivity.workouts.add(newWorkout);
             }
         });

@@ -37,7 +37,8 @@ public class FragmentExerciseInfo extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_exercise_info, container, false);
         final TextView exname = (TextView) rootView.findViewById(R.id.tvEInfoName);
-
+        final ImageView eximage = (ImageView) rootView.findViewById(R.id.ivEInfoImage);
+        final ImageView exadd = (ImageView) rootView.findViewById(R.id.ivEInfoAdd);
 
         return rootView;
     }

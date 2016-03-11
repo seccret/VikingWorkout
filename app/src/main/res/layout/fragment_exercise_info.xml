@@ -27,7 +27,8 @@
             android:layout_gravity="center"
             android:textSize="20dp"
             android:fontFamily="sans-serif-light" />
-        <ImageButton
+        <ImageView
+            android:id="@+id/ivEInfoImage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"/>
