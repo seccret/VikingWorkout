@@ -58,12 +58,10 @@ public class Adapter4ExerciseList extends BaseAdapter {
         v = mInflater.inflate(R.layout.item_exercise, viewGroup, false);
         v.setTag(R.id.tvItemExercise, v.findViewById(R.id.tvItemExercise));
 
-        image = (ImageButton) v.findViewById(R.id.ibItemExercise);
         final TextView tvname = (TextView) v.findViewById(R.id.tvItemExercise);
+        final ImageView time = (ImageView) v.findViewById(R.id.ivItemExercise);
         final Item item = getItem(i);
         tvname.setText(item.name);
-
-        image.setBackground(item.picture);
 
         tvname.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +81,7 @@ public class Adapter4ExerciseList extends BaseAdapter {
             }
         });
 
-        image.setOnTouchListener(new View.OnTouchListener() {
+        time.setOnTouchListener(new View.OnTouchListener() {
               @Override
            public boolean onTouch(View v, MotionEvent event) {
                if (event.getAction() == MotionEvent.ACTION_DOWN) {

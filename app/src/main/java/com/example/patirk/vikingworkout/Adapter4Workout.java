@@ -57,11 +57,8 @@ public class Adapter4Workout extends BaseAdapter {
             v.setTag(R.id.tvItemExercise, v.findViewById(R.id.tvItemExercise));
         }
         name = (TextView) v.findViewById(R.id.tvItemExercise);
-        image = (ImageButton) v.findViewById(R.id.ibItemExercise);
         final Item item = getItem(i);
         name.setText(item.name);
-
-        image.setBackground(item.picture);
 
         name.setOnClickListener(new View.OnClickListener() {
             @Override

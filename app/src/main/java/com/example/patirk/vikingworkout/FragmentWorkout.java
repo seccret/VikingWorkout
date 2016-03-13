@@ -63,11 +63,27 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
         final TextView cancel = (TextView) rootView.findViewById(R.id.tvWorkoutStop);
         final TextView resume = (TextView) rootView.findViewById(R.id.tvWorkoutResume);
         final Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner);
+        final ImageView arrow = (ImageView) rootView.findViewById(R.id.ivWorkoutArrow);
+        final LinearLayout llBlock = (LinearLayout) rootView.findViewById(R.id.llWorkoutBlock);
         final Workout workout = MainActivity.currentWorkout;
         final List<Integer> exercises = workout.getExercises();
         final Exercise exercise = MainActivity.currentExercise;
 
         woname.setText(workout.getName());
+
+        llBlock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rlExercises.isShown()) {
+                    rlExercises.setVisibility(View.GONE);
+                    arrow.setBackground(getResources().getDrawable(R.drawable.arrow_right));
+                } else {
+                    rlExercises.setVisibility(View.VISIBLE);
+                    arrow.setBackground(getResources().getDrawable(R.drawable.arrow_down));
+                }
+
+            }
+    });
 
         List<String> template = new ArrayList<String>();
         template.add("Seven");
@@ -114,7 +130,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                         tvTime.setVisibility(View.GONE);
                         rlplayimage.setVisibility(View.GONE);
                         llplay.setVisibility(View.GONE);
-                        next.setText("Exercises");
+                        next.setText("BLOCK 1");
                         rlExercises.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.95f));
                     }
                 }.start();
@@ -168,7 +184,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                         tvTime.setVisibility(View.GONE);
                         rlplayimage.setVisibility(View.GONE);
                         llplay.setVisibility(View.GONE);
-                        next.setText("Exercises");
+                        next.setText("BLOCK 1");
                         rlExercises.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.95f));
                     }
                 }.start();
@@ -186,7 +202,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                 tvTime.setVisibility(View.GONE);
                 rlplayimage.setVisibility(View.GONE);
                 llplay.setVisibility(View.GONE);
-                next.setText("Exercises");
+                next.setText("BLOCK 1");
                 rlExercises.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.95f));
             }
         });

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="4">
+    android:weightSum="4"
+    android:background="@drawable/background">
 
     <RelativeLayout
         android:id="@+id/rlWorkout"
@@ -28,7 +29,7 @@
             android:layout_centerVertical="true"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="43dp"
+            android:layout_height="40dp"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
             android:weightSum="5">
@@ -36,9 +37,9 @@
                 android:id="@+id/tvWorkoutLenght"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.9"
                 android:text="30 MIN"
-                android:fontFamily="sans-serif-bold"
+                android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/white"
                 android:gravity="bottom"
                 android:background="@drawable/time"
@@ -47,15 +48,15 @@
                 android:id="@+id/ivSeperator2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.15"
                 android:background="@drawable/seperator"/>
             <TextView
                 android:id="@+id/tvWorkoutDifficulity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.9"
                 android:text="EXTREME"
-                android:fontFamily="sans-serif-bold"
+                android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/white"
                 android:gravity="bottom"
                 android:background="@drawable/difficulityextreme"
@@ -64,15 +65,15 @@
                 android:id="@+id/ivSeperator"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.15"
                 android:background="@drawable/seperator"/>
             <TextView
                 android:id="@+id/tvWorkouttemplate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.9"
                 android:text="7 MINUTE"
-                android:fontFamily="sans-serif-bold"
+                android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/white"
                 android:gravity="center"
                 />
@@ -116,26 +117,43 @@
         android:layout_weight="1"
         android:visibility="gone"
         />
-    <TextView
-        android:id="@+id/tvWorkoutExercise"
-        android:layout_width="345dp"
+    <LinearLayout
+        android:id="@+id/llWorkoutBlock"
+        android:layout_width="343dp"
         android:layout_height="0dp"
         android:layout_weight="0.25"
+        android:orientation="horizontal"
         android:layout_marginTop="30dp"
         android:background="#7e7e7e"
-        android:text="Block 1"
-        android:gravity="center_vertical"
-        android:textColor="@color/white"
-        android:fontFamily="sans-serif-bold"
-        android:textSize="15dp"
-        android:layout_gravity="center"/>
-
+        android:layout_gravity="center"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/tvWorkoutExercise"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.85"
+            android:text="BLOCK 1"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="7dp"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="15dp"/>
+        <ImageView
+            android:id="@+id/ivWorkoutArrow"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.15"
+            android:background="@drawable/arrow_down"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
     <RelativeLayout
         android:id="@+id/rlWorkoutList"
-        android:layout_width="345dp"
+        android:layout_width="343dp"
         android:layout_height="0dp"
         android:layout_weight="1.95"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:visibility="visible">
         <ListView
             android:id="@+id/lvWorkoutList"
             android:layout_width="match_parent"
@@ -148,7 +166,7 @@
         android:id="@+id/llWorkoutPlay"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.3"
+        android:layout_weight="0.35"
         android:orientation="horizontal"
         android:weightSum="2"
         android:visibility="gone">
