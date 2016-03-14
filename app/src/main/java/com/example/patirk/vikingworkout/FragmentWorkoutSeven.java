@@ -46,24 +46,40 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_workout_seven, container, false);
         final TextView tvTime = (TextView) rootView.findViewById(R.id.tvSevenTime);
         final GridView lvExercises = (GridView) rootView.findViewById(R.id.gvSevenList);
+        final LinearLayout llTime = (LinearLayout) rootView.findViewById(R.id.llSevenTime);
         final ImageView play = (ImageView) rootView.findViewById(R.id.ivSevenBanner);
         final TextView woname = (TextView) rootView.findViewById(R.id.tvSevenName);
-        final RelativeLayout rlplay = (RelativeLayout) rootView.findViewById(R.id.rlSevenPlay);
         final LinearLayout pausestop = (LinearLayout) rootView.findViewById(R.id.llSevenPlay);
         final RelativeLayout banner = (RelativeLayout) rootView.findViewById(R.id.rlWorkoutSeven);
         final TextView pause = (TextView) rootView.findViewById(R.id.tvSevenPause);
         final TextView cancel = (TextView) rootView.findViewById(R.id.tvsevenCancel);
         final TextView resume = (TextView) rootView.findViewById(R.id.tvsevenResume);
+        final LinearLayout llBlock = (LinearLayout) rootView.findViewById(R.id.llSevenBlock);
+        final ImageView arrow = (ImageView) rootView.findViewById(R.id.ivSevenArrow);
         final Workout workout = MainActivity.currentWorkout;
         final List<Integer> exercises = workout.getExercises();
         final List<Integer> repetitions = workout.getRepetitions();
 
         woname.setText(workout.getName());
 
+        llBlock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (lvExercises.isShown()) {
+                    lvExercises.setVisibility(View.GONE);
+                    arrow.setBackground(getResources().getDrawable(R.drawable.arrow_right));
+                } else {
+                    lvExercises.setVisibility(View.VISIBLE);
+                    arrow.setBackground(getResources().getDrawable(R.drawable.arrow_down));
+                }
+
+            }
+        });
+
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rlplay.setVisibility(View.VISIBLE);
+                llTime.setVisibility(View.VISIBLE);
                 pausestop.setVisibility(View.VISIBLE);
                 banner.setVisibility(View.GONE);
                // banner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.45f));
@@ -90,7 +106,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
 
                     public void onFinish() {
                         tvTime.setText("done!");
-                        rlplay.setVisibility(View.GONE);
+                        llTime.setVisibility(View.GONE);
                         pausestop.setVisibility(View.GONE);
                         banner.setVisibility(View.VISIBLE);
                     }
@@ -140,7 +156,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
 
                     public void onFinish() {
                         tvTime.setText("done!");
-                        rlplay.setVisibility(View.GONE);
+                        llTime.setVisibility(View.GONE);
                         pausestop.setVisibility(View.GONE);
                         banner.setVisibility(View.VISIBLE);
                     }
@@ -154,7 +170,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 //When user request to cancel the CountDownTimer
                 isCanceled = true;
                 Toast.makeText(getActivity(),"Workout canceled", Toast.LENGTH_SHORT).show();
-                rlplay.setVisibility(View.GONE);
+                llTime.setVisibility(View.GONE);
                 pausestop.setVisibility(View.GONE);
                 banner.setVisibility(View.VISIBLE);
             }

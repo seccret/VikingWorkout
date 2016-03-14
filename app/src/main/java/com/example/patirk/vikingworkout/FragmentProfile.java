@@ -103,8 +103,8 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 globalButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
                 myworkoutButton.setTextColor(Color.parseColor("#fba500"));
-                globalButton.setTextColor(Color.parseColor("#6d6d6d"));
-                statisticButton.setTextColor(Color.parseColor("#6d6d6d"));
+                globalButton.setTextColor(Color.parseColor("#c1c1c1"));
+                statisticButton.setTextColor(Color.parseColor("#c1c1c1"));
                 ListView lv = (ListView) rootView.findViewById(R.id.lvWorkouts);
                 AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), myWorkout);
                 lv.setAdapter(AI);
@@ -118,8 +118,8 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 myworkoutButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
                 globalButton.setTextColor(Color.parseColor("#fba500"));
-                statisticButton.setTextColor(Color.parseColor("#6d6d6d"));
-                myworkoutButton.setTextColor(Color.parseColor("#6d6d6d"));
+                statisticButton.setTextColor(Color.parseColor("#c1c1c1"));
+                myworkoutButton.setTextColor(Color.parseColor("#c1c1c1"));
                 ListView lv = (ListView) rootView.findViewById(R.id.lvWorkouts);
                 AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), MainActivity.workouts);
                 lv.setAdapter(AI);
@@ -135,8 +135,8 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 myworkoutButton.setBackgroundResource(R.drawable.button_unselected);
                 globalButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setTextColor(Color.parseColor("#fba500"));
-                globalButton.setTextColor(Color.parseColor("#6d6d6d"));
-                myworkoutButton.setTextColor(Color.parseColor("#6d6d6d"));
+                globalButton.setTextColor(Color.parseColor("#c1c1c1"));
+                myworkoutButton.setTextColor(Color.parseColor("#c1c1c1"));
                 if (supl.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
                     Toast.makeText(MainActivity.mainActivity, "Expanded", Toast.LENGTH_SHORT).show();
                     profilePic.setVisibility(View.INVISIBLE);

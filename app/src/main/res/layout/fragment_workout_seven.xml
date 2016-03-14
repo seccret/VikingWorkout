@@ -4,69 +4,100 @@
     android:layout_height="match_parent"
     android:weightSum="4"
     android:background="@drawable/background">
-
     <RelativeLayout
         android:id="@+id/rlWorkoutSeven"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.2">
-
+        android:layout_weight="1.35">
         <ImageView
             android:id="@+id/ivSevenBanner"
-            android:background="@drawable/wobanner2"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/wobanner2"
             />
-        <View android:id="@+id/separator_seven"
-            android:background="#fba500"
-            android:layout_width = "fill_parent"
-            android:layout_height="3dip"
-            android:layout_centerVertical ="true"
-            android:layout_alignParentBottom="true"/>
+        <TextView
+            android:id="@+id/tvSevenName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Workout Name"
+            android:textSize="50dp"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif-light"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+        <LinearLayout
+            android:id="@+id/llSevenInfo"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:weightSum="5">
+            <TextView
+                android:id="@+id/tvSevenLenght"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:text="30 MIN"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/white"
+                android:gravity="bottom"
+                android:background="@drawable/time"
+                />
+            <ImageView
+                android:id="@+id/ivSevenSeperator"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.15"
+                android:background="@drawable/seperator"/>
+            <TextView
+                android:id="@+id/tvSevenDifficulity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:text="EXTREME"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/white"
+                android:gravity="bottom"
+                android:background="@drawable/difficulityextreme"
+                />
+            <ImageView
+                android:id="@+id/ivSevenSeperator2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.15"
+                android:background="@drawable/seperator"/>
+            <TextView
+                android:id="@+id/tvSeventemplate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:text="7 MINUTE"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/white"
+                android:gravity="center"
+                />
+        </LinearLayout>
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tvSevenName"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:layout_gravity="center"
-        android:text="Workout Name"
-        android:textSize="30dp"
-        android:layout_marginTop="30dp"
-        android:textColor="#000000"
-        android:fontFamily="sans-serif-light"
-        />
-
-    <RelativeLayout
-        android:id="@+id/rlSevenPlay"
+    <LinearLayout
+        android:id="@+id/llSevenTime"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.65"
+        android:layout_weight="1.25"
         android:visibility="gone">
         <TextView
             android:id="@+id/tvSevenTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/gif_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:textColor="#ffa500"
             android:textSize="110dp"
             android:textStyle="bold"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="sans-serif-condensed"
             android:gravity="center"
             />
-    </RelativeLayout>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvSevenExercise"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:background="@drawable/headlinebox"
-        android:text="Exercises"
-        android:fontFamily="sans-serif-light"
-        android:gravity="center"
-        android:textSize="15dp"/>
     <LinearLayout
         android:id="@+id/llSevenBlock"
         android:layout_width="343dp"
@@ -103,7 +134,8 @@
         android:layout_weight="2.2"
         android:numColumns="2"
         android:layout_gravity="center"
-        android:verticalSpacing="20dp">
+        android:verticalSpacing="20dp"
+        android:background="@color/white">
         </GridView>
 
     <LinearLayout
