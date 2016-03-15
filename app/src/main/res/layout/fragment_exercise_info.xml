@@ -2,49 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="3">
-<LinearLayout
-    android:id="@+id/llEInfoTop"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="0.8"
-    android:orientation="vertical"
-    android:background="#50000000"></LinearLayout>
+    android:background="#70000000"
+    android:gravity="center">
     <LinearLayout
-        android:id="@+id/llEInfoMiddle"
+        android:id="@+id/llEInfo"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.4"
+        android:layout_height="match_parent"
+        android:weightSum="2"
         android:orientation="vertical"
-        android:weightSum="3"
-        android:background="@color/white">
-        <TextView
-            android:id="@+id/tvEInfoName"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:text="Exercise Name"
-            android:layout_gravity="center"
-            android:textSize="20dp"
-            android:fontFamily="sans-serif-light" />
-        <ImageView
-            android:id="@+id/ivEInfoImage"
+        android:gravity="center">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"/>
-        <ImageView
-            android:id="@+id/ivEInfoAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:background="@drawable/plus_button"
-            android:layout_gravity="center"/>
+            android:layout_weight="1.3"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:gravity="center">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/background"
+                android:weightSum="4">
+                <TextView
+                    android:id="@+id/tvEInfoName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:text="Ex Name"
+                    android:textSize="30sp"
+                    android:fontFamily="sans-serif-light"/>
+                <ImageView
+                    android:id="@+id/ivEInfoImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2.5"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/llEInfoBottom"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.8"
-        android:orientation="vertical"
-        android:background="#50000000"></LinearLayout>
 </LinearLayout>

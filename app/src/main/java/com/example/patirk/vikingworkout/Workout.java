@@ -15,17 +15,17 @@ public class Workout {
     private int id;
     private String name;
     private int picture;
-    public String tag;
+    public String tagtemplate;
 
     private List<Integer> exercises;
     public List<Integer> repetitions;
 
-    public Workout(int id, String name, int picture, String tag, List<Integer> exercises, List<Integer> repetitions) {
+    public Workout(int id, String name, int picture, String tagtemplate, List<Integer> exercises, List<Integer> repetitions) {
         this.id = id;
         this.name = name;
         this.picture = picture;
         this.exercises = exercises;
-        this.tag = tag;
+        this.tagtemplate = tagtemplate;
         if(repetitions.size()!=4){
             repetitions = new ArrayList<>();
             repetitions.add(0);
@@ -49,8 +49,8 @@ public class Workout {
         return picture;
     }
 
-    public String getTag () {
-        return tag;
+    public String getTagTemplate () {
+        return tagtemplate;
     }
 
     public List<Integer> getRepetitions() {

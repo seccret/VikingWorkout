@@ -36,6 +36,15 @@
             android:fontFamily="sans-serif-light"
             android:text="30 seconds"
             />
+        <TextView
+            android:id="@+id/tvItemExerciseRep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="#444444"
+            android:textSize="16dp"
+            android:fontFamily="sans-serif-light"
+            android:text="rep"/>
     </LinearLayout>
 
 </LinearLayout>

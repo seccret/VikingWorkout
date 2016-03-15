@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +46,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_workout_seven, container, false);
         final TextView tvTime = (TextView) rootView.findViewById(R.id.tvSevenTime);
-        final GridView lvExercises = (GridView) rootView.findViewById(R.id.gvSevenList);
+        final ListView lvExercises = (ListView) rootView.findViewById(R.id.lvSevenList);
         final LinearLayout llTime = (LinearLayout) rootView.findViewById(R.id.llSevenTime);
         final ImageView play = (ImageView) rootView.findViewById(R.id.ivSevenBanner);
         final TextView woname = (TextView) rootView.findViewById(R.id.tvSevenName);

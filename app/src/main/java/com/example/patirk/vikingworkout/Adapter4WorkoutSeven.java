@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,18 +59,22 @@ public class Adapter4WorkoutSeven extends BaseAdapter {
         TextView name;
         ImageButton image;
         TextView rep;
+        TextView time;
+        ImageView ivtime;
         if (v == null) {
-            v = mInflater.inflate(R.layout.item_exercise_gridview, viewGroup, false);
-            v.setTag(R.id.tvItemGExercise, v.findViewById(R.id.tvItemGExercise));
+            v = mInflater.inflate(R.layout.item_exercise, viewGroup, false);
+            v.setTag(R.id.tvItemExercise, v.findViewById(R.id.tvItemExercise));
         }
-        name = (TextView) v.findViewById(R.id.tvItemGExercise);
-        image = (ImageButton) v.findViewById(R.id.ibItemGExercise);
-        rep = (TextView) v.findViewById(R.id.tvItemGExerciseRep);
+        name = (TextView) v.findViewById(R.id.tvItemExercise);
+        rep = (TextView) v.findViewById(R.id.tvItemExerciseRep);
+        time = (TextView) v.findViewById(R.id.tvItemTime);
+        ivtime = (ImageView) v.findViewById(R.id.ivItemExercise);
         final Item item = getItem(i);
         name.setText(item.name);
-        rep.setText(String.valueOf(repetitions.get(i)));
+        rep.setText("Repetitions " +String.valueOf(repetitions.get(i)));
+        time.setVisibility(View.GONE);
+        ivtime.setVisibility(View.GONE);
 
-        image.setBackground(item.picture);
 
         name.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,10 +85,9 @@ public class Adapter4WorkoutSeven extends BaseAdapter {
                 MainActivity.currentExercise = ex;
                 //Step 3: Go to exercise fragment
                 MainActivity.fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentExercise.newInstance())
+                        .add(R.id.container, FragmentExerciseInfo.newInstance())
                         .commit();
             }
-
         });
 
         return v;

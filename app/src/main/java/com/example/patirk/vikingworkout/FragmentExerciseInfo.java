@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,7 +39,21 @@ public class FragmentExerciseInfo extends android.support.v4.app.Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_exercise_info, container, false);
         final TextView exname = (TextView) rootView.findViewById(R.id.tvEInfoName);
         final ImageView eximage = (ImageView) rootView.findViewById(R.id.ivEInfoImage);
-        final ImageView exadd = (ImageView) rootView.findViewById(R.id.ivEInfoAdd);
+        final LinearLayout llinfo = (LinearLayout) rootView.findViewById(R.id.llEInfo);
+        Exercise exercise = MainActivity.currentExercise;
+
+        exname.setText(exercise.getName());
+        eximage.setBackground(exercise.getPicture());
+
+        llinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.fragmentManager.beginTransaction()
+                        .remove(FragmentExerciseInfo.fragment)
+                        .commit();
+            }
+
+        });
 
         return rootView;
     }

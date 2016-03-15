@@ -52,13 +52,16 @@ public class Adapter4Workout extends BaseAdapter {
         View v = view;
         TextView name;
         ImageButton image;
+        TextView rep;
         if (v == null) {
             v = mInflater.inflate(R.layout.item_exercise, viewGroup, false);
             v.setTag(R.id.tvItemExercise, v.findViewById(R.id.tvItemExercise));
         }
         name = (TextView) v.findViewById(R.id.tvItemExercise);
         final Item item = getItem(i);
+        rep = (TextView) v.findViewById(R.id.tvItemExerciseRep);
         name.setText(item.name);
+        rep.setVisibility(View.GONE);
 
         name.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,10 +72,9 @@ public class Adapter4Workout extends BaseAdapter {
                 MainActivity.currentExercise = ex;
                 //Step 3: Go to exercise fragment
                 MainActivity.fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentExercise.newInstance())
+                        .add(R.id.container, FragmentExerciseInfo.newInstance())
                         .commit();
             }
-
         });
 
         return v;
