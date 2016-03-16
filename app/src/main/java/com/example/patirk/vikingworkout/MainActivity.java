@@ -192,22 +192,22 @@ public class MainActivity extends ActionBarActivity
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.commandos);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                exercise = new Exercise(0, "Commandos", img, gif);
+                exercise = new Exercise(0, "Commandos", img, gif, "Description");
             } else if (i == 1) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.pushups);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                exercise = new Exercise(1, "Push Up", img, gif);
+                exercise = new Exercise(1, "Push Up", img, gif, "Description");
             } else if (i == 2) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.situps);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                exercise = new Exercise(2, "Sit Up", img, gif);
+                exercise = new Exercise(2, "Sit Up", img, gif, "Description");
             } else if (i == 3) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.running);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                exercise = new Exercise(3, "Runner", img, gif);
+                exercise = new Exercise(3, "Runner", img, gif, "Description");
             }
             exerciseList.add(exercise);
         }

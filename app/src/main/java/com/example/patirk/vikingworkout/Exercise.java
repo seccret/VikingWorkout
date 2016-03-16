@@ -16,12 +16,14 @@ public class Exercise {
     private String name;
     private Drawable picture;
     private Movie gifMovie;
+    private String desc;
 
-    public Exercise(int id, String name, Drawable picture, Movie gif) {
+    public Exercise(int id, String name, Drawable picture, Movie gif, String desc) {
         this.id = id;
         this.name = name;
         this.picture = picture;
         this.gifMovie = gif;
+        this.desc = desc;
     }
 
     public int getId() {
@@ -39,5 +41,9 @@ public class Exercise {
 
     public Movie getGif(){
         return gifMovie;
+    }
+
+    public String getDesc() {
+        return desc;
     }
 }

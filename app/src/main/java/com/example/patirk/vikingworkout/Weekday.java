@@ -35,6 +35,6 @@ public class Weekday {
     public void setWorkout(Workout newWorkout) {
         newWorkout.getId();
         newWorkout.getName();
-        workout = new Workout(newWorkout.getId(), newWorkout.getName(), newWorkout.getPicture(),newWorkout.getTag(), newWorkout.getExercises(), newWorkout.getRepetitions());
+        workout = new Workout(newWorkout.getId(), newWorkout.getName(), newWorkout.getPicture(),newWorkout.getTagTemplate(), newWorkout.getExercises(), newWorkout.getRepetitions());
     }
 }

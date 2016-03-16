@@ -90,7 +90,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Exercise e = new Exercise(-1, "Add Exercise", null, null);
+                Exercise e = new Exercise(-1, "Add Exercise", null, null, null);
                 MainActivity.fragmentManager.beginTransaction()
                         .replace(R.id.container, FragmentAddSevenW.newInstance(e,e,e,e))
                         .commit();

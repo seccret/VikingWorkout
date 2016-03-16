@@ -40,10 +40,13 @@ public class FragmentExerciseInfo extends android.support.v4.app.Fragment {
         final TextView exname = (TextView) rootView.findViewById(R.id.tvEInfoName);
         final ImageView eximage = (ImageView) rootView.findViewById(R.id.ivEInfoImage);
         final LinearLayout llinfo = (LinearLayout) rootView.findViewById(R.id.llEInfo);
+        final TextView exdesc = (TextView) rootView.findViewById(R.id.tvEInfoDesc);
         Exercise exercise = MainActivity.currentExercise;
 
         exname.setText(exercise.getName());
         eximage.setBackground(exercise.getPicture());
+        exdesc.setText(exercise.getDesc());
+
 
         llinfo.setOnClickListener(new View.OnClickListener() {
             @Override
