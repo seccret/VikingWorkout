@@ -10,9 +10,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +19,7 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
-    private static Workout workout = null;
+    private static Block block = null;
     private static FragmentAddSevenW parent;
 
     // Constructor
@@ -41,7 +38,7 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
                 String name = w.getName();
                 Drawable picture = w.getPicture();
                 mItems.add(new Item(id, name, picture));
-                //this.workout = w;
+                //this.block = w;
             }
         }
     }

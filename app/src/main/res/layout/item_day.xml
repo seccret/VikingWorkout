@@ -23,7 +23,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Name of workout"
+            android:text="Name of block"
             android:layout_weight="1"
             />
         <ImageButton

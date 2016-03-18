@@ -18,7 +18,7 @@ public class Adapter4Workout extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
-    private static Workout workout = null;
+    private static Block block = null;
 
     // Constructor
     public Adapter4Workout(Context c, List<Integer> exerciseList) {

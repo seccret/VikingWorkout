@@ -9,10 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,15 +19,16 @@ public class Adapter4WorkoutSeven extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
-    private static Workout workout = null;
+    private static Block block = null;
     private static List<Integer> repetitions = new ArrayList<>();
 
     // Constructor
-    public Adapter4WorkoutSeven(Context c, List<Integer> exerciseList, List<Integer> repetitions) {
+    public Adapter4WorkoutSeven(Context c, int b) {
         mInflater = LayoutInflater.from(c);
-        this.repetitions=repetitions;
+        block = MainActivity.blocksList.get(b);
+        this.repetitions= block.getRepetitions();
 
-        for (int exerciseID : exerciseList) {
+        for (int exerciseID : block.getExercises()) {
             Exercise w = MainActivity.exerciseList.get(exerciseID);
             int id = w.getId();
             String name = w.getName();
@@ -71,7 +69,7 @@ public class Adapter4WorkoutSeven extends BaseAdapter {
         ivtime = (ImageView) v.findViewById(R.id.ivItemExercise);
         final Item item = getItem(i);
         name.setText(item.name);
-        rep.setText("Repetitions " +String.valueOf(repetitions.get(i)));
+        rep.setText("Repetitions " +String.valueOf(this.repetitions.get(i)));
         time.setVisibility(View.GONE);
         ivtime.setVisibility(View.GONE);
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:id="@+id/llListViewInception"
+        android:layout_width="343dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:background="#7e7e7e"
+        android:layout_gravity="center"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/tvListViewInception"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.85"
+            android:text="BLOCK 1"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="7dp"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="15dp"/>
+        <ImageView
+            android:id="@+id/ivListViewInception"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.15"
+            android:background="@drawable/arrow_down"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+    <ListView
+        android:id="@+id/lvListViewInception"
+        android:layout_width="343dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:verticalSpacing="2dp"
+        android:stretchMode="columnWidth"
+        android:layout_alignParentTop="true"
+        android:background="@color/white"
+        />
+
+</LinearLayout>

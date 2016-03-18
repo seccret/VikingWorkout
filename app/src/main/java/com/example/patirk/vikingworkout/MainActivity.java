@@ -5,33 +5,24 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Movie;
-import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Toast;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,11 +35,14 @@ public class MainActivity extends ActionBarActivity
     public static FileInputStream fis = null;
     public static FileOutputStream fos = null;
     public static Workout currentWorkout = null;
+    public static Block currentBlock = null;
     public static Exercise currentExercise = null;
     public static FragmentManager fragmentManager = null;
     public static int lastLongClick, activeWorkoutCounter=0;
-    public static List<Workout> workouts = null;
+    public static List<Block> blocksList = null;
     public static List<Exercise> exerciseList = null;
+    public static List<Workout> workouts = null;
+
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -68,6 +62,7 @@ public class MainActivity extends ActionBarActivity
 
         loadExercises();
         loadWorkouts();
+        loadBlocks();
       //  List<Integer> l = new ArrayList<>();
        // profile = new Profile(0,"Olivia", "hej",l);
         loadProfile();
@@ -163,25 +158,47 @@ public class MainActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
     public boolean loadWorkouts(){
+        List<Integer> b = new ArrayList<>();
+        b.add(0);
+        b.add(1);
+        b.add(2);
+        b.add(3);
+        MainActivity.workouts = new ArrayList<Workout>();
+        MainActivity.workouts.add(new Workout(0, "Mage","Seven Workout", 1, b));
+        MainActivity.workouts.add(new Workout(1, "Ben", "List Workout", 1, b));
+        MainActivity.workouts.add(new Workout(2, "Rygg", "List Workout", 1, b));
+        MainActivity.workouts.add(new Workout(3, "Armar", "Seven Workout", 1, b));
+        MainActivity.workouts.add(new Workout(4, "Cross-training", "List Workout", 1, b));
+        MainActivity.workouts.add(new Workout(5, "Ultimate situps", "Seven Workout", 1, b));
+
+        return true;
+    }
+    public void loadBlocks(){
+        InputStream gifInputStream;
+        MainActivity.blocksList = new ArrayList<Block>();
+        Block block = null;
         List<Integer> e = new ArrayList<>();
         e.add(0);
         e.add(1);
         e.add(2);
         e.add(3);
         List<Integer> r = new ArrayList<>();
-        r.add(0);
-        r.add(1);
-        r.add(2);
-        r.add(3);
-        MainActivity.workouts = new ArrayList<Workout>();
-        MainActivity.workouts.add(new Workout(0, "Mage", 1,"Seven Workout", e, r));
-        MainActivity.workouts.add(new Workout(1, "Ben", 2,"List Workout", e, r));
-        MainActivity.workouts.add(new Workout(2, "Rygg", 3,"List Workout", e, r));
-        MainActivity.workouts.add(new Workout(3, "Armar", 1,"Seven Workout", e, r));
-        MainActivity.workouts.add(new Workout(4, "Cross-training", 2,"List Workout", e, r));
-        MainActivity.workouts.add(new Workout(5, "Ultimate situps", 3,"Seven Workout", e, r));
-
-        return true;
+        r.add(15);
+        r.add(15);
+        r.add(15);
+        r.add(15);
+        for(int i = 0; i<4; i++) {
+            if (i == 0) {
+                block = new Block(0, "Mage", e, r);
+            } else if (i == 1) {
+                block = new  Block(1, "Ben", e, r);
+            } else if (i == 2) {
+                block = new  Block(2, "Armar", e, r);
+            } else if (i == 3) {
+                block = new  Block(3, "Rygg", e, r);
+            }
+            blocksList.add(block);
+        }
     }
     public void loadExercises(){
         InputStream gifInputStream;

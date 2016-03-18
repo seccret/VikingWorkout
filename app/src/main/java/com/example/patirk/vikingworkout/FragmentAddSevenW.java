@@ -1,8 +1,6 @@
 package com.example.patirk.vikingworkout;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +17,7 @@ import java.util.List;
  */
 public class FragmentAddSevenW extends android.support.v4.app.Fragment {
     public static List<Exercise> e;
+    public static List<Block> b;
     public static FragmentAddSevenW fragment;
     public static int index = 0;
     public static List<Integer> newRepetitions = new ArrayList<>();
@@ -51,19 +50,19 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  Toast.makeText(getActivity(), "Workout saved", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getActivity(), "Block saved", Toast.LENGTH_SHORT).show();
                 int newId = MainActivity.workouts.size();
                 String newName = woName.getText().toString();
                 int newPic = 1;
                 String newTag = woTag.getText().toString();
 
-                List<Integer> newExercises = new ArrayList<>();
-                for(int i=0; i< e.size(); i++) {
-                    newExercises.add(i, e.get(i).getId());
+                List<Integer> newBlock = new ArrayList<>();
+                for(int i=0; i< b.size(); i++) {
+                    newBlock.add(i, b.get(i).getId());
                 }
                 List<Integer> r = new ArrayList<Integer>();
                 r.add(newRepetitions.get(0));r.add(newRepetitions.get(1));r.add(newRepetitions.get(2));r.add(newRepetitions.get(3));
-                Workout newWorkout = new Workout(newId, newName, newPic,newTag, newExercises , r);
+                Workout newWorkout = new Workout(newId, newName,newTag, newPic , newBlock);
                 Toast.makeText(getActivity(), "Workout saved", Toast.LENGTH_SHORT).show();
                 MainActivity.workouts.add(newWorkout);
             }

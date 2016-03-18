@@ -26,8 +26,7 @@ public class AdapterImageProfile extends BaseAdapter {
         for (Workout w : workoutList) {
             int id = w.getId();
             String name = w.getName();
-            int picture = w.getPicture();
-            mItems.add(new Item(id, name, picture));
+            mItems.add(new Item(id, name, 1));
             //this.workout = w;
         }
     }

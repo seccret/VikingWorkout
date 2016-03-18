@@ -1,6 +1,5 @@
 package com.example.patirk.vikingworkout;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -56,42 +54,22 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
         final TextView woname = (TextView) rootView.findViewById(R.id.tvWorkoutName);
         final RelativeLayout rlplayimage = (RelativeLayout) rootView.findViewById(R.id.rlWorkoutPlay);
         final LinearLayout llplay = (LinearLayout) rootView.findViewById(R.id.llWorkoutPlay);
-        final TextView next = (TextView) rootView.findViewById(R.id.tvWorkoutExercise);
         final RelativeLayout rlWorkout = (RelativeLayout) rootView.findViewById(R.id.rlWorkout);
         final ListView lvExercises = (ListView) rootView.findViewById(R.id.lvWorkoutList);
         final LinearLayout llExercises = (LinearLayout) rootView.findViewById(R.id.llWorkoutList);
         final TextView pause = (TextView) rootView.findViewById(R.id.tvWorkoutPause);
         final TextView cancel = (TextView) rootView.findViewById(R.id.tvWorkoutStop);
         final TextView resume = (TextView) rootView.findViewById(R.id.tvWorkoutResume);
-        final Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner);
-        final ImageView arrow = (ImageView) rootView.findViewById(R.id.ivWorkoutArrow);
-        final LinearLayout llBlock = (LinearLayout) rootView.findViewById(R.id.llWorkoutBlock);
         final Workout workout = MainActivity.currentWorkout;
-        final List<Integer> exercises = workout.getExercises();
-        final Exercise exercise = MainActivity.currentExercise;
+        final List<Integer> blocks = workout.getBlocks();
 
         woname.setText(workout.getName());
 
-        llBlock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (llExercises.isShown()) {
-                    llExercises.setVisibility(View.GONE);
-                    arrow.setBackground(getResources().getDrawable(R.drawable.arrow_right));
-                } else {
-                    llExercises.setVisibility(View.VISIBLE);
-                    arrow.setBackground(getResources().getDrawable(R.drawable.arrow_down));
-                }
 
-            }
-    });
 
         List<String> template = new ArrayList<String>();
         template.add("Seven");
         template.add("List");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MainActivity.mainActivity, android.R.layout.simple_spinner_item, template);
-        spinner.setAdapter(dataAdapter);
-
 
     workoutImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +79,6 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                 tvTime.setVisibility(View.VISIBLE);
                 rlplayimage.setVisibility(View.VISIBLE);
                 llplay.setVisibility(View.VISIBLE);
-                next.setText("Next Up:");
                 llExercises.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.6f));
                 CountDownTimer timer;
                 long millisInFuture = 30000; //30 seconds
@@ -131,7 +108,6 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                         tvTime.setVisibility(View.GONE);
                         rlplayimage.setVisibility(View.GONE);
                         llplay.setVisibility(View.GONE);
-                        next.setText("BLOCK 1");
                         llExercises.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 2.05f));
                     }
                 }.start();
@@ -185,7 +161,6 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
                         tvTime.setVisibility(View.GONE);
                         rlplayimage.setVisibility(View.GONE);
                         llplay.setVisibility(View.GONE);
-                        next.setText("BLOCK 1");
                         llExercises.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 2.05f));
                     }
                 }.start();
@@ -197,19 +172,19 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 //When user request to cancel the CountDownTimer
                 isCanceled = true;
-                Toast.makeText(getActivity(),"Workout canceled", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Block canceled", Toast.LENGTH_SHORT).show();
                 rlWorkout.setVisibility(View.VISIBLE);
                 woname.setVisibility(View.VISIBLE);
                 tvTime.setVisibility(View.GONE);
                 rlplayimage.setVisibility(View.GONE);
                 llplay.setVisibility(View.GONE);
-                next.setText("BLOCK 1");
                 llExercises.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 2.05f));
             }
         });
 
-        Adapter4Workout ai = new Adapter4Workout(MainActivity.mainActivity, exercises);
+        Adapter4InceptionBase ai = new Adapter4InceptionBase(MainActivity.mainActivity, blocks);
         lvExercises.setAdapter(ai);
+        lvExercises.setFadingEdgeLength(90);
 
         return rootView;
     }

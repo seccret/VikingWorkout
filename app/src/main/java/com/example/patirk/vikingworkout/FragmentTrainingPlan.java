@@ -1,17 +1,11 @@
 package com.example.patirk.vikingworkout;
 
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +16,7 @@ import java.util.List;
 public class FragmentTrainingPlan extends android.support.v4.app.Fragment {
 
     public static List<Weekday> weekdays = null;
-    public static List<Workout> workouts = null;
+    public static List<Block> blocks = null;
 
     public static FragmentTrainingPlan newInstance() {
         FragmentTrainingPlan fragment = new FragmentTrainingPlan();
@@ -108,14 +102,14 @@ public class FragmentTrainingPlan extends android.support.v4.app.Fragment {
         e.add(1);
         e.add(2);
         e.add(3);
-        workouts = new ArrayList<Workout>();
-        workouts.add(new Workout(0, "Power Workout", 1,"Seven Workout", e, r));
-        workouts.add(new Workout(1, "Core", 2,"Seven Workout", e, r));
-        workouts.add(new Workout(2, "Arms", 3,"Seven Workout", e, r));
-        workouts.add(new Workout(3, "Rest", 1,"Seven Workout", e, r));
-        workouts.add(new Workout(4, "Cross-training", 2,"Seven Workout", e, r));
-        workouts.add(new Workout(5, "Ultimate situps", 3,"Seven Workout", e, r));
-        workouts.add(new Workout(6, "Rest", 1,"Seven Workout", e, r));
+        blocks = new ArrayList<Block>();
+        blocks.add(new Block(0, "Power Block", e, r));
+        blocks.add(new Block(1, "Core", e, r));
+        blocks.add(new Block(2, "Arms", e, r));
+        blocks.add(new Block(3, "Rest", e, r));
+        blocks.add(new Block(4, "Cross-training", e, r));
+        blocks.add(new Block(5, "Ultimate situps", e, r));
+        blocks.add(new Block(6, "Rest", e, r));
 
         ListView lv = (ListView) rootView.findViewById(R.id.lvThisWeek);
         registerForContextMenu(lv);

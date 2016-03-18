@@ -23,11 +23,11 @@ public class Block {
         this.name = name;
         this.exercises = exercises;
         if(repetitions.size()!=4){
-            repetitions = new ArrayList<>();
-            repetitions.add(0);
-            repetitions.add(0);
-            repetitions.add(0);
-            repetitions.add(0);
+            this.repetitions = new ArrayList<>();
+            this.repetitions.add(0);
+            this.repetitions.add(0);
+            this.repetitions.add(0);
+            this.repetitions.add(0);
         }else{
             this.repetitions = repetitions;
         }

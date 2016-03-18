@@ -30,7 +30,7 @@ public class FragmentBrowse extends android.support.v4.app.Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_browse, container, false);
         TextView cat = (TextView) rootView.findViewById(R.id.tvBrowseCat);
         GridView category = (GridView) rootView.findViewById(R.id.gvBrowseCategory);
-        Workout workout = MainActivity.currentWorkout;
+        Block block = MainActivity.currentBlock;
 
         AdapterImage AI = new AdapterImage(rootView.getContext(), MainActivity.workouts);
         category.setAdapter(AI);

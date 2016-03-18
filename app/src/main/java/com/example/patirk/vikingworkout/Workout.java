@@ -14,27 +14,17 @@ import java.util.List;
 public class Workout {
     private int id;
     private String name;
+    private String tagtemplate;
     private int picture;
-    public String tagtemplate;
 
-    private List<Integer> exercises;
-    public List<Integer> repetitions;
+    public List<Integer> blocks;
 
-    public Workout(int id, String name, int picture, String tagtemplate, List<Integer> exercises, List<Integer> repetitions) {
+    public Workout(int id, String name, String tagtemplate, int picture, List<Integer> blocks) {
         this.id = id;
         this.name = name;
-        this.picture = picture;
-        this.exercises = exercises;
         this.tagtemplate = tagtemplate;
-        if(repetitions.size()!=4){
-            repetitions = new ArrayList<>();
-            repetitions.add(0);
-            repetitions.add(0);
-            repetitions.add(0);
-            repetitions.add(0);
-        }else{
-            this.repetitions = repetitions;
-        }
+        this.blocks = blocks;
+        this.picture = picture;
     }
 
     public int getId() {
@@ -45,31 +35,24 @@ public class Workout {
         return name;
     }
 
-    public int getPicture() {
-        return picture;
-    }
-
     public String getTagTemplate () {
         return tagtemplate;
     }
 
-    public List<Integer> getRepetitions() {
-        return repetitions;
+    public int getPicture() {
+        return picture;
     }
 
-    public List<Integer> getExercises() {
-        return exercises;
+    public List<Integer> getBlocks() {
+        return blocks;
     }
 
-    public void addExercise(int i) {
-        this.exercises.add(i);
+    public void addBlock(int i) {
+        this.blocks.add(i);
     }
 
-    public void setExercises(List<Integer> listE) {
-        this.exercises = new ArrayList<>();
-        this.exercises = listE;
-    }
-    public void setRepetition(int index, int repetitions) {
-        this.repetitions.set(index, repetitions);
+    public void setBlocks(List<Integer> listE) {
+        this.blocks = new ArrayList<>();
+        this.blocks = listE;
     }
 }
