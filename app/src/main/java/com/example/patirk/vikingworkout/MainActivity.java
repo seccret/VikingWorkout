@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +46,6 @@ public class MainActivity extends ActionBarActivity
     public static List<Workout> workouts = null;
 
 
-
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -68,6 +66,7 @@ public class MainActivity extends ActionBarActivity
         //Toast.makeText(this, st, Toast.LENGTH_SHORT).show();
         MainActivity.workouts = new ArrayList<Workout>();
         loadExercises();
+
         loadProfile();
         loadWorkouts();
         loadBlocks();
@@ -85,6 +84,7 @@ public class MainActivity extends ActionBarActivity
         }
         */
 //
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -296,15 +296,15 @@ public class MainActivity extends ActionBarActivity
         profile.setProfilePicture(loadedImage);
         Toast.makeText(this, "Loading profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
 
-    }
+      }
 
 
     public static void saveProfile(Context c) {
         Serializer serializer = new Serializer();
         serializer.serializeProfile();
-
         ExernalFunctions.saveImage(mainActivity,profile.getPictureAsBitmap(),"profile","JPEG");
         Toast.makeText(mainActivity, "Saving profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
+
     }
 
 }

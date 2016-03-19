@@ -47,22 +47,50 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
         final GridView exercises = (GridView) rootView.findViewById(R.id.gvAddSevenExercises);
         final EditText woTag = (EditText) rootView.findViewById(R.id.etAddSTag);
 
+        final EditText blockName = (EditText) rootView.findViewById(R.id.etAddSBlockName);
+        final ImageView blockdone = (ImageView) rootView.findViewById(R.id.ivSevenBlockDone);
+
+
+        blockdone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //  Toast.makeText(getActivity(), "Block saved", Toast.LENGTH_SHORT).show();
+
+            }
+        });
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int newBlockId = MainActivity.blocksList.size();
+                String newBlockName = blockName.getText().toString();
+
+
+                List<Integer> newExercise = new ArrayList<>();
+                for (int i = 0; i < e.size(); i++) {
+                    newExercise.add(e.get(i).getId());
+                }
+
+                List<Integer> r = new ArrayList<Integer>();
+                r.add(newRepetitions.get(0));
+                r.add(newRepetitions.get(1));
+                r.add(newRepetitions.get(2));
+                r.add(newRepetitions.get(3));
+                Block newBlock = new Block(newBlockId, newBlockName, newExercise, r);
+                Toast.makeText(getActivity(), String.valueOf(newBlock.getExercises().size()), Toast.LENGTH_SHORT).show();
+                MainActivity.blocksList.add(newBlock);
+
+                Toast.makeText(getActivity(), "Block saved", Toast.LENGTH_SHORT).show();
+
               //  Toast.makeText(getActivity(), "Block saved", Toast.LENGTH_SHORT).show();
                 int newId = MainActivity.workouts.size();
                 String newName = woName.getText().toString();
                 int newPic = 1;
                 String newTag = woTag.getText().toString();
 
-                List<Integer> newBlock = new ArrayList<>();
-                for(int i=0; i< b.size(); i++) {
-                    newBlock.add(i, b.get(i).getId());
-                }
-                List<Integer> r = new ArrayList<Integer>();
-                r.add(newRepetitions.get(0));r.add(newRepetitions.get(1));r.add(newRepetitions.get(2));r.add(newRepetitions.get(3));
-                Workout newWorkout = new Workout(newId, newName,newTag, newPic , newBlock);
+                List<Integer> b = new ArrayList<>();
+                b.add(newBlock.getId());
+                Workout newWorkout = new Workout(newId, newName,newTag, newPic, b);
+
                 Toast.makeText(getActivity(), "Workout saved", Toast.LENGTH_SHORT).show();
                 MainActivity.workouts.add(newWorkout);
             }

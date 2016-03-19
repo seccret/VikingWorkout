@@ -58,6 +58,7 @@ public class Profile implements Serializable{
         return picture;
     }
     public List<Workout> getMyWorkouts(){
+
         return myWorkout;
     }
 

@@ -60,7 +60,8 @@ public class Adapter4InceptionBase extends BaseAdapter {
         lvInception = (ListView) v.findViewById(R.id.lvListViewInception);
         final Item item = getItem(i);
         Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, item.id);
-        lvInception.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 205*getCount()));
+        lvInception.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 205*MainActivity.blocksList.get(item.id).getExercises().size()));
+
         lvInception.setAdapter(ai);
 
         llBlock.setOnClickListener(new View.OnClickListener() {
