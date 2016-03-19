@@ -78,7 +78,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         //Create list of users workout
         final List<Workout> myWorkout = new ArrayList<Workout>();
         for(int i=0; i< MainActivity.profile.getMyWorkouts().size(); i++){
-            myWorkout.add(MainActivity.workouts.get((int)MainActivity.profile.getMyWorkouts().get(i)));
+            myWorkout.add(MainActivity.workouts.get(MainActivity.profile.getMyWorkouts().get(i).getId()));
         }
 
         final SlidingUpPanelLayout supl = (SlidingUpPanelLayout) rootView.findViewById(R.id.sliding_layout);

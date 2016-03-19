@@ -24,9 +24,9 @@ public class Profile implements Serializable{
     private String name;
     private String desc;
     private transient Bitmap picture;
-    private List<Integer> myWorkout;
+    private List<Workout> myWorkout;
 
-    public Profile(long id, String name,String desc, List<Integer> myWorkout) {
+    public Profile(long id, String name,String desc, List<Workout> myWorkout) {
         this.id = id;
         this.name = name;
         this.desc = desc;
@@ -57,16 +57,16 @@ public class Profile implements Serializable{
     public Bitmap getPictureAsBitmap() {
         return picture;
     }
-    public List getMyWorkouts(){
+    public List<Workout> getMyWorkouts(){
         return myWorkout;
     }
 
-    public void addWorkout(int wID){
+    public void addWorkout(Workout wID){
         myWorkout.add(wID);
         MainActivity.saveProfile(MainActivity.mainActivity);
     }
 
-    public void setWorkout(List<Integer> wIDList){
+    public void setWorkout(List<Workout> wIDList){
         myWorkout = wIDList;
     }
 

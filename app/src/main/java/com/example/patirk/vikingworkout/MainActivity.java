@@ -73,9 +73,9 @@ public class MainActivity extends ActionBarActivity
         loadBlocks();
         //  List<Integer> l = new ArrayList<>();
         // profile = new Profile(0,"Olivia", "hej",l);
-        List<Integer> l = new ArrayList<>();
-        profile.setWorkout(l);
-        GoogleSpreadsheet gs = new GoogleSpreadsheet();
+       // List<Integer> l = new ArrayList<>();
+       // profile.setWorkout(l);
+ //       GoogleSpreadsheet gs = new GoogleSpreadsheet();
   /*      try{
             gs.addToSheet();
             String s = gs.getFeed();

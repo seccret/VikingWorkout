@@ -84,7 +84,7 @@ public class AdapterImageProfile extends BaseAdapter {
                 if (MainActivity.profile.contains(item.id)) {
                     MainActivity.lastLongClick = item.id;
                 } else {
-                    MainActivity.profile.addWorkout(item.id);
+                    MainActivity.profile.addWorkout(MainActivity.workouts.get(item.id));
                     Toast.makeText(MainActivity.mainActivity, item.name + " workout added to profile", Toast.LENGTH_SHORT).show();
                     return true;
                 }
