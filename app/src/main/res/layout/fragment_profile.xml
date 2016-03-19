@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:animateLayoutChanges="true"
-    tools:context=".FragmentProfile">
+    tools:context=".FragmentProfile"
+    android:background="@drawable/background">
 
     <com.sothree.slidinguppanel.SlidingUpPanelLayout
         xmlns:sothree="http://schemas.android.com/apk/res-auto"
@@ -50,39 +51,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/ivProfileImage"
-                android:layout_centerVertical="true"
+                android:layout_below="@id/ivProfileBanner"
+                android:paddingTop="5dp"
                 android:paddingLeft="5dp"
                 android:text="     14\n workouts"
                 android:textSize="15sp"
                 android:fontFamily="sans-serif-light"
                 android:textColor="#9f9f9f"
-                android:clickable="true"
                 />
             <TextView
                 android:id="@+id/tvProfileFollowers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/tvProfileWorkouts"
-                android:layout_centerVertical="true"
+                android:layout_below="@id/ivProfileBanner"
+                android:paddingTop="5dp"
                 android:paddingLeft="5dp"
                 android:text="     52k\n followers"
                 android:textSize="15sp"
                 android:fontFamily="sans-serif-light"
                 android:textColor="#9f9f9f"
-                android:clickable="true"
                 />
             <TextView
                 android:id="@+id/tvProfileFollowing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/tvProfileFollowers"
-                android:layout_centerVertical="true"
+                android:layout_below="@id/ivProfileBanner"
+                android:paddingTop="5dp"
                 android:paddingLeft="5dp"
                 android:text="     23\n following"
                 android:textSize="15sp"
                 android:fontFamily="sans-serif-light"
                 android:textColor="#9f9f9f"
-                android:clickable="true"
                 />
             <TextView
                 android:id="@+id/tvProfileInfo"
@@ -98,7 +99,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:weightSum="3"
             android:layout_marginTop="75dp"
             android:minHeight="1200dp"
             android:background="@color/transparent"
@@ -110,7 +110,7 @@
                 android:layout_height="?android:attr/actionBarSize"
                 android:orientation="horizontal"
                 android:weightSum="3"
-                android:background="#e3e3e3">
+                android:background="#464646">
                 <Button
                     android:id="@+id/bToggleLeft"
                     android:layout_width="0dip"
@@ -125,7 +125,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Global List"
-                    android:textColor="#6d6d6d"
+                    android:textColor="#c1c1c1"
                     android:background="@drawable/button_unselected"/>
                 <Button
                     android:id="@+id/bToggleRight"
@@ -133,14 +133,16 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Statistics"
-                    android:textColor="#6d6d6d"
+                    android:textColor="#c1c1c1"
                     android:background="@drawable/button_unselected"/>
             </LinearLayout>
 
             <ListView
                 android:id="@+id/lvWorkouts"
-                android:layout_width="match_parent"
+                android:layout_width="343dp"
                 android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
                 android:verticalSpacing="2dp"
                 android:stretchMode="columnWidth"
                 android:layout_alignParentTop="true"

@@ -6,9 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +19,13 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
-    private static Workout workout = null;
+    private static Block block = null;
+    private static FragmentAddSevenW parent;
 
     // Constructor
-    public Adapter4AddSevenWorkout(Context c, List<Exercise> exerciseList) {
+    public Adapter4AddSevenWorkout(Context c, FragmentAddSevenW parentFragment, List<Exercise> exerciseList) {
         mInflater = LayoutInflater.from(c);
+        parent = parentFragment;
 
         for (Exercise w : exerciseList) {
             if (w.getId()==-1) {
@@ -35,7 +38,7 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
                 String name = w.getName();
                 Drawable picture = w.getPicture();
                 mItems.add(new Item(id, name, picture));
-                //this.workout = w;
+                //this.block = w;
             }
         }
     }
@@ -59,11 +62,16 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
         ImageView image;
         final int clicked = i;
 
-            v = mInflater.inflate(R.layout.item_workout_big, viewGroup, false);
-            v.setTag(R.id.tvItemWorkout, v.findViewById(R.id.tvItemWorkout));
+            v = mInflater.inflate(R.layout.item_exercise_gridview, viewGroup, false);
+            v.setTag(R.id.tvItemGExercise, v.findViewById(R.id.tvItemGExercise));
 
-        name = (TextView) v.findViewById(R.id.tvItemWorkout);
-        image = (ImageView) v.findViewById(R.id.ibItemWorkout);
+        name = (TextView) v.findViewById(R.id.tvItemGExercise);
+        image = (ImageButton) v.findViewById(R.id.ibItemGExercise);
+        final TextView rep = (TextView) v.findViewById(R.id.tvItemGExerciseRep);
+        final LinearLayout changeRep = (LinearLayout) v.findViewById(R.id.llChangeRep);
+        final ImageView reduseRep = (ImageView) v.findViewById(R.id.ivReduseRep);
+        final ImageView increaseRep = (ImageView) v.findViewById(R.id.ivIncreaseRep);
+        final TextView currentRep = (TextView) v.findViewById(R.id.tvCurrentRep);
         final Item item = getItem(i);
         name.setText(item.name);
 
@@ -74,7 +82,43 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
             image.setBackgroundResource(R.drawable.abc);
         }
 
-        name.setOnClickListener(new View.OnClickListener() {
+        rep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(changeRep.getVisibility() == View.GONE){
+                    changeRep.setVisibility(View.VISIBLE);
+                }else{
+                    changeRep.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        increaseRep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int increase = Integer.valueOf(String.valueOf(currentRep.getText()))+1;
+                currentRep.setText(String.valueOf(increase));
+                parent.newRepetitions.set(clicked, increase);
+            }
+        });
+
+        reduseRep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int reduse = Integer.valueOf(String.valueOf(currentRep.getText()))-1;
+                currentRep.setText(String.valueOf(reduse));
+                parent.newRepetitions.set(clicked, reduse);
+            }
+        });
+
+        currentRep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeRep.setVisibility(View.GONE);
+            }
+        });
+
+        image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentAddSevenW.index = clicked;

@@ -3,24 +3,22 @@ package com.example.patirk.vikingworkout;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Adapter4ExerciseList extends BaseAdapter {
     // Keep all Images in array
-    private final List<Item> mItems = new ArrayList<>();
+    public final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
-    private static Workout workout = null;
+    private static Block block = null;
     public static List<Exercise> exerciseList = null;
 
     // Constructor
@@ -57,14 +55,12 @@ public class Adapter4ExerciseList extends BaseAdapter {
         v = mInflater.inflate(R.layout.item_exercise, viewGroup, false);
         v.setTag(R.id.tvItemExercise, v.findViewById(R.id.tvItemExercise));
 
-        name = (TextView) v.findViewById(R.id.tvItemExercise);
-        image = (ImageButton) v.findViewById(R.id.ibItemExercise);
+        final TextView tvname = (TextView) v.findViewById(R.id.tvItemExercise);
+        final ImageView time = (ImageView) v.findViewById(R.id.ivItemExercise);
         final Item item = getItem(i);
-        name.setText(item.name);
+        tvname.setText(item.name);
 
-        image.setBackground(item.picture);
-
-        name.setOnClickListener(new View.OnClickListener() {
+        tvname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int index = FragmentAddSevenW.index;
@@ -82,6 +78,22 @@ public class Adapter4ExerciseList extends BaseAdapter {
             }
         });
 
+        time.setOnTouchListener(new View.OnTouchListener() {
+              @Override
+           public boolean onTouch(View v, MotionEvent event) {
+               if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                   MainActivity.fragmentManager.beginTransaction()
+                            .add(R.id.container, FragmentExerciseInfo.newInstance(), "exInfo")
+                           .commit();
+                   return true;
+               }else if (event.getAction() == MotionEvent.ACTION_UP){
+                   MainActivity.fragmentManager.beginTransaction()
+                           .remove(FragmentExerciseInfo.fragment)
+                            .commit();
+               }
+               return false;
+           }
+         });
         return v;
     }
 

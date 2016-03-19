@@ -69,8 +69,8 @@ public class GoogleRetrieveFeedTask extends AsyncTask<String, Void, SpreadsheetF
                         for (String exercise : sExercises) {
                             wExercises.add(Integer.valueOf(exercise));
                         }
-                        newWorkout = new Workout(wId, wName, wPic, wExercises);
-                        MainActivity.workouts.add(newWorkout);
+                       // newWorkout = new Workout(wId, wName, wPic, wExercises);
+                       // MainActivity.workouts.add(newWorkout);
                     }
                 }
             }

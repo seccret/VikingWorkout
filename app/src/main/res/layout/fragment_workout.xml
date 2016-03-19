@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="4">
+    android:weightSum="4"
+    android:background="@drawable/background">
 
     <RelativeLayout
         android:id="@+id/rlWorkout"
@@ -13,113 +14,124 @@
             android:id="@+id/ivWorkoutImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/wobanner2"
             />
-        <View android:id="@+id/separator"
-            android:background="#ffa500"
-            android:layout_width = "fill_parent"
-            android:layout_height="3dip"
-            android:layout_centerVertical ="true"
-            android:layout_alignParentBottom="true"/>
-        <ImageView
-            android:id="@+id/ivWorkoutPlay"
-            android:background="@drawable/playorange"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rlWorkoutPlay"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.8"
-        android:visibility="gone">
-        <com.example.patirk.vikingworkout.GifView
-            android:id="@+id/gif_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            />
-        <ProgressBar
-            android:id="@+id/progressbar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:progressDrawable="@drawable/customprogressbar"
-            android:max="5"
-            android:progress="0"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/gif_view"
-            android:paddingBottom="48dp"
-            />
-        <TextView
-            android:id="@+id/tvWorkoutTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/gif_view"
-            android:textColor="#ffa500"
-            android:textSize="100dp"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/rlWorkoutName"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4">
         <TextView
             android:id="@+id/tvWorkoutName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Workout Name"
-            android:textSize="30dp"
+            android:textSize="50dp"
+            android:textColor="@color/white"
             android:fontFamily="sans-serif-light"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"/>
-        <TextView
-            android:id="@+id/tvWorkoutBy"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="By: Jane Doe"
-            android:textSize="15dp"
-            android:fontFamily="sans-serif-light"
-            android:layout_alignParentBottom="true"/>
+            android:layout_centerVertical="true"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:weightSum="5">
+            <TextView
+                android:id="@+id/tvWorkoutLenght"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:text="30 MIN"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/white"
+                android:gravity="bottom"
+                android:background="@drawable/time"
+                />
+            <ImageView
+                android:id="@+id/ivSeperator2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.15"
+                android:background="@drawable/seperator"/>
+            <TextView
+                android:id="@+id/tvWorkoutDifficulity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:text="EXTREME"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/white"
+                android:gravity="bottom"
+                android:background="@drawable/difficulityextreme"
+                />
+            <ImageView
+                android:id="@+id/ivSeperator"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.15"
+                android:background="@drawable/seperator"/>
+            <TextView
+                android:id="@+id/tvWorkouttemplate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:text="LIST WO"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/white"
+                android:gravity="center"
+                />
+        </LinearLayout>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rlWorkoutPlay"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.4"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/gif_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:background="@drawable/lunges"/>
+        <View android:id="@+id/separator_seven"
+            android:background="#fba500"
+            android:layout_width = "fill_parent"
+            android:layout_height="3dip"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
     <TextView
-        android:id="@+id/tvWorkoutExercise"
+        android:id="@+id/tvWorkoutTime"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:background="@drawable/headlinebox"
-        android:text="Exercises"
+        android:layout_weight="1.4"
+        android:textColor="#ffa500"
+        android:textSize="100dp"
+        android:textStyle="bold"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
-        android:textSize="15dp"/>
+        android:visibility="gone"
+        />
 
-    <RelativeLayout
-        android:id="@+id/rvWorkoutList"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llWorkoutList"
+        android:layout_width="343dp"
         android:layout_height="0dp"
-        android:layout_weight="1.95">
+        android:layout_weight="2.65"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
         <ListView
             android:id="@+id/lvWorkoutList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
+            android:layout_height="fill_parent"
             >
         </ListView>
-    </RelativeLayout>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/llWorkoutPlay"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.3"
+        android:layout_weight="0.35"
         android:orientation="horizontal"
         android:weightSum="2"
         android:visibility="gone">
@@ -129,18 +141,29 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Pause"
-            android:background="#ffa500"
+            android:background="#fba500"
             android:textSize="25dp"
             android:fontFamily="sans-serif-light"
             android:gravity="center"
             />
+        <TextView
+            android:id="@+id/tvWorkoutResume"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:text="Resume"
+            android:textSize="25dp"
+            android:background="#fba500"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"/>
         <TextView
             android:id="@+id/tvWorkoutStop"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Stop"
-            android:background="#ffa500"
+            android:background="#fba500"
             android:textSize="25dp"
             android:fontFamily="sans-serif-light"
             android:gravity="center"/>

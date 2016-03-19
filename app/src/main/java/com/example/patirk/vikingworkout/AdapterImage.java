@@ -1,25 +1,10 @@
 package com.example.patirk.vikingworkout;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.internal.widget.FitWindowsLinearLayout;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ContextMenu;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.BaseAdapter;
-import android.widget.GridLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,9 +26,8 @@ public class AdapterImage extends BaseAdapter {
         for (Workout w : workoutList) {
             int id = w.getId();
             String name = w.getName();
-            int picture = w.getPicture();
-            mItems.add(new Item(id, name, picture));
-            //this.workout = w;
+            mItems.add(new Item(id, name,2));
+            //this.block = w;
         }
     }
 
@@ -90,8 +74,9 @@ public class AdapterImage extends BaseAdapter {
                 //Step 1: Create new Workout with items parameters
                 Workout wo = MainActivity.workouts.get(workoutID);
                 //Step 2: Set currentWorkout to clicked workout
+
                 MainActivity.currentWorkout = wo;
-                //Step 3: Go to workout fragment
+                //Step 3: Go to block fragment
                 MainActivity.fragmentManager.beginTransaction()
                         .replace(R.id.container, FragmentWorkout.newInstance())
                         .commit();

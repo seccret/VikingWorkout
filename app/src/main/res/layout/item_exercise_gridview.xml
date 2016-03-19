@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="150dp"
+    android:layout_height="150dp">
+
+    <ImageButton
+        android:id="@+id/ibItemGExercise"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+    <TextView
+        android:id="@+id/tvItemGExerciseRep"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="#70000000"
+        android:text="Rep"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/tvItemGExercise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#80ffffff"
+        android:text="Medium Text"
+        android:fontFamily="sans-serif-light"
+        android:textSize="20sp"
+        android:layout_alignBottom="@id/ibItemGExercise"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        />
+    <LinearLayout
+        android:id="@+id/llChangeRep"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="3"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:id="@+id/ivIncreaseRep"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/abc_btn_radio_material"
+            />
+        <TextView
+            android:id="@+id/tvCurrentRep"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="16"
+            />
+        <ImageView
+            android:id="@+id/ivReduseRep"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/abc_btn_radio_material"
+            />
+    </LinearLayout>
+</RelativeLayout>

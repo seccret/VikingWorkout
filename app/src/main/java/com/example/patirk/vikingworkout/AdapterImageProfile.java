@@ -26,8 +26,7 @@ public class AdapterImageProfile extends BaseAdapter {
         for (Workout w : workoutList) {
             int id = w.getId();
             String name = w.getName();
-            int picture = w.getPicture();
-            mItems.add(new Item(id, name, picture));
+            mItems.add(new Item(id, name, 1));
             //this.workout = w;
         }
     }
@@ -66,9 +65,16 @@ public class AdapterImageProfile extends BaseAdapter {
                 //Step 2: Set currentWorkout to clicked workout
                 MainActivity.currentWorkout = wo;
                 //Step 3: Go to workout fragment
-                MainActivity.fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentWorkout.newInstance())
-                        .commit();
+                String tagtemplate = wo.getTagTemplate();
+                if (tagtemplate.equals("Seven Workout")) {
+                    MainActivity.fragmentManager.beginTransaction()
+                            .replace(R.id.container, FragmentWorkoutSeven.newInstance())
+                            .commit();
+                } else if (tagtemplate.equals("List Workout")) {
+                    MainActivity.fragmentManager.beginTransaction()
+                            .replace(R.id.container, FragmentWorkout.newInstance())
+                            .commit();
+                }
             }
         });
 

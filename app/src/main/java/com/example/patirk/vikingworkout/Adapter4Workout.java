@@ -14,14 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AdapterImage2 extends BaseAdapter {
+public class Adapter4Workout extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
-    private static Workout workout = null;
+    private static Block block = null;
 
     // Constructor
-    public AdapterImage2(Context c, List<Integer> exerciseList) {
+    public Adapter4Workout(Context c, List<Integer> exerciseList) {
         mInflater = LayoutInflater.from(c);
 
         for (int exerciseID : exerciseList) {
@@ -52,16 +52,16 @@ public class AdapterImage2 extends BaseAdapter {
         View v = view;
         TextView name;
         ImageButton image;
+        TextView rep;
         if (v == null) {
             v = mInflater.inflate(R.layout.item_exercise, viewGroup, false);
             v.setTag(R.id.tvItemExercise, v.findViewById(R.id.tvItemExercise));
         }
         name = (TextView) v.findViewById(R.id.tvItemExercise);
-        image = (ImageButton) v.findViewById(R.id.ibItemExercise);
         final Item item = getItem(i);
+        rep = (TextView) v.findViewById(R.id.tvItemExerciseRep);
         name.setText(item.name);
-
-        image.setBackground(item.picture);
+        rep.setVisibility(View.GONE);
 
         name.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,10 +72,9 @@ public class AdapterImage2 extends BaseAdapter {
                 MainActivity.currentExercise = ex;
                 //Step 3: Go to exercise fragment
                 MainActivity.fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentExercise.newInstance())
+                        .add(R.id.container, FragmentExerciseInfo.newInstance())
                         .commit();
             }
-
         });
 
         return v;

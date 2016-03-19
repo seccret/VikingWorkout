@@ -16,7 +16,7 @@ public class AdapterImage3 extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
-    private static Workout workout = null;
+    private static Block block = null;
 
     // Constructor
     public AdapterImage3(Context c, List<Weekday> weekdayList) {

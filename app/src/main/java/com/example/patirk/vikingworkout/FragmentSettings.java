@@ -53,6 +53,7 @@ public class FragmentSettings extends android.support.v4.app.Fragment implements
         bEditDesc.setOnClickListener(this);
         bEditPic.setOnClickListener(this);
 
+
         return rootView;
     }
 
