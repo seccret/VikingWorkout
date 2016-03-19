@@ -141,10 +141,11 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
             }
         });
 
-        lvProfile = (ListView) rootView.findViewById(R.id.lvWorkouts);
+      /*  lvProfile = (ListView) rootView.findViewById(R.id.lvWorkouts);
         AdapterProfileWorkout AI = new AdapterProfileWorkout(rootView.getContext(), myWorkout);
         lvProfile.setAdapter(AI);
         registerForContextMenu(lvProfile);
+        */
         registerForContextMenu(rootView);
 
         return rootView;

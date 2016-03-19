@@ -124,6 +124,13 @@ public class Profile implements Serializable{
         MainActivity.saveProfile(MainActivity.mainActivity);
     }
 
+    public void clearProfile(){
+        List<Workout> w = new ArrayList<>();
+        List<Block> b = new ArrayList<>();
+        this.myWorkout = w;
+        this.myBlocks = b;
+    }
+
     public boolean containWorkout(int wID){
         for(Workout wo : myWorkout){
             if(wo.getId() == wID){

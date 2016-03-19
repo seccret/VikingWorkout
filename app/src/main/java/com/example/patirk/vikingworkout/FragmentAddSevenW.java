@@ -62,7 +62,7 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int newBlockId = MainActivity.blocksList.size();
+                int newBlockId = MainActivity.profile.getMyBlocks().size();
                 String newBlockName = blockName.getText().toString();
 
                 List<Integer> newExercise = new ArrayList<>();
@@ -76,11 +76,10 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
                 r.add(newRepetitions.get(2));
                 r.add(newRepetitions.get(3));
                 Block newBlock = new Block(newBlockId, newBlockName, newExercise, r);
-                MainActivity.blocksList.add(newBlock);
                 MainActivity.profile.addBlock(newBlock);
                 Toast.makeText(getActivity(), "Block saved", Toast.LENGTH_SHORT).show();
 
-                int newId = MainActivity.workouts.size();
+                int newId = MainActivity.profile.getMyWorkouts().size();
                 String newName = woName.getText().toString();
                 int newPic = 1;
                 TextView textTag = (TextView) woTag.getSelectedView();
@@ -92,7 +91,6 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
                 Workout newWorkout = new Workout(newId, newName,newTag, newPic, b);
 
                 Toast.makeText(getActivity(), "Workout saved", Toast.LENGTH_SHORT).show();
-                MainActivity.workouts.add(newWorkout);
                 MainActivity.profile.addWorkout(newWorkout);
                 MainActivity.saveProfile(MainActivity.mainActivity);
             }
