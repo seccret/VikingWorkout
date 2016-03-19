@@ -64,7 +64,8 @@ public class AdapterImage extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = view;
         TextView name;
-        ImageView image;
+        final ImageView image;
+        final int workoutID = i;
         if (v == null) {
             v = mInflater.inflate(R.layout.item_workout_big, viewGroup, false);
             v.setTag(R.id.tvItemWorkout, v.findViewById(R.id.tvItemWorkout));
@@ -87,7 +88,7 @@ public class AdapterImage extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //Step 1: Create new Workout with items parameters
-                Workout wo = MainActivity.workouts.get(0);
+                Workout wo = MainActivity.workouts.get(workoutID);
                 //Step 2: Set currentWorkout to clicked workout
                 MainActivity.currentWorkout = wo;
                 //Step 3: Go to workout fragment

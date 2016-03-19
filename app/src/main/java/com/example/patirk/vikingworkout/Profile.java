@@ -54,6 +54,9 @@ public class Profile implements Serializable{
         Drawable drawable = new BitmapDrawable(picture);
         return drawable;
     }
+    public Bitmap getPictureAsBitmap() {
+        return picture;
+    }
     public List getMyWorkouts(){
         return myWorkout;
     }

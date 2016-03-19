@@ -5,35 +5,29 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Movie;
-import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Toast;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.gdata.util.ServiceException;
 
 
 public class MainActivity extends ActionBarActivity
@@ -49,6 +43,7 @@ public class MainActivity extends ActionBarActivity
     public static int lastLongClick, activeWorkoutCounter=0;
     public static List<Workout> workouts = null;
     public static List<Exercise> exerciseList = null;
+
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -66,10 +61,23 @@ public class MainActivity extends ActionBarActivity
         setContentView(R.layout.activity_main);
         mainActivity = this;
 
+        // = savedInstanceState.get("allrecipes");
+        //Toast.makeText(this, st, Toast.LENGTH_SHORT).show();
+        MainActivity.workouts = new ArrayList<Workout>();
         loadExercises();
-        loadWorkouts();
         loadProfile();
+       // loadWorkouts();
 
+        GoogleSpreadsheet gs = new GoogleSpreadsheet();
+        try{
+            gs.addToSheet();
+            String s = gs.getFeed();
+
+           // Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+        }catch (IOException IOe){
+        }catch (ServiceException Se){
+        }
+//
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -163,7 +171,6 @@ public class MainActivity extends ActionBarActivity
         e.add(1);
         e.add(2);
         e.add(3);
-        MainActivity.workouts = new ArrayList<Workout>();
         MainActivity.workouts.add(new Workout(0, "Mage", 1, e));
         MainActivity.workouts.add(new Workout(1, "Ben", 2, e));
         MainActivity.workouts.add(new Workout(2, "Rygg", 3, e));
@@ -249,15 +256,18 @@ public class MainActivity extends ActionBarActivity
         MainActivity.profile = deserializer.deserialzeProfile();
 
         //Load Profile-pic
-     //   Bitmap bitbit = ExernalFunctions.getImageBitmap(this, "profile", "JPEG");
-     //   Bitmap loadedImage = ExernalFunctions.getCroppedBitmap(bitbit);
-     //   profile.setProfilePicture(loadedImage);
-     //   Toast.makeText(this, "Loading profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
+        Bitmap bitbit = ExernalFunctions.getImageBitmap(this, "profile", "JPEG");
+        Bitmap loadedImage = ExernalFunctions.getCroppedBitmap(bitbit);
+        profile.setProfilePicture(loadedImage);
+        Toast.makeText(this, "Loading profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
     }
 
     public static void saveProfile(Context c) {
         Serializer serializer = new Serializer();
         serializer.serializeProfile();
+        ExernalFunctions.saveImage(mainActivity,profile.getPictureAsBitmap(),"profile","JPEG");
+        Toast.makeText(mainActivity, "Saving profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
+
     }
 
 }
