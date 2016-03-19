@@ -40,6 +40,12 @@
         android:maxLength="15"
         android:capitalize="words"/>
 
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_gravity="center_horizontal" />
+
     <EditText
         android:id="@+id/etAddSTag"
         android:layout_width="wrap_content"
@@ -49,7 +55,9 @@
         android:hint="Set tag"
         android:singleLine="true"
         android:maxLength="15"
-        android:capitalize="words"/>
+        android:capitalize="words"
+        android:visibility="gone"
+        />
 
     <TextView
         android:id="@+id/tvSevenExercise"

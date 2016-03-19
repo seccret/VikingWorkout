@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.mortbay.jetty.Main;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,8 +61,8 @@ public class Adapter4InceptionBase extends BaseAdapter {
         final ListView lvInception;
         lvInception = (ListView) v.findViewById(R.id.lvListViewInception);
         final Item item = getItem(i);
-        Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, item.id);
-        lvInception.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 205*MainActivity.blocksList.get(item.id).getExercises().size()));
+        Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, MainActivity.blocksList.get(item.id));
+        lvInception.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 300*(MainActivity.blocksList.get(item.id).getExercises().size())));
 
         lvInception.setAdapter(ai);
 

@@ -116,7 +116,7 @@
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="My Workout"
+                    android:text="Todays Agenda"
                     android:textColor="#fba500"
                     android:background="@drawable/button_selected"/>
                 <Button
@@ -124,7 +124,7 @@
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Global List"
+                    android:text="My Workouts"
                     android:textColor="#c1c1c1"
                     android:background="@drawable/button_unselected"/>
                 <Button
@@ -132,7 +132,7 @@
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Statistics"
+                    android:text="My Blocks"
                     android:textColor="#c1c1c1"
                     android:background="@drawable/button_unselected"/>
             </LinearLayout>

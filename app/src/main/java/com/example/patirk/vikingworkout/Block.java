@@ -5,13 +5,14 @@ import android.graphics.Movie;
 import android.graphics.drawable.Drawable;
 
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Patirk on 03/09/2015.
  */
-public class Block {
+public class Block implements Serializable {
     private int id;
     private String name;
 

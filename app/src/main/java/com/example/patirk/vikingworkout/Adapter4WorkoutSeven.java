@@ -23,9 +23,9 @@ public class Adapter4WorkoutSeven extends BaseAdapter {
     private static List<Integer> repetitions = new ArrayList<>();
 
     // Constructor
-    public Adapter4WorkoutSeven(Context c, int b) {
+    public Adapter4WorkoutSeven(Context c, Block b) {
         mInflater = LayoutInflater.from(c);
-        block = MainActivity.blocksList.get(b);
+        this.block = b;
         this.repetitions= block.getRepetitions();
 
         for (int exerciseID : block.getExercises()) {

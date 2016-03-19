@@ -50,7 +50,7 @@ public class FragmentTrainingPlan extends android.support.v4.app.Fragment {
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setTextColor(getResources().getColor(R.color.white));
                 ListView lv = (ListView) rootView.findViewById(R.id.lvThisWeek);
-                AdapterImage3 AI = new AdapterImage3(rootView.getContext(), weekdays);
+                AdapterTrainingPlan AI = new AdapterTrainingPlan(rootView.getContext(), weekdays);
                 lv.setAdapter(AI);
             }
         });
@@ -65,7 +65,7 @@ public class FragmentTrainingPlan extends android.support.v4.app.Fragment {
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setTextColor(getResources().getColor(R.color.white));
                 ListView lv = (ListView) rootView.findViewById(R.id.lvThisWeek);
-                AdapterImage3 AI = new AdapterImage3(rootView.getContext(), weekdays);
+                AdapterTrainingPlan AI = new AdapterTrainingPlan(rootView.getContext(), weekdays);
                 lv.setAdapter(AI);
 
 
@@ -113,7 +113,7 @@ public class FragmentTrainingPlan extends android.support.v4.app.Fragment {
 
         ListView lv = (ListView) rootView.findViewById(R.id.lvThisWeek);
         registerForContextMenu(lv);
-        AdapterImage3 AI = new AdapterImage3(rootView.getContext(), weekdays);
+        AdapterTrainingPlan AI = new AdapterTrainingPlan(rootView.getContext(), weekdays);
         lv.setAdapter(AI);
 
 

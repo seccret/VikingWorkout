@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -71,15 +70,12 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         profileName.setText(pName);
         profileDesc.setText(pDesc);
 
-        final Button myworkoutButton = (Button) rootView.findViewById(R.id.bToggleLeft);
-        final Button globalButton = (Button) rootView.findViewById(R.id.bToggleMiddle);
-        final Button statisticButton = (Button) rootView.findViewById(R.id.bToggleRight);
+        final Button myAgendaButton = (Button) rootView.findViewById(R.id.bToggleLeft);
+        final Button myWorkoutButton = (Button) rootView.findViewById(R.id.bToggleMiddle);
+        final Button myBlockButton = (Button) rootView.findViewById(R.id.bToggleRight);
 
         //Create list of users workout
-        final List<Workout> myWorkout = new ArrayList<Workout>();
-        for(int i=0; i< MainActivity.profile.getMyWorkouts().size(); i++){
-            myWorkout.add(MainActivity.workouts.get(MainActivity.profile.getMyWorkouts().get(i).getId()));
-        }
+        final List<Workout> myWorkout = MainActivity.profile.getMyWorkouts();
 
         final SlidingUpPanelLayout supl = (SlidingUpPanelLayout) rootView.findViewById(R.id.sliding_layout);
         final SlidingUpPanelLayout.PanelState wut = supl.getPanelState();
@@ -94,45 +90,16 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                         .commit();
             }
         });
-        myworkoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myworkoutButton.setBackgroundResource(R.drawable.button_selected);
-                globalButton.setBackgroundResource(R.drawable.button_unselected);
-                statisticButton.setBackgroundResource(R.drawable.button_unselected);
-                myworkoutButton.setTextColor(Color.parseColor("#fba500"));
-                globalButton.setTextColor(Color.parseColor("#c1c1c1"));
-                statisticButton.setTextColor(Color.parseColor("#c1c1c1"));
-                ListView lv = (ListView) rootView.findViewById(R.id.lvWorkouts);
-                AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), myWorkout);
-                lv.setAdapter(AI);
-            }
-        });
 
-        globalButton.setOnClickListener(new View.OnClickListener() {
+        myAgendaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                globalButton.setBackgroundResource(R.drawable.button_selected);
-                myworkoutButton.setBackgroundResource(R.drawable.button_unselected);
-                statisticButton.setBackgroundResource(R.drawable.button_unselected);
-                globalButton.setTextColor(Color.parseColor("#fba500"));
-                statisticButton.setTextColor(Color.parseColor("#c1c1c1"));
-                myworkoutButton.setTextColor(Color.parseColor("#c1c1c1"));
-                ListView lv = (ListView) rootView.findViewById(R.id.lvWorkouts);
-                AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), MainActivity.workouts);
-                lv.setAdapter(AI);
-            }
-        });
-
-        statisticButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                statisticButton.setBackgroundResource(R.drawable.button_selected);
-                myworkoutButton.setBackgroundResource(R.drawable.button_unselected);
-                globalButton.setBackgroundResource(R.drawable.button_unselected);
-                statisticButton.setTextColor(Color.parseColor("#fba500"));
-                globalButton.setTextColor(Color.parseColor("#c1c1c1"));
-                myworkoutButton.setTextColor(Color.parseColor("#c1c1c1"));
+                myAgendaButton.setBackgroundResource(R.drawable.button_selected);
+                myWorkoutButton.setBackgroundResource(R.drawable.button_unselected);
+                myBlockButton.setBackgroundResource(R.drawable.button_unselected);
+                myAgendaButton.setTextColor(Color.parseColor("#fba500"));
+                myBlockButton.setTextColor(Color.parseColor("#c1c1c1"));
+                myWorkoutButton.setTextColor(Color.parseColor("#c1c1c1"));
                 if (supl.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
                     Toast.makeText(MainActivity.mainActivity, "Expanded", Toast.LENGTH_SHORT).show();
                     profilePic.setVisibility(View.INVISIBLE);
@@ -144,8 +111,38 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
             }
         });
 
+        myWorkoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myWorkoutButton.setBackgroundResource(R.drawable.button_selected);
+                myBlockButton.setBackgroundResource(R.drawable.button_unselected);
+                myAgendaButton.setBackgroundResource(R.drawable.button_unselected);
+                myWorkoutButton.setTextColor(Color.parseColor("#fba500"));
+                myBlockButton.setTextColor(Color.parseColor("#c1c1c1"));
+                myAgendaButton.setTextColor(Color.parseColor("#c1c1c1"));
+                ListView lv = (ListView) rootView.findViewById(R.id.lvWorkouts);
+                AdapterProfileWorkout AI = new AdapterProfileWorkout(rootView.getContext(), myWorkout);
+                lv.setAdapter(AI);
+            }
+        });
+
+        myBlockButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myBlockButton.setBackgroundResource(R.drawable.button_selected);
+                myWorkoutButton.setBackgroundResource(R.drawable.button_unselected);
+                myAgendaButton.setBackgroundResource(R.drawable.button_unselected);
+                myBlockButton.setTextColor(Color.parseColor("#fba500"));
+                myAgendaButton.setTextColor(Color.parseColor("#c1c1c1"));
+                myWorkoutButton.setTextColor(Color.parseColor("#c1c1c1"));
+                ListView lv = (ListView) rootView.findViewById(R.id.lvWorkouts);
+                AdapterProfileBlock AI = new AdapterProfileBlock(rootView.getContext(), MainActivity.profile.getMyBlocks());
+                lv.setAdapter(AI);
+            }
+        });
+
         lvProfile = (ListView) rootView.findViewById(R.id.lvWorkouts);
-        AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), myWorkout);
+        AdapterProfileWorkout AI = new AdapterProfileWorkout(rootView.getContext(), myWorkout);
         lvProfile.setAdapter(AI);
         registerForContextMenu(lvProfile);
         registerForContextMenu(rootView);

@@ -13,14 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AdapterImageProfile extends BaseAdapter {
+public class AdapterProfileWorkout extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
     private static Workout workout = null;
 
     // Constructor
-    public AdapterImageProfile(Context c, List<Workout> workoutList) {
+    public AdapterProfileWorkout(Context c, List<Workout> workoutList) {
         mInflater = LayoutInflater.from(c);
 
         for (Workout w : workoutList) {
@@ -61,7 +61,8 @@ public class AdapterImageProfile extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //Step 1: Create new Workout with items parameters
-                Workout wo = MainActivity.workouts.get(item.id);
+                Workout wo = MainActivity.profile.getWorkoutByID(item.id);
+
                 //Step 2: Set currentWorkout to clicked workout
                 MainActivity.currentWorkout = wo;
                 //Step 3: Go to workout fragment
@@ -81,8 +82,9 @@ public class AdapterImageProfile extends BaseAdapter {
         name.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick (View v){
-                if (MainActivity.profile.contains(item.id)) {
+                if (MainActivity.profile.containWorkout(item.id)) {
                     MainActivity.lastLongClick = item.id;
+                    MainActivity.profile.removeWorkout(item.id);
                 } else {
                     MainActivity.profile.addWorkout(MainActivity.workouts.get(item.id));
                     Toast.makeText(MainActivity.mainActivity, item.name + " workout added to profile", Toast.LENGTH_SHORT).show();
