@@ -61,6 +61,16 @@
         android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:textSize="15dp"/>
+    <EditText
+        android:id="@+id/etAddSBlockName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:layout_gravity="center"
+        android:hint="Block Name"
+        android:singleLine="true"
+        android:maxLength="15"
+        android:capitalize="words"/>
     <GridView
         android:id="@+id/gvAddSevenExercises"
         android:layout_width="match_parent"
@@ -69,6 +79,14 @@
         android:numColumns="2"
         android:paddingLeft="20dp"
         android:verticalSpacing="10dp"></GridView>
+    <ImageView
+        android:id="@+id/ivSevenBlockDone"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/time2"
+        android:layout_gravity="right"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"/>
     <ImageView
         android:id="@+id/ivSevenDone"
         android:layout_width="70dp"

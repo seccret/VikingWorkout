@@ -121,8 +121,6 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 ListView lv = (ListView) rootView.findViewById(R.id.lvWorkouts);
                 AdapterImageProfile AI = new AdapterImageProfile(rootView.getContext(), MainActivity.workouts);
                 lv.setAdapter(AI);
-
-
             }
         });
 
