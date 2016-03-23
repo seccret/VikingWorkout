@@ -41,11 +41,11 @@ public class FragmentBlock extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_workout, container, false);
-        final TextView woname = (TextView) rootView.findViewById(R.id.tvWorkoutName);
+        final TextView blockName = (TextView) rootView.findViewById(R.id.tvWorkoutName);
         final ListView lvExercises = (ListView) rootView.findViewById(R.id.lvWorkoutList);
         final Block block = MainActivity.currentBlock;
 
-        woname.setText(block.getName());
+        blockName.setText(block.getMuscleGroup());
 
         List<String> template = new ArrayList<String>();
         template.add("Seven");

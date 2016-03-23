@@ -65,12 +65,11 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
                 int newBlockId = MainActivity.profile.getMyBlocks().size();
                 String newBlockName = blockName.getText().toString();
 
-                List<Integer> newExercise = new ArrayList<>();
+                List<Integer> newExercise = new ArrayList<>(4);
                 for (int i = 0; i < e.size(); i++) {
                     newExercise.add(e.get(i).getId());
                 }
-
-                List<Integer> r = new ArrayList<Integer>();
+                List<Integer> r = new ArrayList<Integer>(4);
                 r.add(newRepetitions.get(0));
                 r.add(newRepetitions.get(1));
                 r.add(newRepetitions.get(2));

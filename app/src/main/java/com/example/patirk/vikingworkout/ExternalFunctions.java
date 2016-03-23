@@ -18,11 +18,54 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Patirk on 23/10/2015.
  */
-public class ExernalFunctions {
+public class ExternalFunctions {
+
+    public static String findMuscleGroup(List<Integer> exerciseIntList){
+        List<String> muscleList = new ArrayList<>();
+        List<Exercise> exerciseList = new ArrayList<>();
+        for(int i=0; i<exerciseIntList.size(); i++){
+            muscleList.addAll(MainActivity.exerciseList.get(exerciseIntList.get(i)).getMuscle());
+        }
+
+   /*     for(int i=0; i<exerciseList.size(); i++){
+            List<String> exerciseMuscleList = exerciseList.get(i).getMuscle();
+            muscleList.addAll(exerciseMuscleList);
+        }
+        Toast.makeText(MainActivity.mainActivity, "checklist2 = "+muscleList.size(), Toast.LENGTH_SHORT).show();
+     */   List<String> checkSingle = new ArrayList<>();;
+        for(String s : muscleList){
+            checkSingle.add(s);
+        }
+        checkSingle.removeAll(Collections.singleton(checkSingle.get(0)));
+        Toast.makeText(MainActivity.mainActivity, "checklist = "+checkSingle, Toast.LENGTH_SHORT).show();
+        if(checkSingle.size() == 0){
+            return muscleList.get(0);
+        }else if(muscleList.contains("Arms") && muscleList.contains("Butt") ||
+                muscleList.contains("Arms") && muscleList.contains("Legs") ||
+                muscleList.contains("Shoulders") && muscleList.contains("Butt") ||
+                muscleList.contains("Shoulders") && muscleList.contains("Legs") ||
+                muscleList.contains("Chest") && muscleList.contains("Butt") ||
+                muscleList.contains("Chest") && muscleList.contains("Legs") ||
+                muscleList.contains("Back") && muscleList.contains("Butt") ||
+                muscleList.contains("Back") && muscleList.contains("Legs") ||
+                muscleList.contains("Abs") && muscleList.contains("Butt") ||
+                muscleList.contains("Abs") && muscleList.contains("Legs")
+                ){
+            return "Cross";
+        }else if(muscleList.contains("Butt") && muscleList.contains("Legs")){
+            return "Lower body";
+        }else{
+            return "Upper body";
+        }
+    }
 
     public static Bitmap getCroppedBitmap(Bitmap bitmap) {
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),

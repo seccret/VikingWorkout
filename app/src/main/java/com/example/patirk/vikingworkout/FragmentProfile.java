@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -84,7 +85,8 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Exercise e = new Exercise(-1, "Add Exercise", null, null, null);
+                List<String> nullMuscle = new ArrayList<String>();
+                Exercise e = new Exercise(-1, "Add Exercise", null, nullMuscle, null, null);
                 MainActivity.fragmentManager.beginTransaction()
                         .replace(R.id.container, FragmentAddSevenW.newInstance(e,e,e,e))
                         .commit();

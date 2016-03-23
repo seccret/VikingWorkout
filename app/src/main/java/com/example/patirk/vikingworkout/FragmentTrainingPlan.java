@@ -103,14 +103,15 @@ public class FragmentTrainingPlan extends android.support.v4.app.Fragment {
         e.add(2);
         e.add(3);
         blocks = new ArrayList<Block>();
-        blocks.add(new Block(0, "Power Block", e, r));
-        blocks.add(new Block(1, "Core", e, r));
-        blocks.add(new Block(2, "Arms", e, r));
-        blocks.add(new Block(3, "Rest", e, r));
-        blocks.add(new Block(4, "Cross-training", e, r));
-        blocks.add(new Block(5, "Ultimate situps", e, r));
-        blocks.add(new Block(6, "Rest", e, r));
-
+        String muscleGroup = ExternalFunctions.findMuscleGroup(e);
+        blocks.add(new Block(0, "Power Block",  e, r));
+     /*   blocks.add(new Block(1, "Core", e, r,muscleGroup));
+        blocks.add(new Block(2, "Arms", e, r,muscleGroup));
+        blocks.add(new Block(3, "Rest", e, r,muscleGroup));
+        blocks.add(new Block(4, "Cross-training", e, r, muscleGroup));
+        blocks.add(new Block(5, "Ultimate situps", e, r, muscleGroup));
+        blocks.add(new Block(6, "Rest", e, r, muscleGroup));
+    */
         ListView lv = (ListView) rootView.findViewById(R.id.lvThisWeek);
         registerForContextMenu(lv);
         AdapterTrainingPlan AI = new AdapterTrainingPlan(rootView.getContext(), weekdays);

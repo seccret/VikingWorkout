@@ -203,14 +203,15 @@ public class MainActivity extends ActionBarActivity
         r.add(15);
         r.add(15);
         for(int i = 0; i<4; i++) {
+            String muscleGroup = ExternalFunctions.findMuscleGroup(e);
             if (i == 0) {
-                block = new Block(0, "Mage", e, r);
+                block = new Block(0, muscleGroup, e, r);
             } else if (i == 1) {
-                block = new  Block(1, "Ben", e, r);
+                block = new  Block(1,muscleGroup, e, r);
             } else if (i == 2) {
-                block = new  Block(2, "Armar", e, r);
+                block = new  Block(2,muscleGroup, e, r);
             } else if (i == 3) {
-                block = new  Block(3, "Rygg", e, r);
+                block = new  Block(3,muscleGroup, e, r);
             }
             blocksList.add(block);
         }
@@ -219,27 +220,33 @@ public class MainActivity extends ActionBarActivity
         InputStream gifInputStream;
         MainActivity.exerciseList = new ArrayList<Exercise>();
         Exercise exercise = null;
+
         for(int i = 0; i<4; i++) {
+            List<String> muscleList = new ArrayList<>();
             if (i == 0) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.commandos);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                exercise = new Exercise(0, "Commandos", img, gif, "Description");
+                muscleList.add("Arms"); muscleList.add("Chest"); muscleList.add("Abs");
+                exercise = new Exercise(0, "Commandos", "Description", muscleList ,img, gif);
             } else if (i == 1) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.pushups);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                exercise = new Exercise(1, "Push Up", img, gif, "Description");
+                muscleList.add("Butt"); muscleList.add("Legs");
+                exercise = new Exercise(1, "Push Up", "Description", muscleList, img, gif);
             } else if (i == 2) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.situps);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                exercise = new Exercise(2, "Sit Up", img, gif, "Description");
+                muscleList.add("Abs");
+                exercise = new Exercise(2, "Sit Up", "Description", muscleList, img, gif);
             } else if (i == 3) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.running);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                exercise = new Exercise(3, "Runner", img, gif, "Description");
+                muscleList.add("Abs"); muscleList.add("Legs");
+                exercise = new Exercise(3, "Runner", "Description", muscleList, img, gif);
             }
             exerciseList.add(exercise);
         }
@@ -291,8 +298,8 @@ public class MainActivity extends ActionBarActivity
         MainActivity.profile = deserializer.deserialzeProfile();
 
         //Load Profile-pic
-        Bitmap bitbit = ExernalFunctions.getImageBitmap(this, "profile", "JPEG");
-        Bitmap loadedImage = ExernalFunctions.getCroppedBitmap(bitbit);
+        Bitmap bitbit = ExternalFunctions.getImageBitmap(this, "profile", "JPEG");
+        Bitmap loadedImage = ExternalFunctions.getCroppedBitmap(bitbit);
         profile.setProfilePicture(loadedImage);
         Toast.makeText(this, "Loading profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
 
@@ -302,7 +309,7 @@ public class MainActivity extends ActionBarActivity
     public static void saveProfile(Context c) {
         Serializer serializer = new Serializer();
         serializer.serializeProfile();
-        ExernalFunctions.saveImage(mainActivity,profile.getPictureAsBitmap(),"profile","JPEG");
+        ExternalFunctions.saveImage(mainActivity,profile.getPictureAsBitmap(),"profile","JPEG");
         Toast.makeText(mainActivity, "Saving profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
 
     }

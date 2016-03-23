@@ -59,12 +59,14 @@ public class Adapter4InceptionBase extends BaseAdapter {
         final ImageView arrow = (ImageView) v.findViewById(R.id.ivListViewInception);
         final LinearLayout llBlock = (LinearLayout) v.findViewById(R.id.llListViewInception);
         final ListView lvInception;
-        lvInception = (ListView) v.findViewById(R.id.lvListViewInception);
+        final TextView tvBlockBanner = (TextView) v.findViewById(R.id.tvListViewInception);
         final Item item = getItem(i);
+        lvInception = (ListView) v.findViewById(R.id.lvListViewInception);
         Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, MainActivity.blocksList.get(item.id));
         lvInception.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 300*(MainActivity.blocksList.get(item.id).getExercises().size())));
 
         lvInception.setAdapter(ai);
+        tvBlockBanner.setText(MainActivity.blocksList.get(0).getName());
 
         llBlock.setOnClickListener(new View.OnClickListener() {
             @Override
