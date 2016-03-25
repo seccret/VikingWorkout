@@ -16,14 +16,16 @@ import java.util.List;
 public class Block implements Serializable {
     private int id;
     private String name;
+    private String templateTag;
 
     private List<Integer> exercises;
     public List<Integer> repetitions;
     private String muscleGroup;
 
-    public Block(int id, String name, List<Integer> exercises, List<Integer> repetitions) {
+    public Block(int id, String name, String templateTag, List<Integer> exercises, List<Integer> repetitions, String muscleGroup) {
         this.id = id;
         this.name = name;
+        this.templateTag = templateTag;
         this.exercises = exercises;
         this.muscleGroup = ExternalFunctions.findMuscleGroup(exercises);
         Toast.makeText(MainActivity.mainActivity, "Muskelgrupp = " + muscleGroup, Toast.LENGTH_SHORT).show();
@@ -44,6 +46,10 @@ public class Block implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public String getTemplateTag() {
+        return templateTag;
     }
 
     public String getMuscleGroup() {

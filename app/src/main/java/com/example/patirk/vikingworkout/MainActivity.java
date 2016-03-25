@@ -179,12 +179,12 @@ public class MainActivity extends ActionBarActivity
         b.add(2);
         b.add(3);
         MainActivity.workouts = new ArrayList<Workout>();
-        MainActivity.workouts.add(new Workout(0, "Mage","Seven Workout", 1, b));
-        MainActivity.workouts.add(new Workout(1, "Ben", "List Workout", 1, b));
-        MainActivity.workouts.add(new Workout(2, "Rygg", "List Workout", 1, b));
-        MainActivity.workouts.add(new Workout(3, "Armar", "Seven Workout", 1, b));
-        MainActivity.workouts.add(new Workout(4, "Cross-training", "List Workout", 1, b));
-        MainActivity.workouts.add(new Workout(5, "Ultimate situps", "Seven Workout", 1, b));
+        MainActivity.workouts.add(new Workout(0, "Mage", 1, b));
+        MainActivity.workouts.add(new Workout(1, "Ben", 1, b));
+        MainActivity.workouts.add(new Workout(2, "Rygg", 1, b));
+        MainActivity.workouts.add(new Workout(3, "Armar", 1, b));
+        MainActivity.workouts.add(new Workout(4, "Cross-training", 1, b));
+        MainActivity.workouts.add(new Workout(5, "Ultimate situps", 1, b));
 
         return true;
     }
@@ -205,13 +205,13 @@ public class MainActivity extends ActionBarActivity
         for(int i = 0; i<4; i++) {
             String muscleGroup = ExternalFunctions.findMuscleGroup(e);
             if (i == 0) {
-                block = new Block(0, muscleGroup, e, r);
+                block = new Block(0, "Block Name", "Seven Block", e, r, muscleGroup);
             } else if (i == 1) {
-                block = new  Block(1,muscleGroup, e, r);
+                block = new  Block(1, "Block Name", "List Block", e, r, muscleGroup);
             } else if (i == 2) {
-                block = new  Block(2,muscleGroup, e, r);
+                block = new  Block(2, "Block Name", "Seven Block", e, r, muscleGroup);
             } else if (i == 3) {
-                block = new  Block(3,muscleGroup, e, r);
+                block = new  Block(3, "Block Name", "List Block", e, r, muscleGroup);
             }
             blocksList.add(block);
         }

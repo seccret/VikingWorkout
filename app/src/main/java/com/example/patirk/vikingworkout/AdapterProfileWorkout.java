@@ -62,20 +62,24 @@ public class AdapterProfileWorkout extends BaseAdapter {
             public void onClick(View v) {
                 //Step 1: Create new Workout with items parameters
                 Workout wo = MainActivity.profile.getWorkoutByID(item.id);
-
                 //Step 2: Set currentWorkout to clicked workout
                 MainActivity.currentWorkout = wo;
+                //Step 3: Go to block fragment
+                MainActivity.fragmentManager.beginTransaction()
+                        .replace(R.id.container, FragmentWorkoutSeven.newInstance())
+                        .commit();
+
                 //Step 3: Go to workout fragment
-                String tagtemplate = wo.getTagTemplate();
-                if (tagtemplate.equals("Seven Workout")) {
-                    MainActivity.fragmentManager.beginTransaction()
-                            .replace(R.id.container, FragmentWorkoutSeven.newInstance())
-                            .commit();
-                } else if (tagtemplate.equals("List Workout")) {
-                    MainActivity.fragmentManager.beginTransaction()
-                            .replace(R.id.container, FragmentWorkout.newInstance())
-                            .commit();
-                }
+         //       String tagtemplate = b.getTemplateTag();
+         //       if (tagtemplate.equals("Seven Block")) {
+          //          MainActivity.fragmentManager.beginTransaction()
+          //                  .replace(R.id.container, FragmentWorkoutSeven.newInstance())
+          //                  .commit();
+          //      } else if (tagtemplate.equals("List Workout")) {
+          //          MainActivity.fragmentManager.beginTransaction()
+          //                  .replace(R.id.container, FragmentWorkout.newInstance())
+           //                 .commit();
+           //     }
             }
         });
 

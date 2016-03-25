@@ -15,15 +15,13 @@ import java.util.List;
 public class Workout implements Serializable {
     private int id;
     private String name;
-    private String tagtemplate;
     private int picture;
 
     public List<Integer> blocks;
 
-    public Workout(int id, String name, String tagtemplate, int picture, List<Integer> blocks) {
+    public Workout(int id, String name, int picture, List<Integer> blocks) {
         this.id = id;
         this.name = name;
-        this.tagtemplate = tagtemplate;
         this.blocks = blocks;
         this.picture = picture;
     }
@@ -34,10 +32,6 @@ public class Workout implements Serializable {
 
     public String getName() {
         return name;
-    }
-
-    public String getTagTemplate () {
-        return tagtemplate;
     }
 
     public int getPicture() {

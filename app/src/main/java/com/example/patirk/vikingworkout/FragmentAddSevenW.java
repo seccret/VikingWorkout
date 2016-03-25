@@ -54,16 +54,18 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
 
         final EditText blockName = (EditText) rootView.findViewById(R.id.etAddSBlockName);
 
-        final Spinner woTag = (Spinner) rootView.findViewById(R.id.spinner);
-        String[] items = new String[]{"Seven Workout", "List Workout"};
+        final Spinner blockTTag = (Spinner) rootView.findViewById(R.id.spinner);
+        String[] items = new String[]{"Seven Block", "List Block"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.mainActivity, android.R.layout.simple_spinner_dropdown_item, items);
-        woTag.setAdapter(adapter);
+        blockTTag.setAdapter(adapter);
 
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int newBlockId = MainActivity.profile.getMyBlocks().size();
                 String newBlockName = blockName.getText().toString();
+                TextView blockTag = (TextView) blockTTag.getSelectedView();
+                String newBlockTTag = blockTag.getText().toString();
 
                 List<Integer> newExercise = new ArrayList<>(4);
                 for (int i = 0; i < e.size(); i++) {
@@ -74,20 +76,18 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
                 r.add(newRepetitions.get(1));
                 r.add(newRepetitions.get(2));
                 r.add(newRepetitions.get(3));
-                Block newBlock = new Block(newBlockId, newBlockName, newExercise, r);
+                String newMuscleGroup = ExternalFunctions.findMuscleGroup(newExercise);
+                Block newBlock = new Block(newBlockId, newBlockName, newBlockTTag, newExercise, r, newMuscleGroup);
                 MainActivity.profile.addBlock(newBlock);
                 Toast.makeText(getActivity(), "Block saved", Toast.LENGTH_SHORT).show();
 
                 int newId = MainActivity.profile.getMyWorkouts().size();
                 String newName = woName.getText().toString();
                 int newPic = 1;
-                TextView textTag = (TextView) woTag.getSelectedView();
-                String newTag = textTag.getText().toString();
-                //String newTag = woTag.getText().toString();
 
                 List<Integer> b = new ArrayList<>();
                 b.add(newBlock.getId());
-                Workout newWorkout = new Workout(newId, newName,newTag, newPic, b);
+                Workout newWorkout = new Workout(newId, newName, newPic, b);
 
                 Toast.makeText(getActivity(), "Workout saved", Toast.LENGTH_SHORT).show();
                 MainActivity.profile.addWorkout(newWorkout);
