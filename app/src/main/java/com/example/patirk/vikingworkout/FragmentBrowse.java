@@ -32,7 +32,7 @@ public class FragmentBrowse extends android.support.v4.app.Fragment {
         GridView category = (GridView) rootView.findViewById(R.id.gvBrowseCategory);
         Block block = MainActivity.currentBlock;
 
-        AdapterBrowse AI = new AdapterBrowse(rootView.getContext(), MainActivity.workouts);
+        AdapterBrowse AI = new AdapterBrowse(rootView.getContext(), MainActivity.getWorkouts());
         category.setAdapter(AI);
 
 

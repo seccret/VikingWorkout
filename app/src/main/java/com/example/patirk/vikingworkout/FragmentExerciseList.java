@@ -38,7 +38,7 @@ public class FragmentExerciseList extends android.support.v4.app.Fragment {
 
 
 
-        Adapter4ExerciseList el = new Adapter4ExerciseList(MainActivity.mainActivity, MainActivity.exerciseList);
+        Adapter4ExerciseList el = new Adapter4ExerciseList(MainActivity.mainActivity, MainActivity.getExercises());
         exerciselist.setAdapter(el);
         return rootView;
     }

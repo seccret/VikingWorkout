@@ -62,7 +62,9 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int newBlockId = MainActivity.profile.getMyBlocks().size();
+                String sProfileID = String.valueOf(MainActivity.profile.getId());
+                String sBlockID = String.valueOf(MainActivity.profile.getMyBlocks().size());
+                int newBlockId = Integer.valueOf(sProfileID + sBlockID);
                 String newBlockName = blockName.getText().toString();
                 TextView blockTag = (TextView) blockTTag.getSelectedView();
                 String newBlockTTag = blockTag.getText().toString();

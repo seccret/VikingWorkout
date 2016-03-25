@@ -90,7 +90,7 @@ public class AdapterProfileWorkout extends BaseAdapter {
                     MainActivity.lastLongClick = item.id;
                     MainActivity.profile.removeWorkout(item.id);
                 } else {
-                    MainActivity.profile.addWorkout(MainActivity.workouts.get(item.id));
+                    MainActivity.profile.addWorkout(MainActivity.getWorkoutByID(item.id));
                     Toast.makeText(MainActivity.mainActivity, item.name + " workout added to profile", Toast.LENGTH_SHORT).show();
                     return true;
                 }

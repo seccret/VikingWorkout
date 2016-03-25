@@ -72,7 +72,7 @@ public class AdapterBrowse extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //Step 1: Create new Workout with items parameters
-                Workout wo = MainActivity.workouts.get(workoutID);
+                Workout wo = MainActivity.getWorkoutByID(workoutID);
                 //Step 2: Set currentWorkout to clicked workout
 
                 MainActivity.currentWorkout = wo;
@@ -89,7 +89,7 @@ public class AdapterBrowse extends BaseAdapter {
                 if (MainActivity.profile.containWorkout(item.id)) {
                     MainActivity.lastLongClick = item.id;
                 } else {
-                    MainActivity.profile.addWorkout(MainActivity.workouts.get(item.id));
+                    MainActivity.profile.addWorkout(MainActivity.getWorkoutByID(item.id));
                     Toast.makeText(MainActivity.mainActivity, item.name + " workout added to profile", Toast.LENGTH_SHORT).show();
                     return true;
                 }

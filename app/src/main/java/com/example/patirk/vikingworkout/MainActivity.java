@@ -41,9 +41,9 @@ public class MainActivity extends ActionBarActivity
     public static Exercise currentExercise = null;
     public static FragmentManager fragmentManager = null;
     public static int lastLongClick, activeWorkoutCounter=0;
-    public static List<Block> blocksList = null;
-    public static List<Exercise> exerciseList = null;
-    public static List<Workout> workouts = null;
+    private static List<Block> blocksList = null;
+    private static List<Exercise> exerciseList = null;
+    private static List<Workout> workouts = null;
 
 
     /**
@@ -70,8 +70,8 @@ public class MainActivity extends ActionBarActivity
         loadProfile();
         loadWorkouts();
         loadBlocks();
-        //  List<Integer> l = new ArrayList<>();
-        // profile = new Profile(0,"Olivia", "hej",l);
+       //   List<Workout> l = new ArrayList<>();
+       //  profile = new Profile(1337,"Olivia", "hej",l);
        // List<Integer> l = new ArrayList<>();
        // profile.setWorkout(l);
  //       GoogleSpreadsheet gs = new GoogleSpreadsheet();
@@ -172,6 +172,52 @@ public class MainActivity extends ActionBarActivity
 
         return super.onOptionsItemSelected(item);
     }
+
+    public static Exercise getExerciseByID (int id){
+        for(Exercise e : exerciseList){
+            if(e.getId() == id){
+                return e;
+            }
+        }
+        return null;
+    }
+
+    public static Block getBlockByID (int id){
+        for(Block b : blocksList){
+            if(b.getId() == id){
+                return b;
+            }
+        }
+        for(Block b : profile.getMyBlocks()){
+            if(b.getId() == id){
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static Workout getWorkoutByID (int id){
+        for(Workout w : workouts){
+            if(w.getId() == id){
+                return w;
+            }
+        }
+        for(Workout w : profile.getMyWorkouts()){
+            if(w.getId() == id){
+                return w;
+            }
+        }
+        return null;
+    }
+
+    public static List<Exercise> getExercises (){
+        return exerciseList;
+    }
+
+    public static List<Workout> getWorkouts (){
+       return workouts;
+    }
+
     public boolean loadWorkouts(){
         List<Integer> b = new ArrayList<>();
         b.add(0);
@@ -298,9 +344,9 @@ public class MainActivity extends ActionBarActivity
         MainActivity.profile = deserializer.deserialzeProfile();
 
         //Load Profile-pic
-        Bitmap bitbit = ExternalFunctions.getImageBitmap(this, "profile", "JPEG");
-        Bitmap loadedImage = ExternalFunctions.getCroppedBitmap(bitbit);
-        profile.setProfilePicture(loadedImage);
+      //  Bitmap bitbit = ExternalFunctions.getImageBitmap(this, "profile", "JPEG");
+     //   Bitmap loadedImage = ExternalFunctions.getCroppedBitmap(bitbit);
+     //   profile.setProfilePicture(loadedImage);
         Toast.makeText(this, "Loading profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
 
       }

@@ -32,7 +32,7 @@ public class ExternalFunctions {
         List<String> muscleList = new ArrayList<>();
         List<Exercise> exerciseList = new ArrayList<>();
         for(int i=0; i<exerciseIntList.size(); i++){
-            muscleList.addAll(MainActivity.exerciseList.get(exerciseIntList.get(i)).getMuscle());
+            muscleList.addAll(MainActivity.getExerciseByID(exerciseIntList.get(i)).getMuscle());
         }
 
    /*     for(int i=0; i<exerciseList.size(); i++){
