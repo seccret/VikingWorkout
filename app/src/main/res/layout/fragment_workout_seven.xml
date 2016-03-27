@@ -144,7 +144,17 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:visibility="visible"
             android:text="Stop"
+            android:textSize="25dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/tvsevenPlayNext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:text="Play next Block!"
             android:textSize="25dp"
             android:fontFamily="sans-serif-light"
             android:gravity="center"/>

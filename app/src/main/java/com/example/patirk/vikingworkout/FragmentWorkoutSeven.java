@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  * Created by olivia on 2015-10-24.
  */
 public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
-
+    public static int test = 0;
     public static FragmentWorkoutSeven newInstance() {
         FragmentWorkoutSeven fragment = new FragmentWorkoutSeven();
         Bundle args = new Bundle();
@@ -54,6 +54,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
         final TextView pause = (TextView) rootView.findViewById(R.id.tvSevenPause);
         final TextView cancel = (TextView) rootView.findViewById(R.id.tvsevenCancel);
         final TextView resume = (TextView) rootView.findViewById(R.id.tvsevenResume);
+        final TextView playnext = (TextView) rootView.findViewById(R.id.tvsevenPlayNext);
         final Workout workout = MainActivity.currentWorkout;
         final List<Integer> blocks = workout.getBlocks();
         final Adapter4InceptionBase a = new Adapter4InceptionBase(MainActivity.mainActivity, blocks);
@@ -73,7 +74,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 lvExercises.setAdapter(ai);
                 // banner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.45f));
                 CountDownTimer timer;
-                long millisInFuture = 3000; //30 seconds
+                long millisInFuture = 10000; //30 seconds
                 long countDownInterval = 1000; //1 second
                 new CountDownTimer(millisInFuture, countDownInterval) {
                     public void onTick(long millisUntilFinished) {
@@ -93,21 +94,26 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                     }
 
                     public void onFinish() {
-                        tvTime.setText("done!");
-                        llTime.setVisibility(View.GONE);
-                        pausestop.setVisibility(View.GONE);
-                        banner.setVisibility(View.VISIBLE);
                         if (currentBlock < blocks.size() - 1) {
                             ++currentBlock;
+                            setTest(currentBlock);
+                            tvTime.setText("Done!");
                             Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, MainActivity.getBlockByID(blocks.get(currentBlock)));
                             lvExercises.setAdapter(ai);
+                            playnext.setVisibility(View.VISIBLE);
+                            pause.setVisibility(View.GONE);
+                            cancel.setVisibility(View.GONE);
                         } else {
+                            llTime.setVisibility(View.GONE);
+                            pausestop.setVisibility(View.GONE);
+                            banner.setVisibility(View.VISIBLE);
                             lvExercises.setAdapter(a);
                         }
                     }
                 }.start();
             }
         });
+
 
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,11 +156,20 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                     }
 
                     public void onFinish() {
-                        tvTime.setText("done!");
-                        llTime.setVisibility(View.GONE);
-                        pausestop.setVisibility(View.GONE);
-                        banner.setVisibility(View.VISIBLE);
-                        lvExercises.setAdapter(a);
+                        if (test < blocks.size() - 1) {
+                            ++test;
+                            tvTime.setText("Done!");
+                            Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, MainActivity.getBlockByID(blocks.get(test)));
+                            lvExercises.setAdapter(ai);
+                            playnext.setVisibility(View.VISIBLE);
+                            pause.setVisibility(View.GONE);
+                            cancel.setVisibility(View.GONE);
+                        } else {
+                            llTime.setVisibility(View.GONE);
+                            pausestop.setVisibility(View.GONE);
+                            banner.setVisibility(View.VISIBLE);
+                            lvExercises.setAdapter(a);
+                        }
                     }
                 }.start();
             }
@@ -174,8 +189,58 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
             }
         });
 
+        playnext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playnext.setVisibility(View.GONE);
+                pause.setVisibility(View.VISIBLE);
+                cancel.setVisibility(View.VISIBLE);
+                CountDownTimer timer;
+                long millisInFuture = 10000; //30 seconds
+                long countDownInterval = 1000; //1 second
+                new CountDownTimer(millisInFuture, countDownInterval) {
+                    public void onTick(long millisUntilFinished) {
+                        if (isPaused || isCanceled) {
+                            //If the user request to cancel or paused the
+                            //CountDownTimer we will cancel the current instance
+                            cancel();
+                        } else {
+                            tvTime.setText("" + String.format("%02d:%02d",
+                                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
+                                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+
+                            //Put count down timer remaining time in a variable
+                            timeRemaining = millisUntilFinished;
+                        }
+                    }
+
+                    public void onFinish() {
+                        if (test < blocks.size() - 1) {
+                            ++test;
+                            tvTime.setText("Done!");
+                            Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, MainActivity.getBlockByID(blocks.get(test)));
+                            lvExercises.setAdapter(ai);
+                            playnext.setVisibility(View.VISIBLE);
+                            pause.setVisibility(View.GONE);
+                            cancel.setVisibility(View.GONE);
+                        } else {
+                            llTime.setVisibility(View.GONE);
+                            pausestop.setVisibility(View.GONE);
+                            banner.setVisibility(View.VISIBLE);
+                            lvExercises.setAdapter(a);
+                        }
+                    }
+                }.start();
+            }
+        });
+
         lvExercises.setAdapter(a);
 
         return rootView;
     }
+
+public void setTest(int i){
+            this.test=i;
+        }
 }
