@@ -25,7 +25,6 @@ public class FragmentAddWorkout extends android.support.v4.app.Fragment {
         bList.add(b1); bList.add(b2); bList.add(b3); bList.add(b4);
         b = bList;
         fragment = new FragmentAddWorkout();
-        FragmentAddWorkout fragment = new FragmentAddWorkout();
         Bundle args = new Bundle();
         //   args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -56,7 +55,6 @@ public class FragmentAddWorkout extends android.support.v4.app.Fragment {
                 for (int i = 0; i < b.size(); i++) {
                     newBlock.add(b.get(i).getId());
                 }
-                String newMuscleGroup = ExternalFunctions.findMuscleGroup(newBlock);
                 Workout newWorkout = new Workout(newWorkoutId, newWorkoutName, 1, newBlock);
                 MainActivity.profile.addWorkout(newWorkout);
                 Toast.makeText(getActivity(), "Workout saved", Toast.LENGTH_SHORT).show();

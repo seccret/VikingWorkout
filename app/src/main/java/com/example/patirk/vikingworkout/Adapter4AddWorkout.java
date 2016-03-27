@@ -57,18 +57,15 @@ public class Adapter4AddWorkout extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = view;
         TextView name;
-        ImageView image;
         final int clicked = i;
 
-            v = mInflater.inflate(R.layout.item_exercise_gridview, viewGroup, false);
-            v.setTag(R.id.tvItemGExercise, v.findViewById(R.id.tvItemGExercise));
+            v = mInflater.inflate(R.layout.item_block, viewGroup, false);
 
-        name = (TextView) v.findViewById(R.id.tvItemGExercise);
-        image = (ImageButton) v.findViewById(R.id.ibItemGExercise);
+        name = (TextView) v.findViewById(R.id.tvItemBlock);
         final Item item = getItem(i);
         name.setText(item.name);
 
-        image.setOnClickListener(new View.OnClickListener() {
+        name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentAddWorkout.index = clicked;

@@ -26,13 +26,13 @@ public class FragmentBlockList extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_exercise_list, container, false);
-        final ListView exerciselist = (ListView) rootView.findViewById(R.id.lvExerciseList);
+        final View rootView = inflater.inflate(R.layout.fragment_block_list, container, false);
+        final ListView blocklist = (ListView) rootView.findViewById(R.id.lvBlockList);
 
 
 
-        Adapter4ExerciseList el = new Adapter4ExerciseList(MainActivity.mainActivity, MainActivity.getExercises());
-        exerciselist.setAdapter(el);
+        Adapter4BlockList el = new Adapter4BlockList(MainActivity.mainActivity, MainActivity.profile.getMyBlocks());
+        blocklist.setAdapter(el);
         return rootView;
     }
 }

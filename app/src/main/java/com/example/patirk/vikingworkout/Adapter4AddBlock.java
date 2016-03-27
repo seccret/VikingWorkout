@@ -63,7 +63,6 @@ public class Adapter4AddBlock extends BaseAdapter {
         final int clicked = i;
 
             v = mInflater.inflate(R.layout.item_exercise_gridview, viewGroup, false);
-            v.setTag(R.id.tvItemGExercise, v.findViewById(R.id.tvItemGExercise));
 
         name = (TextView) v.findViewById(R.id.tvItemGExercise);
         image = (ImageButton) v.findViewById(R.id.ibItemGExercise);
@@ -75,7 +74,6 @@ public class Adapter4AddBlock extends BaseAdapter {
         final Item item = getItem(i);
         name.setText(item.name);
 
-        //Fix size of Mipmap
         if (item.id != -1) {
             image.setBackground(item.picture);
         } else{

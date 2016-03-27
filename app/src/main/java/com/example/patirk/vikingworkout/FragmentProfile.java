@@ -97,7 +97,8 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 String nullMuscle = new String();
-                Block b = new Block(-1, "Add Block", null, null, null, nullMuscle);
+                List<Integer> nullRep = new ArrayList<Integer>();
+                Block b = new Block(-1, "Add Block", null, null, nullRep, nullMuscle);
                 MainActivity.fragmentManager.beginTransaction()
                         .replace(R.id.container, FragmentAddWorkout.newInstance(b, b, b, b))
                         .commit();
