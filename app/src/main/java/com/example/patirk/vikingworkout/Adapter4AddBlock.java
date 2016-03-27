@@ -15,15 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Adapter4AddSevenWorkout extends BaseAdapter {
+public class Adapter4AddBlock extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
     private static Block block = null;
-    private static FragmentAddSevenW parent;
+    private static FragmentAddBlock parent;
 
     // Constructor
-    public Adapter4AddSevenWorkout(Context c, FragmentAddSevenW parentFragment, List<Exercise> exerciseList) {
+    public Adapter4AddBlock(Context c, FragmentAddBlock parentFragment, List<Exercise> exerciseList) {
         mInflater = LayoutInflater.from(c);
         parent = parentFragment;
 
@@ -121,7 +121,7 @@ public class Adapter4AddSevenWorkout extends BaseAdapter {
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentAddSevenW.index = clicked;
+                FragmentAddBlock.index = clicked;
                 MainActivity.fragmentManager.beginTransaction()
                         .add(R.id.container, FragmentExerciseList.newInstance(),"exList")
                         .commit();

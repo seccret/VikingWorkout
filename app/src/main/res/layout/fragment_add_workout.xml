@@ -1,86 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/tvBrowseCat"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="New Workout"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:background="@color/material_blue_grey_800"/>
-
-    <ImageView
-        android:id="@+id/ivAddWImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/abc"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="60dp"
-        />
-
-    <EditText
-        android:id="@+id/etAddWName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Add Workout Name"
-        android:ems="10"
-        android:gravity="right"
-        android:layout_toRightOf="@id/ivAddWImage"
-        android:layout_marginTop="60dp"
-        />
-
-    <EditText
-        android:id="@+id/etAddWTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Add tags"
-        android:ems="10"
-        android:gravity="right"
-        android:layout_below="@id/etAddWName"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="50dp"
-        />
-
-    <Spinner
-        android:id="@+id/spAddWTemplate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etAddWTag"></Spinner>
-
-    <View android:id="@+id/separator"
-        android:background="#ffa500"
-        android:layout_width = "fill_parent"
-        android:layout_height="3dip"
-        android:layout_centerVertical ="true"
-        android:layout_below="@id/spAddWTemplate"/>
+    android:weightSum="4"
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/separator">
-        <GridView
-            android:id="@+id/lvAddWList"
+        android:id="@+id/rlAddWBanner"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6">
+        <ImageView
+            android:id="@+id/ivAddWBanner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:numColumns="2">
-        </GridView>
+            android:background="@color/material_blue_grey_800"/>
         <TextView
-            android:id="@+id/tvAddWSave"
+            android:id="@+id/tvAddWHead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save Workout"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="New Workout"
+            android:textColor="#ffffff"
+            android:textSize="22sp"
+            android:fontFamily="sans-serif-bold"
+            android:paddingTop="40dp"
             />
     </RelativeLayout>
+    <EditText
+        android:id="@+id/etAddWWoName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:layout_gravity="center"
+        android:hint="Workout Name"
+        android:singleLine="true"
+        android:maxLength="15"
+        android:capitalize="words"/>
+    <TextView
+        android:id="@+id/tvAddWBlock"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:background="@drawable/headlinebox"
+        android:text="Add Exercises"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:textSize="15dp"/>
 
-</RelativeLayout>
+    <GridView
+        android:id="@+id/gvAddWBlock"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.7"
+        android:numColumns="2"
+        android:paddingLeft="20dp"
+        android:verticalSpacing="10dp"></GridView>
+
+    <ImageView
+        android:id="@+id/ivAddWDone"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/done_button"
+        android:layout_gravity="right"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"/>
+
+</LinearLayout>

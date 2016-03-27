@@ -78,7 +78,7 @@ public class AdapterBrowse extends BaseAdapter {
                 MainActivity.currentWorkout = wo;
                 //Step 3: Go to block fragment
                 MainActivity.fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentWorkout.newInstance())
+                        .replace(R.id.container, FragmentWorkoutSeven.newInstance())
                         .commit();
             }
         });

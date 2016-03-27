@@ -63,6 +63,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         TextView profileName = (TextView) rootView.findViewById(R.id.tvProfileName);
         TextView profileDesc = (TextView) rootView.findViewById(R.id.tvProfileInfo);
         final ImageView plus = (ImageView) rootView.findViewById(R.id.ivProfilePlus);
+        final ImageView wplus = (ImageView) rootView.findViewById(R.id.ivProfilePlusW);
 
         if (pPic != null) {
             profilePic.setImageDrawable(null);
@@ -88,7 +89,17 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 List<String> nullMuscle = new ArrayList<String>();
                 Exercise e = new Exercise(-1, "Add Exercise", null, nullMuscle, null, null);
                 MainActivity.fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentAddSevenW.newInstance(e,e,e,e))
+                        .replace(R.id.container, FragmentAddBlock.newInstance(e, e, e, e))
+                        .commit();
+            }
+        });
+        wplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nullMuscle = new String();
+                Block b = new Block(-1, "Add Block", null, null, null, nullMuscle);
+                MainActivity.fragmentManager.beginTransaction()
+                        .replace(R.id.container, FragmentAddWorkout.newInstance(b, b, b, b))
                         .commit();
             }
         });
