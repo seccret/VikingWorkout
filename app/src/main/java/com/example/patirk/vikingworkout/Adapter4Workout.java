@@ -25,7 +25,7 @@ public class Adapter4Workout extends BaseAdapter {
         mInflater = LayoutInflater.from(c);
 
         for (int exerciseID : exerciseList) {
-            Exercise w = MainActivity.exerciseList.get(exerciseID);
+            Exercise w = MainActivity.getExerciseByID(exerciseID);
             int id = w.getId();
             String name = w.getName();
             Drawable picture = w.getPicture();
@@ -67,7 +67,7 @@ public class Adapter4Workout extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //Step 1: Create new Exercise with items parameters
-                Exercise ex = MainActivity.exerciseList.get(item.id);
+                Exercise ex = MainActivity.getExerciseByID(item.id);
                 //Step 2: Set currentExercise to clicked exercise
                 MainActivity.currentExercise = ex;
                 //Step 3: Go to exercise fragment

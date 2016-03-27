@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,21 +14,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AdapterImageProfile extends BaseAdapter {
+public class AdapterProfileBlock extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
     private static Workout workout = null;
 
     // Constructor
-    public AdapterImageProfile(Context c, List<Workout> workoutList) {
+    public AdapterProfileBlock(Context c, List<Block> blockList) {
         mInflater = LayoutInflater.from(c);
 
-        for (Workout w : workoutList) {
-            int id = w.getId();
-            String name = w.getName();
-            mItems.add(new Item(id, name, 1));
-            //this.workout = w;
+        for (Block b : blockList) {
+            int id = b.getId();
+            String name = b.getName();
+            mItems.add(new Item(id, name));
         }
     }
 
@@ -48,63 +48,53 @@ public class AdapterImageProfile extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = view;
         TextView name;
+        LinearLayout entireRow;
         ImageView image;
         if (v == null) {
             v = mInflater.inflate(R.layout.item_workout, viewGroup, false);
             v.setTag(R.id.tvItemWorkout, v.findViewById(R.id.tvItemWorkout));
         }
+        entireRow = (LinearLayout) v.findViewById(R.id.llItemWorkout);
         name = (TextView) v.findViewById(R.id.tvItemWorkout);
         final Item item = getItem(i);
         name.setText(item.name);
 
-        name.setOnClickListener(new View.OnClickListener() {
+        entireRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Step 1: Create new Workout with items parameters
-                Workout wo = MainActivity.workouts.get(item.id);
+                //Step 1: Find block from profile
+                Block bo = MainActivity.profile.getBlockByID(item.id);
                 //Step 2: Set currentWorkout to clicked workout
-                MainActivity.currentWorkout = wo;
+                MainActivity.currentBlock = bo;
                 //Step 3: Go to workout fragment
-                String tagtemplate = wo.getTagTemplate();
-                if (tagtemplate.equals("Seven Workout")) {
-                    MainActivity.fragmentManager.beginTransaction()
-                            .replace(R.id.container, FragmentWorkoutSeven.newInstance())
-                            .commit();
-                } else if (tagtemplate.equals("List Workout")) {
-                    MainActivity.fragmentManager.beginTransaction()
-                            .replace(R.id.container, FragmentWorkout.newInstance())
-                            .commit();
-                }
+                MainActivity.fragmentManager.beginTransaction()
+                        .replace(R.id.container, FragmentBlock.newInstance())
+                        .commit();
             }
         });
 
-        name.setOnLongClickListener(new View.OnLongClickListener(){
+        entireRow.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick (View v){
-                if (MainActivity.profile.contains(item.id)) {
+                if (MainActivity.profile.containBlock(item.id)) {
                     MainActivity.lastLongClick = item.id;
+                    MainActivity.profile.removeBlock(item.id);
                 } else {
-                    MainActivity.profile.addWorkout(item.id);
-                    Toast.makeText(MainActivity.mainActivity, item.name + " workout added to profile", Toast.LENGTH_SHORT).show();
-                    return true;
+                    Toast.makeText(MainActivity.mainActivity, item.name + " block not found in profile", Toast.LENGTH_SHORT).show();
                 }
                 return false;
             }
-        }
-
-        );
+        });
         return v;
     }
 
     private static class Item {
         public final int id;
         public final String name;
-        public final int picture;
 
-        Item(int id, String name, int picture) {
+        Item(int id, String name) {
             this.id = id;
             this.name = name;
-            this.picture = picture;
         }
     }
 }

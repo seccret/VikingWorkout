@@ -24,13 +24,15 @@ public class Profile implements Serializable{
     private String name;
     private String desc;
     private transient Bitmap picture;
-    private List<Integer> myWorkout;
+    private List<Workout> myWorkout;
+    private List<Block> myBlocks;
 
-    public Profile(long id, String name,String desc, List<Integer> myWorkout) {
+    public Profile(long id, String name,String desc, List<Workout> myWorkout)  {
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.picture = null;
+        this.myBlocks = new ArrayList<>();
         if(myWorkout==null){
             this.myWorkout = new ArrayList<>();
         }else{
@@ -57,27 +59,94 @@ public class Profile implements Serializable{
     public Bitmap getPictureAsBitmap() {
         return picture;
     }
-    public List getMyWorkouts(){
+
+    public List<Workout> getMyWorkouts(){
         return myWorkout;
     }
 
-    public void addWorkout(int wID){
+    public List<Block> getMyBlocks(){
+        return myBlocks;
+    }
+
+    public Workout getWorkoutByID(int wID){
+        for(Workout wo : myWorkout){
+            if(wo.getId() == wID){
+                return wo;
+            }
+        }
+        return myWorkout.get(0);
+    }
+    public Block getBlockByID(int bID){
+        for(Block bo : myBlocks){
+            if(bo.getId() == bID){
+                return bo;
+            }
+        }
+        return myBlocks.get(0);
+    }
+
+    public void addWorkout(Workout wID){
         myWorkout.add(wID);
         MainActivity.saveProfile(MainActivity.mainActivity);
     }
+    public void addBlock(Block bID){
+        myBlocks.add(bID);
+        MainActivity.saveProfile(MainActivity.mainActivity);
+    }
 
-    public void setWorkout(List<Integer> wIDList){
+    public void setWorkout(List<Workout> wIDList){
         myWorkout = wIDList;
     }
 
     public void removeWorkout(int wID){
-        myWorkout.remove((Object)wID);
+        Workout remove=null;
+        for(Workout wo : myWorkout){
+            if(wo.getId() == wID){
+                remove = wo;
+            }
+        }
+        if(remove!=null){
+            myWorkout.remove(remove);
+        }
         MainActivity.saveProfile(MainActivity.mainActivity);
     }
 
-    public boolean contains(int wID){
-        boolean exist = myWorkout.contains(wID);
-        return exist;
+    public void removeBlock(int bID){
+        Block remove=null;
+        for(Block bo : myBlocks){
+            if(bo.getId() == bID){
+                remove = bo;
+            }
+        }
+        if(remove!=null){
+            myWorkout.remove(remove);
+        }
+        MainActivity.saveProfile(MainActivity.mainActivity);
+    }
+
+    public void clearProfile(){
+        List<Workout> w = new ArrayList<>();
+        List<Block> b = new ArrayList<>();
+        this.myWorkout = w;
+        this.myBlocks = b;
+    }
+
+    public boolean containWorkout(int wID){
+        for(Workout wo : myWorkout){
+            if(wo.getId() == wID){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean containBlock(int wID){
+        for(Workout wo : myWorkout){
+            if(wo.getId() == wID){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setName(String newName) {

@@ -184,6 +184,7 @@ public class FragmentWorkout extends android.support.v4.app.Fragment {
 
         Adapter4InceptionBase ai = new Adapter4InceptionBase(MainActivity.mainActivity, blocks);
         lvExercises.setAdapter(ai);
+        lvExercises.setFadingEdgeLength(90);
 
         return rootView;
     }

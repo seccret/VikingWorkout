@@ -23,13 +23,13 @@ public class Adapter4WorkoutSeven extends BaseAdapter {
     private static List<Integer> repetitions = new ArrayList<>();
 
     // Constructor
-    public Adapter4WorkoutSeven(Context c, int b) {
+    public Adapter4WorkoutSeven(Context c, Block b) {
         mInflater = LayoutInflater.from(c);
-        block = MainActivity.blocksList.get(b);
+        this.block = b;
         this.repetitions= block.getRepetitions();
 
         for (int exerciseID : block.getExercises()) {
-            Exercise w = MainActivity.exerciseList.get(exerciseID);
+            Exercise w = MainActivity.getExerciseByID(exerciseID);
             int id = w.getId();
             String name = w.getName();
             Drawable picture = w.getPicture();
@@ -59,6 +59,7 @@ public class Adapter4WorkoutSeven extends BaseAdapter {
         TextView rep;
         TextView time;
         ImageView ivtime;
+        ImageView exercicePic;
         if (v == null) {
             v = mInflater.inflate(R.layout.item_exercise, viewGroup, false);
             v.setTag(R.id.tvItemExercise, v.findViewById(R.id.tvItemExercise));
@@ -67,9 +68,11 @@ public class Adapter4WorkoutSeven extends BaseAdapter {
         rep = (TextView) v.findViewById(R.id.tvItemExerciseRep);
         time = (TextView) v.findViewById(R.id.tvItemTime);
         ivtime = (ImageView) v.findViewById(R.id.ivItemExercise);
+        exercicePic = (ImageView) v.findViewById(R.id.ivItemExercisePic);
         final Item item = getItem(i);
         name.setText(item.name);
         rep.setText("Repetitions " +String.valueOf(this.repetitions.get(i)));
+        exercicePic.setBackground(item.picture);
         time.setVisibility(View.GONE);
         ivtime.setVisibility(View.GONE);
 
@@ -78,7 +81,7 @@ public class Adapter4WorkoutSeven extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //Step 1: Create new Exercise with items parameters
-                Exercise ex = MainActivity.exerciseList.get(item.id);
+                Exercise ex = MainActivity.getExerciseByID(item.id);
                 //Step 2: Set currentExercise to clicked exercise
                 MainActivity.currentExercise = ex;
                 //Step 3: Go to exercise fragment

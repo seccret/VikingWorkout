@@ -3,7 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="70dp"
     android:weightSum="2"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:id="@+id/llItemWorkout"
+    >
 
     <ImageView
         android:id="@+id/ivItemWorkout"

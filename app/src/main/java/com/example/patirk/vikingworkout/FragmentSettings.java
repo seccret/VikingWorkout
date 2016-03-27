@@ -83,7 +83,7 @@ public class FragmentSettings extends android.support.v4.app.Fragment implements
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
-        ExernalFunctions EF = new ExernalFunctions();
+        ExternalFunctions EF = new ExternalFunctions();
 
         Bitmap bp = (Bitmap) data.getExtras().get("data");
         Bitmap circlePic = EF.getCroppedBitmap(bp);

@@ -26,6 +26,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gdata.util.ServiceException;
+
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -39,9 +41,9 @@ public class MainActivity extends ActionBarActivity
     public static Exercise currentExercise = null;
     public static FragmentManager fragmentManager = null;
     public static int lastLongClick, activeWorkoutCounter=0;
-    public static List<Block> blocksList = null;
-    public static List<Exercise> exerciseList = null;
-    public static List<Workout> workouts = null;
+    private static List<Block> blocksList = null;
+    private static List<Exercise> exerciseList = null;
+    private static List<Workout> workouts = null;
 
 
     /**
@@ -60,15 +62,28 @@ public class MainActivity extends ActionBarActivity
         setContentView(R.layout.activity_main);
         mainActivity = this;
 
+        // = savedInstanceState.get("allrecipes");
+        //Toast.makeText(this, st, Toast.LENGTH_SHORT).show();
+        MainActivity.workouts = new ArrayList<Workout>();
         loadExercises();
+
+        loadProfile();
         loadWorkouts();
         loadBlocks();
-      //  List<Integer> l = new ArrayList<>();
-       // profile = new Profile(0,"Olivia", "hej",l);
-        loadProfile();
-        List<Integer> l = new ArrayList<>();
-        profile.setWorkout(l);
-
+       //   List<Workout> l = new ArrayList<>();
+       //  profile = new Profile(1337,"Olivia", "hej",l);
+       // List<Integer> l = new ArrayList<>();
+       // profile.setWorkout(l);
+ //       GoogleSpreadsheet gs = new GoogleSpreadsheet();
+  /*      try{
+            gs.addToSheet();
+            String s = gs.getFeed();
+           // Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+        }catch (IOException IOe){
+        }catch (ServiceException Se){
+        }
+        */
+//
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -157,6 +172,52 @@ public class MainActivity extends ActionBarActivity
 
         return super.onOptionsItemSelected(item);
     }
+
+    public static Exercise getExerciseByID (int id){
+        for(Exercise e : exerciseList){
+            if(e.getId() == id){
+                return e;
+            }
+        }
+        return null;
+    }
+
+    public static Block getBlockByID (int id){
+        for(Block b : blocksList){
+            if(b.getId() == id){
+                return b;
+            }
+        }
+        for(Block b : profile.getMyBlocks()){
+            if(b.getId() == id){
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static Workout getWorkoutByID (int id){
+        for(Workout w : workouts){
+            if(w.getId() == id){
+                return w;
+            }
+        }
+        for(Workout w : profile.getMyWorkouts()){
+            if(w.getId() == id){
+                return w;
+            }
+        }
+        return null;
+    }
+
+    public static List<Exercise> getExercises (){
+        return exerciseList;
+    }
+
+    public static List<Workout> getWorkouts (){
+       return workouts;
+    }
+
     public boolean loadWorkouts(){
         List<Integer> b = new ArrayList<>();
         b.add(0);
@@ -164,12 +225,12 @@ public class MainActivity extends ActionBarActivity
         b.add(2);
         b.add(3);
         MainActivity.workouts = new ArrayList<Workout>();
-        MainActivity.workouts.add(new Workout(0, "Mage","Seven Workout", 1, b));
-        MainActivity.workouts.add(new Workout(1, "Ben", "List Workout", 1, b));
-        MainActivity.workouts.add(new Workout(2, "Rygg", "List Workout", 1, b));
-        MainActivity.workouts.add(new Workout(3, "Armar", "Seven Workout", 1, b));
-        MainActivity.workouts.add(new Workout(4, "Cross-training", "List Workout", 1, b));
-        MainActivity.workouts.add(new Workout(5, "Ultimate situps", "Seven Workout", 1, b));
+        MainActivity.workouts.add(new Workout(0, "Mage", 1, b));
+        MainActivity.workouts.add(new Workout(1, "Ben", 1, b));
+        MainActivity.workouts.add(new Workout(2, "Rygg", 1, b));
+        MainActivity.workouts.add(new Workout(3, "Armar", 1, b));
+        MainActivity.workouts.add(new Workout(4, "Cross-training", 1, b));
+        MainActivity.workouts.add(new Workout(5, "Ultimate situps", 1, b));
 
         return true;
     }
@@ -188,14 +249,15 @@ public class MainActivity extends ActionBarActivity
         r.add(15);
         r.add(15);
         for(int i = 0; i<4; i++) {
+            String muscleGroup = ExternalFunctions.findMuscleGroup(e);
             if (i == 0) {
-                block = new Block(0, "Mage", e, r);
+                block = new Block(0, "Block Name", "Seven Block", e, r, muscleGroup);
             } else if (i == 1) {
-                block = new  Block(1, "Ben", e, r);
+                block = new  Block(1, "Block Name", "List Block", e, r, muscleGroup);
             } else if (i == 2) {
-                block = new  Block(2, "Armar", e, r);
+                block = new  Block(2, "Block Name", "Seven Block", e, r, muscleGroup);
             } else if (i == 3) {
-                block = new  Block(3, "Rygg", e, r);
+                block = new  Block(3, "Block Name", "List Block", e, r, muscleGroup);
             }
             blocksList.add(block);
         }
@@ -204,27 +266,33 @@ public class MainActivity extends ActionBarActivity
         InputStream gifInputStream;
         MainActivity.exerciseList = new ArrayList<Exercise>();
         Exercise exercise = null;
+
         for(int i = 0; i<4; i++) {
+            List<String> muscleList = new ArrayList<>();
             if (i == 0) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.commandos);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                exercise = new Exercise(0, "Commandos", img, gif, "Description");
+                muscleList.add("Arms"); muscleList.add("Chest"); muscleList.add("Abs");
+                exercise = new Exercise(0, "Commandos", "Description", muscleList ,img, gif);
             } else if (i == 1) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.pushups);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                exercise = new Exercise(1, "Push Up", img, gif, "Description");
+                muscleList.add("Butt"); muscleList.add("Legs");
+                exercise = new Exercise(1, "Push Up", "Description", muscleList, img, gif);
             } else if (i == 2) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.situps);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                exercise = new Exercise(2, "Sit Up", img, gif, "Description");
+                muscleList.add("Abs");
+                exercise = new Exercise(2, "Sit Up", "Description", muscleList, img, gif);
             } else if (i == 3) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.running);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                exercise = new Exercise(3, "Runner", img, gif, "Description");
+                muscleList.add("Abs"); muscleList.add("Legs");
+                exercise = new Exercise(3, "Runner", "Description", muscleList, img, gif);
             }
             exerciseList.add(exercise);
         }
@@ -276,16 +344,20 @@ public class MainActivity extends ActionBarActivity
         MainActivity.profile = deserializer.deserialzeProfile();
 
         //Load Profile-pic
-        Bitmap bitbit = ExernalFunctions.getImageBitmap(this, "profile", "JPEG");
-        Bitmap loadedImage = ExernalFunctions.getCroppedBitmap(bitbit);
-        profile.setProfilePicture(loadedImage);
+      //  Bitmap bitbit = ExternalFunctions.getImageBitmap(this, "profile", "JPEG");
+     //   Bitmap loadedImage = ExternalFunctions.getCroppedBitmap(bitbit);
+     //   profile.setProfilePicture(loadedImage);
         Toast.makeText(this, "Loading profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
+
       }
+
 
     public static void saveProfile(Context c) {
         Serializer serializer = new Serializer();
         serializer.serializeProfile();
-        ExernalFunctions.saveImage(mainActivity, profile.getPictureAsBitmap(), "profile","JPEG");
+        ExternalFunctions.saveImage(mainActivity,profile.getPictureAsBitmap(),"profile","JPEG");
+        Toast.makeText(mainActivity, "Saving profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
+
     }
 
 }

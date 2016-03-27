@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AdapterImage3 extends BaseAdapter {
+public class AdapterTrainingPlan extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
     private static Block block = null;
 
     // Constructor
-    public AdapterImage3(Context c, List<Weekday> weekdayList) {
+    public AdapterTrainingPlan(Context c, List<Weekday> weekdayList) {
         mInflater = LayoutInflater.from(c);
 
         for (Weekday w : weekdayList) {

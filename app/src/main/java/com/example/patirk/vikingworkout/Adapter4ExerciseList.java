@@ -65,7 +65,7 @@ public class Adapter4ExerciseList extends BaseAdapter {
             public void onClick(View v) {
                 int index = FragmentAddSevenW.index;
                 List<Exercise> eList = FragmentAddSevenW.e;
-                eList.set(index, MainActivity.exerciseList.get(item.id));
+                eList.set(index, MainActivity.getExerciseByID(item.id));
                 MainActivity.fragmentManager.beginTransaction()
                         .remove(FragmentExerciseList.fragment)
                         .commit();

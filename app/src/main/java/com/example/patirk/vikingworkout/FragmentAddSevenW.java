@@ -4,10 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.mortbay.jetty.Main;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +22,7 @@ import java.util.List;
  */
 public class FragmentAddSevenW extends android.support.v4.app.Fragment {
     public static List<Exercise> e;
+    public static List<Block> b;
     public static FragmentAddSevenW fragment;
     public static int index = 0;
     public static List<Integer> newRepetitions = new ArrayList<>();
@@ -44,52 +50,50 @@ public class FragmentAddSevenW extends android.support.v4.app.Fragment {
         final EditText woName = (EditText) rootView.findViewById(R.id.etAddSName);
         final ImageView done = (ImageView) rootView.findViewById(R.id.ivSevenDone);
         final GridView exercises = (GridView) rootView.findViewById(R.id.gvAddSevenExercises);
-        final EditText woTag = (EditText) rootView.findViewById(R.id.etAddSTag);
+        //final EditText woTag = (EditText) rootView.findViewById(R.id.etAddSTag);
+
         final EditText blockName = (EditText) rootView.findViewById(R.id.etAddSBlockName);
-        final ImageView blockdone = (ImageView) rootView.findViewById(R.id.ivSevenBlockDone);
 
+        final Spinner blockTTag = (Spinner) rootView.findViewById(R.id.spinner);
+        String[] items = new String[]{"Seven Block", "List Block"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.mainActivity, android.R.layout.simple_spinner_dropdown_item, items);
+        blockTTag.setAdapter(adapter);
 
-        blockdone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //  Toast.makeText(getActivity(), "Block saved", Toast.LENGTH_SHORT).show();
-
-            }
-        });
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int newBlockId = MainActivity.blocksList.size();
+                String sProfileID = String.valueOf(MainActivity.profile.getId());
+                String sBlockID = String.valueOf(MainActivity.profile.getMyBlocks().size());
+                int newBlockId = Integer.valueOf(sProfileID + sBlockID);
                 String newBlockName = blockName.getText().toString();
+                TextView blockTag = (TextView) blockTTag.getSelectedView();
+                String newBlockTTag = blockTag.getText().toString();
 
-
-                List<Integer> newExercise = new ArrayList<>();
+                List<Integer> newExercise = new ArrayList<>(4);
                 for (int i = 0; i < e.size(); i++) {
                     newExercise.add(e.get(i).getId());
                 }
-
-                List<Integer> r = new ArrayList<Integer>();
+                List<Integer> r = new ArrayList<Integer>(4);
                 r.add(newRepetitions.get(0));
                 r.add(newRepetitions.get(1));
                 r.add(newRepetitions.get(2));
                 r.add(newRepetitions.get(3));
-                Block newBlock = new Block(newBlockId, newBlockName, newExercise, r);
-                Toast.makeText(getActivity(), String.valueOf(newBlock.getExercises().size()), Toast.LENGTH_SHORT).show();
-                MainActivity.blocksList.add(newBlock);
-
+                String newMuscleGroup = ExternalFunctions.findMuscleGroup(newExercise);
+                Block newBlock = new Block(newBlockId, newBlockName, newBlockTTag, newExercise, r, newMuscleGroup);
+                MainActivity.profile.addBlock(newBlock);
                 Toast.makeText(getActivity(), "Block saved", Toast.LENGTH_SHORT).show();
-              //  Toast.makeText(getActivity(), "Block saved", Toast.LENGTH_SHORT).show();
-                int newId = MainActivity.workouts.size();
+
+                int newId = MainActivity.profile.getMyWorkouts().size();
                 String newName = woName.getText().toString();
                 int newPic = 1;
-                String newTag = woTag.getText().toString();
 
                 List<Integer> b = new ArrayList<>();
                 b.add(newBlock.getId());
+                Workout newWorkout = new Workout(newId, newName, newPic, b);
 
-                Workout newWorkout = new Workout(newId, newName,newTag, newPic, b);
                 Toast.makeText(getActivity(), "Workout saved", Toast.LENGTH_SHORT).show();
-                MainActivity.workouts.add(newWorkout);
+                MainActivity.profile.addWorkout(newWorkout);
+                MainActivity.saveProfile(MainActivity.mainActivity);
             }
         });
 

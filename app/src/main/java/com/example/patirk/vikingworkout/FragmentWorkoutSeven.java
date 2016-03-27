@@ -56,21 +56,26 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
         final TextView resume = (TextView) rootView.findViewById(R.id.tvsevenResume);
         final Workout workout = MainActivity.currentWorkout;
         final List<Integer> blocks = workout.getBlocks();
+        final Adapter4InceptionBase a = new Adapter4InceptionBase(MainActivity.mainActivity, blocks);
+
 
         woname.setText(workout.getName());
 
         play.setOnClickListener(new View.OnClickListener() {
+            int currentBlock = 0;
+
             @Override
             public void onClick(View v) {
                 llTime.setVisibility(View.VISIBLE);
                 pausestop.setVisibility(View.VISIBLE);
                 banner.setVisibility(View.GONE);
+                Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, MainActivity.getBlockByID(blocks.get(currentBlock)));
+                lvExercises.setAdapter(ai);
                 // banner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.45f));
                 CountDownTimer timer;
-                long millisInFuture = 30000; //30 seconds
+                long millisInFuture = 3000; //30 seconds
                 long countDownInterval = 1000; //1 second
                 new CountDownTimer(millisInFuture, countDownInterval) {
-
                     public void onTick(long millisUntilFinished) {
                         if (isPaused || isCanceled) {
                             //If the user request to cancel or paused the
@@ -92,6 +97,13 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                         llTime.setVisibility(View.GONE);
                         pausestop.setVisibility(View.GONE);
                         banner.setVisibility(View.VISIBLE);
+                        if (currentBlock < blocks.size() - 1) {
+                            ++currentBlock;
+                            Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, MainActivity.getBlockByID(blocks.get(currentBlock)));
+                            lvExercises.setAdapter(ai);
+                        } else {
+                            lvExercises.setAdapter(a);
+                        }
                     }
                 }.start();
             }
@@ -142,6 +154,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                         llTime.setVisibility(View.GONE);
                         pausestop.setVisibility(View.GONE);
                         banner.setVisibility(View.VISIBLE);
+                        lvExercises.setAdapter(a);
                     }
                 }.start();
             }
@@ -156,11 +169,12 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 llTime.setVisibility(View.GONE);
                 pausestop.setVisibility(View.GONE);
                 banner.setVisibility(View.VISIBLE);
+                lvExercises.setAdapter(a);
+                
             }
         });
 
-        Adapter4InceptionBase ai = new Adapter4InceptionBase(MainActivity.mainActivity, blocks);
-        lvExercises.setAdapter(ai);
+        lvExercises.setAdapter(a);
 
         return rootView;
     }

@@ -50,7 +50,7 @@ public class FragmentTrainingPlan extends android.support.v4.app.Fragment {
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setTextColor(getResources().getColor(R.color.white));
                 ListView lv = (ListView) rootView.findViewById(R.id.lvThisWeek);
-                AdapterImage3 AI = new AdapterImage3(rootView.getContext(), weekdays);
+                AdapterTrainingPlan AI = new AdapterTrainingPlan(rootView.getContext(), weekdays);
                 lv.setAdapter(AI);
             }
         });
@@ -65,7 +65,7 @@ public class FragmentTrainingPlan extends android.support.v4.app.Fragment {
                 statisticButton.setBackgroundResource(R.drawable.button_unselected);
                 statisticButton.setTextColor(getResources().getColor(R.color.white));
                 ListView lv = (ListView) rootView.findViewById(R.id.lvThisWeek);
-                AdapterImage3 AI = new AdapterImage3(rootView.getContext(), weekdays);
+                AdapterTrainingPlan AI = new AdapterTrainingPlan(rootView.getContext(), weekdays);
                 lv.setAdapter(AI);
 
 
@@ -103,17 +103,18 @@ public class FragmentTrainingPlan extends android.support.v4.app.Fragment {
         e.add(2);
         e.add(3);
         blocks = new ArrayList<Block>();
-        blocks.add(new Block(0, "Power Block", e, r));
-        blocks.add(new Block(1, "Core", e, r));
-        blocks.add(new Block(2, "Arms", e, r));
-        blocks.add(new Block(3, "Rest", e, r));
-        blocks.add(new Block(4, "Cross-training", e, r));
-        blocks.add(new Block(5, "Ultimate situps", e, r));
-        blocks.add(new Block(6, "Rest", e, r));
-
+        String muscleGroup = ExternalFunctions.findMuscleGroup(e);
+        blocks.add(new Block(0, "Power Block", "Seven Block",  e, r, muscleGroup));
+     /*   blocks.add(new Block(1, "Core", e, r,muscleGroup));
+        blocks.add(new Block(2, "Arms", e, r,muscleGroup));
+        blocks.add(new Block(3, "Rest", e, r,muscleGroup));
+        blocks.add(new Block(4, "Cross-training", e, r, muscleGroup));
+        blocks.add(new Block(5, "Ultimate situps", e, r, muscleGroup));
+        blocks.add(new Block(6, "Rest", e, r, muscleGroup));
+    */
         ListView lv = (ListView) rootView.findViewById(R.id.lvThisWeek);
         registerForContextMenu(lv);
-        AdapterImage3 AI = new AdapterImage3(rootView.getContext(), weekdays);
+        AdapterTrainingPlan AI = new AdapterTrainingPlan(rootView.getContext(), weekdays);
         lv.setAdapter(AI);
 
 
