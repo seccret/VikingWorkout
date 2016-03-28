@@ -55,7 +55,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         rootView.findViewById(R.id.tvItemWorkout);
-        ListView lvProfile;
+        final ListView lvProfile;
         Drawable pPic = MainActivity.profile.getPicture();
         String pName = MainActivity.profile.getName();
         String pDesc = MainActivity.profile.getDesc();

@@ -83,6 +83,8 @@ public class AdapterProfileWorkout extends BaseAdapter {
             }
         });
 
+
+
         name.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick (View v){

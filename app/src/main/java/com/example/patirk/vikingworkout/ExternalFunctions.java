@@ -67,6 +67,45 @@ public class ExternalFunctions {
         }
     }
 
+    public static String findMuscleGroupWo(List<Integer> blockIntList){
+        List<String> muscleGroupList = new ArrayList<>();
+        List<Block> blockList = new ArrayList<>();
+        for(int i=0; i<blockIntList.size(); i++){
+            muscleGroupList.add(MainActivity.getBlockByID(blockIntList.get(i)).getMuscleGroup());
+        }
+
+   /*     for(int i=0; i<exerciseList.size(); i++){
+            List<String> exerciseMuscleList = exerciseList.get(i).getMuscle();
+            muscleList.addAll(exerciseMuscleList);
+        }
+        Toast.makeText(MainActivity.mainActivity, "checklist2 = "+muscleList.size(), Toast.LENGTH_SHORT).show();
+     */   List<String> checkSingle = new ArrayList<>();;
+        for(String s : muscleGroupList){
+            checkSingle.add(s);
+        }
+        checkSingle.removeAll(Collections.singleton(checkSingle.get(0)));
+        Toast.makeText(MainActivity.mainActivity, "checklist = "+checkSingle, Toast.LENGTH_SHORT).show();
+        if(checkSingle.size() == 0){
+            return muscleGroupList.get(0);
+        }else if(muscleGroupList.contains("Arms") && muscleGroupList.contains("Butt") ||
+                muscleGroupList.contains("Arms") && muscleGroupList.contains("Legs") ||
+                muscleGroupList.contains("Shoulders") && muscleGroupList.contains("Butt") ||
+                muscleGroupList.contains("Shoulders") && muscleGroupList.contains("Legs") ||
+                muscleGroupList.contains("Chest") && muscleGroupList.contains("Butt") ||
+                muscleGroupList.contains("Chest") && muscleGroupList.contains("Legs") ||
+                muscleGroupList.contains("Back") && muscleGroupList.contains("Butt") ||
+                muscleGroupList.contains("Back") && muscleGroupList.contains("Legs") ||
+                muscleGroupList.contains("Abs") && muscleGroupList.contains("Butt") ||
+                muscleGroupList.contains("Abs") && muscleGroupList.contains("Legs")||
+                muscleGroupList.contains("Lower body") && muscleGroupList.contains("Upper body")
+                ){
+            return "Cross";
+        }else if(muscleGroupList.contains("Butt") && muscleGroupList.contains("Legs")){
+            return "Lower body";
+        }else{
+            return "Upper body";
+        }
+    }
     public static Bitmap getCroppedBitmap(Bitmap bitmap) {
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
                 bitmap.getHeight(), Bitmap.Config.ARGB_8888);

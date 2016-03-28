@@ -12,7 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -55,12 +54,16 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
         final TextView cancel = (TextView) rootView.findViewById(R.id.tvsevenCancel);
         final TextView resume = (TextView) rootView.findViewById(R.id.tvsevenResume);
         final TextView playnext = (TextView) rootView.findViewById(R.id.tvsevenPlayNext);
+        final TextView musclegroup = (TextView) rootView.findViewById(R.id.tvSevenMuscleGroup);
+        final TextView madeby = (TextView) rootView.findViewById(R.id.tvSevenMadeBy);
         final Workout workout = MainActivity.currentWorkout;
         final List<Integer> blocks = workout.getBlocks();
         final Adapter4InceptionBase a = new Adapter4InceptionBase(MainActivity.mainActivity, blocks);
 
 
         woname.setText(workout.getName());
+        musclegroup.setText(workout.getMuscleGroup());
+        madeby.setText("Made By:" + workout.getMadeBy());
 
         play.setOnClickListener(new View.OnClickListener() {
             int currentBlock = 0;

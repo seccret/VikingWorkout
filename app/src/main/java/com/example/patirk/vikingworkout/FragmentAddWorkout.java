@@ -12,6 +12,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.internet.NewsAddress;
+
 /**
  * Created by olivia on 2015-10-24.
  */
@@ -55,7 +57,9 @@ public class FragmentAddWorkout extends android.support.v4.app.Fragment {
                 for (int i = 0; i < b.size(); i++) {
                     newBlock.add(b.get(i).getId());
                 }
-                Workout newWorkout = new Workout(newWorkoutId, newWorkoutName, 1, newBlock);
+                String newmuscleGroup = ExternalFunctions.findMuscleGroupWo(newBlock);
+                String newMadeBy = MainActivity.profile.getName();
+                Workout newWorkout = new Workout(newWorkoutId, newWorkoutName, 1, newBlock, newmuscleGroup, newMadeBy);
                 MainActivity.profile.addWorkout(newWorkout);
                 Toast.makeText(getActivity(), "Workout saved", Toast.LENGTH_SHORT).show();
                 MainActivity.saveProfile(MainActivity.mainActivity);

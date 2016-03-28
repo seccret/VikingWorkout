@@ -81,7 +81,7 @@ public class AdapterProfileBlock extends BaseAdapter {
                     MainActivity.profile.removeBlock(item.id);
                 } else {
                     Toast.makeText(MainActivity.mainActivity, item.name + " block not found in profile", Toast.LENGTH_SHORT).show();
-                }
+                    }
                 return false;
             }
         });

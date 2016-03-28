@@ -119,7 +119,7 @@ public class Profile implements Serializable{
             }
         }
         if(remove!=null){
-            myWorkout.remove(remove);
+            myBlocks.remove(remove);
         }
         MainActivity.saveProfile(MainActivity.mainActivity);
     }
@@ -141,8 +141,8 @@ public class Profile implements Serializable{
     }
 
     public boolean containBlock(int wID){
-        for(Workout wo : myWorkout){
-            if(wo.getId() == wID){
+        for(Block bl : myBlocks){
+            if(bl.getId() == wID){
                 return true;
             }
         }

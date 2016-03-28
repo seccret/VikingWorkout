@@ -18,12 +18,16 @@ public class Workout implements Serializable {
     private int picture;
 
     public List<Integer> blocks;
+    private String musclegroup;
+    private String madeby;
 
-    public Workout(int id, String name, int picture, List<Integer> blocks) {
+    public Workout(int id, String name, int picture, List<Integer> blocks, String musclegroup, String madeby) {
         this.id = id;
         this.name = name;
         this.blocks = blocks;
         this.picture = picture;
+        this.musclegroup = musclegroup;
+        this.madeby = madeby;
     }
 
     public int getId() {
@@ -40,6 +44,14 @@ public class Workout implements Serializable {
 
     public List<Integer> getBlocks() {
         return blocks;
+    }
+
+    public String getMuscleGroup() {
+        return musclegroup;
+    }
+
+    public String getMadeBy() {
+        return madeby;
     }
 
     public void addBlock(int i) {

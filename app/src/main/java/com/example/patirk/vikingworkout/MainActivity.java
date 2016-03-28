@@ -68,10 +68,10 @@ public class MainActivity extends ActionBarActivity
         loadExercises();
 
         loadProfile();
-        loadWorkouts();
+//        loadWorkouts();
         loadBlocks();
-       //   List<Workout> l = new ArrayList<>();
-       //  profile = new Profile(1337,"Olivia", "hej",l);
+        //  List<Workout> l = new ArrayList<>();
+        // profile = new Profile(1337,"Olivia", "hej",l);
        // List<Integer> l = new ArrayList<>();
        // profile.setWorkout(l);
  //       GoogleSpreadsheet gs = new GoogleSpreadsheet();
@@ -127,11 +127,7 @@ public class MainActivity extends ActionBarActivity
                 fragmentManager.beginTransaction().replace(R.id.container, FragmentSettings.newInstance())
                         .commit();
                 break;
-            case 5:
-                mTitle = "Training Plan";
-                fragmentManager.beginTransaction().replace(R.id.container, FragmentTrainingPlan.newInstance())
-                        .commit();
-                break;
+
         }
     }
 
@@ -224,13 +220,14 @@ public class MainActivity extends ActionBarActivity
         b.add(1);
         b.add(2);
         b.add(3);
+        String muscleGroup = ExternalFunctions.findMuscleGroupWo(b);
         MainActivity.workouts = new ArrayList<Workout>();
-        MainActivity.workouts.add(new Workout(0, "Mage", 1, b));
-        MainActivity.workouts.add(new Workout(1, "Ben", 1, b));
-        MainActivity.workouts.add(new Workout(2, "Rygg", 1, b));
-        MainActivity.workouts.add(new Workout(3, "Armar", 1, b));
-        MainActivity.workouts.add(new Workout(4, "Cross-training", 1, b));
-        MainActivity.workouts.add(new Workout(5, "Ultimate situps", 1, b));
+        MainActivity.workouts.add(new Workout(0, "Mage", 1, b, muscleGroup, "Viking"));
+        MainActivity.workouts.add(new Workout(1, "Ben", 1, b, muscleGroup, "Viking"));
+        MainActivity.workouts.add(new Workout(2, "Rygg", 1, b, muscleGroup, "Viking"));
+        MainActivity.workouts.add(new Workout(3, "Armar", 1, b, muscleGroup, "Viking"));
+        MainActivity.workouts.add(new Workout(4, "Cross-training", 1, b, muscleGroup, "Viking"));
+        MainActivity.workouts.add(new Workout(5, "Ultimate situps", 1, b, muscleGroup, "Viking"));
 
         return true;
     }
