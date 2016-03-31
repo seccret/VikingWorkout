@@ -20,10 +20,11 @@ public class AdapterProfileWorkout extends BaseAdapter {
     private static Workout workout = null;
 
     // Constructor
-    public AdapterProfileWorkout(Context c, List<Workout> workoutList) {
+    public AdapterProfileWorkout(Context c, List<Integer> workoutList) {
         mInflater = LayoutInflater.from(c);
 
-        for (Workout w : workoutList) {
+        for (int workoutId : workoutList) {
+            Workout w = MainActivity.getWorkoutByID(workoutId);
             int id = w.getId();
             String name = w.getName();
             mItems.add(new Item(id, name, 1));

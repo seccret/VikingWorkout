@@ -64,6 +64,14 @@ public class Profile implements Serializable{
         return myWorkout;
     }
 
+    public List<Integer> getMyWorkoutsAsID(){
+        List<Integer> workoutIdList = new ArrayList<>();
+        for(Workout w : myWorkout){
+            workoutIdList.add(w.getId());
+        }
+        return workoutIdList;
+    }
+
     public List<Block> getMyBlocks(){
         return myBlocks;
     }

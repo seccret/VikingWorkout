@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by olivia on 2016-01-02.
@@ -15,20 +19,17 @@ public class CustomPagerAdapter extends PagerAdapter {
 
     Context mContext;
     LayoutInflater mLayoutInflater;
+    List<Day> mResources;
 
     public CustomPagerAdapter(Context context) {
         mContext = context;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mResources = MainActivity.getDays();
     }
-
-    int[] mResources = {
-            R.drawable.banner4,
-            R.drawable.banner3,
-    };
 
     @Override
     public int getCount() {
-        return mResources.length;
+        return mResources.size();
     }
 
     @Override
@@ -40,8 +41,10 @@ public class CustomPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View itemView = mLayoutInflater.inflate(R.layout.item_pager, container, false);
 
-        ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
-        imageView.setImageResource(mResources[position]);
+
+        ListView agenda = (ListView) itemView.findViewById(R.id.lvAgenda);
+        AdapterProfileWorkout AI = new AdapterProfileWorkout(itemView.getContext(), mResources.get(position).getWorkouts());
+        agenda.setAdapter(AI);
 
         container.addView(itemView);
 

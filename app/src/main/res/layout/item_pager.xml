@@ -4,8 +4,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/imageView" />
+    <ListView
+        android:id="@+id/lvAgenda"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:verticalSpacing="2dp"
+        android:stretchMode="columnWidth"
+        />
 </LinearLayout>

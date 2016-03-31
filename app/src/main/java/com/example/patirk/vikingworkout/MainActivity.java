@@ -39,11 +39,13 @@ public class MainActivity extends ActionBarActivity
     public static Workout currentWorkout = null;
     public static Block currentBlock = null;
     public static Exercise currentExercise = null;
+    public static Day currentDay = null;
     public static FragmentManager fragmentManager = null;
     public static int lastLongClick, activeWorkoutCounter=0;
     private static List<Block> blocksList = null;
     private static List<Exercise> exerciseList = null;
     private static List<Workout> workouts = null;
+    private static List<Day> days = null;
 
 
     /**
@@ -65,11 +67,13 @@ public class MainActivity extends ActionBarActivity
         // = savedInstanceState.get("allrecipes");
         //Toast.makeText(this, st, Toast.LENGTH_SHORT).show();
         MainActivity.workouts = new ArrayList<Workout>();
+        MainActivity.days = new ArrayList<Day>();
         loadExercises();
 
         loadProfile();
-//        loadWorkouts();
         loadBlocks();
+        loadWorkouts();
+        loadDays();
         //  List<Workout> l = new ArrayList<>();
         // profile = new Profile(1337,"Olivia", "hej",l);
        // List<Integer> l = new ArrayList<>();
@@ -191,7 +195,19 @@ public class MainActivity extends ActionBarActivity
         }
         return null;
     }
-
+    public static Day getDayByID (int dateid) {
+        for (Day d : days) {
+            if (d.getDateId() == dateid) {
+                return d;
+            }
+        }
+        for(Day d : getDays()){
+            if(d.getDateId() == dateid){
+                return d;
+            }
+        }
+        return null;
+    }
     public static Workout getWorkoutByID (int id){
         for(Workout w : workouts){
             if(w.getId() == id){
@@ -212,6 +228,26 @@ public class MainActivity extends ActionBarActivity
 
     public static List<Workout> getWorkouts (){
        return workouts;
+    }
+
+    public static List<Day> getDays (){
+        return days;
+    }
+
+    public boolean loadDays(){
+        List<Integer> w = new ArrayList<>();
+        w.add(0);
+        w.add(1);
+        w.add(2);
+        w.add(3);
+        MainActivity.days = new ArrayList<Day>();
+        MainActivity.days.add(new Day(0, w));
+        MainActivity.days.add(new Day(1, w));
+        MainActivity.days.add(new Day(2, w));
+        MainActivity.days.add(new Day(3, w));
+        MainActivity.days.add(new Day(4, w));
+        MainActivity.days.add(new Day(5, w));
+        return true;
     }
 
     public boolean loadWorkouts(){

@@ -141,12 +141,34 @@
                 android:id="@+id/lvWorkouts"
                 android:layout_width="343dp"
                 android:layout_height="match_parent"
+                android:visibility="gone"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:verticalSpacing="2dp"
                 android:stretchMode="columnWidth"
-                android:layout_alignParentTop="true"
                 />
+            <LinearLayout
+                android:id="@+id/llProfileAgenda"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <android.support.v4.view.ViewPager
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </android.support.v4.view.ViewPager>
+
+                <GridView
+                    android:id="@+id/gvProfileCalendar"
+                    android:layout_width="343dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:verticalSpacing="2dp"
+                    android:numColumns="7"/>
+
+            </LinearLayout>
         </LinearLayout>
 
 

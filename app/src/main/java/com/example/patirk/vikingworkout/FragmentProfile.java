@@ -11,16 +11,28 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import org.mortbay.jetty.Main;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Created by Patirk on 03/09/2015.
@@ -55,15 +67,21 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         rootView.findViewById(R.id.tvItemWorkout);
-        final ListView lvProfile;
+        final ListView lv = (ListView) rootView.findViewById(R.id.lvWorkouts);
+        final ImageView profilePic = (ImageView) rootView.findViewById(R.id.ivProfileImage);
+        final TextView profileName = (TextView) rootView.findViewById(R.id.tvProfileName);
+        final TextView profileDesc = (TextView) rootView.findViewById(R.id.tvProfileInfo);
+        final ImageView plus = (ImageView) rootView.findViewById(R.id.ivProfilePlus);
+        final ImageView wplus = (ImageView) rootView.findViewById(R.id.ivProfilePlusW);
+        final ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.pager);
+        final SlidingUpPanelLayout supl = (SlidingUpPanelLayout) rootView.findViewById(R.id.sliding_layout);
+        final Button myAgendaButton = (Button) rootView.findViewById(R.id.bToggleLeft);
+        final Button myWorkoutButton = (Button) rootView.findViewById(R.id.bToggleMiddle);
+        final Button myBlockButton = (Button) rootView.findViewById(R.id.bToggleRight);
+
         Drawable pPic = MainActivity.profile.getPicture();
         String pName = MainActivity.profile.getName();
         String pDesc = MainActivity.profile.getDesc();
-        final ImageView profilePic = (ImageView) rootView.findViewById(R.id.ivProfileImage);
-        TextView profileName = (TextView) rootView.findViewById(R.id.tvProfileName);
-        TextView profileDesc = (TextView) rootView.findViewById(R.id.tvProfileInfo);
-        final ImageView plus = (ImageView) rootView.findViewById(R.id.ivProfilePlus);
-        final ImageView wplus = (ImageView) rootView.findViewById(R.id.ivProfilePlusW);
 
         if (pPic != null) {
             profilePic.setImageDrawable(null);
@@ -72,16 +90,13 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         profileName.setText(pName);
         profileDesc.setText(pDesc);
 
-        final Button myAgendaButton = (Button) rootView.findViewById(R.id.bToggleLeft);
-        final Button myWorkoutButton = (Button) rootView.findViewById(R.id.bToggleMiddle);
-        final Button myBlockButton = (Button) rootView.findViewById(R.id.bToggleRight);
-
         //Create list of users workout
-        final List<Workout> myWorkout = MainActivity.profile.getMyWorkouts();
+        final List<Integer> myWorkout = MainActivity.profile.getMyWorkoutsAsID();
 
-        final SlidingUpPanelLayout supl = (SlidingUpPanelLayout) rootView.findViewById(R.id.sliding_layout);
         final SlidingUpPanelLayout.PanelState wut = supl.getPanelState();
         final String wut2 = wut.toString();
+
+        viewPager.setAdapter(new CustomPagerAdapter(getContext()));
 
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +129,8 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 myAgendaButton.setTextColor(Color.parseColor("#fba500"));
                 myBlockButton.setTextColor(Color.parseColor("#c1c1c1"));
                 myWorkoutButton.setTextColor(Color.parseColor("#c1c1c1"));
+                lv.setVisibility(View.GONE);
+                viewPager.setVisibility(View.VISIBLE);
                 if (supl.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
                     Toast.makeText(MainActivity.mainActivity, "Expanded", Toast.LENGTH_SHORT).show();
                     profilePic.setVisibility(View.INVISIBLE);
@@ -134,7 +151,8 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 myWorkoutButton.setTextColor(Color.parseColor("#fba500"));
                 myBlockButton.setTextColor(Color.parseColor("#c1c1c1"));
                 myAgendaButton.setTextColor(Color.parseColor("#c1c1c1"));
-                ListView lv = (ListView) rootView.findViewById(R.id.lvWorkouts);
+                lv.setVisibility(View.VISIBLE);
+                viewPager.setVisibility(View.GONE);
                 AdapterProfileWorkout AI = new AdapterProfileWorkout(rootView.getContext(), myWorkout);
                 lv.setAdapter(AI);
             }
@@ -149,7 +167,8 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 myBlockButton.setTextColor(Color.parseColor("#fba500"));
                 myAgendaButton.setTextColor(Color.parseColor("#c1c1c1"));
                 myWorkoutButton.setTextColor(Color.parseColor("#c1c1c1"));
-                ListView lv = (ListView) rootView.findViewById(R.id.lvWorkouts);
+                lv.setVisibility(View.VISIBLE);
+                viewPager.setVisibility(View.GONE);
                 AdapterProfileBlock AI = new AdapterProfileBlock(rootView.getContext(), MainActivity.profile.getMyBlocks());
                 lv.setAdapter(AI);
             }
