@@ -241,12 +241,12 @@ public class MainActivity extends ActionBarActivity
         w.add(2);
         w.add(3);
         MainActivity.days = new ArrayList<Day>();
-        MainActivity.days.add(new Day(0, w));
-        MainActivity.days.add(new Day(1, w));
-        MainActivity.days.add(new Day(2, w));
-        MainActivity.days.add(new Day(3, w));
-        MainActivity.days.add(new Day(4, w));
-        MainActivity.days.add(new Day(5, w));
+        MainActivity.days.add(new Day(16892, w));
+        MainActivity.days.add(new Day(16893, w));
+        MainActivity.days.add(new Day(16894, w));
+        MainActivity.days.add(new Day(16895, w));
+        MainActivity.days.add(new Day(16896, w));
+        MainActivity.days.add(new Day(16897, w));
         return true;
     }
 
