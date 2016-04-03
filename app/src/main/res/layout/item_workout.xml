@@ -53,10 +53,10 @@
             android:background="@drawable/time2"
             android:layout_gravity="center"/>
         <TextView
-            android:id="@+id/tvWorkoutDifficulity"
+            android:id="@+id/tvWorkoutMusclegroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="EXTREME"
+            android:text="BP"
             android:textSize="13sp"
             android:fontFamily="sans-serif-condensed"
             android:textColor="#8f8f8f"
@@ -68,10 +68,10 @@
             android:background="@drawable/time2"
             android:layout_gravity="center"/>
         <TextView
-            android:id="@+id/tvWorkouttemplate"
+            android:id="@+id/tvWorkoutMadeBy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="7 MINUTE"
+            android:text="Name"
             android:textSize="13sp"
             android:fontFamily="sans-serif-condensed"
             android:textColor="#8f8f8f"

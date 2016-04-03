@@ -27,7 +27,8 @@ public class AdapterProfileBlock extends BaseAdapter {
         for (Block b : blockList) {
             int id = b.getId();
             String name = b.getName();
-            mItems.add(new Item(id, name));
+            String musclegroup = b.getMuscleGroup();
+            mItems.add(new Item(id, name, musclegroup));
         }
     }
 
@@ -48,6 +49,7 @@ public class AdapterProfileBlock extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = view;
         TextView name;
+        TextView muscleGroup;
         LinearLayout entireRow;
         ImageView image;
         if (v == null) {
@@ -56,8 +58,10 @@ public class AdapterProfileBlock extends BaseAdapter {
         }
         entireRow = (LinearLayout) v.findViewById(R.id.llItemWorkout);
         name = (TextView) v.findViewById(R.id.tvItemWorkout);
+        muscleGroup = (TextView) v.findViewById(R.id.tvWorkoutMusclegroup);
         final Item item = getItem(i);
         name.setText(item.name);
+        muscleGroup.setText(item.musclegroup);
 
         entireRow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,10 +95,12 @@ public class AdapterProfileBlock extends BaseAdapter {
     private static class Item {
         public final int id;
         public final String name;
+        public final String musclegroup;
 
-        Item(int id, String name) {
+        Item(int id, String name, String musclegroup) {
             this.id = id;
             this.name = name;
+            this.musclegroup = musclegroup;
         }
     }
 }

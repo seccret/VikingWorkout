@@ -27,7 +27,9 @@ public class AdapterProfileWorkout extends BaseAdapter {
             Workout w = MainActivity.getWorkoutByID(workoutId);
             int id = w.getId();
             String name = w.getName();
-            mItems.add(new Item(id, name, 1));
+            String musclegroup = w.getMuscleGroup();
+            String madeby = w.getMadeBy();
+            mItems.add(new Item(id, name, 1, musclegroup, madeby));
             //this.workout = w;
         }
     }
@@ -49,14 +51,19 @@ public class AdapterProfileWorkout extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = view;
         TextView name;
-        ImageView image;
+        TextView muscleGroup;
+        TextView madeBy;
         if (v == null) {
             v = mInflater.inflate(R.layout.item_workout, viewGroup, false);
             v.setTag(R.id.tvItemWorkout, v.findViewById(R.id.tvItemWorkout));
         }
         name = (TextView) v.findViewById(R.id.tvItemWorkout);
+        muscleGroup = (TextView) v.findViewById(R.id.tvWorkoutMusclegroup);
+        madeBy = (TextView) v.findViewById(R.id.tvWorkoutMadeBy);
         final Item item = getItem(i);
         name.setText(item.name);
+        muscleGroup.setText(item.musclegroup);
+        madeBy.setText(item.madeby);
 
         name.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,11 +116,15 @@ public class AdapterProfileWorkout extends BaseAdapter {
         public final int id;
         public final String name;
         public final int picture;
+        public final String musclegroup;
+        public final String madeby;
 
-        Item(int id, String name, int picture) {
+        Item(int id, String name, int picture, String musclegroup, String madeby) {
             this.id = id;
             this.name = name;
             this.picture = picture;
+            this.musclegroup = musclegroup;
+            this.madeby = madeby;
         }
     }
 }

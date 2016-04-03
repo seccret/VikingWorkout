@@ -39,13 +39,14 @@ public class MainActivity extends ActionBarActivity
     public static Workout currentWorkout = null;
     public static Block currentBlock = null;
     public static Exercise currentExercise = null;
-    public static Day currentDay = null;
     public static FragmentManager fragmentManager = null;
     public static int lastLongClick, activeWorkoutCounter=0;
     private static List<Block> blocksList = null;
     private static List<Exercise> exerciseList = null;
     private static List<Workout> workouts = null;
     private static List<Day> days = null;
+    private static List<Week> weeks = null;
+    private static List<Month> months = null;
 
 
     /**
@@ -68,12 +69,16 @@ public class MainActivity extends ActionBarActivity
         //Toast.makeText(this, st, Toast.LENGTH_SHORT).show();
         MainActivity.workouts = new ArrayList<Workout>();
         MainActivity.days = new ArrayList<Day>();
-        loadExercises();
+        MainActivity.weeks = new ArrayList<Week>();
+        MainActivity.months = new ArrayList<Month>();
 
+        loadExercises();
         loadProfile();
         loadBlocks();
         loadWorkouts();
         loadDays();
+        loadWeeks();
+        loadMonths();
         //  List<Workout> l = new ArrayList<>();
         // profile = new Profile(1337,"Olivia", "hej",l);
        // List<Integer> l = new ArrayList<>();
@@ -234,6 +239,43 @@ public class MainActivity extends ActionBarActivity
         return days;
     }
 
+    public static List<Week> getWeeks (){
+        return weeks;
+    }
+
+    public static List<Month> getMonths (){
+        return months;
+    }
+
+    public boolean loadMonths(){
+        List<Integer> we = new ArrayList<>();
+        we.add(0);
+        we.add(1);
+        we.add(2);
+        we.add(3);
+        MainActivity.months = new ArrayList<Month>();
+        MainActivity.months.add(new Month(1604, we));
+        MainActivity.months.add(new Month(1605, we));
+        return true;
+    }
+
+    public boolean loadWeeks(){
+        List<Integer> d = new ArrayList<>();
+        d.add(0);
+        d.add(2);
+        d.add(5);
+        d.add(6);
+        d.add(4);
+        d.add(1);
+        d.add(3);
+        MainActivity.weeks = new ArrayList<Week>();
+        MainActivity.weeks.add(new Week(1613, d));
+        MainActivity.weeks.add(new Week(1614, d));
+        MainActivity.weeks.add(new Week(1615, d));
+        MainActivity.weeks.add(new Week(1616, d));
+        return true;
+    }
+
     public boolean loadDays(){
         List<Integer> w = new ArrayList<>();
         w.add(0);
@@ -247,6 +289,7 @@ public class MainActivity extends ActionBarActivity
         MainActivity.days.add(new Day(16895, w));
         MainActivity.days.add(new Day(16896, w));
         MainActivity.days.add(new Day(16897, w));
+        MainActivity.days.add(new Day(16898, w));
         return true;
     }
 

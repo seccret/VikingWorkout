@@ -43,13 +43,14 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_workout_seven, container, false);
-        final TextView tvTime = (TextView) rootView.findViewById(R.id.tvSevenTime);
+
         final ListView lvExercises = (ListView) rootView.findViewById(R.id.lvSevenList);
         final LinearLayout llTime = (LinearLayout) rootView.findViewById(R.id.llSevenTime);
-        final ImageView play = (ImageView) rootView.findViewById(R.id.ivSevenBanner);
-        final TextView woname = (TextView) rootView.findViewById(R.id.tvSevenName);
         final LinearLayout pausestop = (LinearLayout) rootView.findViewById(R.id.llSevenPlay);
+        final ImageView play = (ImageView) rootView.findViewById(R.id.ivSevenBanner);
         final RelativeLayout banner = (RelativeLayout) rootView.findViewById(R.id.rlWorkoutSeven);
+        final TextView tvTime = (TextView) rootView.findViewById(R.id.tvSevenTime);
+        final TextView woname = (TextView) rootView.findViewById(R.id.tvSevenName);
         final TextView pause = (TextView) rootView.findViewById(R.id.tvSevenPause);
         final TextView cancel = (TextView) rootView.findViewById(R.id.tvsevenCancel);
         final TextView resume = (TextView) rootView.findViewById(R.id.tvsevenResume);
@@ -100,7 +101,8 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                         if (currentBlock < blocks.size() - 1) {
                             ++currentBlock;
                             setTest(currentBlock);
-                            tvTime.setText("Done!");
+                            tvTime.setTextSize(50);
+                            tvTime.setText("BLOCK " + currentBlock + "/" + blocks.size() + "\n COMPLETED!");
                             Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, MainActivity.getBlockByID(blocks.get(currentBlock)));
                             lvExercises.setAdapter(ai);
                             playnext.setVisibility(View.VISIBLE);
@@ -134,10 +136,8 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 //Specify the current state is not paused and canceled.
                 isPaused = false;
                 isCanceled = false;
-
                 resume.setVisibility(View.GONE);
                 pause.setVisibility(View.VISIBLE);
-
                 //Initialize a new CountDownTimer instance
                 long millisInFuture = timeRemaining;
                 long countDownInterval = 1000;
@@ -161,12 +161,13 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                     public void onFinish() {
                         if (test < blocks.size() - 1) {
                             ++test;
-                            tvTime.setText("Done!");
                             Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, MainActivity.getBlockByID(blocks.get(test)));
                             lvExercises.setAdapter(ai);
                             playnext.setVisibility(View.VISIBLE);
                             pause.setVisibility(View.GONE);
                             cancel.setVisibility(View.GONE);
+                            tvTime.setTextSize(50);
+                            tvTime.setText("BLOCK " + test + "/" + blocks.size() + "\n COMPLETED!");
                         } else {
                             llTime.setVisibility(View.GONE);
                             pausestop.setVisibility(View.GONE);
@@ -198,6 +199,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 playnext.setVisibility(View.GONE);
                 pause.setVisibility(View.VISIBLE);
                 cancel.setVisibility(View.VISIBLE);
+                tvTime.setTextSize(110);
                 CountDownTimer timer;
                 long millisInFuture = 10000; //30 seconds
                 long countDownInterval = 1000; //1 second
@@ -221,12 +223,13 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                     public void onFinish() {
                         if (test < blocks.size() - 1) {
                             ++test;
-                            tvTime.setText("Done!");
                             Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, MainActivity.getBlockByID(blocks.get(test)));
                             lvExercises.setAdapter(ai);
                             playnext.setVisibility(View.VISIBLE);
                             pause.setVisibility(View.GONE);
                             cancel.setVisibility(View.GONE);
+                            tvTime.setTextSize(50);
+                            tvTime.setText("BLOCK "+test+"/"+blocks.size()+"\n COMPLETED!");
                         } else {
                             llTime.setVisibility(View.GONE);
                             pausestop.setVisibility(View.GONE);
