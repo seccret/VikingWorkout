@@ -9,10 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
+import com.facebook.*;
+import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -46,7 +44,7 @@ public class FragmentLogin extends android.support.v4.app.Fragment {
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         final LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button);
-        loginButton.setReadPermissions("user_friends");
+        loginButton.setReadPermissions("public_profile, user_friends");
         // If using in a fragment
         loginButton.setFragment(this);
         // Other app specific specialization
@@ -57,6 +55,10 @@ public class FragmentLogin extends android.support.v4.app.Fragment {
             public void onSuccess(LoginResult loginResult) {
                 // App code
                 Toast.makeText(MainActivity.mainActivity, "logged in", Toast.LENGTH_SHORT).show();
+                com.facebook.Profile.fetchProfileForCurrentAccessToken();
+                String name = com.facebook.Profile.getCurrentProfile().getName();
+                ;
+                MainActivity.loadProfile(name, Profile.getCurrentProfile().getProfilePictureUri(500,500).toString());
                // LoginManager.getInstance().logInWithReadPermissions(MainActivity.mainActivity, Arrays.asList("public_profile", "user_friends"));
                 MainActivity.removeFragment("login");
             }
@@ -71,6 +73,12 @@ public class FragmentLogin extends android.support.v4.app.Fragment {
             public void onError(FacebookException exception) {
                 // App code
                 Toast.makeText(MainActivity.mainActivity, "FB: Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginManager.getInstance().logInWithReadPermissions(MainActivity.mainActivity, Arrays.asList("public_profile", "user_friends"));
             }
         });
         return view;

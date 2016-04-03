@@ -10,7 +10,7 @@ import java.io.ObjectInputStream;
 
 public class Deserializer {
 
-    public Profile deserialzeProfile() {
+    public Profile deserialzeProfile(String pName) {
 
         Profile prof;
 
@@ -20,13 +20,13 @@ public class Deserializer {
             ObjectInputStream ois = new ObjectInputStream(fin);
             prof = (Profile) ois.readObject();
             ois.close();
-
+            Toast.makeText(MainActivity.mainActivity, "created profile: '" + pName + "'..", Toast.LENGTH_SHORT).show();
             return prof;
 
         } catch (Exception ex) {
             ex.printStackTrace();
-            Toast.makeText(MainActivity.mainActivity, "No user found", Toast.LENGTH_SHORT).show();
-            prof = new Profile(1337, "Unknown", "No description available",null);
+            Toast.makeText(MainActivity.mainActivity, "Profile created: "+pName, Toast.LENGTH_SHORT).show();
+            prof = new Profile(1337, pName, "No description available",null);
             return prof;
         }
     }

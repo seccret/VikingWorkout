@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Movie;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -29,19 +31,27 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.facebook.Profile;
 import com.google.gdata.util.ServiceException;
+
+import org.json.JSONObject;
 
 
 public class MainActivity extends ActionBarActivity
@@ -49,8 +59,9 @@ public class MainActivity extends ActionBarActivity
 
     //For facebook
     public static CallbackManager callbackManager;
-
-    public static Profile profile = null;
+    public static Profile fbProfile;
+    public static String fbID;
+    public static com.example.patirk.vikingworkout.Profile profile = null;
     public static Activity mainActivity = null;
     public static FileInputStream fis = null;
     public static FileOutputStream fos = null;
@@ -84,13 +95,19 @@ public class MainActivity extends ActionBarActivity
         FacebookSdk.sdkInitialize(getApplicationContext());
         showHashKey(this);
         callbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().logInWithReadPermissions(MainActivity.mainActivity, Arrays.asList("public_profile", "user_friends"));
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         // App code
-                        Toast.makeText(MainActivity.mainActivity, "logged in", Toast.LENGTH_SHORT).show();
-                        // LoginManager.getInstance().logInWithReadPermissions(MainActivity.mainActivity, Arrays.asList("public_profile", "user_friends"));
+                        Toast.makeText(MainActivity.mainActivity, "in loggad via facebook", Toast.LENGTH_SHORT).show();
+                        Profile.fetchProfileForCurrentAccessToken();
+                        String name =Profile.getCurrentProfile().getName();
+                        fbProfile = Profile.getCurrentProfile();
+                        fbID = Profile.getCurrentProfile().getId();
+                        loadProfile(name, Profile.getCurrentProfile().getId());
+
                         MainActivity.removeFragment("login");
                     }
 
@@ -112,7 +129,6 @@ public class MainActivity extends ActionBarActivity
         //Toast.makeText(this, st, Toast.LENGTH_SHORT).show();
         MainActivity.workouts = new ArrayList<Workout>();
         loadExercises();
-        loadProfile();
         loadWorkouts();
         loadBlocks();
        //   List<Workout> l = new ArrayList<>();
@@ -420,15 +436,38 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
-    public void loadProfile(){
+    public static void loadProfile(String pName, String uri){
         Deserializer deserializer = new Deserializer();
-        MainActivity.profile = deserializer.deserialzeProfile();
+        MainActivity.profile = deserializer.deserialzeProfile(pName);
+        /*try {
+            URL url = new URL(uri);
+            Bitmap bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            MainActivity.profile.setProfilePicture(bitmap);
+        }catch(IOException e){
 
+        }*/
         //Load Profile-pic
-      //  Bitmap bitbit = ExternalFunctions.getImageBitmap(this, "profile", "JPEG");
-     //   Bitmap loadedImage = ExternalFunctions.getCroppedBitmap(bitbit);
-     //   profile.setProfilePicture(loadedImage);
-        Toast.makeText(this, "Loading profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
+        /*Bitmap bitbit = ExternalFunctions.getImageBitmap(MainActivity.mainActivity, "profile", "JPEG");
+        InputStream in = (InputStream) pURL.getContent();
+        Bitmap  bitbit = BitmapFactory.decodeStream(in);
+        if(bitbit != null) {
+            Bitmap loadedImage = ExternalFunctions.getCroppedBitmap(bitbit);
+            profile.setProfilePicture(loadedImage);
+        }
+
+        try {
+            URL imgUrl = new URL("http://graph.facebook.com/"
+                    + pId + "/picture?type=large");
+
+            InputStream in = (InputStream) imgUrl.getContent();
+            Bitmap  bitmap = BitmapFactory.decodeStream(in);
+            profile.setProfilePicture(bitmap);
+            //Bitmap bitmap = BitmapFactory.decodeStream(imgUrl      // tried this also
+            //.openConnection().getInputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+        Toast.makeText(MainActivity.mainActivity, "Loading profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
 
       }
 
@@ -441,7 +480,7 @@ public class MainActivity extends ActionBarActivity
 
     }
 
-    public  void showHashKey(Context context) {
+    public void showHashKey(Context context) {
         try {
             PackageInfo info = context.getPackageManager().getPackageInfo("com.example.patirk.vikingworkout",
                     PackageManager.GET_SIGNATURES);

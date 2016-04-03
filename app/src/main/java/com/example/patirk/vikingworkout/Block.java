@@ -28,7 +28,6 @@ public class Block implements Serializable {
         this.templateTag = templateTag;
         this.exercises = exercises;
         this.muscleGroup = ExternalFunctions.findMuscleGroup(exercises);
-        Toast.makeText(MainActivity.mainActivity, "Muskelgrupp = " + muscleGroup, Toast.LENGTH_SHORT).show();
         if(repetitions.size()!=4){
             this.repetitions = new ArrayList<>(4);
             this.repetitions.add(0);

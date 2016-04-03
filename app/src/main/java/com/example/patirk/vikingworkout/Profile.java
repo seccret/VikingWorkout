@@ -53,8 +53,11 @@ public class Profile implements Serializable{
     }
 
     public Drawable getPicture() {
-        Drawable drawable = new BitmapDrawable(picture);
-        return drawable;
+        if(picture != null) {
+            Drawable drawable = new BitmapDrawable(picture);
+            return drawable;
+        }
+        return null;
     }
     public Bitmap getPictureAsBitmap() {
         return picture;

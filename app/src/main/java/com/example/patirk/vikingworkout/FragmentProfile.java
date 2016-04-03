@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.widget.ProfilePictureView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
@@ -59,15 +60,14 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         Drawable pPic = MainActivity.profile.getPicture();
         String pName = MainActivity.profile.getName();
         String pDesc = MainActivity.profile.getDesc();
-        final ImageView profilePic = (ImageView) rootView.findViewById(R.id.ivProfileImage);
+        final ProfilePictureView profilePic = (ProfilePictureView) rootView.findViewById(R.id.ivProfileImage);
         TextView profileName = (TextView) rootView.findViewById(R.id.tvProfileName);
         TextView profileDesc = (TextView) rootView.findViewById(R.id.tvProfileInfo);
         final ImageView plus = (ImageView) rootView.findViewById(R.id.ivProfilePlus);
 
-        if (pPic != null) {
-            profilePic.setImageDrawable(null);
-            profilePic.setBackground(pPic);
-        }
+        ((ProfilePictureView)rootView.findViewById(R.id.ivProfileImage)).setProfileId(
+                MainActivity.fbID
+        );
         profileName.setText(pName);
         profileDesc.setText(pDesc);
 
