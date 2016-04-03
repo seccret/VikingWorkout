@@ -45,7 +45,6 @@ public class ExternalFunctions {
             checkSingle.add(s);
         }
         checkSingle.removeAll(Collections.singleton(checkSingle.get(0)));
-        Toast.makeText(MainActivity.mainActivity, "checklist = "+checkSingle, Toast.LENGTH_SHORT).show();
         if(checkSingle.size() == 0){
             return muscleList.get(0);
         }else if(muscleList.contains("Arms") && muscleList.contains("Butt") ||

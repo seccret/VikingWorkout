@@ -2,6 +2,9 @@ package com.example.patirk.vikingworkout;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Movie;
@@ -12,6 +15,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,15 +27,28 @@ import android.widget.Toast;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.google.gdata.util.ServiceException;
 
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    //For facebook
+    public static CallbackManager callbackManager;
 
     public static Profile profile = null;
     public static Activity mainActivity = null;
@@ -62,11 +80,38 @@ public class MainActivity extends ActionBarActivity
         setContentView(R.layout.activity_main);
         mainActivity = this;
 
+        //facebook
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        showHashKey(this);
+        callbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        // App code
+                        Toast.makeText(MainActivity.mainActivity, "logged in", Toast.LENGTH_SHORT).show();
+                        // LoginManager.getInstance().logInWithReadPermissions(MainActivity.mainActivity, Arrays.asList("public_profile", "user_friends"));
+                        MainActivity.removeFragment("login");
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // App code
+                        Toast.makeText(MainActivity.mainActivity, "FB: Cancel", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                        Toast.makeText(MainActivity.mainActivity, "FB: Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
         // = savedInstanceState.get("allrecipes");
         //Toast.makeText(this, st, Toast.LENGTH_SHORT).show();
         MainActivity.workouts = new ArrayList<Workout>();
         loadExercises();
-
         loadProfile();
         loadWorkouts();
         loadBlocks();
@@ -74,15 +119,7 @@ public class MainActivity extends ActionBarActivity
        //  profile = new Profile(1337,"Olivia", "hej",l);
        // List<Integer> l = new ArrayList<>();
        // profile.setWorkout(l);
- //       GoogleSpreadsheet gs = new GoogleSpreadsheet();
-  /*      try{
-            gs.addToSheet();
-            String s = gs.getFeed();
-           // Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-        }catch (IOException IOe){
-        }catch (ServiceException Se){
-        }
-        */
+
 //
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -96,11 +133,36 @@ public class MainActivity extends ActionBarActivity
     }
 
     @Override
+    public void onResume(){
+        super.onResume();
+
+        // Logs 'install' and 'app activate' App Events.
+        AppEventsLogger.activateApp(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Logs 'app deactivate' App Event.
+        AppEventsLogger.deactivateApp(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .commit();
+        fragmentManager.beginTransaction()
+                .add(R.id.container, FragmentLogin.newInstance(),"login")
                 .commit();
     }
 
@@ -133,6 +195,12 @@ public class MainActivity extends ActionBarActivity
                         .commit();
                 break;
         }
+    }
+
+    public static void removeFragment(String fragName){
+        fragmentManager.beginTransaction()
+                .remove(MainActivity.fragmentManager.findFragmentByTag(fragName))
+                .commit();
     }
 
     public void restoreActionBar() {
@@ -219,7 +287,7 @@ public class MainActivity extends ActionBarActivity
     }
 
     public boolean loadWorkouts(){
-        List<Integer> b = new ArrayList<>();
+        /*List<Integer> b = new ArrayList<>();
         b.add(0);
         b.add(1);
         b.add(2);
@@ -231,9 +299,22 @@ public class MainActivity extends ActionBarActivity
         MainActivity.workouts.add(new Workout(3, "Armar", 1, b));
         MainActivity.workouts.add(new Workout(4, "Cross-training", 1, b));
         MainActivity.workouts.add(new Workout(5, "Ultimate situps", 1, b));
+        */
+        GoogleSpreadsheet gs = new GoogleSpreadsheet();
+        try{
+            //gs.addToSheet();
+            String s = gs.getFeed();
+            // Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+        }catch (IOException | ServiceException IOe){
+        }
 
         return true;
     }
+
+    public static void addWorkout(Workout w){
+        MainActivity.workouts.add(w);
+    }
+
     public void loadBlocks(){
         InputStream gifInputStream;
         MainActivity.blocksList = new ArrayList<Block>();
@@ -279,7 +360,7 @@ public class MainActivity extends ActionBarActivity
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.pushups);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                muscleList.add("Butt"); muscleList.add("Legs");
+                muscleList.add("Arms"); muscleList.add("Chest");
                 exercise = new Exercise(1, "Push Up", "Description", muscleList, img, gif);
             } else if (i == 2) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.situps);
@@ -358,6 +439,30 @@ public class MainActivity extends ActionBarActivity
         ExternalFunctions.saveImage(mainActivity,profile.getPictureAsBitmap(),"profile","JPEG");
         Toast.makeText(mainActivity, "Saving profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
 
+    }
+
+    public  void showHashKey(Context context) {
+        try {
+            PackageInfo info = context.getPackageManager().getPackageInfo("com.example.patirk.vikingworkout",
+                    PackageManager.GET_SIGNATURES);
+            for (android.content.pm.Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+
+                String sign= Base64.encodeToString(md.digest(), Base64.DEFAULT);
+                Log.e("KeyHash:", sign);
+                //  Toast.makeText(getApplicationContext(),sign,     Toast.LENGTH_LONG).show();
+            }
+            Log.d("KeyHash:", "****------------***");
+            Log.d("KeyHash:", "****------------***");
+            Log.d("KeyHash:", "****------------***");
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.d("KeyHash:", "****------------***");
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            Log.d("KeyHash:", "****------------***");
+            e.printStackTrace();
+        }
     }
 
 }

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Facebook values -->
+    <string name="facebook_app_id">1727400264164449</string>
+
     <string name="app_name">VikingWorkout</string>
     <string name="title_section1">Search</string>
     <string name="title_section2">My Workouts</string>

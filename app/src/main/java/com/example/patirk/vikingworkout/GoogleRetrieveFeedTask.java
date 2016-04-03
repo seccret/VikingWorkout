@@ -34,7 +34,6 @@ public class GoogleRetrieveFeedTask extends AsyncTask<String, Void, SpreadsheetF
             service.setProtocolVersion(SpreadsheetService.Versions.V3);
 
             URL metafeedUrl = new URL(sheetURL);
-            Log.d("----PATRIK HERE!!", "2. YOU MADE IT THIS FAR!!----");
             //Log.d("--Untz Untz--", service.get);
             SpreadsheetFeed feed = service.getFeed(metafeedUrl, SpreadsheetFeed.class);
 
@@ -49,10 +48,6 @@ public class GoogleRetrieveFeedTask extends AsyncTask<String, Void, SpreadsheetF
 
                 String count = String.valueOf(entry.getTitle().getPlainText().charAt(1));
                 int CurrentRow = Integer.valueOf(count);
-                Log.d("----PATRIK HERE!!", "row is " + String.valueOf(row));
-                Log.d("----PATRIK HERE!!", "CurrentRow is " + String.valueOf(CurrentRow));
-                Log.d("----PATRIK HERE!!", entry.getTitle().getPlainText() + " With " + entry.getPlainTextContent());
-
                 if (CurrentRow != row) {
                     wExercises = new ArrayList<>();
                     row=CurrentRow;
@@ -63,18 +58,22 @@ public class GoogleRetrieveFeedTask extends AsyncTask<String, Void, SpreadsheetF
                     } else if (entry.getTitle().getPlainText().contains("B")) {
                         wName = entry.getPlainTextContent();
                     } else if (entry.getTitle().getPlainText().contains("C")) {
-                        wPic = Integer.valueOf(entry.getPlainTextContent());
+                        wPic = 1; //Integer.valueOf(entry.getPlainTextContent());
                     } else if (entry.getTitle().getPlainText().contains("D")) {
-                        String[] sExercises = entry.getPlainTextContent().split(";");
+                        for (int k=0; k<4; k++) {
+                            wExercises.add(Integer.valueOf(k));
+                        }
+                        /*String[] sExercises = entry.getPlainTextContent().split(";");
                         for (String exercise : sExercises) {
                             wExercises.add(Integer.valueOf(exercise));
                         }
-                       // newWorkout = new Workout(wId, wName, wPic, wExercises);
-                       // MainActivity.workouts.add(newWorkout);
+                        */
+                        newWorkout = new Workout(wId, wName, wPic, wExercises);
+                        MainActivity.addWorkout(newWorkout);
                     }
                 }
             }
-            Log.d("PATRIK HERE!!", "5.YOU MADE IT THIS FAR!! enteries = "+String.valueOf(i));
+
             return feed;
         } catch (Exception e) {
             this.exception = e;

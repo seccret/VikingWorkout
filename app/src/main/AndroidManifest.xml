@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Hash key (facebook and release: Bmce+9aHdOoVtE7fS3B07tfj7bc= -->
+<!-- Facebook app id: 1727400264164449 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.patirk.vikingworkout" >
     <!-- Internet permission -->
     <uses-permission
         android:name="android.permission.INTERNET" />
-    <uses-permission
-        android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission
-        android:name="android.permission.USE_CREDENTIALS" />
-    <uses-permission
-        android:name="android.permission.MANAGE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
 
     <!-- Permission to write to external storage -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -21,6 +16,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <activity
             android:name=".MainActivity"
             android:hardwareAccelerated="false">
@@ -30,6 +26,12 @@
 
             </intent-filter>
         </activity>
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/app_name" />
     </application>
+
 
 </manifest>
