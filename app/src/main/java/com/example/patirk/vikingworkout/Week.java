@@ -10,9 +10,9 @@ import java.util.List;
 public class Week implements Serializable {
     private int week_id;
 
-    public List<Integer> days;
+    public List<Day> days;
 
-    public Week(int week_id, List<Integer> days) {
+    public Week(int week_id, List<Day> days) {
         this.week_id = week_id;
         this.days = days;
     }
@@ -21,15 +21,15 @@ public class Week implements Serializable {
         return week_id;
     }
 
-    public List<Integer> getDay() {
+    public List<Day> getDays() {
         return days;
     }
 
-    public void addDay(int i) {
-        this.days.add(i);
+    public void addDay(Day d) {
+        this.days.add(d);
     }
 
-    public void setDay(List<Integer> listD) {
+    public void setDay(List<Day> listD) {
         this.days = new ArrayList<>();
         this.days = listD;
     }

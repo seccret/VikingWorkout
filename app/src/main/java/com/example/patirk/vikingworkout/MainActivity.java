@@ -76,7 +76,6 @@ public class MainActivity extends ActionBarActivity
         loadProfile();
         loadBlocks();
         loadWorkouts();
-        loadDays();
         loadWeeks();
         loadMonths();
         //  List<Workout> l = new ArrayList<>();
@@ -260,36 +259,40 @@ public class MainActivity extends ActionBarActivity
     }
 
     public boolean loadWeeks(){
-        List<Integer> d = new ArrayList<>();
-        d.add(0);
-        d.add(2);
-        d.add(5);
-        d.add(6);
-        d.add(4);
-        d.add(1);
-        d.add(3);
-        MainActivity.weeks = new ArrayList<Week>();
-        MainActivity.weeks.add(new Week(1613, d));
-        MainActivity.weeks.add(new Week(1614, d));
-        MainActivity.weeks.add(new Week(1615, d));
-        MainActivity.weeks.add(new Week(1616, d));
-        return true;
-    }
-
-    public boolean loadDays(){
+        List<Integer> workouts = new ArrayList<>();
+        workouts.add(2);
+        workouts.add(1);
+        workouts.add(2);
+        workouts.add(1);
         List<Integer> w = new ArrayList<>();
-        w.add(0);
-        w.add(1);
         w.add(2);
-        w.add(3);
+        w.add(2);
+        w.add(2);
+        w.add(2);
         MainActivity.days = new ArrayList<Day>();
-        MainActivity.days.add(new Day(16892, w));
-        MainActivity.days.add(new Day(16893, w));
-        MainActivity.days.add(new Day(16894, w));
-        MainActivity.days.add(new Day(16895, w));
-        MainActivity.days.add(new Day(16896, w));
-        MainActivity.days.add(new Day(16897, w));
-        MainActivity.days.add(new Day(16898, w));
+        List<Day> d0 = new ArrayList<Day>();
+        d0.add(new Day(16892, workouts));
+        d0.add(new Day(16893, w));
+        d0.add(new Day(16894, workouts));
+        d0.add(new Day(16895, w));
+        d0.add(new Day(16896, workouts));
+        d0.add(new Day(16897, w));
+        d0.add(new Day(16898, workouts));
+        List<Day> d1 = new ArrayList<Day>();
+        d1.add(new Day(16899, w));
+        d1.add(new Day(16900, w));
+        d1.add(new Day(16901, w));
+        d1.add(new Day(16902, w));
+        d1.add(new Day(16903, w));
+        d1.add(new Day(16904, w));
+        d1.add(new Day(16905, w));
+        days.addAll(d0);
+        days.addAll(d1);
+        MainActivity.weeks = new ArrayList<Week>();
+        MainActivity.weeks.add(new Week(1613, d0));
+        MainActivity.weeks.add(new Week(1614, d1));
+        MainActivity.weeks.add(new Week(1615, d0));
+        MainActivity.weeks.add(new Week(1616, d1));
         return true;
     }
 

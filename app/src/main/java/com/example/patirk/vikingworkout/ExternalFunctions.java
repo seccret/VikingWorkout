@@ -18,10 +18,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Patirk on 23/10/2015.
@@ -106,6 +109,35 @@ public class ExternalFunctions {
             return "Upper body";
         }
     }
+
+    public static int getStartEpochOfMonth (int checkEpoch){
+        Date date = new Date(((long) checkEpoch *24*60*60*1000));
+        SimpleDateFormat format = new SimpleDateFormat("MM", Locale.US);
+        int month = Integer.valueOf(format.format(date));
+        int newMonth = month;
+        while (newMonth == month){
+            checkEpoch--;
+            date = new Date(((long) checkEpoch *24*60*60*1000));
+            format = new SimpleDateFormat("MM", Locale.US);
+            newMonth = Integer.valueOf(format.format(date));
+        }
+        return checkEpoch+1;
+    }
+
+    public static int getEndEpochOfMonth (int checkEpoch){
+        Date date = new Date(((long) checkEpoch *24*60*60*1000));
+        SimpleDateFormat format = new SimpleDateFormat("MM", Locale.US);
+        int month = Integer.valueOf(format.format(date));
+        int newMonth = month;
+        while (newMonth == month){
+            checkEpoch++;
+            date = new Date(((long) checkEpoch *24*60*60*1000));
+            format = new SimpleDateFormat("MM", Locale.US);
+            newMonth = Integer.valueOf(format.format(date));
+        }
+        return checkEpoch-1;
+    }
+
     public static Bitmap getCroppedBitmap(Bitmap bitmap) {
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
                 bitmap.getHeight(), Bitmap.Config.ARGB_8888);
