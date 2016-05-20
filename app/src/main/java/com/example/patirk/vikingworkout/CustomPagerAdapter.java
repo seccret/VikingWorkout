@@ -10,8 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.mortbay.jetty.Main;
-
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,20 +25,19 @@ public class CustomPagerAdapter extends PagerAdapter {
     Context mContext;
     LayoutInflater mLayoutInflater;
     List<Week> weekList;
-    List<Day> dayList;
-    List<Day> dayList2;
+    List<Day> amountOfDayList;
     int weekPosition = 0;
 
     public CustomPagerAdapter(Context context) {
         mContext = context;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        dayList = MainActivity.getDays();
+        amountOfDayList = MainActivity.getDays();
         weekList = MainActivity.getWeeks();
         }
 
     @Override
     public int getCount() {
-        return dayList.size();
+        return amountOfDayList.size();
     }
 
     @Override
@@ -52,38 +50,28 @@ public class CustomPagerAdapter extends PagerAdapter {
         View itemView = mLayoutInflater.inflate(R.layout.item_pager, container, false);
         ListView agenda = (ListView) itemView.findViewById(R.id.lvAgenda);
         TextView dateAgenda = (TextView) itemView.findViewById(R.id.tvAgenda);
-        int dayIndex = position%7;
-        Toast.makeText(MainActivity.mainActivity,String.valueOf(dayIndex), Toast.LENGTH_SHORT).show();
-        int weekIndex = -1;
-        int tempPosition = position;
-        while (tempPosition>=0){
-            weekIndex++;
-            tempPosition -= 7; // == tempPosition = tempPosition - 7;
-        }
-        Toast.makeText(MainActivity.mainActivity,String.valueOf(weekIndex), Toast.LENGTH_SHORT).show();
 
-        dayList2 = weekList.get(weekIndex).getDays();
-        Date date = new Date(((long) dayList2.get(dayIndex).getDateId() *24*60*60*1000));
+        List<Integer> agendaDates = new ArrayList<>();
+        long tday = System.currentTimeMillis()/(60*60*24*1000);
+        DecimalFormat rDFormat = new DecimalFormat("#");
+        int todaysDate = Integer.valueOf(rDFormat.format(tday));
+        Toast.makeText(MainActivity.mainActivity,String.valueOf(todaysDate), Toast.LENGTH_SHORT).show();
+        for (int i = todaysDate; i<todaysDate+14 ; i++) {
+            agendaDates.add(i);
+        }
+
+        List<Day> dayList = new ArrayList<>();
+        for (int dayId : agendaDates) {
+            Day d = MainActivity.getDayByID(dayId);
+            dayList.add(d);
+        }
+
+        Date date = new Date(((long) dayList.get(position).getDateId() *24*60*60*1000));
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         String text = format.format(date);
         dateAgenda.setText(text);
 
-
-        List<Integer> thisMonth = new ArrayList<>();
-        int epochStartOfMonth = ExternalFunctions.getStartEpochOfMonth(dayList2.get(dayIndex).getDateId());
-        int epochEndOfMonth = ExternalFunctions.getEndEpochOfMonth(dayList2.get(dayIndex).getDateId());
-        for (int i = epochStartOfMonth; i<epochEndOfMonth ; i++) {
-            thisMonth.add(i);
-        }
-
-        List<Day> dayList3 = new ArrayList<>();
-        for (int dayId : thisMonth) {
-            Day d = MainActivity.getDayByID(dayId);
-            dayList3.add(d);
-        }
-
-
-        AdapterProfileWorkout AI = new AdapterProfileWorkout(itemView.getContext(), dayList3.get(dayIndex).getWorkouts());
+        AdapterProfileWorkout AI = new AdapterProfileWorkout(itemView.getContext(), dayList.get(position).getWorkouts());
         agenda.setAdapter(AI);
 
         container.addView(itemView);

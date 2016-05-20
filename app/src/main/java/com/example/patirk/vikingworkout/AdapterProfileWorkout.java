@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -100,7 +99,7 @@ public class AdapterProfileWorkout extends BaseAdapter {
                     MainActivity.lastLongClick = item.id;
                     MainActivity.profile.removeWorkout(item.id);
                 } else {
-                    MainActivity.profile.addWorkout(MainActivity.getWorkoutByID(item.id));
+                    MainActivity.profile.addToMyWorkout(MainActivity.getWorkoutByID(item.id));
                     Toast.makeText(MainActivity.mainActivity, item.name + " workout added to profile", Toast.LENGTH_SHORT).show();
                     return true;
                 }

@@ -205,7 +205,7 @@ public class MainActivity extends ActionBarActivity
                 return d;
             }
         }
-        for(Day d : getDays()){
+        for(Day d : profile.getMyDays()){
             if(d.getDateId() == dateid){
                 return d;
             }
@@ -271,21 +271,24 @@ public class MainActivity extends ActionBarActivity
         w.add(2);
         MainActivity.days = new ArrayList<Day>();
         List<Day> d0 = new ArrayList<Day>();
-        d0.add(new Day(16892, workouts));
-        d0.add(new Day(16893, w));
-        d0.add(new Day(16894, workouts));
-        d0.add(new Day(16895, w));
-        d0.add(new Day(16896, workouts));
-        d0.add(new Day(16897, w));
-        d0.add(new Day(16898, workouts));
+        d0.add(new Day(16928, workouts));
+        d0.add(new Day(16929, w));
+        d0.add(new Day(16930, workouts));
+        d0.add(new Day(16931, w));
+        d0.add(new Day(16932, workouts));
+        d0.add(new Day(16933, w));
+        d0.add(new Day(16934, workouts));
+        d0.add(new Day(16935, workouts));
+        d0.add(new Day(16936, w));
+        d0.add(new Day(16937, workouts));
         List<Day> d1 = new ArrayList<Day>();
-        d1.add(new Day(16899, w));
-        d1.add(new Day(16900, w));
-        d1.add(new Day(16901, w));
-        d1.add(new Day(16902, w));
-        d1.add(new Day(16903, w));
-        d1.add(new Day(16904, w));
-        d1.add(new Day(16905, w));
+        d1.add(new Day(16938, w));
+        d1.add(new Day(16939, w));
+        d1.add(new Day(16940, w));
+        d1.add(new Day(16941, w));
+        d1.add(new Day(16942, w));
+        d1.add(new Day(16943, w));
+        d1.add(new Day(16944, w));
         days.addAll(d0);
         days.addAll(d1);
         MainActivity.weeks = new ArrayList<Week>();

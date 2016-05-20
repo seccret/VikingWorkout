@@ -26,8 +26,9 @@ public class Profile implements Serializable{
     private transient Bitmap picture;
     private List<Workout> myWorkout;
     private List<Block> myBlocks;
+    private List<Day> myDays;
 
-    public Profile(long id, String name,String desc, List<Workout> myWorkout)  {
+    public Profile(long id, String name,String desc, List<Workout> myWorkout, List<Day> myDays)  {
         this.id = id;
         this.name = name;
         this.desc = desc;
@@ -37,6 +38,11 @@ public class Profile implements Serializable{
             this.myWorkout = new ArrayList<>();
         }else{
             this.myWorkout = myWorkout;
+        }
+        if(myDays==null){
+            this.myDays = new ArrayList<>();
+        }else{
+            this.myDays = myDays;
         }
     }
 
@@ -72,6 +78,18 @@ public class Profile implements Serializable{
         return workoutIdList;
     }
 
+    public List<Day> getMyDays(){
+        return myDays;
+    }
+
+    public List<Integer> getMyDaysAsID(){
+        List<Integer> dayIdList = new ArrayList<>();
+        for(Day d : myDays){
+            dayIdList.add(d.getDateId());
+        }
+        return dayIdList;
+    }
+
     public List<Block> getMyBlocks(){
         return myBlocks;
     }
@@ -84,6 +102,14 @@ public class Profile implements Serializable{
         }
         return myWorkout.get(0);
     }
+    public Day getDayByID(int wID){
+        for(Day da : myDays){
+            if(da.getDateId() == wID){
+                return da;
+            }
+        }
+        return myDays.get(0);
+    }
     public Block getBlockByID(int bID){
         for(Block bo : myBlocks){
             if(bo.getId() == bID){
@@ -93,8 +119,12 @@ public class Profile implements Serializable{
         return myBlocks.get(0);
     }
 
-    public void addWorkout(Workout wID){
+    public void addToMyWorkout(Workout wID){
         myWorkout.add(wID);
+        MainActivity.saveProfile(MainActivity.mainActivity);
+    }
+    public void addToMyAgena(Day dID){
+        myDays.add(dID);
         MainActivity.saveProfile(MainActivity.mainActivity);
     }
     public void addBlock(Block bID){
@@ -115,6 +145,19 @@ public class Profile implements Serializable{
         }
         if(remove!=null){
             myWorkout.remove(remove);
+        }
+        MainActivity.saveProfile(MainActivity.mainActivity);
+    }
+
+    public void removeDay(int dID){
+        Day remove=null;
+        for(Day da : myDays){
+            if(da.getDateId() == dID){
+                remove = da;
+            }
+        }
+        if(remove!=null){
+            myDays.remove(remove);
         }
         MainActivity.saveProfile(MainActivity.mainActivity);
     }
@@ -142,6 +185,15 @@ public class Profile implements Serializable{
     public boolean containWorkout(int wID){
         for(Workout wo : myWorkout){
             if(wo.getId() == wID){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean containDay(int dID){
+        for(Day da : myDays){
+            if(da.getDateId() == dID){
                 return true;
             }
         }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#70000000"
+    android:gravity="center">
+    <LinearLayout
+        android:id="@+id/llAddTo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        android:orientation="vertical"
+        android:gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:gravity="center">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:weightSum="3">
+                <TextView
+                    android:id="@+id/tvAddToHeadline"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Add workout to:"
+                    android:textSize="25sp"
+                    android:fontFamily="sans-serif-light"/>
+                <TextView
+                    android:id="@+id/tvAddToMyWorkouts"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:text="My Workouts"
+                    android:gravity="center_vertical"
+                    android:fontFamily="sans-serif-light"/>
+                <TextView
+                    android:id="@+id/tvAddToMyAgenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:text="My Agenda"
+                    android:gravity="center_vertical"
+                    android:fontFamily="sans-serif-light"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -18,8 +18,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -48,7 +50,6 @@ public class ExternalFunctions {
             checkSingle.add(s);
         }
         checkSingle.removeAll(Collections.singleton(checkSingle.get(0)));
-        Toast.makeText(MainActivity.mainActivity, "checklist = "+checkSingle, Toast.LENGTH_SHORT).show();
         if(checkSingle.size() == 0){
             return muscleList.get(0);
         }else if(muscleList.contains("Arms") && muscleList.contains("Butt") ||
@@ -87,7 +88,6 @@ public class ExternalFunctions {
             checkSingle.add(s);
         }
         checkSingle.removeAll(Collections.singleton(checkSingle.get(0)));
-        Toast.makeText(MainActivity.mainActivity, "checklist = "+checkSingle, Toast.LENGTH_SHORT).show();
         if(checkSingle.size() == 0){
             return muscleGroupList.get(0);
         }else if(muscleGroupList.contains("Arms") && muscleGroupList.contains("Butt") ||

@@ -1,0 +1,79 @@
+package com.example.patirk.vikingworkout;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CalendarView;
+import android.widget.Toast;
+
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
+/**
+ * Created by olivia on 2015-10-26.
+ */
+public class FragmentCalendar extends android.support.v4.app.Fragment {
+
+    public static FragmentCalendar newInstance() {
+        FragmentCalendar fragment = new FragmentCalendar();
+        Bundle args = new Bundle();
+        //   args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
+    public FragmentCalendar() {
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        final View rootView = inflater.inflate(R.layout.fragment_calendar, container, false);
+        CalendarView calendar = (CalendarView) rootView.findViewById(R.id.calendar);
+        final Workout workout = MainActivity.currentWorkout;
+        final int workoutId = workout.getId();
+
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
+
+                String dateString = String.valueOf((i2+1)+ "/"+ (i1+1)+ "/"+i);
+                DateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
+                Date date = null;
+                try {
+                    date = dF.parse(dateString);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long epoch = date.getTime();
+                Toast.makeText(MainActivity.mainActivity, String.valueOf(epoch), Toast.LENGTH_SHORT).show();
+
+                long dateIdLong = epoch/(24*60*60*1000);
+                DecimalFormat rDFormat = new DecimalFormat("#");
+                int dateId = Integer.valueOf(rDFormat.format(dateIdLong));
+
+                ArrayList<Integer> workouts = new ArrayList<Integer>();
+                workouts.add(workoutId);
+
+                if (MainActivity.profile.containDay(dateId)){
+                    MainActivity.lastLongClick = workoutId;
+                } else {
+                    MainActivity.profile.addToMyAgena(new Day(dateId, workouts));
+                    Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        return rootView;
+    }
+
+}

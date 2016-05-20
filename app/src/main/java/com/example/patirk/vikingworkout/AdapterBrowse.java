@@ -86,14 +86,14 @@ public class AdapterBrowse extends BaseAdapter {
         name.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick (View v){
-                if (MainActivity.profile.containWorkout(item.id)) {
-                    MainActivity.lastLongClick = item.id;
-                } else {
-                    MainActivity.profile.addWorkout(MainActivity.getWorkoutByID(item.id));
-                    Toast.makeText(MainActivity.mainActivity, item.name + " workout added to profile", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                return false;
+                Workout wo = MainActivity.getWorkoutByID(item.id);
+                //Step 2: Set currentExercise to clicked exercise
+                MainActivity.currentWorkout = wo;
+                //Step 3: Go to exercise fragment
+                MainActivity.fragmentManager.beginTransaction()
+                        .add(R.id.container, FragmentAddTo.newInstance())
+                        .commit();
+                return true;
             }
         }
 
