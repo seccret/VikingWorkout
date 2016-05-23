@@ -78,9 +78,10 @@ public class MainActivity extends ActionBarActivity
         loadWorkouts();
         loadWeeks();
         loadMonths();
-        //  List<Workout> l = new ArrayList<>();
-        // profile = new Profile(1337,"Olivia", "hej",l);
-       // List<Integer> l = new ArrayList<>();
+      //  List<Workout> l = new ArrayList<>();
+       // List<Day> dayprofile = new ArrayList<>();
+        // profile = new Profile(1337,"Olivia", "hej",l,dayprofile);
+      //  List<Integer> l = new ArrayList<>();
        // profile.setWorkout(l);
  //       GoogleSpreadsheet gs = new GoogleSpreadsheet();
   /*      try{
@@ -278,17 +279,14 @@ public class MainActivity extends ActionBarActivity
         d0.add(new Day(16932, workouts));
         d0.add(new Day(16933, w));
         d0.add(new Day(16934, workouts));
-        d0.add(new Day(16935, workouts));
-        d0.add(new Day(16936, w));
-        d0.add(new Day(16937, workouts));
         List<Day> d1 = new ArrayList<Day>();
+        d1.add(new Day(16935, workouts));
+        d1.add(new Day(16936, w));
+        d1.add(new Day(16937, workouts));
         d1.add(new Day(16938, w));
         d1.add(new Day(16939, w));
         d1.add(new Day(16940, w));
         d1.add(new Day(16941, w));
-        d1.add(new Day(16942, w));
-        d1.add(new Day(16943, w));
-        d1.add(new Day(16944, w));
         days.addAll(d0);
         days.addAll(d1);
         MainActivity.weeks = new ArrayList<Week>();

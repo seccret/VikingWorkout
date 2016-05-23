@@ -108,7 +108,7 @@ public class Profile implements Serializable{
                 return da;
             }
         }
-        return myDays.get(0);
+        return new Day(wID, new ArrayList<Integer>());
     }
     public Block getBlockByID(int bID){
         for(Block bo : myBlocks){

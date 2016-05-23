@@ -29,6 +29,7 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import org.mortbay.jetty.Main;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -96,7 +97,14 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         final SlidingUpPanelLayout.PanelState wut = supl.getPanelState();
         final String wut2 = wut.toString();
 
-        viewPager.setAdapter(new CustomPagerAdapter(getContext()));
+        List<Integer> agendaDates = new ArrayList<>();
+        long tday = System.currentTimeMillis()/(60*60*24*1000);
+        DecimalFormat rDFormat = new DecimalFormat("#");
+        int todaysDate = Integer.valueOf(rDFormat.format(tday));
+        for (int i = todaysDate; i<todaysDate+14 ; i++) {
+            agendaDates.add(i);
+        }
+        viewPager.setAdapter(new CustomPagerAdapter(getContext(), agendaDates));
 
         plus.setOnClickListener(new View.OnClickListener() {
             @Override

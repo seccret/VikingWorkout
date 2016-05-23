@@ -29,7 +29,21 @@
                 <CalendarView
                     android:id="@+id/calendar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"></CalendarView>
+                    android:layout_height="match_parent"
+                    android:selectedWeekBackgroundColor="#fff"
+                    android:selectedDateVerticalBar="@color/spring"
+                    android:unfocusedMonthDateColor="#c9c9c9"
+                    >
+                    <LinearLayout
+                        android:id="@+id/calendar_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="40dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:background="@color/spring"/>
+
+                </CalendarView>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

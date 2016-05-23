@@ -23,21 +23,21 @@ import java.util.Locale;
 public class CustomPagerAdapter extends PagerAdapter {
 
     Context mContext;
+    List<Integer> mAgendaDates;
     LayoutInflater mLayoutInflater;
     List<Week> weekList;
-    List<Day> amountOfDayList;
     int weekPosition = 0;
 
-    public CustomPagerAdapter(Context context) {
+    public CustomPagerAdapter(Context context, List<Integer> agendaDates) {
         mContext = context;
+        mAgendaDates = agendaDates;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        amountOfDayList = MainActivity.getDays();
         weekList = MainActivity.getWeeks();
         }
 
     @Override
     public int getCount() {
-        return amountOfDayList.size();
+        return mAgendaDates.size();
     }
 
     @Override
@@ -51,20 +51,15 @@ public class CustomPagerAdapter extends PagerAdapter {
         ListView agenda = (ListView) itemView.findViewById(R.id.lvAgenda);
         TextView dateAgenda = (TextView) itemView.findViewById(R.id.tvAgenda);
 
-        List<Integer> agendaDates = new ArrayList<>();
-        long tday = System.currentTimeMillis()/(60*60*24*1000);
-        DecimalFormat rDFormat = new DecimalFormat("#");
-        int todaysDate = Integer.valueOf(rDFormat.format(tday));
-        Toast.makeText(MainActivity.mainActivity,String.valueOf(todaysDate), Toast.LENGTH_SHORT).show();
-        for (int i = todaysDate; i<todaysDate+14 ; i++) {
-            agendaDates.add(i);
-        }
+
 
         List<Day> dayList = new ArrayList<>();
-        for (int dayId : agendaDates) {
-            Day d = MainActivity.getDayByID(dayId);
+
+        for (int dayId : mAgendaDates) {
+            Day d = MainActivity.profile.getDayByID(dayId);
             dayList.add(d);
         }
+
 
         Date date = new Date(((long) dayList.get(position).getDateId() *24*60*60*1000));
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);

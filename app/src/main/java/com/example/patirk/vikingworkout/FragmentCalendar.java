@@ -1,6 +1,7 @@
 package com.example.patirk.vikingworkout;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,6 @@ public class FragmentCalendar extends android.support.v4.app.Fragment {
                     e.printStackTrace();
                 }
                 long epoch = date.getTime();
-                Toast.makeText(MainActivity.mainActivity, String.valueOf(epoch), Toast.LENGTH_SHORT).show();
 
                 long dateIdLong = epoch/(24*60*60*1000);
                 DecimalFormat rDFormat = new DecimalFormat("#");
@@ -70,7 +70,7 @@ public class FragmentCalendar extends android.support.v4.app.Fragment {
                     MainActivity.profile.addToMyAgena(new Day(dateId, workouts));
                     Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
                 }
-            }
+           }
         });
 
         return rootView;
