@@ -65,7 +65,8 @@ public class FragmentCalendar extends android.support.v4.app.Fragment {
                 workouts.add(workoutId);
 
                 if (MainActivity.profile.containDay(dateId)){
-                    MainActivity.lastLongClick = workoutId;
+                    MainActivity.profile.getDayByID(dateId).addWorkouts(workoutId);
+                    Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
                 } else {
                     MainActivity.profile.addToMyAgena(new Day(dateId, workouts));
                     Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
