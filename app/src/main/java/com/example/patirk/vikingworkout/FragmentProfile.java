@@ -63,6 +63,8 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
     public FragmentProfile() {
     }
 
+    public static ViewPager viewPager;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,7 +76,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         final TextView profileDesc = (TextView) rootView.findViewById(R.id.tvProfileInfo);
         final ImageView plus = (ImageView) rootView.findViewById(R.id.ivProfilePlus);
         final ImageView wplus = (ImageView) rootView.findViewById(R.id.ivProfilePlusW);
-        final ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.pager);
+        viewPager = (ViewPager) rootView.findViewById(R.id.pager);
         final SlidingUpPanelLayout supl = (SlidingUpPanelLayout) rootView.findViewById(R.id.sliding_layout);
         final Button myAgendaButton = (Button) rootView.findViewById(R.id.bToggleLeft);
         final Button myWorkoutButton = (Button) rootView.findViewById(R.id.bToggleMiddle);

@@ -95,14 +95,12 @@ public class AdapterProfileWorkout extends BaseAdapter {
         name.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick (View v){
-                if (MainActivity.profile.containWorkout(item.id)) {
-                    MainActivity.lastLongClick = item.id;
-                    MainActivity.profile.removeWorkout(item.id);
-                } else {
-                    MainActivity.profile.addToMyWorkout(MainActivity.getWorkoutByID(item.id));
-                    Toast.makeText(MainActivity.mainActivity, item.name + " workout added to profile", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
+                Workout wo = MainActivity.getWorkoutByID(item.id);
+                MainActivity.currentWorkout = wo;
+                MainActivity.fragmentManager.beginTransaction()
+                        .add(R.id.container, FragmentRemoveFrom.newInstance())
+                        .commit();
+
                 return false;
             }
         }

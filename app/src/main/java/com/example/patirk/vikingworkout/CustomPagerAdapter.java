@@ -2,6 +2,8 @@ package com.example.patirk.vikingworkout;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.mortbay.jetty.Main;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -22,13 +26,16 @@ import java.util.Locale;
  */
 public class CustomPagerAdapter extends PagerAdapter {
 
+    public static CustomPagerAdapter customAdapter = null;
     Context mContext;
     List<Integer> mAgendaDates;
     LayoutInflater mLayoutInflater;
     List<Week> weekList;
+    public static AdapterProfileWorkout AI;
     int weekPosition = 0;
 
     public CustomPagerAdapter(Context context, List<Integer> agendaDates) {
+        customAdapter = this;
         mContext = context;
         mAgendaDates = agendaDates;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -52,7 +59,6 @@ public class CustomPagerAdapter extends PagerAdapter {
         TextView dateAgenda = (TextView) itemView.findViewById(R.id.tvAgenda);
 
 
-
         List<Day> dayList = new ArrayList<>();
 
         for (int dayId : mAgendaDates) {
@@ -60,13 +66,15 @@ public class CustomPagerAdapter extends PagerAdapter {
             dayList.add(d);
         }
 
+        int currentPage = FragmentProfile.viewPager.getCurrentItem();
+        MainActivity.currentDay = dayList.get(currentPage).getDateId();
 
         Date date = new Date(((long) dayList.get(position).getDateId() *24*60*60*1000));
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         String text = format.format(date);
         dateAgenda.setText(text);
 
-        AdapterProfileWorkout AI = new AdapterProfileWorkout(itemView.getContext(), dayList.get(position).getWorkouts());
+        AI = new AdapterProfileWorkout(itemView.getContext(), dayList.get(position).getWorkouts());
         agenda.setAdapter(AI);
 
         container.addView(itemView);
