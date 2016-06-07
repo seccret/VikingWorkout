@@ -3,6 +3,7 @@ package com.example.patirk.vikingworkout;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
+import android.support.v4.view.ViewPager;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
 
     public FragmentWorkoutSeven() {
     }
+    public static ViewPager viewPager;
 
     //Declare a variable to hold count down timer's paused status
     private boolean isPaused = false;
@@ -54,7 +56,6 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_workout_seven, container, false);
 
-        final ListView lvExercises = (ListView) rootView.findViewById(R.id.lvSevenList);
         final LinearLayout llTime = (LinearLayout) rootView.findViewById(R.id.llSevenTime);
         final LinearLayout pausestop = (LinearLayout) rootView.findViewById(R.id.llSevenPlay);
         final ImageView play = (ImageView) rootView.findViewById(R.id.ivSevenBanner);
@@ -64,12 +65,12 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
         final TextView pause = (TextView) rootView.findViewById(R.id.tvSevenPause);
         final TextView cancel = (TextView) rootView.findViewById(R.id.tvsevenCancel);
         final TextView resume = (TextView) rootView.findViewById(R.id.tvsevenResume);
-        final TextView playnext = (TextView) rootView.findViewById(R.id.tvsevenPlayNext);
         final TextView musclegroup = (TextView) rootView.findViewById(R.id.tvSevenMuscleGroup);
         final TextView madeby = (TextView) rootView.findViewById(R.id.tvSevenMadeBy);
+        viewPager = (ViewPager) rootView.findViewById(R.id.pager);
         final Workout workout = MainActivity.currentWorkout;
         final List<Integer> blocks = workout.getBlocks();
-        final Adapter4InceptionBase a = new Adapter4InceptionBase(MainActivity.mainActivity, blocks);
+        final Adapter4BlockPager a = new Adapter4BlockPager(MainActivity.mainActivity, blocks);
         final Chronometer stopWatch = (Chronometer) rootView.findViewById(R.id.chrono);
 
 
@@ -85,24 +86,19 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 llTime.setVisibility(View.VISIBLE);
                 pausestop.setVisibility(View.VISIBLE);
                 banner.setVisibility(View.GONE);
-                Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, MainActivity.getBlockByID(blocks.get(currentBlock)));
-                lvExercises.setAdapter(ai);
 
                 startTime = SystemClock.elapsedRealtime();
 
-                textGoesHere = (TextView) rootView.findViewById(R.id.tvSevenTime);
                 stopWatch.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
                     @Override
                     public void onChronometerTick(Chronometer arg0) {
                         long time = SystemClock.elapsedRealtime() - arg0.getBase();
-                        int h   = (int)(time /3600000);
-                        int m = (int)(time - h*3600000)/60000;
-                        int s= (int)(time - h*3600000- m*60000)/1000 ;
-                        String mm = m < 10 ? "0"+m: m+"";
-                        String ss = s < 10 ? "0"+s: s+"";
-                        countUp = (SystemClock.elapsedRealtime() - arg0.getBase()) / 1000;
-                        String asText = (countUp / 60) + ":" + (countUp % 60);
-                        textGoesHere.setText(mm+":"+ss);
+                        int h = (int) (time / 3600000);
+                        int m = (int) (time - h * 3600000) / 60000;
+                        int s = (int) (time - h * 3600000 - m * 60000) / 1000;
+                        String mm = m < 10 ? "0" + m : m + "";
+                        String ss = s < 10 ? "0" + s : s + "";
+                        tvTime.setText(mm + ":" + ss);
                     }
                 });
                 stopWatch.start();
@@ -140,60 +136,12 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 llTime.setVisibility(View.GONE);
                 pausestop.setVisibility(View.GONE);
                 banner.setVisibility(View.VISIBLE);
-                lvExercises.setAdapter(a);
+                viewPager.setAdapter(a);
                 
             }
         });
 
-        playnext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                playnext.setVisibility(View.GONE);
-                pause.setVisibility(View.VISIBLE);
-                cancel.setVisibility(View.VISIBLE);
-                tvTime.setTextSize(110);
-                CountDownTimer timer;
-                long millisInFuture = 10000; //30 seconds
-                long countDownInterval = 1000; //1 second
-                new CountDownTimer(millisInFuture, countDownInterval) {
-                    public void onTick(long millisUntilFinished) {
-                        if (isPaused || isCanceled) {
-                            //If the user request to cancel or paused the
-                            //CountDownTimer we will cancel the current instance
-                            cancel();
-                        } else {
-                            tvTime.setText("" + String.format("%02d:%02d",
-                                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
-                                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
-                                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
-
-                            //Put count down timer remaining time in a variable
-                            timeRemaining = millisUntilFinished;
-                        }
-                    }
-
-                    public void onFinish() {
-                        if (test < blocks.size() - 1) {
-                            ++test;
-                            Adapter4WorkoutSeven ai = new Adapter4WorkoutSeven(MainActivity.mainActivity, MainActivity.getBlockByID(blocks.get(test)));
-                            lvExercises.setAdapter(ai);
-                            playnext.setVisibility(View.VISIBLE);
-                            pause.setVisibility(View.GONE);
-                            cancel.setVisibility(View.GONE);
-                            tvTime.setTextSize(50);
-                            tvTime.setText("BLOCK "+test+"/"+blocks.size()+"\n COMPLETED!");
-                        } else {
-                            llTime.setVisibility(View.GONE);
-                            pausestop.setVisibility(View.GONE);
-                            banner.setVisibility(View.VISIBLE);
-                            lvExercises.setAdapter(a);
-                        }
-                    }
-                }.start();
-            }
-        });
-
-        lvExercises.setAdapter(a);
+        viewPager.setAdapter(a);
 
         return rootView;
     }

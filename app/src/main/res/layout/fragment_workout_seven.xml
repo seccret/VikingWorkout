@@ -101,16 +101,18 @@
             android:layout_height="wrap_content"
             android:visibility="gone"/>
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/lvSevenList"
-        android:layout_width="343dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.65"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp">
-        </ListView>
-
+        android:orientation="vertical">
+    <android.support.v4.view.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/llSevenPlay"
         android:layout_width="fill_parent"
@@ -149,15 +151,6 @@
             android:layout_weight="1"
             android:visibility="visible"
             android:text="Stop"
-            android:textSize="25dp"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"/>
-        <TextView
-            android:id="@+id/tvsevenPlayNext"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            android:text="Play next Block!"
             android:textSize="25dp"
             android:fontFamily="sans-serif-light"
             android:gravity="center"/>
