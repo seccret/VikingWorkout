@@ -28,9 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
     public static int test = 0;
     long timeWhenStopped = 0;
-    TextView textGoesHere;
     long startTime;
-    long countUp;
     public static FragmentWorkoutSeven newInstance() {
         FragmentWorkoutSeven fragment = new FragmentWorkoutSeven();
         Bundle args = new Bundle();
@@ -86,8 +84,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 llTime.setVisibility(View.VISIBLE);
                 pausestop.setVisibility(View.VISIBLE);
                 banner.setVisibility(View.GONE);
-
-                startTime = SystemClock.elapsedRealtime();
+                stopWatch.setBase(SystemClock.elapsedRealtime());
 
                 stopWatch.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
                     @Override
