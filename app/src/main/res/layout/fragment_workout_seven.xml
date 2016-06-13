@@ -145,12 +145,12 @@
             android:fontFamily="sans-serif-light"
             android:gravity="center"/>
         <TextView
-            android:id="@+id/tvsevenCancel"
+            android:id="@+id/tvsevenDone"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:visibility="visible"
-            android:text="Stop"
+            android:text="Done"
             android:textSize="25dp"
             android:fontFamily="sans-serif-light"
             android:gravity="center"/>

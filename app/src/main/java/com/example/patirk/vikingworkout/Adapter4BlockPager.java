@@ -9,12 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.ListResourceBundle;
-import java.util.Locale;
 
 /**
  * Created by olivia on 2016-01-02.
@@ -46,9 +42,9 @@ public class Adapter4BlockPager extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        View itemView = mLayoutInflater.inflate(R.layout.item_pager, container, false);
-        ListView exercises = (ListView) itemView.findViewById(R.id.lvAgenda);
-        TextView blockname = (TextView) itemView.findViewById(R.id.tvAgenda);
+        View itemView = mLayoutInflater.inflate(R.layout.item_pager_block, container, false);
+        ListView exercises = (ListView) itemView.findViewById(R.id.lvBlock);
+        TextView blockname = (TextView) itemView.findViewById(R.id.tvBlock);
 
         List<Block> blocks = new ArrayList<>();
 

@@ -1,26 +1,21 @@
 package com.example.patirk.vikingworkout;
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.v4.view.ViewPager;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.Format;
-import java.text.SimpleDateFormat;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by olivia on 2015-10-24.
@@ -61,7 +56,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
         final TextView tvTime = (TextView) rootView.findViewById(R.id.tvSevenTime);
         final TextView woname = (TextView) rootView.findViewById(R.id.tvSevenName);
         final TextView pause = (TextView) rootView.findViewById(R.id.tvSevenPause);
-        final TextView cancel = (TextView) rootView.findViewById(R.id.tvsevenCancel);
+        final TextView done = (TextView) rootView.findViewById(R.id.tvsevenDone);
         final TextView resume = (TextView) rootView.findViewById(R.id.tvsevenResume);
         final TextView musclegroup = (TextView) rootView.findViewById(R.id.tvSevenMuscleGroup);
         final TextView madeby = (TextView) rootView.findViewById(R.id.tvSevenMadeBy);
@@ -124,17 +119,33 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
+        done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 stopWatch.setBase(SystemClock.elapsedRealtime());
                 timeWhenStopped = 0;
-                Toast.makeText(getActivity(), "Workout canceled", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Workout done", Toast.LENGTH_SHORT).show();
                 llTime.setVisibility(View.GONE);
                 pausestop.setVisibility(View.GONE);
                 banner.setVisibility(View.VISIBLE);
                 viewPager.setAdapter(a);
-                
+
+                ArrayList<Integer> workouts = new ArrayList<Integer>();
+                workouts.add(workout.getId());
+
+                long epoch = System.currentTimeMillis();
+                long dateIdLong = epoch/(24*60*60*1000);
+                DecimalFormat rDFormat = new DecimalFormat("#");
+                int dateId = Integer.valueOf(rDFormat.format(dateIdLong));
+
+                if (MainActivity.profile.containDay(dateId)) {
+                    MainActivity.profile.getDayByID(dateId).addWorkouts(workout.getId());
+                    Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
+                } else {
+                    MainActivity.profile.addToMyAgena(new Day(dateId, workouts));
+                    Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

@@ -128,11 +128,17 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
-                fragmentManager.beginTransaction().replace(R.id.container, FragmentBrowse.newInstance())
+                fragmentManager.beginTransaction().replace(R.id.container, FragmentProgress.newInstance())
                         .commit();
 
                 break;
             case 4:
+                mTitle = getString(R.string.title_section4);
+                fragmentManager.beginTransaction().replace(R.id.container, FragmentBrowse.newInstance())
+                        .commit();
+
+                break;
+            case 5:
                 mTitle = "Settings";
                 fragmentManager.beginTransaction().replace(R.id.container, FragmentSettings.newInstance())
                         .commit();
