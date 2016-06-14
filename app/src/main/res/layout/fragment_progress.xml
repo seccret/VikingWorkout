@@ -12,11 +12,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/tvBrowseCat"
+            android:id="@+id/tvProgressCat"
             android:layout_width="fill_parent"
             android:layout_height="70dp"
             android:gravity="center"
-            android:text="Categories"
+            android:text="Viking"
             android:textSize="20dp"
             android:textColor="@color/white"
             android:background="#464646"/>
@@ -33,7 +33,7 @@
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Calender"
+                android:text="Calendar"
                 android:textColor="#fba500"
                 android:background="@drawable/button_selected"/>
             <Button
@@ -88,13 +88,62 @@
                 android:textSize="25dp"
                 android:layout_gravity="center"/>
                 <ListView
-                    android:id="@+id/lvProgress"
+                    android:id="@+id/lvProgressAgenda"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"></ListView>
         </LinearLayout>
 
 
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+    <LinearLayout
+        android:id="@+id/llProgressProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/llProgressTop"
+        android:visibility="gone"
+        android:layout_marginTop="10dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight:"
+                android:textSize="20dp"/>
+            <ViewSwitcher
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/vsProgress"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    android:id="@+id/tvProgressWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="TextViewClicked"
+                    android:text="@string/weight"
+                    android:textSize="20dp"/>
+
+                <EditText
+                    android:id="@+id/etProgressWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/weight"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:maxLength="3">
+                </EditText>
+            </ViewSwitcher>
+        </LinearLayout>
+        <ListView
+            android:id="@+id/lvProgressProgress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+    </LinearLayout>
     <ImageView
         android:id="@+id/ivProgressPlus"
         android:layout_width="60dp"

@@ -27,13 +27,15 @@ public class Profile implements Serializable{
     private List<Workout> myWorkout;
     private List<Block> myBlocks;
     private List<Day> myDays;
+    private int weight;
 
-    public Profile(long id, String name,String desc, List<Workout> myWorkout, List<Day> myDays)  {
+    public Profile(long id, String name,String desc, List<Workout> myWorkout, List<Day> myDays, int weight)  {
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.picture = null;
         this.myBlocks = new ArrayList<>();
+        this.weight = weight;
         if(myWorkout==null){
             this.myWorkout = new ArrayList<>();
         }else{
@@ -56,6 +58,10 @@ public class Profile implements Serializable{
 
     public String getDesc () {
         return desc;
+    }
+
+    public int getWeight () {
+        return weight;
     }
 
     public Drawable getPicture() {
@@ -215,6 +221,10 @@ public class Profile implements Serializable{
 
     public void setDesc (String newDesc) {
         this.desc = newDesc;
+    }
+
+    public void setWeight(int newWeight) {
+        this.weight = newWeight;
     }
 
     public void setProfilePicture(Bitmap newPic) {
