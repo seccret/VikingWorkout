@@ -158,7 +158,7 @@ public class FragmentProgress extends Fragment {
 
                 workoutList = MainActivity.profile.getDayByID(dateId).getWorkouts();
 
-                AdapterProfileWorkout AI = new AdapterProfileWorkout(rootView.getContext(), workoutList);
+                AdapterProfileAgenda AI = new AdapterProfileAgenda(rootView.getContext(), workoutList);
                 lvagenda.setAdapter(AI);
 
             }

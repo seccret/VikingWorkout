@@ -18,7 +18,6 @@ import java.util.List;
  */
 public class Day implements Serializable {
     private int date_id;
-
     public List<Integer> workouts;
 
     public Day(int date_id, List<Integer> workouts) {
@@ -34,7 +33,7 @@ public class Day implements Serializable {
         return workouts;
     }
 
-    public void addWorkouts(int i) {
+    public void addWorkouts(Integer i) {
         this.workouts.add(i);
     }
 
@@ -47,4 +46,5 @@ public class Day implements Serializable {
         this.workouts = new ArrayList<>();
         this.workouts = listW;
     }
+
 }

@@ -6,20 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class AdapterProfileWorkout extends BaseAdapter {
+public class AdapterProfileAgenda extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
     private static Workout workout = null;
 
     // Constructor
-    public AdapterProfileWorkout(Context c, List<Integer> workoutList) {
+    public AdapterProfileAgenda(Context c, List<Integer> workoutList) {
         mInflater = LayoutInflater.from(c);
 
         for (int workoutId : workoutList) {
@@ -100,7 +99,7 @@ public class AdapterProfileWorkout extends BaseAdapter {
                 Workout wo = MainActivity.getWorkoutByID(item.id);
                 MainActivity.currentWorkout = wo;
                 MainActivity.fragmentManager.beginTransaction()
-                        .add(R.id.container, FragmentAddTo.newInstance())
+                        .add(R.id.container, FragmentRemoveFrom.newInstance())
                         .commit();
 
                 return false;

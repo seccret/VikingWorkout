@@ -37,9 +37,14 @@ public class FragmentAddTo extends android.support.v4.app.Fragment {
         final Workout workout = MainActivity.currentWorkout;
         final int workoutId = workout.getId();
 
-        headline.setText("Add workout to:");
-        addToMyWorkouts.setText("My Workouts");
-        addToMyAgenda.setText("My Agenda");
+        headline.setText(workout.getName());
+        if (MainActivity.profile.containWorkout(workoutId)) {
+            addToMyWorkouts.setText("Remove from My Workouts");
+        } else {
+            addToMyWorkouts.setText("Add to My Workouts");
+        }
+
+        addToMyAgenda.setText("Add to Agenda");
 
 
         ll.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +62,8 @@ public class FragmentAddTo extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 if (MainActivity.profile.containWorkout(workoutId)) {
                     MainActivity.lastLongClick = workoutId;
+                    MainActivity.profile.removeWorkout(workoutId);
+                    Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout removed from profile", Toast.LENGTH_SHORT).show();
                 } else {
                     MainActivity.profile.addToMyWorkout(MainActivity.getWorkoutByID(workoutId));
                     Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to profile", Toast.LENGTH_SHORT).show();

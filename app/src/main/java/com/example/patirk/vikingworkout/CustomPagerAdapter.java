@@ -25,7 +25,7 @@ public class CustomPagerAdapter extends PagerAdapter {
     List<Integer> mAgendaDates;
     LayoutInflater mLayoutInflater;
     List<Week> weekList;
-    public static AdapterProfileWorkout AI;
+    public static AdapterProfileAgenda AI;
     int weekPosition = 0;
 
     public CustomPagerAdapter(Context context, List<Integer> agendaDates) {
@@ -68,7 +68,7 @@ public class CustomPagerAdapter extends PagerAdapter {
         String text = format.format(date);
         dateAgenda.setText(text);
 
-        AI = new AdapterProfileWorkout(itemView.getContext(), dayList.get(position).getWorkouts());
+        AI = new AdapterProfileAgenda(itemView.getContext(), dayList.get(position).getWorkouts());
         agenda.setAdapter(AI);
 
         container.addView(itemView);

@@ -6,39 +6,38 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class AdapterProfileWorkout extends BaseAdapter {
+public class AdapterProfileEvent extends BaseAdapter {
     // Keep all Images in array
-    private final List<Item> mItems = new ArrayList<>();
+    private final List<Item> nItems = new ArrayList<>();
     private final LayoutInflater mInflater;
     private static Workout workout = null;
 
     // Constructor
-    public AdapterProfileWorkout(Context c, List<Integer> workoutList) {
+    public AdapterProfileEvent(Context c, List<Integer> eventList) {
         mInflater = LayoutInflater.from(c);
 
-        for (int workoutId : workoutList) {
-            Workout w = MainActivity.getWorkoutByID(workoutId);
-            int id = w.getId();
-            String name = w.getName();
-            String musclegroup = w.getMuscleGroup();
-            String madeby = w.getMadeBy();
-            mItems.add(new Item(id, name, 1, musclegroup, madeby));
-            //this.workout = w;
+        for (int eventId : eventList) {
+            Event e = MainActivity.getEventByID(eventId);
+            int id = e.getEventId();
+            Workout workout = e.getEventWorkout();
+            int time = e.getTime();
+            String performed = e.getPerformed();
+            nItems.add(new Item(id, workout, time, performed));
         }
     }
 
     public int getCount() {
-        return mItems.size();
+        return nItems.size();
     }
 
+
     public Item getItem(int position) {
-        return mItems.get(position);
+        return nItems.get(position);
     }
 
     @Override
@@ -53,27 +52,25 @@ public class AdapterProfileWorkout extends BaseAdapter {
         TextView muscleGroup;
         TextView madeBy;
         if (v == null) {
-            v = mInflater.inflate(R.layout.item_workout, viewGroup, false);
-            v.setTag(R.id.tvItemWorkout, v.findViewById(R.id.tvItemWorkout));
+            v = mInflater.inflate(R.layout.item_event, viewGroup, false);
+            v.setTag(R.id.tvItemEvent, v.findViewById(R.id.tvItemEvent));
         }
-        name = (TextView) v.findViewById(R.id.tvItemWorkout);
-        muscleGroup = (TextView) v.findViewById(R.id.tvWorkoutMusclegroup);
-        madeBy = (TextView) v.findViewById(R.id.tvWorkoutMadeBy);
+        name = (TextView) v.findViewById(R.id.tvItemEvent);
+        muscleGroup = (TextView) v.findViewById(R.id.tvEventMusclegroup);
+        madeBy = (TextView) v.findViewById(R.id.tvEventMadeBy);
         final Item item = getItem(i);
-        name.setText(item.name);
-        muscleGroup.setText(item.musclegroup);
-        madeBy.setText(item.madeby);
+        name.setText(item.workout.getName());
+        muscleGroup.setText(item.workout.getMuscleGroup());
+        madeBy.setText(item.workout.getMadeBy());
 
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (MainActivity.profile.containWorkout(item.id)) {
-                    Workout wo = MainActivity.profile.getWorkoutByID(item.id);
-                    MainActivity.currentWorkout = wo;
-                }else{
-                    Workout wo = MainActivity.getWorkoutByID(item.id);
-                    MainActivity.currentWorkout = wo;
-                }
+                //Step 1: Create new Workout with items parameters
+                Workout wo = MainActivity.profile.getWorkoutByID(item.id);
+                //Step 2: Set currentWorkout to clicked workout
+                MainActivity.currentWorkout = wo;
+                //Step 3: Go to block fragment
                 MainActivity.fragmentManager.beginTransaction()
                         .replace(R.id.container, FragmentWorkoutSeven.newInstance())
                         .commit();
@@ -100,7 +97,7 @@ public class AdapterProfileWorkout extends BaseAdapter {
                 Workout wo = MainActivity.getWorkoutByID(item.id);
                 MainActivity.currentWorkout = wo;
                 MainActivity.fragmentManager.beginTransaction()
-                        .add(R.id.container, FragmentAddTo.newInstance())
+                        .add(R.id.container, FragmentRemoveFrom.newInstance())
                         .commit();
 
                 return false;
@@ -113,17 +110,16 @@ public class AdapterProfileWorkout extends BaseAdapter {
 
     private static class Item {
         public final int id;
-        public final String name;
-        public final int picture;
-        public final String musclegroup;
-        public final String madeby;
+        public final Workout workout;
+        public final int time;
+        public final String performed;
 
-        Item(int id, String name, int picture, String musclegroup, String madeby) {
+        Item(int id, Workout workout, int time, String performed) {
             this.id = id;
-            this.name = name;
-            this.picture = picture;
-            this.musclegroup = musclegroup;
-            this.madeby = madeby;
+            this.workout = workout;
+            this.time = time;
+            this.performed = performed;
         }
     }
+
 }

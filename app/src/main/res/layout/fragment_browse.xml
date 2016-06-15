@@ -9,7 +9,6 @@
         android:id="@+id/tvBrowseCat"
         android:layout_width="fill_parent"
         android:layout_height="10dp"
-        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Categories"
         android:textSize="20dp"
@@ -22,10 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
-        android:background="@color/spring"
         android:adjustViewBounds="true"
         android:numColumns="2"
         android:gravity="center"
         />
-
 </LinearLayout>

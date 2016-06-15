@@ -8,8 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.mortbay.jetty.Main;
-
 /**
  * Created by olivia on 2016-01-30.
  */
@@ -39,9 +37,13 @@ public class FragmentRemoveFrom extends android.support.v4.app.Fragment {
         final int workoutId = workout.getId();
         final int dayId = MainActivity.currentDay;
 
-        headline.setText("Remove workout from:");
-        removeFromMyWorkouts.setText("My Workouts");
-        removeFromMyAgenda.setText("My Agenda");
+        headline.setText(workout.getName());
+        if (MainActivity.profile.containWorkout(workoutId)) {
+            removeFromMyWorkouts.setText("Remove from My Workouts");
+        } else {
+            removeFromMyWorkouts.setText("Add to My Workouts");
+        }
+        removeFromMyAgenda.setText("Remove from Agenda");
 
 
         ll.setOnClickListener(new View.OnClickListener() {
