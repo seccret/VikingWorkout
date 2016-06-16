@@ -201,20 +201,4 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-                                    ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        //Toast.makeText(MainActivity.mainActivity, "U did a long click!", Toast.LENGTH_SHORT).show();
-        MenuInflater inflater = MainActivity.mainActivity.getMenuInflater();
-        inflater.inflate(R.menu.context_menu, menu);
-    }
-    public boolean onContextItemSelected(final MenuItem item){
-        if(item.getTitle().equals("Remove")){
-            MainActivity.profile.removeWorkout(MainActivity.lastLongClick);
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.detach(this).attach(this).commit();
-        }
-        return true;
-    }
 }

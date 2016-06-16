@@ -103,7 +103,7 @@ public class AdapterProfileWorkout extends BaseAdapter {
                         .add(R.id.container, FragmentAddTo.newInstance())
                         .commit();
 
-                return false;
+                return true;
             }
         }
 

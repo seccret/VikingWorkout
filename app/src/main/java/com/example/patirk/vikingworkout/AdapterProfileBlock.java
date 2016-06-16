@@ -82,7 +82,7 @@ public class AdapterProfileBlock extends BaseAdapter {
             public boolean onLongClick (View v){
                 if (MainActivity.profile.containBlock(item.id)) {
                     MainActivity.lastLongClick = item.id;
-                    MainActivity.profile.removeBlock(item.id);
+                   // MainActivity.profile.removeBlock(item.id);
                 } else {
                     Toast.makeText(MainActivity.mainActivity, item.name + " block not found in profile", Toast.LENGTH_SHORT).show();
                     }

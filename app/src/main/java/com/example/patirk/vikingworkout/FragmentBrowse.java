@@ -1,15 +1,11 @@
 package com.example.patirk.vikingworkout;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.TextView;
-
-import org.mortbay.jetty.servlet.Context;
 
 /**
  * Created by olivia on 2015-09-07.
@@ -33,6 +29,7 @@ public class FragmentBrowse extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_browse, container, false);
         TextView cat = (TextView) rootView.findViewById(R.id.tvBrowseCat);
+        GridView recommended = (GridView) rootView.findViewById(R.id.gvBrowseRecommended);
         GridView category = (GridView) rootView.findViewById(R.id.gvBrowseCategory);
         Block block = MainActivity.currentBlock;
 
@@ -42,6 +39,7 @@ public class FragmentBrowse extends android.support.v4.app.Fragment {
 
 
         AdapterBrowse AI = new AdapterBrowse(rootView.getContext(), MainActivity.getWorkouts());
+        recommended.setAdapter(AI);
         category.setAdapter(AI);
 
 

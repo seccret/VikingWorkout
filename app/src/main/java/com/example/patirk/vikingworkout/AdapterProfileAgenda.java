@@ -102,7 +102,7 @@ public class AdapterProfileAgenda extends BaseAdapter {
                         .add(R.id.container, FragmentRemoveFrom.newInstance())
                         .commit();
 
-                return false;
+                return true;
             }
         }
 
