@@ -26,7 +26,7 @@ public class Deserializer {
         } catch (Exception ex) {
             ex.printStackTrace();
             Toast.makeText(MainActivity.mainActivity, "No user found", Toast.LENGTH_SHORT).show();
-            prof = new Profile(1337, "Unknown", "No description available",null,null,70);
+            prof = new Profile(1337, "Unknown", "No description available",null,null,null,70);
             return prof;
         }
     }

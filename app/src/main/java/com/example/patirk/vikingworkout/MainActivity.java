@@ -37,6 +37,7 @@ public class MainActivity extends ActionBarActivity
     public static FileInputStream fis = null;
     public static FileOutputStream fos = null;
     public static Workout currentWorkout = null;
+    public static Event currentEvent = null;
     public static Block currentBlock = null;
     public static Exercise currentExercise = null;
     public static int currentDay;
@@ -45,9 +46,9 @@ public class MainActivity extends ActionBarActivity
     private static List<Block> blocksList = null;
     private static List<Exercise> exerciseList = null;
     private static List<Workout> workouts = null;
-    private static List<Event> events = null;
     private static List<Day> days = null;
     private static List<Week> weeks = null;
+    private static List<Event> events = null;
     private static List<Month> months = null;
 
 
@@ -235,7 +236,7 @@ public class MainActivity extends ActionBarActivity
         return null;
     }
     public static Event getEventByID (int id){
-        for(Event e : events){
+        for(Event e : profile.getMyEvents()){
             if(e.getEventId() == id){
                 return e;
             }

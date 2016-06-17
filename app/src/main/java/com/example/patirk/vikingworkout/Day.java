@@ -18,33 +18,33 @@ import java.util.List;
  */
 public class Day implements Serializable {
     private int date_id;
-    public List<Integer> workouts;
+    public List<Integer> events;
 
-    public Day(int date_id, List<Integer> workouts) {
+    public Day(int date_id, List<Integer> events) {
         this.date_id = date_id;
-        this.workouts = workouts;
+        this.events = events;
     }
 
     public int getDateId() {
         return date_id;
     }
 
-    public List<Integer> getWorkouts() {
-        return workouts;
+    public List<Integer> getEvents() {
+        return events;
     }
 
-    public void addWorkouts(Integer i) {
-        this.workouts.add(i);
+    public void addEvent(Integer i) {
+        this.events.add(i);
     }
 
-    public void removeWorkouts(int wID) {
-        workouts.remove((Object)wID);
+    public void removeEvent(int wID) {
+        events.remove((Object)wID);
         MainActivity.saveProfile(MainActivity.mainActivity);
     }
 
-    public void setWorkouts(List<Integer> listW) {
-        this.workouts = new ArrayList<>();
-        this.workouts = listW;
+    public void setEvents(List<Integer> listW) {
+        this.events = new ArrayList<>();
+        this.events = listW;
     }
 
 }

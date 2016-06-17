@@ -8,6 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.mortbay.jetty.Main;
+
+import java.util.ArrayList;
+
 /**
  * Created by olivia on 2016-01-30.
  */
@@ -34,6 +38,7 @@ public class FragmentRemoveFrom extends android.support.v4.app.Fragment {
         final TextView removeFromMyWorkouts = (TextView) rootView.findViewById(R.id.tvAddToMyWorkouts);
         final TextView removeFromMyAgenda = (TextView) rootView.findViewById(R.id.tvAddToMyAgenda);
         final Workout workout = MainActivity.currentWorkout;
+        final Event event = MainActivity.currentEvent;
         final int workoutId = workout.getId();
         final int dayId = MainActivity.currentDay;
 
@@ -78,7 +83,7 @@ public class FragmentRemoveFrom extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 MainActivity.lastLongClick = workoutId;
-                MainActivity.profile.getDayByID(dayId).removeWorkouts(workoutId);
+                MainActivity.profile.getDayByID(dayId).removeEvent(event.getEventId());
                 Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout has been removed from day", Toast.LENGTH_SHORT).show();
                 MainActivity.fragmentManager.beginTransaction()
                         .remove(FragmentRemoveFrom.fragment)

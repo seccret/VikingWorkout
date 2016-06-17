@@ -132,6 +132,10 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
 
                 ArrayList<Integer> workouts = new ArrayList<Integer>();
                 workouts.add(workout.getId());
+                Event newEvent = new Event(MainActivity.profile.getMyEvents().size(), workout, 0, "Yes");
+                MainActivity.profile.addToMyEvents(newEvent);
+                ArrayList<Integer> events = new ArrayList<Integer>();
+                events.add(newEvent.getEventId());
 
                 long epoch = System.currentTimeMillis();
                 long dateIdLong = epoch/(24*60*60*1000);
@@ -139,10 +143,10 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 int dateId = Integer.valueOf(rDFormat.format(dateIdLong));
 
                 if (MainActivity.profile.containDay(dateId)) {
-                    MainActivity.profile.getDayByID(dateId).addWorkouts(workout.getId());
+                    MainActivity.profile.getDayByID(dateId).addEvent(newEvent.getEventId());
                     Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
                 } else {
-                    MainActivity.profile.addToMyAgena(new Day(dateId, workouts));
+                    MainActivity.profile.addToMyAgena(new Day(dateId, events));
                     Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
                 }
 

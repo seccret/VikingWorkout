@@ -55,7 +55,7 @@ public class FragmentProgress extends Fragment {
     public FragmentProgress() {
     }
 
-    List<Integer> workoutList = null;
+    List<Integer> eventList = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -92,8 +92,8 @@ public class FragmentProgress extends Fragment {
                 long dateIdLong = epoch/(24*60*60*1000);
                 DecimalFormat rDFormat = new DecimalFormat("#");
                 int dateId = Integer.valueOf(rDFormat.format(dateIdLong));
-                workoutList =  MainActivity.profile.getDayByID(dateId).getWorkouts();
-                AdapterProfileWorkout ap = new AdapterProfileWorkout(rootView.getContext(), workoutList);
+                eventList =  MainActivity.profile.getDayByID(dateId).getEvents();
+                AdapterProfileWorkout ap = new AdapterProfileWorkout(rootView.getContext(), eventList);
                 lvagenda.setAdapter(ap);
             }
         });
@@ -156,9 +156,9 @@ public class FragmentProgress extends Fragment {
                 String text = format.format(today);
                 tvdate.setText(text);
 
-                workoutList = MainActivity.profile.getDayByID(dateId).getWorkouts();
+                eventList = MainActivity.profile.getDayByID(dateId).getEvents();
 
-                AdapterProfileAgenda AI = new AdapterProfileAgenda(rootView.getContext(), workoutList);
+                AdapterProfileEvent AI = new AdapterProfileEvent(rootView.getContext(), eventList);
                 lvagenda.setAdapter(AI);
 
             }

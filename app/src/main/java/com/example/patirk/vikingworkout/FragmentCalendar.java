@@ -60,12 +60,16 @@ public class FragmentCalendar extends android.support.v4.app.Fragment {
 
                 ArrayList<Integer> workouts = new ArrayList<Integer>();
                 workouts.add(workoutId);
+                Event newEvent = new Event(MainActivity.profile.getMyEvents().size(), workout, 0, "No");
+                MainActivity.profile.addToMyEvents(newEvent);
+                ArrayList<Integer> events = new ArrayList<Integer>();
+                events.add(newEvent.getEventId());
 
                 if (MainActivity.profile.containDay(dateId)){
-                    MainActivity.profile.getDayByID(dateId).addWorkouts(workoutId);
+                    MainActivity.profile.getDayByID(dateId).addEvent(newEvent.getEventId());
                     Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
                 } else {
-                    MainActivity.profile.addToMyAgena(new Day(dateId, workouts));
+                    MainActivity.profile.addToMyAgena(new Day(dateId, events));
                     Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
                 }
            }

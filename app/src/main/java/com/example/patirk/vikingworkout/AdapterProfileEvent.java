@@ -51,6 +51,7 @@ public class AdapterProfileEvent extends BaseAdapter {
         TextView name;
         TextView muscleGroup;
         TextView madeBy;
+        TextView performed;
         if (v == null) {
             v = mInflater.inflate(R.layout.item_event, viewGroup, false);
             v.setTag(R.id.tvItemEvent, v.findViewById(R.id.tvItemEvent));
@@ -58,16 +59,18 @@ public class AdapterProfileEvent extends BaseAdapter {
         name = (TextView) v.findViewById(R.id.tvItemEvent);
         muscleGroup = (TextView) v.findViewById(R.id.tvEventMusclegroup);
         madeBy = (TextView) v.findViewById(R.id.tvEventMadeBy);
+        performed = (TextView) v.findViewById(R.id.tvEventPerformed);
         final Item item = getItem(i);
         name.setText(item.workout.getName());
         muscleGroup.setText(item.workout.getMuscleGroup());
         madeBy.setText(item.workout.getMadeBy());
+        performed.setText(item.performed);
 
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Step 1: Create new Workout with items parameters
-                Workout wo = MainActivity.profile.getWorkoutByID(item.id);
+                Workout wo = MainActivity.profile.getWorkoutByID(item.workout.getId());
                 //Step 2: Set currentWorkout to clicked workout
                 MainActivity.currentWorkout = wo;
                 //Step 3: Go to block fragment
@@ -94,13 +97,15 @@ public class AdapterProfileEvent extends BaseAdapter {
         name.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick (View v){
-                Workout wo = MainActivity.getWorkoutByID(item.id);
+                Event ev = MainActivity.getEventByID(item.id);
+                MainActivity.currentEvent = ev;
+                Workout wo = MainActivity.getWorkoutByID(item.workout.getId());
                 MainActivity.currentWorkout = wo;
                 MainActivity.fragmentManager.beginTransaction()
                         .add(R.id.container, FragmentRemoveFrom.newInstance())
                         .commit();
 
-                return false;
+                return true;
             }
         }
 

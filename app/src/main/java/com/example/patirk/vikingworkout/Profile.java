@@ -27,9 +27,10 @@ public class Profile implements Serializable{
     private List<Workout> myWorkout;
     private List<Block> myBlocks;
     private List<Day> myDays;
+    private List<Event> myEvents;
     private int weight;
 
-    public Profile(long id, String name,String desc, List<Workout> myWorkout, List<Day> myDays, int weight)  {
+    public Profile(long id, String name,String desc, List<Workout> myWorkout, List<Day> myDays, List<Event> myEvents, int weight)  {
         this.id = id;
         this.name = name;
         this.desc = desc;
@@ -45,6 +46,11 @@ public class Profile implements Serializable{
             this.myDays = new ArrayList<>();
         }else{
             this.myDays = myDays;
+        }
+        if(myEvents==null){
+            this.myEvents = new ArrayList<>();
+        }else{
+            this.myEvents = myEvents;
         }
     }
 
@@ -87,6 +93,9 @@ public class Profile implements Serializable{
     public List<Day> getMyDays(){
         return myDays;
     }
+    public List<Event> getMyEvents(){
+        return myEvents;
+    }
 
     public List<Integer> getMyDaysAsID(){
         List<Integer> dayIdList = new ArrayList<>();
@@ -95,19 +104,31 @@ public class Profile implements Serializable{
         }
         return dayIdList;
     }
-
+    public List<Integer> getMyEventsAsID(){
+        List<Integer> eventIdList = new ArrayList<>();
+        for(Event e : myEvents){
+            eventIdList.add(e.getEventId());
+        }
+        return eventIdList;
+    }
     public List<Block> getMyBlocks(){
         return myBlocks;
     }
 
-    public Workout getWorkoutByID(int wID){
+    public Workout getWorkoutByID(int wID) {
         for(Workout wo : myWorkout){
             if(wo.getId() == wID){
                 return wo;
             }
         }
-        return myWorkout.get(0);
+        for(Workout wo : MainActivity.getWorkouts()){
+            if(wo.getId() == wID){
+                return wo;
+            }
+        }
+        return null;
     }
+
     public Day getDayByID(int wID){
         for(Day da : myDays){
             if(da.getDateId() == wID){
@@ -115,6 +136,14 @@ public class Profile implements Serializable{
             }
         }
         return new Day(wID, new ArrayList<Integer>());
+    }
+    public Event getEventByID(int wID){
+        for(Event ev : myEvents){
+            if(ev.getEventId() == wID){
+                return ev;
+            }
+        }
+        return new Event(wID, null,0,null);
     }
     public Block getBlockByID(int bID){
         for(Block bo : myBlocks){
@@ -131,6 +160,10 @@ public class Profile implements Serializable{
     }
     public void addToMyAgena(Day dID){
         myDays.add(dID);
+        MainActivity.saveProfile(MainActivity.mainActivity);
+    }
+    public void addToMyEvents(Event eID){
+        myEvents.add(eID);
         MainActivity.saveProfile(MainActivity.mainActivity);
     }
     public void addBlock(Block bID){
