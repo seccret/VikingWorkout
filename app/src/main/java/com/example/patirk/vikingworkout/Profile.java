@@ -238,6 +238,14 @@ public class Profile implements Serializable{
         }
         return false;
     }
+    public boolean containEvent(int eID){
+        for(Event ev : myEvents){
+            if(ev.getEventId() == eID){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public boolean containBlock(int wID){
         for(Block bl : myBlocks){

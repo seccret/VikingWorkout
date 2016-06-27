@@ -10,10 +10,10 @@ import java.util.List;
 public class Event implements Serializable {
     private int event_id;
     public Workout workout;
-    public int time;
+    public long time;
     public String performed;
 
-    public Event(int event_id, Workout workout, int time, String performed) {
+    public Event(int event_id, Workout workout, long time, String performed) {
         this.event_id = event_id;
         this.workout = workout;
         this.time = time;
@@ -28,7 +28,7 @@ public class Event implements Serializable {
         return workout;
     }
 
-    public int getTime() {
+    public long getTime() {
         return time;
     }
 
@@ -40,11 +40,18 @@ public class Event implements Serializable {
         this.workout = w;
     }
 
-    public void setTime(int t) {
+    public void setTime(long t) {
         this.time = t;
     }
 
     public void setPerformed(String p) {
         this.performed = p;
+    }
+
+    public boolean containWorkout(Workout w){
+            if(workout == w){
+                return true;
+            }
+        return false;
     }
 }

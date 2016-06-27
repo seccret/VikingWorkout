@@ -122,8 +122,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopWatch.setBase(SystemClock.elapsedRealtime());
-                timeWhenStopped = 0;
+                long elapsedTime =  (SystemClock.elapsedRealtime() - stopWatch.getBase())/1000;
                 Toast.makeText(getActivity(), "Workout done", Toast.LENGTH_SHORT).show();
                 llTime.setVisibility(View.GONE);
                 pausestop.setVisibility(View.GONE);
@@ -135,7 +134,7 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 String sProfileID = String.valueOf(MainActivity.profile.getId());
                 String sEventID = String.valueOf(MainActivity.profile.getMyEvents().size());
                 int newEventId = Integer.valueOf(sProfileID + sEventID);
-                Event newEvent = new Event(newEventId, workout, 0, "Yes");
+                Event newEvent = new Event(newEventId, workout, elapsedTime, "Yes");
                 MainActivity.profile.addToMyEvents(newEvent);
                 ArrayList<Integer> events = new ArrayList<Integer>();
                 events.add(newEventId);
@@ -145,13 +144,27 @@ public class FragmentWorkoutSeven extends android.support.v4.app.Fragment {
                 DecimalFormat rDFormat = new DecimalFormat("#");
                 int dateId = Integer.valueOf(rDFormat.format(dateIdLong));
 
+                List<Integer> eventIdList = MainActivity.profile.getDayByID(dateId).events;
+
                 if (MainActivity.profile.containDay(dateId)) {
-                    MainActivity.profile.getDayByID(dateId).addEvent(newEventId);
-                    Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
+                    for(int e : eventIdList){
+                        Event w = MainActivity.profile.getEventByID(e);
+                        if(w.containWorkout(workout)){
+                            w.setPerformed("Yes");
+                            w.setTime(elapsedTime);
+                            Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
+                        } else {
+                            MainActivity.profile.getDayByID(dateId).addEvent(newEventId);
+                            Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
                 } else {
                     MainActivity.profile.addToMyAgena(new Day(dateId, events));
                     Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
                 }
+                stopWatch.setBase(SystemClock.elapsedRealtime());
+                timeWhenStopped = 0;
 
             }
         });

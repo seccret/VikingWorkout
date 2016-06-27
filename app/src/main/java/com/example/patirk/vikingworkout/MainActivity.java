@@ -81,9 +81,9 @@ public class MainActivity extends ActionBarActivity
         loadWorkouts();
         loadWeeks();
         loadMonths();
-        //List<Workout> l = new ArrayList<>();
+       //List<Workout> l = new ArrayList<>();
        // List<Day> dayprofile = new ArrayList<>();
-         //profile = new Profile(1337,"Olivia", "hej",l,dayprofile,60);
+        // profile = new Profile(1337,"Olivia", "hej",l,dayprofile,null, 60);
         //List<Integer> l = new ArrayList<>();
        // profile.setWorkout(l);
  //       GoogleSpreadsheet gs = new GoogleSpreadsheet();

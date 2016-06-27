@@ -83,8 +83,14 @@ public class FragmentRemoveFrom extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 MainActivity.lastLongClick = workoutId;
-                MainActivity.profile.getDayByID(dayId).removeEvent(event.getEventId());
-                Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout has been removed from day", Toast.LENGTH_SHORT).show();
+                if (MainActivity.profile.getDayByID(dayId).events.size() > 1) {
+                    MainActivity.profile.getDayByID(dayId).removeEvent(event.getEventId());
+                    Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout has been removed from day", Toast.LENGTH_SHORT).show();
+                } else{
+                    MainActivity.profile.removeDay(dayId);
+                    Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout has been removed from day", Toast.LENGTH_SHORT).show();
+            }
+
                 MainActivity.fragmentManager.beginTransaction()
                         .remove(FragmentRemoveFrom.fragment)
                         .commit();
