@@ -5,11 +5,11 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tvBrowseCat"
+        android:id="@+id/tvCategoryHead"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:gravity="center"
-        android:text="Browse"
+        android:text="Category"
         android:textSize="20dp"
         android:textColor="@color/white"
         android:background="@color/material_blue_grey_800"/>
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="4dp"
-        android:text="Recommended"
+        android:text="Top workouts"
         android:textSize="20dp"
         android:fontFamily="sans-serif-light"/>
     <HorizontalScrollView
@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <GridView
-                android:id="@+id/gvBrowseRecommended"
+                android:id="@+id/gvCategoryTop"
                 android:layout_width="800dp"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
@@ -42,20 +42,5 @@
                 />
         </LinearLayout>
     </HorizontalScrollView>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="4dp"
-        android:text="Categories"
-        android:textSize="20dp"
-        android:fontFamily="sans-serif-light"/>
-    <GridView
-        android:id="@+id/gvBrowseCategory"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:numColumns="2"
-        android:gravity="center"
-        />
+
 </LinearLayout>

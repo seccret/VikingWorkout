@@ -39,6 +39,7 @@ public class MainActivity extends ActionBarActivity
     public static Workout currentWorkout = null;
     public static Event currentEvent = null;
     public static Block currentBlock = null;
+    public static Category currentCategory = null;
     public static Exercise currentExercise = null;
     public static int currentDay;
     public static FragmentManager fragmentManager = null;
@@ -46,6 +47,7 @@ public class MainActivity extends ActionBarActivity
     private static List<Block> blocksList = null;
     private static List<Exercise> exerciseList = null;
     private static List<Workout> workouts = null;
+    private static List<Category> categories = null;
     private static List<Day> days = null;
     private static List<Week> weeks = null;
     private static List<Event> events = null;
@@ -81,6 +83,7 @@ public class MainActivity extends ActionBarActivity
         loadWorkouts();
         loadWeeks();
         loadMonths();
+        loadCategories();
        //List<Workout> l = new ArrayList<>();
        // List<Day> dayprofile = new ArrayList<>();
         // profile = new Profile(1337,"Olivia", "hej",l,dayprofile,null, 60);
@@ -235,6 +238,14 @@ public class MainActivity extends ActionBarActivity
         }
         return null;
     }
+    public static Category getCategoryByID (int id){
+        for(Category c : categories){
+            if(c.getId() == id){
+                return c;
+            }
+        }
+        return null;
+    }
     public static Event getEventByID (int id){
         for(Event e : profile.getMyEvents()){
             if(e.getEventId() == id){
@@ -249,6 +260,9 @@ public class MainActivity extends ActionBarActivity
 
     public static List<Workout> getWorkouts (){
        return workouts;
+    }
+    public static List<Category> getCategories (){
+        return categories;
     }
 
     public static List<Day> getDays (){
@@ -392,6 +406,16 @@ public class MainActivity extends ActionBarActivity
             }
             exerciseList.add(exercise);
         }
+    }
+    public boolean loadCategories(){
+        MainActivity.categories = new ArrayList<Category>();
+        MainActivity.categories.add(new Category(0, "Abs", 1 ,workouts));
+        MainActivity.categories.add(new Category(1, "Arms", 2 ,workouts));
+        MainActivity.categories.add(new Category(2, "Legs", 3 ,workouts));
+        MainActivity.categories.add(new Category(3, "Back", 1 ,workouts));
+        MainActivity.categories.add(new Category(4, "Butt", 3 ,workouts));
+        MainActivity.categories.add(new Category(5, "Calves", 3 ,workouts));
+        return true;
     }
 
     /**

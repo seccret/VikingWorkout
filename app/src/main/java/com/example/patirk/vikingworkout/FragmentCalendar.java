@@ -44,7 +44,7 @@ public class FragmentCalendar extends android.support.v4.app.Fragment {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
 
-                String dateString = String.valueOf((i2+1)+ "/"+ (i1+1)+ "/"+i);
+                String dateString = String.valueOf((i2 + 1) + "/" + (i1 + 1) + "/" + i);
                 DateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
                 Date date = null;
                 try {
@@ -54,7 +54,7 @@ public class FragmentCalendar extends android.support.v4.app.Fragment {
                 }
                 long epoch = date.getTime();
 
-                long dateIdLong = epoch/(24*60*60*1000);
+                long dateIdLong = epoch / (24 * 60 * 60 * 1000);
                 DecimalFormat rDFormat = new DecimalFormat("#");
                 int dateId = Integer.valueOf(rDFormat.format(dateIdLong));
 
@@ -68,14 +68,14 @@ public class FragmentCalendar extends android.support.v4.app.Fragment {
                 ArrayList<Integer> events = new ArrayList<Integer>();
                 events.add(newEvent.getEventId());
 
-                if (MainActivity.profile.containDay(dateId)){
+                if (MainActivity.profile.containDay(dateId)) {
                     MainActivity.profile.getDayByID(dateId).addEvent(newEventId);
                     Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
                 } else {
                     MainActivity.profile.addToMyAgena(new Day(dateId, events));
                     Toast.makeText(MainActivity.mainActivity, workout.getName() + " workout added to agenda", Toast.LENGTH_SHORT).show();
                 }
-           }
+            }
         });
 
         return rootView;

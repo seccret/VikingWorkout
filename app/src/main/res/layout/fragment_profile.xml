@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
-        sothree:umanoPanelHeight="400dp"
+        sothree:umanoPanelHeight="350dp"
         sothree:umanoShadowHeight="4dp"
         sothree:umanoFadeColor="@android:color/transparent"
         >
@@ -25,13 +25,6 @@
                 android:background="@drawable/banner4"
                 android:layout_width="fill_parent"
                 android:layout_height="120dp"
-                />
-            <ImageView
-                android:id="@+id/ivProfileImage"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerVertical="true"
-                android:paddingLeft="5dp"
                 />
             <TextView
                 android:id="@+id/tvProfileName"
@@ -46,24 +39,19 @@
                 android:textColor="#ffffff"
                 android:fontFamily="sans-serif-bold"
                 android:clickable="true"/>
-            <TextView
-                android:id="@+id/tvProfileWorkouts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/ivProfileImage"
-                android:layout_below="@id/ivProfileBanner"
-                android:paddingTop="5dp"
-                android:paddingLeft="5dp"
-                android:text="     14\n workouts"
-                android:textSize="15sp"
-                android:fontFamily="sans-serif-light"
-                android:textColor="#9f9f9f"
+            <ImageView
+                android:id="@+id/ivProfileImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/tvProfileName"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
                 />
             <TextView
                 android:id="@+id/tvProfileFollowers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/tvProfileWorkouts"
+                android:layout_toRightOf="@id/ivProfileImage"
                 android:layout_below="@id/ivProfileBanner"
                 android:paddingTop="5dp"
                 android:paddingLeft="5dp"
@@ -76,7 +64,7 @@
                 android:id="@+id/tvProfileFollowing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/tvProfileFollowers"
+                android:layout_toLeftOf="@id/ivProfileImage"
                 android:layout_below="@id/ivProfileBanner"
                 android:paddingTop="5dp"
                 android:paddingLeft="5dp"
@@ -87,11 +75,11 @@
                 />
             <TextView
                 android:id="@+id/tvProfileInfo"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvProfileWorkouts"
-                android:layout_toRightOf="@id/ivProfileImage"
+                android:layout_below="@id/tvProfileFollowing"
                 android:paddingTop="10dp"
+                android:text="hey"
                 android:textSize="15sp"
                 android:fontFamily="sans-serif-light"/>
         </RelativeLayout>

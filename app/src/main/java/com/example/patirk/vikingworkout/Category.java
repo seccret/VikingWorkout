@@ -1,20 +1,29 @@
 package com.example.patirk.vikingworkout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by olivia on 2015-09-07.
  */
 public class Category {
-    private long id;
+    private int id;
     private String name;
     private int picture;
+    private List<Workout> workouts;
 
-    public Category(long id, String name, int picture) {
+    public Category(int id, String name, int picture, List<Workout> workouts) {
         this.id = id;
         this.name = name;
         this.picture = picture;
+        if(workouts==null){
+            this.workouts = new ArrayList<>();
+        }else{
+            this.workouts = workouts;
+        }
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -24,6 +33,10 @@ public class Category {
 
     public int getPicture() {
         return picture;
+    }
+
+    public List<Workout> getWorkouts() {
+        return workouts;
     }
 
 }

@@ -10,10 +10,10 @@ import android.widget.TextView;
 /**
  * Created by olivia on 2015-09-07.
  */
-public class FragmentBrowse extends android.support.v4.app.Fragment {
+public class FragmentCategory extends android.support.v4.app.Fragment {
 
-    public static FragmentBrowse newInstance() {
-        FragmentBrowse fragment = new FragmentBrowse();
+    public static FragmentCategory newInstance() {
+        FragmentCategory fragment = new FragmentCategory();
         Bundle args = new Bundle();
         //   args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -21,17 +21,16 @@ public class FragmentBrowse extends android.support.v4.app.Fragment {
         return fragment;
     }
 
-    public FragmentBrowse() {
+    public FragmentCategory() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_browse, container, false);
-        TextView cat = (TextView) rootView.findViewById(R.id.tvBrowseCat);
-        GridView recommended = (GridView) rootView.findViewById(R.id.gvBrowseRecommended);
-        GridView category = (GridView) rootView.findViewById(R.id.gvBrowseCategory);
-        Block block = MainActivity.currentBlock;
+        final View rootView = inflater.inflate(R.layout.fragment_category, container, false);
+        TextView cat = (TextView) rootView.findViewById(R.id.tvCategoryHead);
+        GridView recommended = (GridView) rootView.findViewById(R.id.gvCategoryTop);
+        cat.setText(MainActivity.currentCategory.getName());
 
        // LinearLayoutManager layoutManager= new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.HORIZONTAL, false);
        // RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.gvProgressBrowse);
@@ -39,9 +38,7 @@ public class FragmentBrowse extends android.support.v4.app.Fragment {
 
 
         AdapterBrowse AI = new AdapterBrowse(rootView.getContext(), MainActivity.getWorkouts());
-        AdapterBrowseCategory ca = new AdapterBrowseCategory(rootView.getContext(), MainActivity.getCategories());
         recommended.setAdapter(AI);
-        category.setAdapter(ca);
 
 
         return rootView;

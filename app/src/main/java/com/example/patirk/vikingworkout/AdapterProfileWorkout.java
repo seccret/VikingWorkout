@@ -17,19 +17,17 @@ public class AdapterProfileWorkout extends BaseAdapter {
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
     private static Workout workout = null;
+    private static Workout wo = null;
 
     // Constructor
     public AdapterProfileWorkout(Context c, List<Integer> workoutList) {
         mInflater = LayoutInflater.from(c);
-
         for (int workoutId : workoutList) {
             Workout w = MainActivity.getWorkoutByID(workoutId);
-            int id = w.getId();
-            String name = w.getName();
-            String musclegroup = w.getMuscleGroup();
-            String madeby = w.getMadeBy();
-            mItems.add(new Item(id, name, 1, musclegroup, madeby));
-            //this.workout = w;
+                String name = w.getName();
+                String musclegroup = w.getMuscleGroup();
+                String madeby = w.getMadeBy();
+                mItems.add(new Item(workoutId, name, 1, musclegroup, madeby));
         }
     }
 
@@ -68,10 +66,10 @@ public class AdapterProfileWorkout extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (MainActivity.profile.containWorkout(item.id)) {
-                    Workout wo = MainActivity.profile.getWorkoutByID(item.id);
+                    wo = MainActivity.profile.getWorkoutByID(item.id);
                     MainActivity.currentWorkout = wo;
                 }else{
-                    Workout wo = MainActivity.getWorkoutByID(item.id);
+                    wo = MainActivity.getWorkoutByID(item.id);
                     MainActivity.currentWorkout = wo;
                 }
                 MainActivity.fragmentManager.beginTransaction()
@@ -97,7 +95,7 @@ public class AdapterProfileWorkout extends BaseAdapter {
         name.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick (View v){
-                Workout wo = MainActivity.getWorkoutByID(item.id);
+                wo = MainActivity.getWorkoutByID(item.id);
                 MainActivity.currentWorkout = wo;
                 MainActivity.fragmentManager.beginTransaction()
                         .add(R.id.container, FragmentAddTo.newInstance())

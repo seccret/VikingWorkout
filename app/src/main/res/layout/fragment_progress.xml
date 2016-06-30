@@ -53,7 +53,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/llProgressTop"
         android:gravity="bottom"
-        sothree:umanoPanelHeight="200dp"
+        sothree:umanoPanelHeight="160dp"
         sothree:umanoShadowHeight="4dp"
         sothree:umanoFadeColor="@android:color/transparent"
         >
@@ -62,6 +62,9 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
             <CalendarView
                 android:id="@+id/cvProgress"
                 android:layout_width="match_parent"
@@ -70,6 +73,15 @@
                 android:selectedWeekBackgroundColor="#fff"
                 android:selectedDateVerticalBar="@color/spring"
                 android:unfocusedMonthDateColor="#c9c9c9"></CalendarView>
+            <LinearLayout
+                android:id="@+id/calendar_header"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="63dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@color/spring"/>
+            </RelativeLayout>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/llProgressAgenda"

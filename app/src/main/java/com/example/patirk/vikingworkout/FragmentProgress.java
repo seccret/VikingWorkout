@@ -56,6 +56,7 @@ public class FragmentProgress extends Fragment {
     }
 
     List<Integer> eventList = null;
+    List<Integer> workoutList = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,7 +94,7 @@ public class FragmentProgress extends Fragment {
                 DecimalFormat rDFormat = new DecimalFormat("#");
                 int dateId = Integer.valueOf(rDFormat.format(dateIdLong));
                 eventList =  MainActivity.profile.getDayByID(dateId).getEvents();
-                AdapterProfileWorkout ap = new AdapterProfileWorkout(rootView.getContext(), eventList);
+                AdapterProfileEvent ap = new AdapterProfileEvent(rootView.getContext(), eventList);
                 lvagenda.setAdapter(ap);
             }
         });

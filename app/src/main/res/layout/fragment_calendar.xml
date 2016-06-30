@@ -38,7 +38,7 @@
                         android:id="@+id/calendar_header"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginTop="63dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:background="@color/spring"/>
