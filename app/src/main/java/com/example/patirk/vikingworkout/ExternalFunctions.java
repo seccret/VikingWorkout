@@ -14,6 +14,8 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.mortbay.jetty.Main;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

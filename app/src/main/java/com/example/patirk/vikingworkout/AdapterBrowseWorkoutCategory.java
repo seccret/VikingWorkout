@@ -7,28 +7,32 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import org.mortbay.jetty.Main;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class AdapterBrowse extends BaseAdapter {
+public class AdapterBrowseWorkoutCategory extends BaseAdapter {
     // Keep all Images in array
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
     private static Workout workout = null;
 
     // Constructor
-    public AdapterBrowse(Context c, List<Workout> workoutList) {
+    public AdapterBrowseWorkoutCategory(Context c, List<Workout> workoutList, String tag) {
         mInflater = LayoutInflater.from(c);
+        List<Workout> allWorkouts = MainActivity.getWorkouts();
 
-        for (Workout w : workoutList) {
-            int id = w.getId();
-            String name = w.getName();
-            int picture = w.getPicture();
-            mItems.add(new Item(id, name, picture));
-            //this.block = w;
+        for (Workout w : allWorkouts) {
+            if (w.getMuscleGroup().contains(tag)) {
+                int id = w.getId();
+                String name = w.getName();
+                int picture = w.getPicture();
+                Item newI = new Item(id, name, picture);
+                mItems.add(newI);
+            }
         }
     }
 

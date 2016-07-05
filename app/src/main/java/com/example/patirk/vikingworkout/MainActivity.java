@@ -330,17 +330,29 @@ public class MainActivity extends ActionBarActivity
     public boolean loadWorkouts(){
         List<Integer> b = new ArrayList<>();
         b.add(0);
-        b.add(1);
-        b.add(2);
-        b.add(3);
+        b.add(0);
+        b.add(0);
+        b.add(0);
+        List<Integer> bl = new ArrayList<>();
+        bl.add(1);
+        bl.add(1);
+        bl.add(1);
+        bl.add(1);
+        List<Integer> blo = new ArrayList<>();
+        blo.add(2);
+        blo.add(2);
+        blo.add(2);
+        blo.add(2);
         String muscleGroup = ExternalFunctions.findMuscleGroupWo(b);
+        String muscleGroup1 = ExternalFunctions.findMuscleGroupWo(bl);
+        String muscleGroup2 = ExternalFunctions.findMuscleGroupWo(blo);
         MainActivity.workouts = new ArrayList<Workout>();
         MainActivity.workouts.add(new Workout(0, "Mage", 1, b, muscleGroup, "Viking"));
-        MainActivity.workouts.add(new Workout(1, "Ben", 1, b, muscleGroup, "Viking"));
-        MainActivity.workouts.add(new Workout(2, "Rygg", 1, b, muscleGroup, "Viking"));
+        MainActivity.workouts.add(new Workout(1, "Ben", 1, bl, muscleGroup1, "Viking"));
+        MainActivity.workouts.add(new Workout(2, "Cross", 1, blo, muscleGroup2, "Viking"));
         MainActivity.workouts.add(new Workout(3, "Armar", 1, b, muscleGroup, "Viking"));
-        MainActivity.workouts.add(new Workout(4, "Cross-training", 1, b, muscleGroup, "Viking"));
-        MainActivity.workouts.add(new Workout(5, "Ultimate situps", 1, b, muscleGroup, "Viking"));
+        MainActivity.workouts.add(new Workout(4, "Cross-training", 1, b, muscleGroup1, "Viking"));
+        MainActivity.workouts.add(new Workout(5, "Ultimate situps", 1, b, muscleGroup2, "Viking"));
 
         return true;
     }
@@ -349,10 +361,20 @@ public class MainActivity extends ActionBarActivity
         MainActivity.blocksList = new ArrayList<Block>();
         Block block = null;
         List<Integer> e = new ArrayList<>();
-        e.add(0);
-        e.add(1);
         e.add(2);
-        e.add(3);
+        e.add(2);
+        e.add(2);
+        e.add(2);
+        List<Integer> ex = new ArrayList<>();
+        ex.add(1);
+        ex.add(1);
+        ex.add(1);
+        ex.add(1);
+        List<Integer> exe = new ArrayList<>();
+        exe.add(2);
+        exe.add(3);
+        exe.add(2);
+        exe.add(3);
         List<Integer> r = new ArrayList<>();
         r.add(15);
         r.add(15);
@@ -361,13 +383,13 @@ public class MainActivity extends ActionBarActivity
         for(int i = 0; i<4; i++) {
             String muscleGroup = ExternalFunctions.findMuscleGroup(e);
             if (i == 0) {
-                block = new Block(0, "Block Name", "Seven Block", e, r, muscleGroup);
+                block = new Block(0, "Abs Block", "Seven Block", e, r, muscleGroup);
             } else if (i == 1) {
-                block = new  Block(1, "Block Name", "List Block", e, r, muscleGroup);
+                block = new  Block(1, "Leg Block", "List Block", ex, r, muscleGroup);
             } else if (i == 2) {
-                block = new  Block(2, "Block Name", "Seven Block", e, r, muscleGroup);
+                block = new  Block(2, "Mix Block", "Seven Block", exe, r, muscleGroup);
             } else if (i == 3) {
-                block = new  Block(3, "Block Name", "List Block", e, r, muscleGroup);
+                block = new  Block(3, "Block Name", "List Block", ex, r, muscleGroup);
             }
             blocksList.add(block);
         }
@@ -383,25 +405,25 @@ public class MainActivity extends ActionBarActivity
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.commandos);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                muscleList.add("Arms"); muscleList.add("Chest"); muscleList.add("Abs");
+                muscleList.add("Arms"); muscleList.add("Abs");
                 exercise = new Exercise(0, "Commandos", "Description", muscleList ,img, gif);
             } else if (i == 1) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.pushups);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                muscleList.add("Butt"); muscleList.add("Legs");
-                exercise = new Exercise(1, "Push Up", "Description", muscleList, img, gif);
+                muscleList.add("Legs"); muscleList.add("Arms");
+                exercise = new Exercise(1, "Squat", "Description", muscleList, img, gif);
             } else if (i == 2) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.situps);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                muscleList.add("Abs");
+                muscleList.add("Abs"); muscleList.add("Arms");
                 exercise = new Exercise(2, "Sit Up", "Description", muscleList, img, gif);
             } else if (i == 3) {
                 gifInputStream = MainActivity.mainActivity.getResources().openRawResource(R.raw.running);
                 Movie gif = Movie.decodeStream(gifInputStream);
                 Drawable img = (Drawable) Drawable.createFromStream(gifInputStream, "img");
-                muscleList.add("Abs"); muscleList.add("Legs");
+                muscleList.add("Back"); muscleList.add("Arms");
                 exercise = new Exercise(3, "Runner", "Description", muscleList, img, gif);
             }
             exerciseList.add(exercise);
@@ -409,12 +431,12 @@ public class MainActivity extends ActionBarActivity
     }
     public boolean loadCategories(){
         MainActivity.categories = new ArrayList<Category>();
-        MainActivity.categories.add(new Category(0, "Abs", 1 ,workouts));
-        MainActivity.categories.add(new Category(1, "Arms", 2 ,workouts));
-        MainActivity.categories.add(new Category(2, "Legs", 3 ,workouts));
-        MainActivity.categories.add(new Category(3, "Back", 1 ,workouts));
-        MainActivity.categories.add(new Category(4, "Butt", 3 ,workouts));
-        MainActivity.categories.add(new Category(5, "Calves", 3 ,workouts));
+        MainActivity.categories.add(new Category(0, "Upper body", 1 ,workouts));
+        MainActivity.categories.add(new Category(1, "Lower body", 2 ,workouts));
+        MainActivity.categories.add(new Category(2, "Cross", 3 ,workouts));
+        MainActivity.categories.add(new Category(3, "Upper body", 1 ,workouts));
+        MainActivity.categories.add(new Category(4, "Lower body", 2 ,workouts));
+        MainActivity.categories.add(new Category(5, "Cross", 3 ,workouts));
         return true;
     }
 

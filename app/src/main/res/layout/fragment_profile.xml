@@ -22,7 +22,7 @@
             android:layout_height="295dp">
             <ImageView
                 android:id="@+id/ivProfileBanner"
-                android:background="@drawable/banner4"
+                android:background="@drawable/wobanner3"
                 android:layout_width="fill_parent"
                 android:layout_height="120dp"
                 />

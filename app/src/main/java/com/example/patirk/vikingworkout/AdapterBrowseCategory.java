@@ -26,7 +26,8 @@ public class AdapterBrowseCategory extends BaseAdapter {
         for (Category cat : categoryList) {
             int id = cat.getId();
             String name = cat.getName();
-            mItems.add(new Item(id, name,2));
+            int picture = cat.getPicture();
+            mItems.add(new Item(id, name, picture));
             //this.block = w;
         }
     }
@@ -62,11 +63,11 @@ public class AdapterBrowseCategory extends BaseAdapter {
 
         //Fix size of Mipmap
         if (item.picture == 1) {
-            image.setBackgroundResource(R.drawable.workout1);
+            image.setBackgroundResource(R.drawable.workout4);
         } else if (item.picture == 2) {
-            image.setBackgroundResource(R.drawable.workout2);
+            image.setBackgroundResource(R.drawable.workout5);
         } else if (item.picture == 3) {
-            image.setBackgroundResource(R.drawable.workout3);
+            image.setBackgroundResource(R.drawable.workout6);
         }
 
         rv.setOnClickListener(new View.OnClickListener() {

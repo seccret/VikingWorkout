@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Created by olivia on 2015-09-07.
  */
@@ -31,14 +33,14 @@ public class FragmentCategory extends android.support.v4.app.Fragment {
         TextView cat = (TextView) rootView.findViewById(R.id.tvCategoryHead);
         GridView recommended = (GridView) rootView.findViewById(R.id.gvCategoryTop);
         cat.setText(MainActivity.currentCategory.getName());
+        List<Workout> workoutList = MainActivity.currentCategory.getWorkouts();
+
 
        // LinearLayoutManager layoutManager= new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.HORIZONTAL, false);
        // RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.gvProgressBrowse);
         //mRecyclerView.setLayoutManager(layoutManager);
-
-
-        AdapterBrowse AI = new AdapterBrowse(rootView.getContext(), MainActivity.getWorkouts());
-        recommended.setAdapter(AI);
+        AdapterBrowseWorkoutCategory AD = new AdapterBrowseWorkoutCategory(rootView.getContext(), MainActivity.getWorkouts(), MainActivity.currentCategory.getName());
+        recommended.setAdapter(AD);
 
 
         return rootView;

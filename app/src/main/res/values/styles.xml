@@ -6,4 +6,8 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="lightTheme" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="colorPrimary">@color/primary_material_light_2</item>
+    </style>
+
 </resources>
