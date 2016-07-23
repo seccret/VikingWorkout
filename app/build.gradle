@@ -8,8 +8,8 @@ android {
     }
     defaultConfig {
         applicationId "com.example.patirk.vikingworkout"
-        minSdkVersion 21
-        targetSdkVersion 21
+        minSdkVersion 'N'
+        targetSdkVersion 'N'
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -30,15 +30,18 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.android.support:support-v4:21.0.3'
     compile 'com.sothree.slidinguppanel:library:3.2.1'
-    compile 'com.facebook.android:facebook-android-sdk:4.+'
-    compile ('com.google.gdata:core:1.47.1') {
+    compile('com.google.gdata:core:1.47.1') {
         exclude module: 'httpcore'
         exclude module: 'httpclient' //by artifact name
     }
-    compile ('com.google.api-client:google-api-client-android:1.21.0'){
+    compile('com.google.api-client:google-api-client-android:1.21.0') {
         exclude module: 'httpcore'
         exclude module: 'httpclient' //by artifact name
         //exclude group: 'org.apache.httpcomponents' //by group
         //exclude group: 'org.apache.httpcomponents', module: 'httpclient' //by both name and group
     }
+
+    compile 'com.amazonaws:aws-android-sdk-s3:2.2.11'
+    compile 'com.amazonaws:aws-android-sdk-core:2.2.11'
+    compile 'com.amazonaws:aws-android-sdk-cognito:2.2.11'
 }

@@ -1,8 +1,12 @@
 package com.example.patirk.vikingworkout;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.ContextMenu;
@@ -20,6 +24,11 @@ import android.widget.Toast;
 import com.facebook.login.widget.ProfilePictureView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import org.mortbay.jetty.Main;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,13 +70,21 @@ public class FragmentProfile extends android.support.v4.app.Fragment {
         String pName = MainActivity.profile.getName();
         String pDesc = MainActivity.profile.getDesc();
         final ProfilePictureView profilePic = (ProfilePictureView) rootView.findViewById(R.id.ivProfileImage);
+        // final ImageView profilePic = (ImageView) rootView.findViewById(R.id.ivProfileImage);
         TextView profileName = (TextView) rootView.findViewById(R.id.tvProfileName);
         TextView profileDesc = (TextView) rootView.findViewById(R.id.tvProfileInfo);
         final ImageView plus = (ImageView) rootView.findViewById(R.id.ivProfilePlus);
 
-        ((ProfilePictureView)rootView.findViewById(R.id.ivProfileImage)).setProfileId(
+
+       ((ProfilePictureView)rootView.findViewById(R.id.ivProfileImage)).setProfileId(
                 MainActivity.fbID
         );
+        ((ProfilePictureView)rootView.findViewById(R.id.ivProfileImage)).setCropped(true);
+
+/*
+        profilePic.setBackground(new BitmapDrawable(MainActivity.facebookPicture));
+        */
+
         profileName.setText(pName);
         profileDesc.setText(pDesc);
 

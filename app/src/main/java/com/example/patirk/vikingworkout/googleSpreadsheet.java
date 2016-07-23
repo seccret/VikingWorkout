@@ -24,6 +24,11 @@ public class GoogleSpreadsheet {
 
         return "hej";
     }
+
+    public void getFacebookPic(String url){
+        new FacebookGetImage(url).execute();
+    }
+
     public void addToSheet(){
         new GoogleSendFeedTask(sheetURL).execute();
     }

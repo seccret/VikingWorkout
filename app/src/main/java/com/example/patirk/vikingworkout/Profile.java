@@ -160,8 +160,14 @@ public class Profile implements Serializable{
         this.desc = newDesc;
     }
 
-    public void setProfilePicture(Bitmap newPic) {
+    public void setProfilePictureFromBitmap(Bitmap newPic) {
         this.picture = newPic;
+        //ExernalFunctions.saveToInternalStorage(newPic);
+    }
+
+    public void setProfilePictureFromDrawable(Drawable newPic) {
+        this.picture = ExternalFunctions.drawableToBitmap(newPic);
+
         //ExernalFunctions.saveToInternalStorage(newPic);
     }
 

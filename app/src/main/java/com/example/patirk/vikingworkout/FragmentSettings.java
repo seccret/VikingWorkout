@@ -11,8 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 
 /**
  * Created by Patirk on 23/10/2015.
@@ -88,7 +86,7 @@ public class FragmentSettings extends android.support.v4.app.Fragment implements
 
         Bitmap bp = (Bitmap) data.getExtras().get("data");
         Bitmap circlePic = EF.getCroppedBitmap(bp);
-        MainActivity.profile.setProfilePicture(circlePic);
+        MainActivity.profile.setProfilePictureFromBitmap(circlePic);
         iv.setImageBitmap(circlePic);
     }
 }

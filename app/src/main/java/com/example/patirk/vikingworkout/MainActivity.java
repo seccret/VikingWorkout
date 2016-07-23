@@ -12,6 +12,7 @@ import android.graphics.Movie;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -25,6 +26,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.FileInputStream;
@@ -39,6 +42,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.amazonaws.mobile.AWSMobileClient;
+import com.amazonaws.mobile.user.IdentityManager;
+import com.amazonaws.mobile.user.IdentityProvider;
+import com.amazonaws.mobile.user.signin.FacebookSignInProvider;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -70,6 +77,8 @@ public class MainActivity extends ActionBarActivity
     public static Exercise currentExercise = null;
     public static FragmentManager fragmentManager = null;
     public static int lastLongClick, activeWorkoutCounter=0;
+    public static Bitmap facebookPicture;
+
     private static List<Block> blocksList = null;
     private static List<Exercise> exerciseList = null;
     private static List<Workout> workouts = null;
@@ -91,11 +100,13 @@ public class MainActivity extends ActionBarActivity
         setContentView(R.layout.activity_main);
         mainActivity = this;
 
+        //Amazon
+
+
         //facebook
         FacebookSdk.sdkInitialize(getApplicationContext());
-        showHashKey(this);
         callbackManager = CallbackManager.Factory.create();
-        LoginManager.getInstance().logInWithReadPermissions(MainActivity.mainActivity, Arrays.asList("public_profile", "user_friends"));
+    /*    LoginManager.getInstance().logInWithReadPermissions(MainActivity.mainActivity, Arrays.asList("public_profile", "user_friends"));
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
@@ -106,6 +117,7 @@ public class MainActivity extends ActionBarActivity
                         String name =Profile.getCurrentProfile().getName();
                         fbProfile = Profile.getCurrentProfile();
                         fbID = Profile.getCurrentProfile().getId();
+
                         loadProfile(name, Profile.getCurrentProfile().getId());
 
                         MainActivity.removeFragment("login");
@@ -124,13 +136,13 @@ public class MainActivity extends ActionBarActivity
                     }
                 });
 
-
-        // = savedInstanceState.get("allrecipes");
+*/
         //Toast.makeText(this, st, Toast.LENGTH_SHORT).show();
         MainActivity.workouts = new ArrayList<Workout>();
         loadExercises();
         loadWorkouts();
         loadBlocks();
+        loadProfile("", "");
        //   List<Workout> l = new ArrayList<>();
        //  profile = new Profile(1337,"Olivia", "hej",l);
        // List<Integer> l = new ArrayList<>();
@@ -177,9 +189,10 @@ public class MainActivity extends ActionBarActivity
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
-        fragmentManager.beginTransaction()
+  /*      fragmentManager.beginTransaction()
                 .add(R.id.container, FragmentLogin.newInstance(),"login")
                 .commit();
+    */
     }
 
     public void onSectionAttached(int number) {
@@ -436,40 +449,63 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
-    public static void loadProfile(String pName, String uri){
-        Deserializer deserializer = new Deserializer();
+    public static void loadProfile(String pName, String pID){
+     /*   Deserializer deserializer = new Deserializer();
         MainActivity.profile = deserializer.deserialzeProfile(pName);
-        /*try {
-            URL url = new URL(uri);
-            Bitmap bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            MainActivity.profile.setProfilePicture(bitmap);
-        }catch(IOException e){
+        GoogleSpreadsheet gs = new GoogleSpreadsheet();
+        gs.getFacebookPic();
+      */
+        String usrName = getUserName();
+        List<Workout> w = new ArrayList<>();
+        Bitmap usrImage = getUserImage(MainActivity.mainActivity);
+        MainActivity.profile = new com.example.patirk.vikingworkout.Profile(1337, usrName, "Hej", w);
+        //MainActivity.profile.setProfilePictureFromBitmap(usrImage);
+      }
 
-        }*/
-        //Load Profile-pic
-        /*Bitmap bitbit = ExternalFunctions.getImageBitmap(MainActivity.mainActivity, "profile", "JPEG");
-        InputStream in = (InputStream) pURL.getContent();
-        Bitmap  bitbit = BitmapFactory.decodeStream(in);
-        if(bitbit != null) {
-            Bitmap loadedImage = ExternalFunctions.getCroppedBitmap(bitbit);
-            profile.setProfilePicture(loadedImage);
+    private static String getUserName() {
+        final IdentityManager identityManager =
+                AWSMobileClient.defaultMobileClient().getIdentityManager();
+        final IdentityProvider identityProvider =
+                identityManager.getCurrentIdentityProvider();
+
+        if (identityProvider == null) {
+            // Not signed in
+            return "";
         }
 
-        try {
-            URL imgUrl = new URL("http://graph.facebook.com/"
-                    + pId + "/picture?type=large");
+        final String userName =
+                identityProvider.getUserName();
 
-            InputStream in = (InputStream) imgUrl.getContent();
-            Bitmap  bitmap = BitmapFactory.decodeStream(in);
-            profile.setProfilePicture(bitmap);
-            //Bitmap bitmap = BitmapFactory.decodeStream(imgUrl      // tried this also
-            //.openConnection().getInputStream());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-        Toast.makeText(MainActivity.mainActivity, "Loading profile: '" + MainActivity.profile.getName() + "'..", Toast.LENGTH_SHORT).show();
+       return userName;
+    }
 
-      }
+    private static Bitmap getUserImage(final Context activity) {
+
+        final IdentityManager identityManager =
+                AWSMobileClient.defaultMobileClient().getIdentityManager();
+        final IdentityProvider identityProvider =
+                identityManager.getCurrentIdentityProvider();
+
+
+    /*    if (identityProvider == null) {
+            // Not signed in
+            if (Build.VERSION.SDK_INT < 21) {
+                return BitmapFactory.decodeResource(activity.getResources(), R.mipmap.user);
+            }
+            else {
+                return ExternalFunctions.drawableToBitmap(activity.getDrawable(R.mipmap.user));
+            }
+        }
+*/
+        Toast.makeText(mainActivity, "got Image", Toast.LENGTH_SHORT).show();
+        final Bitmap userImage = identityManager.getUserImage();
+        String urlImage = identityProvider.getUserImageUrl();
+        GoogleSpreadsheet gs = new GoogleSpreadsheet();
+        gs.getFacebookPic(urlImage);
+        return userImage;
+
+    }
+
 
 
     public static void saveProfile(Context c) {

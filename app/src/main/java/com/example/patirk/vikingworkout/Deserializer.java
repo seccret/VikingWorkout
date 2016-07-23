@@ -20,7 +20,7 @@ public class Deserializer {
             ObjectInputStream ois = new ObjectInputStream(fin);
             prof = (Profile) ois.readObject();
             ois.close();
-            Toast.makeText(MainActivity.mainActivity, "created profile: '" + pName + "'..", Toast.LENGTH_SHORT).show();
+         //   Toast.makeText(MainActivity.mainActivity, "created profile: '" + pName + "'..", Toast.LENGTH_SHORT).show();
             return prof;
 
         } catch (Exception ex) {

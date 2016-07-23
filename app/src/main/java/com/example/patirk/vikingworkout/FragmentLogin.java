@@ -1,6 +1,7 @@
 package com.example.patirk.vikingworkout;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,8 +58,11 @@ public class FragmentLogin extends android.support.v4.app.Fragment {
                 Toast.makeText(MainActivity.mainActivity, "logged in", Toast.LENGTH_SHORT).show();
                 com.facebook.Profile.fetchProfileForCurrentAccessToken();
                 String name = com.facebook.Profile.getCurrentProfile().getName();
-                ;
-                MainActivity.loadProfile(name, Profile.getCurrentProfile().getProfilePictureUri(500,500).toString());
+                String id = com.facebook.Profile.getCurrentProfile().getId();
+                MainActivity.fbID = id;
+               // Toast.makeText(MainActivity.mainActivity, "ID: "+id, Toast.LENGTH_SHORT).show();
+                Log.d("!!!!!!!FACEBOOK ID!!!!!", id);
+                MainActivity.loadProfile(name, id);
                // LoginManager.getInstance().logInWithReadPermissions(MainActivity.mainActivity, Arrays.asList("public_profile", "user_friends"));
                 MainActivity.removeFragment("login");
             }
